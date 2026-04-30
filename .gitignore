@@ -43,6 +43,7 @@ yarn-error.log*
 
 # convex
 .convex/
+convex/_generated/
 
 # Claude Code local-only settings
 .claude/settings.local.json

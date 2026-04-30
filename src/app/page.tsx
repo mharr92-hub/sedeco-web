@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
+import { LeadForm } from "@/components/site/lead-form";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
@@ -61,18 +62,18 @@ export default function HomePage() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
+              href="#contacto"
+              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card hover:bg-accent-600 transition-colors"
+            >
+              Solicitar diagnóstico
+            </a>
+            <a
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card hover:bg-accent-600 transition-colors"
+              className="inline-flex items-center rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
             >
-              Solicitar diagnóstico por WhatsApp
-            </a>
-            <a
-              href={`mailto:${email}`}
-              className="inline-flex items-center rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 hover:bg-white transition-colors"
-            >
-              Escribir a Mark Harrick
+              WhatsApp directo
             </a>
           </div>
         </section>
@@ -118,6 +119,55 @@ export default function HomePage() {
                 aceite de motor y agentes dañinos para las estructuras.
               </p>
             </article>
+          </div>
+        </section>
+
+        <section
+          id="contacto"
+          aria-labelledby="contacto-titulo"
+          className="border-t border-ink-100 bg-white"
+        >
+          <div className="container grid gap-12 py-20 md:grid-cols-[5fr_7fr]">
+            <div>
+              <h2
+                id="contacto-titulo"
+                className="font-display text-3xl md:text-display-md text-navy-900"
+              >
+                Solicitar un diagnóstico
+              </h2>
+              <p className="mt-4 text-ink-500 leading-relaxed">
+                Cuéntanos qué está pasando con tu estructura y Mark Harrick te
+                responde dentro del próximo día hábil.
+              </p>
+              <div className="mt-8 space-y-4 border-t border-ink-100 pt-6">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-ink-400">
+                  Atención directa
+                </p>
+                <p className="text-sm text-ink-600">
+                  WhatsApp ·{" "}
+                  <a
+                    href={`https://wa.me/${whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ink-900 hover:text-accent-600"
+                  >
+                    +507 6550-8320
+                  </a>
+                </p>
+                <p className="text-sm text-ink-600">
+                  Email ·{" "}
+                  <a
+                    href={`mailto:${email}`}
+                    className="text-ink-900 hover:text-accent-600"
+                  >
+                    {email}
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div>
+              <LeadForm />
+            </div>
           </div>
         </section>
       </main>
