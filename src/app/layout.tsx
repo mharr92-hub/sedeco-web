@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { WhatsAppFloat } from "@/components/site/whatsapp-float";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-ink-50 text-ink-900 font-sans antialiased">
         {children}
+        <WhatsAppFloat />
       </body>
     </html>
   );
