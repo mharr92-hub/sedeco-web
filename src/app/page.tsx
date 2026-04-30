@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
 import { LeadForm } from "@/components/site/lead-form";
+import { CaseCard } from "@/components/site/case-card";
+import { getFeaturedCases } from "@/lib/data/cases";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
@@ -40,6 +42,7 @@ const jsonLd = {
 };
 
 export default function HomePage() {
+  const featuredCases = getFeaturedCases(3);
   return (
     <>
       <script
@@ -134,6 +137,39 @@ export default function HomePage() {
                 aceite de motor y agentes dañinos para las estructuras.
               </p>
             </article>
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="casos-destacados-titulo"
+          className="border-t border-ink-100 bg-ink-50"
+        >
+          <div className="container py-20">
+            <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+              <div>
+                <h2
+                  id="casos-destacados-titulo"
+                  className="font-display text-3xl md:text-display-md text-navy-900 mb-3"
+                >
+                  Casos destacados
+                </h2>
+                <p className="text-ink-500 max-w-prose">
+                  Proyectos respaldados por cartas firmadas de los clientes.
+                  Estos son tres de los hitos más visibles del portafolio.
+                </p>
+              </div>
+              <a
+                href="/casos"
+                className="inline-flex items-center text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors"
+              >
+                Ver todos los casos →
+              </a>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {featuredCases.map((c) => (
+                <CaseCard key={c.slug} caseItem={c} />
+              ))}
+            </div>
           </div>
         </section>
 
