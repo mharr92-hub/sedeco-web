@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllCases } from "@/lib/data/cases";
 import { getAllServices } from "@/lib/data/services";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
@@ -10,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified,
     changeFrequency: "monthly",
     priority: 0.7,
+  }));
+  const caseEntries: MetadataRoute.Sitemap = getAllCases().map((c) => ({
+    url: `${siteUrl}/casos/${c.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.6,
   }));
   return [
     {
@@ -31,5 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...caseEntries,
   ];
 }

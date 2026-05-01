@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Case } from "@/lib/data/cases";
 
 const numberFormatter = new Intl.NumberFormat("es-PA");
@@ -9,6 +10,7 @@ type CaseCardProps = {
 
 export function CaseCard({ caseItem, ctaHref = "/#contacto" }: CaseCardProps) {
   const {
+    slug,
     name,
     location,
     workType,
@@ -25,7 +27,14 @@ export function CaseCard({ caseItem, ctaHref = "/#contacto" }: CaseCardProps) {
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
         {workType}
       </p>
-      <h3 className="mt-2 font-display text-xl text-navy-900">{name}</h3>
+      <h3 className="mt-2 font-display text-xl text-navy-900">
+        <Link
+          href={`/casos/${slug}`}
+          className="transition-colors hover:text-accent-700"
+        >
+          {name}
+        </Link>
+      </h3>
       {location ? (
         <p className="mt-1 text-sm text-ink-500">{location}</p>
       ) : null}
