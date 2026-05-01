@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/site/site-header";
 import { WhatsAppFloat } from "@/components/site/whatsapp-float";
 
 const inter = Inter({
@@ -39,6 +40,18 @@ export const metadata: Metadata = {
     title: "SEDECO Panamá — Sellado de concreto permanente",
     description:
       "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía de hasta 100 años.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "SEDECO Panamá — Sellado de concreto permanente",
+      },
+    ],
+  },
+  icons: {
+    icon: "/icon",
+    apple: "/apple-icon",
   },
   robots: { index: true, follow: true },
 };
@@ -52,6 +65,7 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-screen bg-ink-50 text-ink-900 font-sans antialiased">
+        <SiteHeader />
         {children}
         <WhatsAppFloat />
       </body>
