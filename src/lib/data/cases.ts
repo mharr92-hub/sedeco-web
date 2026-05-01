@@ -4,7 +4,7 @@ export type ServiceSlug =
   | "tanques"
   | "grietas"
   | "piscinas"
-  | "diagnostico"
+  | "filtraciones"
   | "sellado-concreto"
   | "impermeabilizacion";
 
