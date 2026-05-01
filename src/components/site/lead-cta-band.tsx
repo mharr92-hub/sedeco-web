@@ -73,7 +73,7 @@ export function LeadCtaBand({
                 : "border border-ink-200 bg-white text-ink-900 hover:border-ink-300",
             )}
           >
-            <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
+            <WhatsAppGlyph className="text-[#25D366]" />
             WhatsApp directo
           </a>
         </div>

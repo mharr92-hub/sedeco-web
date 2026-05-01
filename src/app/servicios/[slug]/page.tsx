@@ -103,7 +103,7 @@ export default async function ServicioDetailPage({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
             >
-              <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
+              <WhatsAppGlyph className="text-[#25D366]" />
               WhatsApp directo
             </a>
           </div>

@@ -44,7 +44,7 @@ export function SiteHeader() {
             aria-label="Escribir a SEDECO por WhatsApp"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#25D366] text-white transition-colors hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
           >
-            <WhatsAppGlyph className="h-5 w-5" />
+            <WhatsAppGlyph />
           </a>
           <Link
             href="/#contacto"

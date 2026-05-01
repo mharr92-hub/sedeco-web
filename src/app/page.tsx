@@ -84,7 +84,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-ink-900 bg-white px-6 py-3 text-ink-900 font-medium transition-colors hover:bg-ink-900 hover:text-white"
             >
-              <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
+              <WhatsAppGlyph className="text-[#25D366]" />
               WhatsApp
             </a>
           </div>
