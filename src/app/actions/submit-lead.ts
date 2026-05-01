@@ -23,6 +23,14 @@ export async function submitLead(
   _prev: SubmitLeadResult | undefined,
   formData: FormData,
 ): Promise<SubmitLeadResult> {
+  const honeypot = formData.get("company");
+  if (typeof honeypot === "string" && honeypot.trim().length > 0) {
+    console.warn(
+      "[submitLead] honeypot disparado, lead descartado silenciosamente.",
+    );
+    return { ok: true, emailQueued: false };
+  }
+
   const raw = {
     nombre: formData.get("nombre"),
     email: formData.get("email"),

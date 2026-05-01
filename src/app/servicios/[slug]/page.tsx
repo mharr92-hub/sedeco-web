@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CaseCard } from "@/components/site/case-card";
 import { SiteFooter } from "@/components/site/footer";
+import { LeadCtaBand } from "@/components/site/lead-cta-band";
+import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { getCasesByService } from "@/lib/data/cases";
 import { getAllServices, getServiceBySlug } from "@/lib/data/services";
 
@@ -99,8 +101,9 @@ export default async function ServicioDetailPage({
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
+              className="inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
             >
+              <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
               WhatsApp directo
             </a>
           </div>
@@ -232,33 +235,10 @@ export default async function ServicioDetailPage({
           </section>
         ) : null}
 
-        <section className="border-t border-ink-100 bg-navy-900 text-white">
-          <div className="container py-20 text-center">
-            <h2 className="font-display text-3xl md:text-display-md text-white">
-              ¿Tu estructura necesita {service.shortName.toLowerCase()}?
-            </h2>
-            <p className="mt-4 max-w-prose mx-auto text-navy-200 leading-relaxed">
-              Cuéntanos qué está pasando y Mark Harrick te responde dentro del
-              próximo día hábil.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                href="/#contacto"
-                className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card hover:bg-accent-600 transition-colors"
-              >
-                Solicitar diagnóstico
-              </a>
-              <a
-                href={`https://wa.me/${whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-navy-700 bg-navy-800 px-6 py-3 text-white font-medium hover:bg-navy-700 transition-colors"
-              >
-                WhatsApp directo
-              </a>
-            </div>
-          </div>
-        </section>
+        <LeadCtaBand
+          variant="dark"
+          title={`¿Tu estructura necesita ${service.shortName.toLowerCase()}?`}
+        />
       </main>
       <SiteFooter />
     </>

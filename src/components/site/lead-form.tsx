@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import {
   submitLead,
   type SubmitLeadResult,
@@ -22,6 +22,16 @@ const tipoOptions = [
 }>;
 
 export function LeadForm() {
+  const [resetKey, setResetKey] = useState(0);
+  return (
+    <LeadFormInner
+      key={resetKey}
+      onReset={() => setResetKey((k) => k + 1)}
+    />
+  );
+}
+
+function LeadFormInner({ onReset }: { onReset: () => void }) {
   const [state, formAction, isPending] = useActionState<
     SubmitLeadResult | undefined,
     FormData
@@ -38,6 +48,13 @@ export function LeadForm() {
             ? "Enviamos la notificación a Mark Harrick. Te respondemos dentro del próximo día hábil."
             : "Quedó registrada. Mark Harrick te contactará dentro del próximo día hábil. Si necesitas atención inmediata, escríbenos a mark@selladodeconcreto.com o por WhatsApp."}
         </p>
+        <button
+          type="button"
+          onClick={onReset}
+          className="mt-6 inline-flex items-center text-sm font-medium text-accent-600 transition-colors hover:text-accent-700"
+        >
+          Enviar otra solicitud →
+        </button>
       </div>
     );
   }
@@ -48,6 +65,21 @@ export function LeadForm() {
 
   return (
     <form action={formAction} className="grid gap-5" noValidate>
+      <div
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+      >
+        <label>
+          Empresa
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </label>
+      </div>
       <Field
         label="Nombre completo"
         name="nombre"
