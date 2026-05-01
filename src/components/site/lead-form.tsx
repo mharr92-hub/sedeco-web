@@ -39,7 +39,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
 
   if (state?.ok) {
     return (
-      <div className="rounded-lg border border-success/30 bg-white p-8 shadow-card">
+      <div className="rounded-lg border border-success/30 bg-white p-8">
         <h3 className="font-display text-2xl text-navy-900">
           Recibimos tu solicitud.
         </h3>
@@ -129,7 +129,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Enviando..." : "Solicitar diagnóstico"}
         </button>

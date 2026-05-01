@@ -19,7 +19,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href="/#contacto"
-            className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card transition-colors hover:bg-accent-600"
+            className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600"
           >
             Solicitar diagnóstico
           </a>

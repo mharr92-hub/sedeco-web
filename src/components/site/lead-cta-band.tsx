@@ -28,7 +28,7 @@ export function LeadCtaBand({
           : "border-ink-100 bg-white",
       )}
     >
-      <div className="container py-20 text-center">
+      <div className="container py-20 text-center md:py-24">
         {eyebrow ? (
           <p
             className={cn(
@@ -58,7 +58,7 @@ export function LeadCtaBand({
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a
             href={href}
-            className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card transition-colors hover:bg-accent-600"
+            className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600"
           >
             Solicitar diagnóstico
           </a>

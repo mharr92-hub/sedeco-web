@@ -41,11 +41,11 @@ export default function CasosPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="container py-20 md:py-28">
+        <section className="container py-20 md:py-24">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
             Portafolio SEDECO
           </p>
-          <h1 className="font-display text-display-md md:text-display-lg text-navy-900 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
             Proyectos entregados.
           </h1>
           <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
@@ -57,9 +57,9 @@ export default function CasosPage() {
 
         <section
           aria-label="Lista de proyectos"
-          className="border-t border-ink-100 bg-ink-50"
+          className="border-t border-ink-100 bg-white"
         >
-          <div className="container py-16 md:py-20">
+          <div className="container py-20 md:py-24">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {cases.map((c) => (
                 <div key={c.slug} id={c.slug}>

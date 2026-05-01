@@ -48,7 +48,7 @@ export function SiteHeader() {
           </a>
           <Link
             href="/#contacto"
-            className="inline-flex items-center rounded-md bg-accent-500 px-3 py-2 text-sm font-medium text-white shadow-card transition-colors hover:bg-accent-600 md:px-4"
+            className="inline-flex items-center rounded-md bg-accent-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-600 md:px-4"
           >
             <span className="hidden sm:inline">Solicitar diagnóstico</span>
             <span className="sm:hidden">Diagnóstico</span>

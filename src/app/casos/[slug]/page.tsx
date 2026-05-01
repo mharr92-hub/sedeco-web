@@ -109,11 +109,11 @@ export default async function CasoDetailPage({
           </div>
         </nav>
 
-        <section className="container py-16 md:py-24">
+        <section className="container py-20 md:py-24">
           <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
             {c.workType}
           </p>
-          <h1 className="font-display text-display-md text-navy-900 md:text-display-lg">
+          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900">
             {c.name}
           </h1>
           {c.location ? (
@@ -153,7 +153,7 @@ export default async function CasoDetailPage({
 
         {c.problem ? (
           <section className="border-t border-ink-100 bg-white">
-            <div className="container py-16 md:py-20 grid gap-10 md:grid-cols-[5fr_7fr]">
+            <div className="container py-20 md:py-24 grid gap-10 md:grid-cols-[5fr_7fr]">
               <div>
                 <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
                   Problema
@@ -171,7 +171,7 @@ export default async function CasoDetailPage({
 
         {c.result ? (
           <section className="border-t border-ink-100 bg-ink-50">
-            <div className="container py-16 md:py-20 grid gap-10 md:grid-cols-[5fr_7fr]">
+            <div className="container py-20 md:py-24 grid gap-10 md:grid-cols-[5fr_7fr]">
               <div>
                 <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
                   Resultado
@@ -189,9 +189,9 @@ export default async function CasoDetailPage({
 
         {c.signedBy ? (
           <section className="border-t border-ink-100 bg-white">
-            <div className="container py-16 md:py-20">
-              <div className="rounded-lg border border-ink-100 bg-ink-50 p-8 md:p-12">
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
+            <div className="container py-20 md:py-24">
+              <div className="rounded-lg border border-ink-100 p-6 md:p-8">
+                <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
                   Carta de respaldo firmada
                 </p>
                 <p className="font-display text-2xl text-navy-900 md:text-3xl">
@@ -205,7 +205,7 @@ export default async function CasoDetailPage({
 
         {relatedServices.length > 0 ? (
           <section className="border-t border-ink-100 bg-ink-50">
-            <div className="container py-16 md:py-20">
+            <div className="container py-20 md:py-24">
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
                 Servicios aplicados
               </p>

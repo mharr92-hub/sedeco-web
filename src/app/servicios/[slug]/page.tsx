@@ -77,14 +77,14 @@ export default async function ServicioDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="container py-20 md:py-28">
+        <section className="container py-20 md:py-24">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
             Servicios SEDECO · {service.shortName}
           </p>
-          <h1 className="font-display text-display-md md:text-display-lg text-navy-900 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
             {service.name}
           </h1>
-          <p className="mt-4 max-w-prose text-lg text-accent-600 font-medium">
+          <p className="mt-4 max-w-prose text-lg text-ink-600 leading-relaxed">
             {service.tagline}
           </p>
           <p className="mt-6 max-w-prose text-ink-600 leading-relaxed">
@@ -93,7 +93,7 @@ export default async function ServicioDetailPage({
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="/#contacto"
-              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card hover:bg-accent-600 transition-colors"
+              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium hover:bg-accent-600 transition-colors"
             >
               Solicitar diagnóstico
             </a>
@@ -113,7 +113,7 @@ export default async function ServicioDetailPage({
           aria-labelledby="senales-titulo"
           className="border-t border-ink-100 bg-white"
         >
-          <div className="container py-16 md:py-20 grid gap-12 md:grid-cols-[5fr_7fr]">
+          <div className="container py-20 md:py-24 grid gap-12 md:grid-cols-[5fr_7fr]">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
                 Estás aquí porque
@@ -146,7 +146,7 @@ export default async function ServicioDetailPage({
           aria-labelledby="metodo-titulo"
           className="border-t border-ink-100 bg-ink-50"
         >
-          <div className="container py-16 md:py-20">
+          <div className="container py-20 md:py-24">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
               Cómo lo hacemos
             </p>
@@ -157,18 +157,16 @@ export default async function ServicioDetailPage({
               Método SEDECO
             </h2>
             <div className="grid gap-12 md:grid-cols-[7fr_5fr]">
-              <ol className="space-y-6">
+              <ol className="space-y-4">
                 {service.approach.map((step, idx) => (
                   <li
                     key={step}
-                    className="flex gap-4 rounded-lg border border-ink-100 bg-white p-5 shadow-card"
+                    className="rounded-lg border border-ink-100 bg-white p-5"
                   >
-                    <span className="font-display text-2xl text-accent-500 leading-none">
+                    <p className="font-mono text-xs tracking-[0.2em] text-accent-600 mb-3">
                       {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-ink-700 leading-relaxed pt-1">
-                      {step}
-                    </span>
+                    </p>
+                    <p className="text-ink-700 leading-relaxed">{step}</p>
                   </li>
                 ))}
               </ol>
@@ -187,11 +185,11 @@ export default async function ServicioDetailPage({
                   ))}
                 </ul>
                 {service.warranty ? (
-                  <div className="mt-6 rounded-lg border border-accent-200 bg-accent-50 p-4">
+                  <div className="mt-6 border-l-2 border-accent-500 pl-5 py-2">
                     <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-700 mb-1">
                       Garantía
                     </p>
-                    <p className="text-sm text-accent-900 leading-relaxed">
+                    <p className="text-sm text-ink-700 leading-relaxed">
                       {service.warranty}
                     </p>
                   </div>
@@ -206,7 +204,7 @@ export default async function ServicioDetailPage({
             aria-labelledby="casos-titulo"
             className="border-t border-ink-100 bg-white"
           >
-            <div className="container py-16 md:py-20">
+            <div className="container py-20 md:py-24">
               <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
                 <div>
                   <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">

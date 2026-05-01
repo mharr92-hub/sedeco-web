@@ -64,7 +64,7 @@ export default function RootLayout({
       lang="es"
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
     >
-      <body className="min-h-screen bg-ink-50 text-ink-900 font-sans antialiased">
+      <body className="min-h-screen bg-white text-ink-900 font-sans antialiased">
         <SiteHeader />
         {children}
         <WhatsAppFloat />

@@ -52,11 +52,11 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="container py-20 md:py-32">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
+        <section className="container pt-24 md:pt-32 pb-20 md:pb-24">
+          <p className="font-mono text-sm uppercase tracking-[0.2em] text-accent-600 mb-6">
             Aplicadores autorizados de Ghostshield® en Panamá
           </p>
-          <h1 className="font-display text-display-md md:text-display-xl text-navy-900 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-display-md md:text-display-xl text-navy-900 max-w-4xl">
             Sellado de concreto permanente.
           </h1>
           <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
@@ -74,7 +74,7 @@ export default function HomePage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#contacto"
-              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium shadow-card hover:bg-accent-600 transition-colors"
+              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium hover:bg-accent-600 transition-colors"
             >
               Solicitar diagnóstico
             </a>
@@ -82,7 +82,7 @@ export default function HomePage() {
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
+              className="inline-flex items-center gap-2 rounded-md border border-ink-900 bg-white px-6 py-3 text-ink-900 font-medium transition-colors hover:bg-ink-900 hover:text-white"
             >
               <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
               WhatsApp
@@ -92,7 +92,7 @@ export default function HomePage() {
 
         <TrustBar />
 
-        <section className="container py-20 border-t border-ink-100">
+        <section className="container py-20 md:py-24 border-t border-ink-100">
           <h2 className="font-display text-3xl md:text-display-md text-navy-900 mb-3">
             Por qué SEDECO
           </h2>
@@ -101,7 +101,7 @@ export default function HomePage() {
             respaldado por KreteTek Industries (New Hampshire, EE. UU.).
           </p>
           <div className="grid gap-6 md:grid-cols-3">
-            <article className="rounded-lg border border-ink-100 bg-white p-6 shadow-card">
+            <article className="rounded-lg border border-ink-200 bg-white p-6">
               <h3 className="font-display text-xl mb-2">
                 Garantía de 100 años
               </h3>
@@ -111,7 +111,7 @@ export default function HomePage() {
                 químicamente parte del concreto.
               </p>
             </article>
-            <article className="rounded-lg border border-ink-100 bg-white p-6 shadow-card">
+            <article className="rounded-lg border border-ink-200 bg-white p-6">
               <h3 className="font-display text-xl mb-2">
                 Nanotecnología molecular
               </h3>
@@ -121,7 +121,7 @@ export default function HomePage() {
                 concreto.
               </p>
             </article>
-            <article className="rounded-lg border border-ink-100 bg-white p-6 shadow-card">
+            <article className="rounded-lg border border-ink-200 bg-white p-6">
               <h3 className="font-display text-xl mb-2">
                 Ideal para Panamá
               </h3>
@@ -138,7 +138,7 @@ export default function HomePage() {
           aria-labelledby="casos-destacados-titulo"
           className="border-t border-ink-100 bg-ink-50"
         >
-          <div className="container py-20">
+          <div className="container py-20 md:py-24">
             <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
               <div>
                 <h2
@@ -172,7 +172,7 @@ export default function HomePage() {
           aria-labelledby="contacto-titulo"
           className="border-t border-ink-100 bg-white"
         >
-          <div className="container grid gap-12 py-20 md:grid-cols-[5fr_7fr]">
+          <div className="container grid gap-12 py-20 md:py-24 md:grid-cols-[5fr_7fr]">
             <div>
               <h2
                 id="contacto-titulo"
