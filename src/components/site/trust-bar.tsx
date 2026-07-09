@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 const stats = [
   { value: "+50", label: "Proyectos culminados" },
   { value: "+100,000 m²", label: "Concreto impermeabilizado" },
-  { value: "+25 años", label: "Experiencia conjunta" },
+  { value: "+25 años", label: "Experiencia del equipo" },
   { value: "2020", label: "Fundada en" },
 ] as const;
 
