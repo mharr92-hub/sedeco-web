@@ -1,19 +1,18 @@
 "use server";
 
 import { headers } from "next/headers";
-import { makeFunctionReference } from "convex/server";
 import {
   adsLeadFieldKeys,
   adsLeadFormSchema,
   type AdsLeadField,
 } from "@/lib/validations/lead";
-import { getConvexClient } from "@/lib/convex-server";
+import {
+  getSupabaseServiceClient,
+  type AdsLeadInsert,
+} from "@/lib/supabase-server";
 import { sendLeadNotification } from "@/lib/email/lead-notification";
 import { trackingFromFormData } from "@/lib/tracking";
 import { leadSubmitErrorMessage } from "@/lib/site";
-
-const createLeadRef = makeFunctionReference<"mutation">("leads:createLead");
-const markNotifiedRef = makeFunctionReference<"mutation">("leads:markNotified");
 
 const PROBLEMA_LABEL: Record<string, string> = {
   filtracion: "Filtración",
@@ -68,6 +67,23 @@ function composeMensaje(input: {
   return lines.join("\n");
 }
 
+async function markLeadNotified(
+  supabase: NonNullable<ReturnType<typeof getSupabaseServiceClient>>,
+  leadId: string,
+  error?: string,
+): Promise<void> {
+  const { error: patchError } = await supabase
+    .from("leads")
+    .update({
+      notified_at: new Date().toISOString(),
+      notification_error: error ?? null,
+    })
+    .eq("id", leadId);
+  if (patchError) {
+    throw patchError;
+  }
+}
+
 export async function submitAdsLead(
   _prev: SubmitAdsLeadResult | undefined,
   formData: FormData,
@@ -110,10 +126,10 @@ export async function submitAdsLead(
   const tracking = trackingFromFormData(formData);
   const mensaje = composeMensaje(parsed.data);
 
-  const client = getConvexClient();
-  if (!client) {
+  const supabase = getSupabaseServiceClient();
+  if (!supabase) {
     console.error(
-      "[submitAdsLead] NEXT_PUBLIC_CONVEX_URL no configurada. Lead NO persistido:",
+      "[submitAdsLead] SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no configurada. Lead NO persistido:",
       JSON.stringify({ ...parsed.data, ...tracking, mensaje }),
     );
     return {
@@ -142,11 +158,42 @@ export async function submitAdsLead(
     ...(parsed.data.descripcion ? { descripcion: parsed.data.descripcion } : {}),
   };
 
-  let leadId: unknown;
+  const row: AdsLeadInsert = {
+    nombre: parsed.data.nombre,
+    telefono: parsed.data.telefono,
+    problema: parsed.data.problema,
+    tipo_propiedad: parsed.data.tipoPropiedad,
+    ubicacion: parsed.data.ubicacion,
+    puede_enviar_fotos: parsed.data.puedeEnviarFotos,
+    mensaje,
+    source: parsed.data.source,
+    landing_path: parsed.data.landingPath,
+    user_agent: userAgent ?? null,
+    referrer: referrer ?? null,
+    utm_source: tracking.utmSource ?? null,
+    utm_medium: tracking.utmMedium ?? null,
+    utm_campaign: tracking.utmCampaign ?? null,
+    utm_term: tracking.utmTerm ?? null,
+    utm_content: tracking.utmContent ?? null,
+    gclid: tracking.gclid ?? null,
+    gbraid: tracking.gbraid ?? null,
+    wbraid: tracking.wbraid ?? null,
+    ...(parsed.data.descripcion ? { descripcion: parsed.data.descripcion } : {}),
+  };
+
+  let leadId: string;
   try {
-    leadId = await client.mutation(createLeadRef, payload);
+    const { data, error } = await supabase
+      .from("leads")
+      .insert(row)
+      .select("id")
+      .single();
+    if (error || !data?.id) {
+      throw error ?? new Error("insert public.leads no devolvió id");
+    }
+    leadId = data.id;
   } catch (err) {
-    console.error("[submitAdsLead] Error guardando lead en Convex:", err);
+    console.error("[submitAdsLead] Error guardando lead en Supabase:", err);
     return {
       ok: false,
       error: leadSubmitErrorMessage(),
@@ -166,10 +213,10 @@ export async function submitAdsLead(
       createdAt: new Date(),
     });
     try {
-      await client.mutation(markNotifiedRef, { id: leadId });
+      await markLeadNotified(supabase, leadId);
     } catch (patchErr) {
       console.error(
-        "[submitAdsLead] Email enviado pero no pude marcar notifiedAt:",
+        "[submitAdsLead] Email enviado pero no pude marcar notified_at:",
         patchErr,
       );
     }
@@ -177,14 +224,14 @@ export async function submitAdsLead(
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error(
-      "[submitAdsLead] Falla en Resend (lead ya guardado en Convex):",
+      "[submitAdsLead] Falla en Resend (lead ya guardado en Supabase):",
       message,
     );
     try {
-      await client.mutation(markNotifiedRef, { id: leadId, error: message });
+      await markLeadNotified(supabase, leadId, message);
     } catch (patchErr) {
       console.error(
-        "[submitAdsLead] Tampoco pude registrar el error en Convex:",
+        "[submitAdsLead] Tampoco pude registrar el error en Supabase:",
         patchErr,
       );
     }
