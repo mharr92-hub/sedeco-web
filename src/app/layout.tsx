@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s · SEDECO Panamá",
   },
   description:
-    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía de hasta 100 años. Más de 100,000 m² impermeabilizados.",
+    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía por escrito según sistema y alcance. Más de 100,000 m² impermeabilizados.",
   openGraph: {
     type: "website",
     locale: "es_PA",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "SEDECO Panamá — Sellado de concreto permanente",
     description:
-      "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía de hasta 100 años.",
+      "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía por escrito según sistema y alcance.",
     images: [
       {
         url: "/opengraph-image",

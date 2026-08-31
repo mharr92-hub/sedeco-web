@@ -9,7 +9,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
 export const metadata: Metadata = {
   title: "Casos · Proyectos entregados",
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: PH Torres Ebelle, Shevet Ahim, Millenium Park, Mónaco, Deveaux y más.",
+    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: Shevet Ahim, Millenium Park, Mónaco, Deveaux y más.",
   alternates: { canonical: "/casos" },
 };
 
