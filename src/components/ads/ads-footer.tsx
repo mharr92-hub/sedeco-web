@@ -15,20 +15,20 @@ import type { AdsLanding } from "@/lib/data/ads-landings";
 
 export function AdsFooter({ landing }: { landing: AdsLanding }) {
   return (
-    <footer className="border-t border-[#D6E8FF] bg-white">
+    <footer className="border-t border-white/10 bg-[#070F26] text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 md:px-8">
         <div>
-          <p className="font-display text-xl text-[#1A2E8A]">SEDECO</p>
-          <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
+          <p className="font-ads text-xl tracking-[0.18em] text-white">SEDECO</p>
+          <p className="mt-2 text-sm leading-relaxed text-white/70">
             Primero diagnosticamos. Después el sistema correcto.
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-[#5C6578]">{LEGAL_NAME}</p>
+          <p className="mt-4 text-xs leading-relaxed text-white/55">{LEGAL_NAME}</p>
         </div>
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
+          <p className="mb-3 font-ads text-[11px] uppercase tracking-[0.18em] text-white/55">
             Oficina
           </p>
-          <address className="not-italic text-sm leading-relaxed text-[#5C6578]">
+          <address className="not-italic text-sm leading-relaxed text-white/70">
             {ADDRESS.building}
             <br />
             {ADDRESS.street}
@@ -39,7 +39,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
           </address>
         </div>
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
+          <p className="mb-3 font-ads text-[11px] uppercase tracking-[0.18em] text-white/55">
             Contacto
           </p>
           <ul className="space-y-2 text-sm">
@@ -51,7 +51,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
                 href={whatsappHref(landing.whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1A2E8A] hover:text-[#2B4BF2]"
+                className="text-white hover:text-[#F5A623]"
               >
                 WhatsApp · {WHATSAPP_DISPLAY}
               </TrackedLink>
@@ -62,7 +62,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
                 landing={landing.slug}
                 location="footer"
                 href={telHref(PHONE_OFFICE_PRIMARY)}
-                className="text-[#1A2E8A] hover:text-[#2B4BF2]"
+                className="text-white hover:text-[#F5A623]"
               >
                 Tel · {PHONE_OFFICE_PRIMARY}
               </TrackedLink>
@@ -73,7 +73,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
                 landing={landing.slug}
                 location="footer"
                 href={telHref(PHONE_OFFICE_SECONDARY)}
-                className="text-[#1A2E8A] hover:text-[#2B4BF2]"
+                className="text-white hover:text-[#F5A623]"
               >
                 Tel · {PHONE_OFFICE_SECONDARY}
               </TrackedLink>
@@ -84,7 +84,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
                 landing={landing.slug}
                 location="footer"
                 href={`mailto:${SITE_EMAIL}`}
-                className="text-[#1A2E8A] hover:text-[#2B4BF2]"
+                className="text-white hover:text-[#F5A623]"
               >
                 {SITE_EMAIL}
               </TrackedLink>
@@ -92,14 +92,14 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
           </ul>
         </div>
       </div>
-      <div className="border-t border-[#D6E8FF]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-[#5C6578] md:px-8">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-white/55 md:px-8">
           <p>
             © {new Date().getFullYear()} {LEGAL_NAME}
           </p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <LegalNav linkClassName="hover:text-[#2B4BF2]" />
-            <Link href="/" className="hover:text-[#2B4BF2]">
+            <LegalNav linkClassName="hover:text-[#F5A623]" />
+            <Link href="/" className="hover:text-[#F5A623]">
               Sitio SEDECO
             </Link>
           </div>
