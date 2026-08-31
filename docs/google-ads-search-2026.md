@@ -2,6 +2,8 @@
 
 Arquitectura de campañas de búsqueda para lead gen en Ciudad de Panamá y área metro. **Sin precios, sin descuentos, sin urgencia falsa, sin claims de años de garantía.**
 
+**Estado:** las cinco campañas de Search documentadas abajo permanecen **pausadas** y son el núcleo. No crear campañas live desde este doc. No gastar Ads. No inventar un GTM ID.
+
 Conversión primaria (optimizar): `lead_form_submit` + `whatsapp_click`.  
 Microconversiones (observar, no optimizar la campaña a ellas): `cta_hero_click`, `cta_sticky_click`, `cta_bottom_click`, `lead_form_start`.  
 **No** marcar `thank_you_view` ni pageview de `/gracias` como conversión — duplicaría el submit.
@@ -9,6 +11,8 @@ Microconversiones (observar, no optimizar la campaña a ellas): `cta_hero_click`
 GTM/GA4 se inyectan solo si existen `NEXT_PUBLIC_GTM_ID` / `NEXT_PUBLIC_GA4_ID`. Si hay GTM, no configurar GA4 directo (el tag de GA4 vive dentro de GTM). `dataLayer.push` ocurre igual sin IDs.
 
 A/B de headline: el H1 lleva `data-ab="headline" data-variant="default"`. Más adelante se puede leer `?v=` en cliente. **No correr 10 experimentos.** Un solo test de H1 cuando haya volumen.
+
+Oferta principal (no rebrandear): diagnóstico + impermeabilización / fachadas / sellado de concreto. Reparación estructural e inspección de obra son **captura extra** (form + copy en las cinco LPs), no campañas propias ni un cambio de posicionamiento.
 
 ---
 
@@ -21,15 +25,31 @@ A/B de headline: el H1 lleva `data-ab="headline" data-variant="default"`. Más a
 | Fachada vertical | impermeabilizar fachada | Fachadas de edificios en Panamá | `/impermeabilizacion-fachadas` | Impermeabilización de fachadas para edificios en Panamá | Solicitar evaluación de fachada |
 | Azotea / losa / techo | impermeabilizar azotea | Azoteas y losas en Panamá | `/impermeabilizacion-azoteas` | Impermeabilización de azoteas y losas en Panamá | Solicitar inspección de azotea |
 | Sellado / Ghostshield / concreto | sellado de concreto | Sellado de concreto en Panamá | `/sellado-concreto` | Sellado permanente de concreto en Panamá, con el sistema correcto. | Solicitar evaluación |
+| Reparación estructural (extra) | reparacion estructural panama | Reparación estructural | `/sellado-concreto` | (misma LP; form: Reparación estructural) | Solicitar evaluación |
+| Inspección / termografía (extra) | inspeccion de filtraciones panama | Inspección de obra | `/filtraciones-panama` | (misma LP; form: Inspección de obra) | Revisar mi filtración |
 | Marca | sedeco panama | SEDECO Panamá | `/` o `/impermeabilizacion-panama` | (home o H1 de impermeabilización) | Solicitar inspección |
 
 ---
 
 ## Negativos compartidos (todas las campañas no-brand)
 
-Agregar como negativos de campaña (frase o exacta según volumen):
+Agregar como negativos de campaña (frase o exacta según volumen). Aplican a **todas** las campañas, incluidas las de captura secundaria si algún día se activan.
 
-- diy, youtube, tutorial, curso, empleo, vacante, salario, cv
+### Intención de empleo / job-seekers (obligatorio en cada campaña)
+
+Frase o exacta, según volumen. Objetivo: sacar a quien busca trabajo, no servicio.
+
+- empleo, trabajo, vacante, vacantes, curriculum, cv, sueldo, salario, planilla
+- contratacion, contratan, se solicita, operador, obrero, ayudante
+- vacante impermeabilizacion, trabajo en altura empleo
+- oficios, bolsa de trabajo, requisicion, recursos humanos, rrhh
+- albañil empleo, pintor vacante, andamiero, ayudante de obra
+
+`trabajo` y `trabajos` chocan con la intención de servicio «trabajos en altura». Preferir exacta/frase para `trabajo`/`empleo` y mantener `trabajo en altura empleo` + `vacante impermeabilizacion` como frase. No bloquear el positivo `trabajos en altura` (servicio).
+
+### Retail, DIY, geo y junk (mantener)
+
+- diy, youtube, tutorial, curso
 - pintura barata, impermeabilizante ferreteria, homecenter, novey
 - receta, quimico para comprar, galon, cubeta (intención de producto retail)
 - mexico, colombia, peru, chile, spain (salvo que se geo-restrinja 100%)
@@ -37,6 +57,8 @@ Agregar como negativos de campaña (frase o exacta según volumen):
 - ph torres ebelle, ebbelle, pine hill, constellation, 4 islas, twin towers, ibiza
 
 Geo: Ciudad de Panamá + área metro; Colón opcional como ubicación adicional, no como keyword de país.
+
+**RSA y keywords: no mencionar** PH Torres Ebelle, Twin Towers, Constellation, Pine Hill, 4 Islas ni Ibiza.
 
 ---
 
@@ -208,6 +230,59 @@ Geo: Ciudad de Panamá + área metro; Colón opcional como ubicación adicional,
 - **Callouts:** Ghostshield autorizado | Paitilla | WhatsApp | Día hábil
 - **Snippets:** Marca: SEDECO, Ghostshield, Diagnóstico, Inspección, Panamá, Colón
 - **Conversión:** igual; no pelear con no-brand (ordenar brand a ROAS/CPA más agresivo)
+
+---
+
+## Keyword themes adicionales (captura secundaria — no live)
+
+No crear campañas live. No gastar. Estos temas pueden vivir más adelante como ad groups pausados bajo las cinco campañas existentes, o como drafts. **No son un rebrand:** la oferta principal sigue siendo diagnóstico + impermeabilización / fachadas / sellado de concreto.
+
+Geo para ambos temas: Ciudad de Panamá + área metro (mismo que el núcleo). Colón opcional como ubicación, no como keyword.
+
+RSA: mismos claims permitidos que el núcleo (diagnóstico primero, garantía por escrito según sistema y alcance, WhatsApp +507 6550-8320). Sin años, sin «de por vida», sin precios. **Sin nombres de PH restringidos** (Ebelle, Twin Towers, Constellation, Pine Hill, 4 Islas, Ibiza) en headlines, descriptions o keywords.
+
+Los mismos negativos de empleo y junk de arriba aplican a estos temas.
+
+### Reparación estructural
+
+- **Landing (existente, sin ruta nueva):** `/sellado-concreto` o `/impermeabilizacion-panama`. El form incluye la opción «Reparación estructural».
+- **Intención:** grietas / losa / concreto dañado que pide reparación antes de impermeabilizar.
+- **Keywords (frase / exacta, no broad abierto):** reparacion estructural panama, reparacion estructural edificio panama, reparacion de concreto estructural panama, grietas estructurales edificio panama, reparar losa estructural panama, reparacion de columna concreto panama
+- **RSA headlines (≤30, borrador):**
+  1. Reparación estructural (23)
+  2. Concreto en Panamá (18)
+  3. Diagnóstico primero (21)
+  4. Antes de impermeabilizar (24)
+  5. Grietas y losas (16)
+  6. Sistema según el daño (22)
+  7. Área metro de Panamá (21)
+  8. Garantía por escrito (21)
+  9. Inspección técnica (19)
+  10. SEDECO Panamá (13)
+- **Descriptions (≤90, borrador):**
+  1. Reparación estructural de concreto en Panamá. Primero el diagnóstico, después el sistema. (86)
+  2. Grietas y losas se atienden antes de impermeabilizar. Evaluación en el área metro. (83)
+- **Sitelinks / callouts:** reutilizar los del núcleo (Inspección, Filtraciones, Fachadas, Azoteas, Sellado). No sitelink a una LP que no existe.
+
+### Inspección de obra / inspección de filtraciones / termografía
+
+- **Landing (existente, sin ruta nueva):** `/filtraciones-panama`. El form incluye la opción «Inspección de obra».
+- **Intención:** inspección técnica, termografía de edificio, localizar el origen del agua.
+- **Keywords (frase / exacta):** inspeccion de obra panama, inspeccion tecnica edificio panama, inspeccion de filtraciones panama, termografia edificio panama, termografia filtraciones panama, inspeccion termografica panama, diagnostico filtracion termografia
+- **RSA headlines (≤30, borrador):**
+  1. Inspección de obra (20)
+  2. Inspección técnica (19)
+  3. Termografía de edificio (24)
+  4. Origen de la filtración (23)
+  5. Diagnóstico en el metro (24)
+  6. Antes de reparar (17)
+  7. Filtraciones en Panamá (23)
+  8. Garantía por escrito (21)
+  9. WhatsApp SEDECO (16)
+  10. Ciudad de Panamá (18)
+- **Descriptions (≤90, borrador):**
+  1. Inspección técnica y termografía de edificio en Panamá para encontrar el origen del agua. (89)
+  2. Inspección de filtraciones en el área metro. Primero diagnosticamos. Después el sistema. (87)
 
 ---
 

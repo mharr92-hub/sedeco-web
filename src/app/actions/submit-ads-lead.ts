@@ -16,8 +16,10 @@ const markNotifiedRef = makeFunctionReference<"mutation">("leads:markNotified");
 
 const PROBLEMA_LABEL: Record<string, string> = {
   filtracion: "Filtración",
-  azotea: "Azotea",
+  azotea: "Azotea / losa",
   fachada: "Fachada",
+  "reparacion-estructural": "Reparación estructural",
+  "inspeccion-obra": "Inspección de obra",
   grietas: "Grietas",
   piscina: "Piscina",
   tanque: "Tanque",

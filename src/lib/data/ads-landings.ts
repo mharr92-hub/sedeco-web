@@ -18,6 +18,8 @@ export const problemaValues = [
   "filtracion",
   "azotea",
   "fachada",
+  "reparacion-estructural",
+  "inspeccion-obra",
   "grietas",
   "piscina",
   "tanque",
@@ -89,10 +91,10 @@ export const ADS_STEPS = [
     title: "Origen",
     body: "Una mancha en el cielo raso no siempre nace ahí. Buscamos por dónde entra el agua.",
   },
-  {
-    title: "Reparamos",
-    body: "Grietas, juntas y fallos de sello se atienden antes de impermeabilizar encima.",
-  },
+    {
+      title: "Reparamos",
+      body: "Grietas, juntas, fallos de sello y, cuando aplica, reparación estructural se atienden antes de impermeabilizar encima.",
+    },
   {
     title: "Impermeabilizamos",
     body: "Elegimos el sistema según el material: concreto, zinc, fachada u otro sustrato.",
@@ -158,6 +160,50 @@ export const SERVICE_NEED_CARDS = [
   },
 ] as const;
 
+/** Servicio principal — las cinco LPs de conversión. Sin rutas nuevas. */
+export const ADS_PRIMARY_SERVICES = [
+  {
+    href: "/impermeabilizacion-azoteas",
+    title: "Impermeabilización de techos y azoteas",
+    line: "Concreto y zinc. El sistema depende del sustrato, no de un producto único.",
+  },
+  {
+    href: "/impermeabilizacion-panama",
+    title: "Sellado de juntas",
+    line: "Encuentros, ventanas y juntas que dejan pasar agua.",
+  },
+  {
+    href: "/impermeabilizacion-fachadas",
+    title: "Rehabilitación y pintura de fachadas",
+    line: "Verticales, juntas y recubrimiento según el muro.",
+  },
+  {
+    href: "/impermeabilizacion-fachadas",
+    title: "Trabajos en altura",
+    line: "Acceso y ejecución en fachadas de edificios en el área metro.",
+  },
+  {
+    href: "/sellado-concreto",
+    title: "Sellado de concreto",
+    line: "Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto.",
+  },
+] as const;
+
+/** Captura adicional — sin LP dedicada; el form y el copy de las cinco LPs alcanzan. */
+export const ADS_SECONDARY_SERVICES = [
+  {
+    title: "Reparación estructural",
+    line: "Grietas, losas y defectos de concreto se reparan cuando el diagnóstico lo pide, antes de impermeabilizar encima.",
+  },
+  {
+    title: "Inspección de obra",
+    line: "Inspección técnica y termografía de edificio para localizar el camino del agua antes de intervenir.",
+  },
+] as const;
+
+export const ADS_SERVICE_MIX_NOTE =
+  "El servicio principal es el diagnóstico y el sistema correcto de impermeabilización, fachadas, azoteas o sellado de concreto. También evaluamos reparación estructural e inspección de obra cuando el caso lo pide.";
+
 export const PATCH_VS_METHOD = {
   patchTitle: "Parche",
   methodTitle: "Método SEDECO",
@@ -206,6 +252,10 @@ const SHARED_FAQS: AdsFaq[] = [
     q: "¿Puedo enviar fotos por WhatsApp?",
     a: "Sí. Después de solicitar la evaluación le dejamos un enlace para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
   },
+  {
+    q: "¿También hacen reparación estructural o inspección de obra?",
+    a: "Sí, como captura adicional cuando el diagnóstico lo pide: reparación estructural de concreto y inspección de obra (inspección técnica y termografía). El servicio principal sigue siendo el diagnóstico y el sistema correcto de impermeabilización, fachadas, azoteas o sellado de concreto. Primero diagnosticamos. Después el sistema correcto.",
+  },
 ];
 
 export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
@@ -233,7 +283,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "El mismo síntoma en fachada, azotea o junta pide un sistema distinto.",
     ],
     productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. El diagnóstico dice si hace falta sellado de concreto, un sistema de azotea, trabajo en fachada o reparación de juntas.",
+      "No todos los problemas de agua se resuelven con el mismo producto. El diagnóstico dice si hace falta sellado de concreto, un sistema de azotea, trabajo en fachada, sellado de juntas o reparación de grietas. También evaluamos reparación estructural e inspección de obra (inspección técnica y termografía) cuando el caso lo pide.",
     finalSupport:
       "Cuéntenos qué está pasando en su edificio o vivienda. Inspeccionamos y le proponemos el sistema adecuado.",
     serviceType: "Impermeabilización",
@@ -252,7 +302,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       },
       {
         q: "¿Cuál es el primer paso si no sé de dónde viene el agua?",
-        a: "Solicitar la inspección. El método SEDECO empieza por el origen, no por aplicar impermeabilizante a ciegas.",
+        a: "Solicitar la inspección. El método SEDECO empieza por el origen, no por aplicar impermeabilizante a ciegas. Si el caso pide inspección de obra o termografía, se define en esa visita.",
       },
       ...SHARED_FAQS,
     ],
@@ -281,7 +331,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "El vecino de arriba o la azotea común pueden ser parte del camino del agua.",
     ],
     productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. Una filtración puede pedir reparación de grietas, sellado de concreto, un sistema de azotea o trabajo en fachada.",
+      "No todos los problemas de agua se resuelven con el mismo producto. Una filtración puede pedir reparación de grietas, sellado de concreto, un sistema de azotea, trabajo en fachada o una inspección técnica — con termografía cuando hace falta ver el camino del agua.",
     finalSupport:
       "Si su apartamento se está mojando, el siguiente paso es encontrar de dónde viene el agua — no volver a parchar la mancha.",
     serviceType: "Detección y reparación de filtraciones",
@@ -329,7 +379,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "Trabajos en altura que se pintaron y volvieron a fallar con la lluvia y el sol.",
     ],
     productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. En verticales usamos LANCO DRY-COAT cuando corresponde. El concreto o acero expuesto de fachada se evalúa con Ghostshield / LITHI TEK 9500 — nunca sobre zinc, metal ni membranas.",
+      "No todos los problemas de agua se resuelven con el mismo producto. En verticales usamos LANCO DRY-COAT cuando corresponde. El concreto o acero expuesto de fachada se evalúa con Ghostshield / LITHI TEK 9500 — nunca sobre zinc, metal ni membranas. Rehabilitación, pintura de fachada y trabajos en altura se definen después del diagnóstico.",
     finalSupport:
       "Antes de volver a pintar la fachada, conviene saber por dónde entra el agua y qué sistema admite ese muro.",
     serviceType: "Impermeabilización de fachadas",
@@ -377,7 +427,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "Cubierta de zinc o metal tratada como si fuera concreto — o al revés.",
     ],
     productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. En losas de concreto puede aplicar sellado con Ghostshield / LITHI TEK 9500. En techos de zinc o metal el sistema principal es HS 3200 Series (Progressive Materials). LithiTek no se aplica sobre zinc, metal ni membranas.",
+      "No todos los problemas de agua se resuelven con el mismo producto. En losas de concreto puede aplicar sellado con Ghostshield / LITHI TEK 9500. En techos de zinc o metal el sistema principal es HS 3200 Series (Progressive Materials). LithiTek no se aplica sobre zinc, metal ni membranas. Si la losa pide reparación estructural, se atiende antes de impermeabilizar.",
     finalSupport:
       "Si la azotea o la losa está mojando el interior, el siguiente paso es inspeccionar el sustrato y elegir el sistema correcto.",
     serviceType: "Impermeabilización de azoteas y losas",
@@ -425,7 +475,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "Confusión entre concreto, zinc y membranas: cada uno pide un sistema distinto.",
     ],
     productIntro:
-      "Ghostshield / LITHI TEK 9500 es para concreto o acero expuesto. Nunca zinc, metal de techo ni membranas. Si su cubierta es de zinc, el camino es HS 3200 Series u otro sistema — no sellado nano sobre metal.",
+      "Ghostshield / LITHI TEK 9500 es para concreto o acero expuesto. Nunca zinc, metal de techo ni membranas. Si su cubierta es de zinc, el camino es HS 3200 Series u otro sistema — no sellado nano sobre metal. La reparación estructural del concreto, cuando aplica, va antes del sellado.",
     finalSupport:
       "Si lo que necesita es sellar concreto de verdad, empiece por una evaluación del sustrato. No aplicamos LithiTek donde no corresponde.",
     serviceType: "Sellado permanente de concreto",

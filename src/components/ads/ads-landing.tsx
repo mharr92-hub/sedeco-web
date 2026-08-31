@@ -1,5 +1,10 @@
 import type { AdsLanding } from "@/lib/data/ads-landings";
-import { ADS_POSITIONING } from "@/lib/data/ads-landings";
+import {
+  ADS_POSITIONING,
+  ADS_PRIMARY_SERVICES,
+  ADS_SECONDARY_SERVICES,
+  ADS_SERVICE_MIX_NOTE,
+} from "@/lib/data/ads-landings";
 import {
   ADS_CAPACITY_BARS,
   ADS_HERO_KICKER,
@@ -99,7 +104,9 @@ function Hero({ landing }: { landing: AdsLanding }) {
 
   return (
     <section className="relative min-h-[85svh] text-white md:min-h-[92svh]">
-      <div className="absolute inset-0">
+      {/* Decorative full-bleed photo. pointer-events-none so it cannot steal
+          clicks from the hero CTAs or the docked form. */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {dual ? (
           <>
             <AdsPhotoFill
@@ -167,12 +174,22 @@ function Hero({ landing }: { landing: AdsLanding }) {
             <GuaranteeLine className="text-white" />.
           </p>
         </div>
-        <div className="relative z-10 hidden min-h-[22rem] md:block" />
+        {/* Reserves the right column so the hero stays tall enough for the
+            docked form. Must not paint above the form: a previous `relative z-10`
+            spacer intercepted every click on Nombre / WhatsApp / problema /
+            descripción while remaining visually transparent. */}
+        <div
+          className="pointer-events-none hidden min-h-[22rem] md:block"
+          aria-hidden="true"
+        />
       </div>
 
+      {/* No z-index on this wrapper: AdsLeadDock's mobile sheet is `fixed z-50`
+          and must stay above the sticky header (`z-40`). A stacking context
+          here would trap the sheet underneath the header. */}
       <div className="md:pointer-events-none">
         <div className="mx-auto max-w-6xl md:px-8">
-          <div className="md:pointer-events-auto md:absolute md:bottom-16 md:right-8 md:w-[min(100%,26rem)] lg:right-[max(2rem,calc((100%-72rem)/2+2rem))]">
+          <div className="md:pointer-events-auto md:absolute md:bottom-16 md:right-8 md:z-20 md:w-[min(100%,26rem)] lg:right-[max(2rem,calc((100%-72rem)/2+2rem))]">
             <AdsLeadDock landing={landing} />
           </div>
         </div>
@@ -409,6 +426,48 @@ function Servicios({ currentPath }: { currentPath: string }) {
             );
           })}
         </ul>
+        <p className="mt-10 max-w-3xl text-sm leading-relaxed text-[#5C6578]">
+          {ADS_SERVICE_MIX_NOTE}
+        </p>
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
+          <div>
+            <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
+              Servicio principal
+            </p>
+            <ul className="mt-4 space-y-4">
+              {ADS_PRIMARY_SERVICES.map((item) => (
+                <li key={item.title}>
+                  <a
+                    href={item.href}
+                    className="font-ads text-base font-semibold text-[#1A2E8A] hover:text-[#2B4BF2]"
+                  >
+                    {item.title}
+                  </a>
+                  <p className="mt-1 text-sm leading-relaxed text-[#5C6578]">
+                    {item.line}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
+              También evaluamos
+            </p>
+            <ul className="mt-4 space-y-4">
+              {ADS_SECONDARY_SERVICES.map((item) => (
+                <li key={item.title}>
+                  <p className="font-ads text-base font-semibold text-[#1A2E8A]">
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#5C6578]">
+                    {item.line}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

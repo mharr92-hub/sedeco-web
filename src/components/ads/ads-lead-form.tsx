@@ -26,8 +26,10 @@ import { TrackedLink } from "@/components/ads/tracked-link";
 
 const PROBLEMA_OPTIONS: Array<{ value: (typeof problemaValues)[number]; label: string }> = [
   { value: "filtracion", label: "Filtración" },
-  { value: "azotea", label: "Azotea" },
+  { value: "azotea", label: "Azotea / losa" },
   { value: "fachada", label: "Fachada" },
+  { value: "reparacion-estructural", label: "Reparación estructural" },
+  { value: "inspeccion-obra", label: "Inspección de obra" },
   { value: "grietas", label: "Grietas" },
   { value: "piscina", label: "Piscina" },
   { value: "tanque", label: "Tanque" },
@@ -104,7 +106,7 @@ export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
       >
         <div
           className={cn(
-            "w-full bg-white shadow-[0_12px_40px_rgba(26,46,138,0.12)]",
+            "relative w-full bg-white shadow-[0_12px_40px_rgba(26,46,138,0.12)]",
             sheetOpen
               ? "max-h-[92vh] overflow-y-auto rounded-t-2xl p-5 pb-8 md:max-h-none md:rounded-xl md:p-6"
               : "rounded-xl p-6",
@@ -286,7 +288,7 @@ function AdsLeadForm({
       action={formAction}
       onSubmit={handleContinue}
       onFocusCapture={onStart}
-      className="grid gap-4"
+      className="relative grid gap-4"
       noValidate
     >
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
