@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/site/site-header";
-import { WhatsAppFloat } from "@/components/site/whatsapp-float";
+import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  display: "fallback",
 });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  display: "swap",
+  display: "fallback",
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+  preload: false,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
@@ -63,11 +63,15 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-white text-ink-900 font-sans antialiased">
-        <SiteHeader />
+      <body
+        className="min-h-screen bg-white text-ink-900 font-sans antialiased"
+        suppressHydrationWarning
+      >
+        <DataLayerInit />
+        <GtmNoscript />
         {children}
-        <WhatsAppFloat />
       </body>
     </html>
   );

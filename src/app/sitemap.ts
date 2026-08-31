@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ADS_LANDING_SLUGS } from "@/lib/data/ads-landings";
 import { getAllCases } from "@/lib/data/cases";
 import { getAllServices } from "@/lib/data/services";
 
@@ -18,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.6,
   }));
+  const adsEntries: MetadataRoute.Sitemap = ADS_LANDING_SLUGS.map((slug) => ({
+    url: `${siteUrl}/${slug}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
   return [
     {
       url: siteUrl,
@@ -25,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...adsEntries,
     {
       url: `${siteUrl}/servicios`,
       lastModified,
@@ -41,3 +49,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...caseEntries,
   ];
 }
+

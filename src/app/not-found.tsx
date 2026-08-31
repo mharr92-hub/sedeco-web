@@ -1,10 +1,12 @@
 import { SiteFooter } from "@/components/site/footer";
+import { SiteHeader } from "@/components/site/site-header";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 export default function NotFound() {
   return (
     <>
+      <SiteHeader />
       <main className="container py-32 text-center md:py-40">
         <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
           Error 404

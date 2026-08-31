@@ -205,3 +205,26 @@ export function getCasesByService(service: ServiceSlug): Case[] {
     .filter((c) => c.services.includes(service) && isPublicCase(c))
     .sort(sortByOrder);
 }
+
+/** Public Ads proof only. Restricted PHs are never returned. */
+const ADS_PROOF_SLUGS = [
+  "shevet-ahim",
+  "ph-millenium-park",
+  "fundacion-deveaux",
+  "ph-monaco",
+  "ph-quadrat",
+] as const;
+
+export function getAdsProofCases(): Case[] {
+  return ADS_PROOF_SLUGS.map((slug) => cases.find((c) => c.slug === slug)).filter(
+    (c): c is Case => Boolean(c && isPublicCase(c)),
+  );
+}
+
+export function getAdsStarCase(): Case | undefined {
+  return getAdsProofCases().find((c) => c.slug === "shevet-ahim");
+}
+
+export function getAdsProjectCards(): Case[] {
+  return getAdsProofCases().filter((c) => c.slug !== "shevet-ahim").slice(0, 3);
+}
