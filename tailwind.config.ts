@@ -58,6 +58,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-fraunces)", "Georgia", "serif"],
+        ads: ["var(--font-montserrat)", "var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
       },
       fontSize: {

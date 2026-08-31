@@ -8,18 +8,19 @@ import type { AdsLanding } from "@/lib/data/ads-landings";
 import { openAdsForm } from "@/components/ads/ads-form-events";
 
 const nav = [
-  { href: "#metodo", label: "Método" },
-  { href: "#proyectos", label: "Proyectos" },
+  { href: "#casos", label: "Casos" },
+  { href: "#capacidad", label: "Capacidad" },
+  { href: "#referencias", label: "Referencias" },
   { href: "#preguntas", label: "Preguntas" },
 ] as const;
 
 export function AdsHeader({ landing }: { landing: AdsLanding }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-[#D6E8FF] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070F26]/85 backdrop-blur supports-[backdrop-filter]:bg-[#070F26]/75">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 md:h-[4.5rem] md:px-8">
         <Link
           href={landing.path}
-          className="font-display text-xl font-semibold tracking-tight text-[#1A2E8A] md:text-2xl"
+          className="font-ads text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
         >
           SEDECO
         </Link>
@@ -29,7 +30,7 @@ export function AdsHeader({ landing }: { landing: AdsLanding }) {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[#1A2E8A]/80 transition-colors hover:text-[#2B4BF2]"
+              className="text-sm font-medium text-white/80 transition-colors hover:text-[#F5A623]"
             >
               {item.label}
             </a>
@@ -52,7 +53,7 @@ export function AdsHeader({ landing }: { landing: AdsLanding }) {
           <button
             type="button"
             onClick={() => openAdsForm("header")}
-            className="inline-flex min-h-11 items-center rounded-md bg-[#2B4BF2] px-3 text-sm font-semibold text-white transition-colors hover:bg-[#1A2E8A] md:px-4"
+            className="inline-flex min-h-11 items-center rounded-md bg-[#F5A623] px-3 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c] md:px-4"
           >
             <span className="hidden sm:inline">{landing.cta}</span>
             <span className="sm:hidden">Inspección</span>
