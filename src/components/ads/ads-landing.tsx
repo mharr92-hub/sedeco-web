@@ -20,6 +20,10 @@ import { getAdsProjectCards, getAdsStarCase } from "@/lib/data/cases";
 import { SITE_URL, whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+function formatMeters(n: number): string {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
   const star = getAdsStarCase();
   const cards = getAdsProjectCards();
@@ -90,12 +94,12 @@ export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
 
 function Hero({ landing }: { landing: AdsLanding }) {
   return (
-    <section className="relative overflow-hidden bg-[#1A2E8A] text-white">
+    <section className="relative bg-[#1A2E8A] text-white">
       <div
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-[#2B4BF2] md:block"
         aria-hidden="true"
       />
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-12 md:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] md:items-start md:px-8 md:py-16 lg:py-20">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-8 md:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] md:items-start md:px-8 md:py-16 lg:py-20">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F5A623]">
             {ADS_EYEBROW}
@@ -103,7 +107,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
           <h1
             data-ab="headline"
             data-variant="default"
-            className="mt-5 max-w-3xl font-display text-[2rem] leading-[1.12] tracking-tight sm:text-4xl md:text-5xl"
+            className="mt-4 min-h-[4.5rem] max-w-3xl font-sans text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-white sm:mt-5 sm:text-[2rem] md:min-h-0 md:text-5xl md:font-display"
           >
             {landing.h1}
           </h1>
@@ -158,7 +162,7 @@ function Authority() {
   return (
     <section aria-label="Sistemas con los que trabajamos" className="bg-white">
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8">
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8A94B0]">
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
           Autoridad técnica
         </p>
         <p className="mt-3 max-w-prose text-sm text-[#5C6578]">
@@ -228,7 +232,7 @@ function Metodo() {
         <h2 className="mt-3 max-w-3xl font-display text-3xl text-[#1A2E8A] md:text-4xl">
           {ADS_POSITIONING}
         </h2>
-        <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-[#8A94B0]">
+        <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-[#5C6578]">
           {ADS_PILLARS.join(" + ")}
         </p>
         <ol className="mt-10 grid gap-4 md:grid-cols-5">
@@ -276,7 +280,7 @@ function StarCase({
               <div className="absolute inset-6 border border-white/20" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="font-display text-5xl text-white">
-                  {star.squareMeters?.toLocaleString("es-PA")} m²
+                  {star.squareMeters ? formatMeters(star.squareMeters) : null} m²
                 </p>
                 <p className="mt-2 text-sm text-[#D6E8FF]">
                   {star.squareMetersDetail}
@@ -351,18 +355,18 @@ function Projects({
                 aria-hidden="true"
               >
                 {item.squareMeters ? (
-                  <p className="font-display text-4xl">
-                    {item.squareMeters.toLocaleString("es-PA")} m²
+                  <p className="font-display text-4xl text-white">
+                    {formatMeters(item.squareMeters)} m²
                   </p>
                 ) : (
-                  <p className="font-display text-2xl">Losa nueva</p>
+                  <p className="font-display text-2xl text-white">Losa nueva</p>
                 )}
               </div>
               <div className="p-5">
                 <h3 className="font-display text-xl text-[#1A2E8A]">{item.name}</h3>
                 <p className="mt-1 text-sm text-[#5C6578]">{item.workType}</p>
                 {item.location ? (
-                  <p className="mt-1 text-sm text-[#8A94B0]">{item.location}</p>
+                  <p className="mt-1 text-sm text-[#5C6578]">{item.location}</p>
                 ) : null}
                 {item.scope ? (
                   <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
@@ -467,7 +471,7 @@ function PatchVsMethod() {
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <thead>
               <tr className="border-b border-[#D6E8FF]">
-                <th className="py-3 pr-4 font-display text-lg font-normal text-[#8A94B0]">
+                <th className="py-3 pr-4 font-display text-lg font-normal text-[#5C6578]">
                   {PATCH_VS_METHOD.patchTitle}
                 </th>
                 <th className="py-3 font-display text-lg font-normal text-[#1A2E8A]">
@@ -478,7 +482,7 @@ function PatchVsMethod() {
             <tbody>
               {PATCH_VS_METHOD.rows.map((row) => (
                 <tr key={row.patch} className="border-b border-[#D6E8FF]">
-                  <td className="py-4 pr-4 align-top text-[#8A94B0]">{row.patch}</td>
+                  <td className="py-4 pr-4 align-top text-[#5C6578]">{row.patch}</td>
                   <td className="py-4 align-top text-[#1A2E8A]">{row.method}</td>
                 </tr>
               ))}
@@ -529,7 +533,7 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
   return (
     <section className="bg-[#1A2E8A] text-white">
       <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-        <h2 className="max-w-3xl font-display text-3xl md:text-4xl">
+        <h2 className="max-w-3xl font-display text-3xl text-white md:text-4xl">
           Antes de volver a reparar la filtración, encuentra de dónde viene.
         </h2>
         <p className="mt-4 max-w-prose text-base leading-relaxed text-[#D6E8FF]">

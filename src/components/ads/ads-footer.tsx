@@ -22,10 +22,10 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
           <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
             Primero diagnosticamos. Después el sistema correcto.
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-[#8A94B0]">{LEGAL_NAME}</p>
+          <p className="mt-4 text-xs leading-relaxed text-[#5C6578]">{LEGAL_NAME}</p>
         </div>
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#8A94B0]">
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
             Oficina
           </p>
           <address className="not-italic text-sm leading-relaxed text-[#5C6578]">
@@ -39,7 +39,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
           </address>
         </div>
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#8A94B0]">
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
             Contacto
           </p>
           <ul className="space-y-2 text-sm">
@@ -93,7 +93,7 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
         </div>
       </div>
       <div className="border-t border-[#D6E8FF]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-[#8A94B0] md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-[#5C6578] md:px-8">
           <p>
             © {new Date().getFullYear()} {LEGAL_NAME}
           </p>

@@ -299,7 +299,7 @@ function AdsLeadForm({
       <input type="hidden" name="landingPath" value={landing.path} />
       <TrackingHiddenFields />
 
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#8A94B0]">
+      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
         Paso {step} de 2
       </p>
 
@@ -479,7 +479,7 @@ function Field({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(
-          "min-h-12 w-full rounded-md border bg-white px-4 text-[#1A2E8A] placeholder:text-[#8A94B0] focus:outline-none focus:ring-2 focus:ring-[#2B4BF2]/30",
+          "min-h-12 w-full rounded-md border bg-white px-4 text-[#1A2E8A] placeholder:text-[#5C6578] focus:outline-none focus:ring-2 focus:ring-[#2B4BF2]/30",
           error ? "border-danger" : "border-[#D6E8FF] focus:border-[#2B4BF2]",
         )}
       />
@@ -573,7 +573,7 @@ function TextareaField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(
-          "w-full resize-y rounded-md border bg-white px-4 py-3 text-[#1A2E8A] placeholder:text-[#8A94B0] focus:outline-none focus:ring-2 focus:ring-[#2B4BF2]/30",
+          "w-full resize-y rounded-md border bg-white px-4 py-3 text-[#1A2E8A] placeholder:text-[#5C6578] focus:outline-none focus:ring-2 focus:ring-[#2B4BF2]/30",
           error ? "border-danger" : "border-[#D6E8FF] focus:border-[#2B4BF2]",
         )}
       />

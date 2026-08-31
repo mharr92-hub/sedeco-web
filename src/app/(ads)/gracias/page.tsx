@@ -37,7 +37,7 @@ export default function GraciasPage() {
           visita.
         </p>
         <ThankYouClient />
-        <p className="mt-10 text-xs text-[#8A94B0]">{LEGAL_NAME}</p>
+        <p className="mt-10 text-xs text-[#5C6578]">{LEGAL_NAME}</p>
       </div>
     </main>
   );

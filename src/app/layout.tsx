@@ -6,19 +6,20 @@ import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  display: "fallback",
 });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  display: "swap",
+  display: "fallback",
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+  preload: false,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
@@ -62,8 +63,12 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-white text-ink-900 font-sans antialiased">
+      <body
+        className="min-h-screen bg-white text-ink-900 font-sans antialiased"
+        suppressHydrationWarning
+      >
         <DataLayerInit />
         <GtmNoscript />
         {children}
