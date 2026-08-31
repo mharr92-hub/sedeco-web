@@ -3,16 +3,32 @@
 import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
+const optionalString = v.optional(v.string());
+
 export const createLead = mutation({
   args: {
     nombre: v.string(),
-    email: v.string(),
+    email: optionalString,
     telefono: v.string(),
-    tipoProyecto: v.optional(v.string()),
+    tipoProyecto: optionalString,
+    tipoPropiedad: optionalString,
+    problema: optionalString,
+    descripcion: optionalString,
+    ubicacion: optionalString,
+    puedeEnviarFotos: optionalString,
     mensaje: v.string(),
     source: v.string(),
-    userAgent: v.optional(v.string()),
-    referrer: v.optional(v.string()),
+    landingPath: optionalString,
+    userAgent: optionalString,
+    referrer: optionalString,
+    utmSource: optionalString,
+    utmMedium: optionalString,
+    utmCampaign: optionalString,
+    utmTerm: optionalString,
+    utmContent: optionalString,
+    gclid: optionalString,
+    gbraid: optionalString,
+    wbraid: optionalString,
   },
   returns: v.id("leads"),
   handler: async (ctx, args) => {

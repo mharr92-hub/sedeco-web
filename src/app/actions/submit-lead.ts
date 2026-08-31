@@ -75,7 +75,11 @@ export async function submitLead(
   let leadId: unknown;
   try {
     leadId = await client.mutation(createLeadRef, {
-      ...parsed.data,
+      nombre: parsed.data.nombre,
+      email: parsed.data.email,
+      telefono: parsed.data.telefono,
+      tipoProyecto: parsed.data.tipoProyecto,
+      mensaje: parsed.data.mensaje,
       source: "web_form",
       userAgent,
       referrer,

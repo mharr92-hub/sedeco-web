@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/site/site-header";
-import { WhatsAppFloat } from "@/components/site/whatsapp-float";
+import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,9 +64,9 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-screen bg-white text-ink-900 font-sans antialiased">
-        <SiteHeader />
+        <DataLayerInit />
+        <GtmNoscript />
         {children}
-        <WhatsAppFloat />
       </body>
     </html>
   );
