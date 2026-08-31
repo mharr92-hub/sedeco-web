@@ -4,6 +4,8 @@ import { headers } from "next/headers";
 import {
   adsLeadFieldKeys,
   adsLeadFormSchema,
+  problemasFromFormData,
+  serializeProblemas,
   type AdsLeadField,
 } from "@/lib/validations/lead";
 import {
@@ -46,8 +48,16 @@ export type SubmitAdsLeadResult =
       fields?: Partial<Record<AdsLeadField, string>>;
     };
 
+function formatProblemaLabels(values: readonly string[]): string {
+  const selected = new Set(values);
+  return Object.entries(PROBLEMA_LABEL)
+    .filter(([value]) => selected.has(value))
+    .map(([, label]) => label)
+    .join(", ");
+}
+
 function composeMensaje(input: {
-  problema: string;
+  problema: readonly string[];
   tipoPropiedad: string;
   ubicacion: string;
   puedeEnviarFotos: string;
@@ -55,7 +65,7 @@ function composeMensaje(input: {
   landingPath: string;
 }): string {
   const lines = [
-    `Problema: ${PROBLEMA_LABEL[input.problema] ?? input.problema}`,
+    `Problema: ${formatProblemaLabels(input.problema)}`,
     `Propiedad: ${PROPIEDAD_LABEL[input.tipoPropiedad] ?? input.tipoPropiedad}`,
     `Zona: ${input.ubicacion}`,
     `Fotos: ${input.puedeEnviarFotos === "si" ? "puede enviar" : "no por ahora"}`,
@@ -99,7 +109,7 @@ export async function submitAdsLead(
   const raw = {
     nombre: formData.get("nombre"),
     telefono: formData.get("telefono"),
-    problema: formData.get("problema"),
+    problema: problemasFromFormData(formData),
     descripcion: formData.get("descripcion") || undefined,
     tipoPropiedad: formData.get("tipoPropiedad"),
     ubicacion: formData.get("ubicacion"),
@@ -125,6 +135,8 @@ export async function submitAdsLead(
 
   const tracking = trackingFromFormData(formData);
   const mensaje = composeMensaje(parsed.data);
+  const problemaStored = serializeProblemas(parsed.data.problema);
+  const problemaLabels = formatProblemaLabels(parsed.data.problema);
 
   const supabase = getSupabaseServiceClient();
   if (!supabase) {
@@ -145,7 +157,7 @@ export async function submitAdsLead(
   const payload = {
     nombre: parsed.data.nombre,
     telefono: parsed.data.telefono,
-    problema: parsed.data.problema,
+    problema: problemaLabels,
     tipoPropiedad: parsed.data.tipoPropiedad,
     ubicacion: parsed.data.ubicacion,
     puedeEnviarFotos: parsed.data.puedeEnviarFotos,
@@ -161,7 +173,7 @@ export async function submitAdsLead(
   const row: AdsLeadInsert = {
     nombre: parsed.data.nombre,
     telefono: parsed.data.telefono,
-    problema: parsed.data.problema,
+    problema: problemaStored,
     tipo_propiedad: parsed.data.tipoPropiedad,
     ubicacion: parsed.data.ubicacion,
     puede_enviar_fotos: parsed.data.puedeEnviarFotos,

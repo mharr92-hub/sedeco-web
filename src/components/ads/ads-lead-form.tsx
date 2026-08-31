@@ -221,7 +221,7 @@ function AdsLeadForm({
   const [values, setValues] = useState({
     nombre: "",
     telefono: "",
-    problema: landing.defaultProblema,
+    problema: [landing.defaultProblema] as string[],
     descripcion: "",
     tipoPropiedad: "",
     ubicacion: "",
@@ -240,17 +240,17 @@ function AdsLeadForm({
     track({
       event: "lead_form_submit",
       landing: landing.slug,
-      problem: values.problema,
+      problem: values.problema.join(","),
     });
     track({
       event: "lead_submit",
       landing: landing.slug,
-      problem: values.problema,
+      problem: values.problema.join(","),
     });
     track({
       event: "form_submit",
       landing: landing.slug,
-      problem: values.problema,
+      problem: values.problema.join(","),
     });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
@@ -276,7 +276,7 @@ function AdsLeadForm({
       const errors: string[] = [];
       if (values.nombre.trim().length < 2) errors.push("nombre");
       if (values.telefono.trim().length < 7) errors.push("telefono");
-      if (!values.problema) errors.push("problema");
+      if (values.problema.length === 0) errors.push("problema");
       if (errors.length > 0) {
         track({
           event: "form_error",
@@ -296,12 +296,12 @@ function AdsLeadForm({
       track({
         event: "form_step1",
         landing: landing.slug,
-        problem: values.problema,
+        problem: values.problema.join(","),
       });
       track({
         event: "lead_form_step_2",
         landing: landing.slug,
-        problem: values.problema,
+        problem: values.problema.join(","),
       });
       setStep(2);
       requestAnimationFrame(() => {
@@ -361,15 +361,12 @@ function AdsLeadForm({
           onChange={(telefono) => setValues((v) => ({ ...v, telefono }))}
           error={fieldErrors?.telefono}
         />
-        <SelectField
+        <ProblemaField
           id="ads-problema"
           label="¿Cuál es el problema?"
-          name="problema"
           options={landing.problemaOptions}
-          value={values.problema}
-          onChange={(problema) =>
-            setValues((v) => ({ ...v, problema: problema as typeof v.problema }))
-          }
+          values={values.problema}
+          onChange={(problema) => setValues((v) => ({ ...v, problema }))}
           required
           error={fieldErrors?.problema}
         />
@@ -550,6 +547,78 @@ function Field({
         </p>
       ) : null}
     </div>
+  );
+}
+
+function ProblemaField({
+  id,
+  label,
+  options,
+  values,
+  onChange,
+  required,
+  error,
+}: {
+  id: string;
+  label: string;
+  options: ReadonlyArray<{ value: string; label: string }>;
+  values: readonly string[];
+  onChange: (values: string[]) => void;
+  required?: boolean;
+  error?: string;
+}) {
+  const errorId = `${id}-error`;
+  const hintId = `${id}-hint`;
+
+  function toggle(value: string) {
+    onChange(
+      values.includes(value)
+        ? values.filter((item) => item !== value)
+        : [...values, value],
+    );
+  }
+
+  return (
+    <fieldset
+      aria-required={required ? true : undefined}
+      aria-invalid={Boolean(error)}
+      aria-describedby={error ? `${hintId} ${errorId}` : hintId}
+    >
+      <legend className="mb-1.5 block text-sm font-medium text-[#1A2E8A]">
+        {label}
+        {required ? <span className="ml-0.5 text-[#2B4BF2]">*</span> : null}
+      </legend>
+      <p id={hintId} className="mb-2 text-xs text-[#5C6578]">
+        Puede seleccionar más de uno.
+      </p>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {options.map((opt, index) => {
+          const checked = values.includes(opt.value);
+          return (
+            <label
+              key={opt.value}
+              className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#D6E8FF] bg-[#F5F6FA] px-3 text-sm text-[#1A2E8A] has-[:checked]:border-[#2B4BF2] has-[:checked]:bg-[#D6E8FF]"
+            >
+              <input
+                id={index === 0 ? id : `${id}-${opt.value}`}
+                type="checkbox"
+                name="problema"
+                value={opt.value}
+                checked={checked}
+                onChange={() => toggle(opt.value)}
+                className="accent-[#2B4BF2]"
+              />
+              {opt.label}
+            </label>
+          );
+        })}
+      </div>
+      {error ? (
+        <p id={errorId} className="mt-1 text-sm text-danger">
+          {error}
+        </p>
+      ) : null}
+    </fieldset>
   );
 }
 
