@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
-import { CANONICAL_ORIGIN } from "@/lib/site";
+import { CANONICAL_ORIGIN, OG_IMAGE, OG_IMAGE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,18 +41,27 @@ export const metadata: Metadata = {
     title: "SEDECO Panamá — Sellado de concreto permanente",
     description:
       "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía por escrito según sistema y alcance.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "SEDECO Panamá — Sellado de concreto permanente",
-      },
-    ],
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SEDECO Panamá — Sellado de concreto permanente",
+    description:
+      "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía por escrito según sistema y alcance.",
+    images: [OG_IMAGE_URL],
   },
   icons: {
-    icon: "/icon",
-    apple: "/apple-icon",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   robots: { index: true, follow: true },
 };

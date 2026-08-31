@@ -3,7 +3,12 @@ import {
   problemaValues,
   type ProblemaValue,
 } from "@/lib/data/ads-landings";
-import { CANONICAL_ORIGIN, localBusinessJsonLd } from "@/lib/site";
+import {
+  CANONICAL_ORIGIN,
+  localBusinessJsonLd,
+  OG_IMAGE,
+  OG_IMAGE_URL,
+} from "@/lib/site";
 
 export const SERVICE_CTA = "Solicitar inspección" as const;
 
@@ -376,11 +381,13 @@ export function servicePageMetadata(page: ServicePage): Metadata {
       locale: "es_PA",
       type: "website",
       siteName: "SEDECO Panamá",
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: page.metaTitle,
       description: page.metaDescription,
+      images: [OG_IMAGE_URL],
     },
     robots: { index: true, follow: true },
   };
