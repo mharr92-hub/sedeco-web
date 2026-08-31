@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { TrackedLink } from "@/components/ads/tracked-link";
-import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
+import { LegalNav } from "@/components/site/legal-nav";
 import {
   ADDRESS,
   LEGAL_NAME,
@@ -97,9 +97,12 @@ export function AdsFooter({ landing }: { landing: AdsLanding }) {
           <p>
             © {new Date().getFullYear()} {LEGAL_NAME}
           </p>
-          <Link href="/" className="hover:text-[#2B4BF2]">
-            Sitio SEDECO
-          </Link>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <LegalNav linkClassName="hover:text-[#2B4BF2]" />
+            <Link href="/" className="hover:text-[#2B4BF2]">
+              Sitio SEDECO
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
