@@ -12,14 +12,15 @@ import {
   HOME_SERVICES_TITLE,
   SERVICE_CTA,
 } from "@/lib/data/service-pages";
-import { CANONICAL_ORIGIN } from "@/lib/site";
+import { CANONICAL_ORIGIN, INSPECTION_SLA, SITE_EMAIL } from "@/lib/site";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
-const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
+const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@sedeco.lat";
 const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: { canonical: `${CANONICAL_ORIGIN}/` },
+  openGraph: { url: CANONICAL_ORIGIN },
 };
 
 const jsonLd = {
@@ -28,7 +29,7 @@ const jsonLd = {
   name: "SEDECO",
   legalName: "SEDECO, S.A.",
   url: siteUrl,
-  email: "mark@selladodeconcreto.com",
+  email: SITE_EMAIL,
   telephone: "+507 6550-8320",
   foundingDate: "2020",
   founder: [
@@ -228,8 +229,7 @@ export default function HomePage() {
                 Solicitar inspección
               </h2>
               <p className="mt-4 text-ink-500 leading-relaxed">
-                Cuéntanos qué está pasando con tu estructura y Mark Harrick te
-                responde dentro del próximo día hábil.
+                Cuéntenos qué está pasando con su estructura. {INSPECTION_SLA}
               </p>
               <div className="mt-8 space-y-4 border-t border-ink-100 pt-6">
                 <p className="text-xs font-mono uppercase tracking-[0.2em] text-ink-400">

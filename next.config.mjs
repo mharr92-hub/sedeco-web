@@ -30,8 +30,22 @@ const nextConfig = {
   },
   async redirects() {
     const canonicalOrigin = "https://www.sedeco.lat";
-    // Host redirects only fire if DNS for the old domain points at this Vercel
-    // project. They do not match sedeco.lat / www.sedeco.lat.
+    const apexHostRedirects = [
+      {
+        source: "/",
+        has: [{ type: "host", value: "sedeco.lat" }],
+        destination: `${canonicalOrigin}/`,
+        statusCode: 301,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "sedeco.lat" }],
+        destination: `${canonicalOrigin}/:path*`,
+        statusCode: 301,
+      },
+    ];
+    // Host redirects only fire if DNS for that host points at this Vercel
+    // project. Vercel Domains should also redirect apex → www.
     const legacyHosts = [
       "selladodeconcreto.com",
       "www.selladodeconcreto.com",
@@ -104,6 +118,7 @@ const nextConfig = {
         destination: "/impermeabilizacion-panama",
         permanent: true,
       },
+      ...apexHostRedirects,
       ...legacyHostRedirects,
     ];
   },

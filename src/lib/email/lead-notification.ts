@@ -3,7 +3,7 @@ import type { TrackingFields } from "@/lib/tracking";
 
 const fromEmail = process.env.RESEND_FROM_EMAIL ?? "noreply@sedeco.lat";
 const notifyEmail =
-  process.env.LEADS_NOTIFY_EMAIL ?? "mark@selladodeconcreto.com";
+  process.env.LEADS_NOTIFY_EMAIL ?? "mark@sedeco.lat";
 
 export type LeadNotificationPayload = TrackingFields & {
   nombre: string;

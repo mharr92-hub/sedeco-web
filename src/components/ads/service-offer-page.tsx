@@ -10,11 +10,11 @@ import {
   serviceJsonLd,
   type ServicePage,
 } from "@/lib/data/service-pages";
-import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
+import { whatsappHref, WHATSAPP_DISPLAY, INSPECTION_SLA } from "@/lib/site";
 
 const SERVICE_NAV = [
   { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#formulario", label: "Inspección" },
+  { href: "#formulario", label: "Solicitar inspección" },
 ] as const;
 
 export function ServiceOfferPage({ page }: { page: ServicePage }) {
@@ -166,7 +166,7 @@ function Close({ page }: { page: ServicePage }) {
             Solicitar inspección
           </p>
           <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-4xl">
-            Cuéntenos el caso. Mark le responde el próximo día hábil.
+            Cuéntenos el caso. {INSPECTION_SLA}
           </h2>
           <TrackedLink
             event="whatsapp_click"

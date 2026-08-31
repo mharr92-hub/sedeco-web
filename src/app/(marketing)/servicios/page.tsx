@@ -8,7 +8,7 @@ import {
   HOME_SERVICES_TITLE,
   SERVICE_NAV,
 } from "@/lib/data/service-pages";
-import { CANONICAL_ORIGIN } from "@/lib/site";
+import { CANONICAL_ORIGIN, INSPECTION_SLA } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Servicios · SEDECO Panamá" },
@@ -97,7 +97,7 @@ export default function ServiciosPage() {
 
         <LeadCtaBand
           title="¿No está seguro qué servicio necesita?"
-          subtitle="Cuéntenos qué está pasando. Mark le responde el próximo día hábil."
+          subtitle={`Cuéntenos qué está pasando. ${INSPECTION_SLA}`}
           href="/#contacto"
         />
       </main>

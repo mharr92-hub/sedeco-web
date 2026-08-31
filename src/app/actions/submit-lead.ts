@@ -5,6 +5,7 @@ import { makeFunctionReference } from "convex/server";
 import { leadFormSchema } from "@/lib/validations/lead";
 import { getConvexClient } from "@/lib/convex-server";
 import { sendLeadNotification } from "@/lib/email/lead-notification";
+import { leadSubmitErrorMessage } from "@/lib/site";
 
 // Untyped function references — replace with `api.leads.createLead` from
 // convex/_generated/api once `npm run convex:dev` has been run once.
@@ -63,8 +64,7 @@ export async function submitLead(
     );
     return {
       ok: false,
-      error:
-        "El sistema de leads aún no está completamente configurado. Por favor escríbenos directamente a mark@selladodeconcreto.com o por WhatsApp.",
+      error: leadSubmitErrorMessage(),
     };
   }
 
@@ -88,8 +88,7 @@ export async function submitLead(
     console.error("[submitLead] Error guardando lead en Convex:", err);
     return {
       ok: false,
-      error:
-        "No pudimos registrar tu solicitud. Intenta de nuevo o escríbenos a mark@selladodeconcreto.com.",
+      error: leadSubmitErrorMessage(),
     };
   }
 

@@ -1,6 +1,8 @@
 export const ANALYTICS_EVENTS = [
   "lead_form_start",
+  "lead_form_step_2",
   "lead_form_submit",
+  "lead_submit",
   "form_step1",
   "form_submit",
   "whatsapp_click",
@@ -22,6 +24,7 @@ export type AnalyticsPayload = {
   location?: string;
   problem?: string;
   source?: string;
+  reason?: string;
 };
 
 declare global {
@@ -60,5 +63,6 @@ export function track(payload: AnalyticsPayload): void {
     location: payload.location,
     problem: payload.problem,
     source: payload.source,
+    reason: payload.reason,
   });
 }

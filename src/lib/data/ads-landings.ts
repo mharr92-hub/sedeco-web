@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   CANONICAL_ORIGIN,
   GUARANTEE_LINE,
+  INSPECTION_SLA,
 } from "@/lib/site";
 
 export const ADS_LANDING_SLUGS = [
@@ -189,15 +190,11 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿Qué garantía ofrecen?",
-    a: "Ofrecemos garantía por escrito según sistema y alcance. Aplican términos y condiciones según sistema y alcance contratado.",
+    a: `Ofrecemos ${GUARANTEE_LINE}. Aplican términos y condiciones según sistema y alcance contratado.`,
   },
   {
     q: "¿En cuánto tiempo responden?",
-    a: "Mark le responde el próximo día hábil. Si el caso es urgente, puede escribirnos por WhatsApp al +507 6550-8320.",
-  },
-  {
-    q: "¿Trabajan en Ciudad de Panamá y el área metro?",
-    a: "Sí. Atendemos Ciudad de Panamá, el área metro y también Colón. La oficina está en RBS Tower, Punta Paitilla.",
+    a: `${INSPECTION_SLA} Si el caso es urgente, puede escribirnos por WhatsApp al +507 6550-8320.`,
   },
   {
     q: "¿LithiTek 9500 sirve para techos de zinc?",
@@ -205,7 +202,7 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿Puedo enviar fotos por WhatsApp?",
-    a: "Sí. Después de solicitar la evaluación le dejamos un enlace para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
+    a: "Sí. Al enviar el formulario lo llevamos a una página de confirmación con un enlace de WhatsApp (+507 6550-8320) para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
   },
 ];
 
@@ -218,8 +215,8 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     description:
       "¿Filtración en su apartamento o PH en Panamá? Encontramos el origen del agua antes de reparar. Diagnóstico en Ciudad de Panamá y área metro.",
     h1: "¿Tienes una filtración? Encontramos el origen antes de reparar.",
-    cta: "Revisar mi filtración",
-    ctaSticky: "Revisar filtración",
+    cta: "Solicitar inspección",
+    ctaSticky: "Solicitar inspección",
     defaultProblema: "filtracion",
     problemaOptions: [
       { value: "filtracion", label: "Filtración" },
@@ -262,7 +259,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       },
       {
         q: "¿Trabajan filtraciones en PH del área metro?",
-        a: "Sí. Atendemos filtraciones en Ciudad de Panamá, área metro y Colón, en viviendas, PH y locales.",
+        a: "Sí. Atendemos filtraciones en Ciudad de Panamá, el área metro y Colón, en viviendas, PH y locales. La oficina está en RBS Tower, Punta Paitilla.",
       },
       ...SHARED_FAQS,
     ],

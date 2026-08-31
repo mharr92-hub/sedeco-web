@@ -51,8 +51,7 @@ export function SiteHeader() {
             href="/#contacto"
             className="inline-flex items-center rounded-md bg-accent-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-600 md:px-4"
           >
-            <span className="hidden sm:inline">{SERVICE_CTA}</span>
-            <span className="sm:hidden">Inspección</span>
+            <span className="text-xs sm:text-sm">{SERVICE_CTA}</span>
           </Link>
         </div>
       </div>

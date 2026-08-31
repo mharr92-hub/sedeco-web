@@ -59,8 +59,7 @@ export function AdsHeader({
             onClick={() => openAdsForm("header")}
             className="inline-flex min-h-11 items-center rounded-md bg-[#F5A623] px-3 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c] md:px-4"
           >
-            <span className="hidden sm:inline">{landing.cta}</span>
-            <span className="sm:hidden">Inspección</span>
+            <span className="text-xs sm:text-sm">{landing.cta}</span>
           </button>
         </div>
       </div>

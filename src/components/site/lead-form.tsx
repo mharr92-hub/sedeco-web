@@ -7,6 +7,7 @@ import {
 } from "@/app/actions/submit-lead";
 import { tipoProyectoValues } from "@/lib/validations/lead";
 import { cn } from "@/lib/utils";
+import { INSPECTION_SLA, SITE_EMAIL } from "@/lib/site";
 
 const tipoOptions = [
   { value: "", label: "Seleccionar (opcional)" },
@@ -45,8 +46,8 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         </h3>
         <p className="mt-3 text-ink-600 leading-relaxed">
           {state.emailQueued
-            ? "Enviamos la notificación a Mark Harrick. Te respondemos dentro del próximo día hábil."
-            : "Quedó registrada. Mark Harrick te contactará dentro del próximo día hábil. Si necesitas atención inmediata, escríbenos a mark@selladodeconcreto.com o por WhatsApp."}
+            ? `Enviamos la notificación a Mark. ${INSPECTION_SLA}`
+            : `Quedó registrada. ${INSPECTION_SLA} Si necesita atención inmediata, escríbanos a ${SITE_EMAIL} o por WhatsApp.`}
         </p>
         <button
           type="button"
@@ -131,10 +132,10 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
           disabled={isPending}
           className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isPending ? "Enviando..." : "Solicitar diagnóstico"}
+          {isPending ? "Enviando..." : "Solicitar inspección"}
         </button>
         <p className="text-xs text-ink-400">
-          Te respondemos dentro del próximo día hábil.
+          {INSPECTION_SLA}
         </p>
       </div>
     </form>

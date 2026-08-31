@@ -3,7 +3,7 @@ import {
   problemaValues,
   type ProblemaValue,
 } from "@/lib/data/ads-landings";
-import { CANONICAL_ORIGIN, LEGAL_NAME } from "@/lib/site";
+import { CANONICAL_ORIGIN, localBusinessJsonLd } from "@/lib/site";
 
 export const SERVICE_CTA = "Solicitar inspección" as const;
 
@@ -401,22 +401,6 @@ export function serviceJsonLd(page: ServicePage) {
       ],
       provider: { "@id": `${CANONICAL_ORIGIN}/#localbusiness` },
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${CANONICAL_ORIGIN}/#localbusiness`,
-      name: "SEDECO Panamá",
-      legalName: LEGAL_NAME,
-      url: CANONICAL_ORIGIN,
-      telephone: "+507 6550-8320",
-      email: "mark@selladodeconcreto.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "RBS Tower, Ave. Balboa y Ramón H. Jurado, Oficina 103A",
-        addressLocality: "Punta Paitilla, Ciudad de Panamá",
-        addressCountry: "PA",
-      },
-      areaServed: ["Ciudad de Panamá", "Colón"],
-    },
+    localBusinessJsonLd(),
   ];
 }

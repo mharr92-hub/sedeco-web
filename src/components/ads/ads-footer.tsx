@@ -3,6 +3,7 @@ import { TrackedLink } from "@/components/ads/tracked-link";
 import { LegalNav } from "@/components/site/legal-nav";
 import {
   ADDRESS,
+  INSPECTION_SLA,
   LEGAL_NAME,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
@@ -20,7 +21,8 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
         <div>
           <p className="font-ads text-xl tracking-[0.18em] text-white">SEDECO</p>
           <p className="mt-2 text-sm leading-relaxed text-white/70">
-            Primero diagnosticamos. Después el sistema correcto.
+            Diagnóstico de filtraciones e impermeabilización en Ciudad de
+            Panamá y Colón. {INSPECTION_SLA}
           </p>
           <p className="mt-4 text-xs leading-relaxed text-white/55">{LEGAL_NAME}</p>
         </div>
@@ -93,7 +95,7 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 text-xs text-white/55 md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-6 pb-24 text-xs text-white/55 md:px-8 md:pb-6">
           <p>
             © {new Date().getFullYear()} {LEGAL_NAME}
           </p>

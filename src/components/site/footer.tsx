@@ -6,7 +6,7 @@ import { LEGAL_ENTITY, TRADE_NAME } from "@/lib/site";
 const phoneDisplay =
   process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6550-8320";
 const phoneOffice = process.env.NEXT_PUBLIC_PHONE_OFFICE ?? "+507 383-5176";
-const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
+const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@sedeco.lat";
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 export function SiteFooter() {
@@ -16,8 +16,9 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-xl text-navy-900">SEDECO</p>
           <p className="mt-2 text-sm text-ink-500 leading-relaxed">
-            Primero diagnosticamos. Después el sistema correcto. Garantía por
-            escrito según sistema y alcance contratado.
+            Diagnóstico de filtraciones e impermeabilización en Ciudad de
+            Panamá y Colón. Garantía por escrito según sistema y alcance
+            contratado.
           </p>
         </div>
         <div>

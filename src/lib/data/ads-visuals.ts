@@ -91,7 +91,7 @@ export const ADS_HERO_SUB =
   "Diagnóstico · Restauración · Impermeabilización · Ciudad de Panamá · 2026";
 
 export const ADS_METODO_BODY =
-  "Primero diagnosticamos. Después el sistema correcto. Inspeccionamos la estructura, localizamos el origen del agua y elegimos el sistema según el sustrato. Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto — nunca sobre zinc, metal de techo ni membranas. Entregamos con garantía por escrito según sistema y alcance.";
+  "Inspeccionamos la estructura, localizamos el origen del agua y elegimos el sistema según el sustrato. Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto — nunca sobre zinc, metal de techo ni membranas. Entregamos con garantía por escrito según sistema y alcance contratado.";
 
 export const ADS_METODO_BULLETS = [
   "Diagnóstico",
@@ -186,29 +186,27 @@ export const ADS_SUCCESS_CASES: Array<{
   unlabeledPhoto?: boolean;
 }> = [
   {
-    name: "PH Torres Ebelle",
-    metrics: "22.000 m² · 2 torres · 26 pisos · Marbella",
+    name: "Comunidad Hebrea Shevet Ahim",
+    metrics: "5.000 m² · losas y fachadas · Ciudad de Panamá",
     scope:
-      "Impermeabilización de fachada vertical en dos torres de gran altura, con trabajo en las caras expuestas al clima de Marbella.",
-    note: "Proyecto recomendado por la Junta Directiva.",
-    photo: ADS_PHOTOS.casoEbelle,
+      "Impermeabilización horizontal y vertical en recinto comunitario. Cartas originales disponibles a solicitud.",
+    photo: ADS_PHOTOS.servicioImpermeabilizacion,
   },
   {
-    name: "PH Twin Towers",
-    metrics: "36 pisos · muro cortina · fachada compleja",
+    name: "Fundación Deveaux",
+    metrics: "Fachada y azotea · Ciudad de Colón",
     scope:
-      "Reparación e impermeabilización de fachada en una torre de 36 pisos con muro cortina de vidrio con curvatura.",
-    photo: ADS_PHOTOS.casoTwinTowers,
+      "Reparación de fachada, sellado de grietas y trabajo en altura sobre cubiertas.",
+    photo: ADS_PHOTOS.obraAltura,
+  },
+  {
+    name: "PH Quadrat",
+    metrics: "Losa estructural · San Francisco",
+    scope:
+      "Reparación de losa, impermeabilización LITHI TEK 9500 y drenaje pluvial.",
+    photo: ADS_PHOTOS.capacidadHero,
   },
 ] as const;
-
-export const ADS_MILLENIUM_CASE = {
-  name: "PH Millenium Park",
-  metrics: "1.100 m² de azotea · Vía Transístmica",
-  scope: "Impermeabilización de azotea entregada con carta de respaldo.",
-  quote: "SEDECO cumplió satisfactoriamente con los trabajos.",
-  photo: ADS_PHOTOS.aguaConcreto,
-} as const;
 
 export const ADS_PORTFOLIO: Array<{
   name: string;
@@ -216,19 +214,14 @@ export const ADS_PORTFOLIO: Array<{
   large?: boolean;
   unnamed?: boolean;
 }> = [
-  { name: "PH Torres Ebelle", photo: ADS_PHOTOS.wallEbelle },
-  { name: "PH Twin Towers", photo: ADS_PHOTOS.wallTwinTowers },
-  { name: "PH Constellation", photo: ADS_PHOTOS.casoConstellation, large: true },
   { name: "PH Joy Tower", photo: ADS_PHOTOS.joyTower },
   { name: "PH Dos Mares", photo: ADS_PHOTOS.dosMares },
+  { name: "Obra en altura", photo: ADS_PHOTOS.obraAltura, large: true },
+  { name: "Ciudad de Panamá", photo: ADS_PHOTOS.heroTorres, unnamed: true },
+  { name: "Ejecución en concreto", photo: ADS_PHOTOS.capacidadHero },
   {
-    name: "Ciudad de Panamá",
-    photo: ADS_PHOTOS.heroTorres,
-    unnamed: true,
-  },
-  {
-    name: "Obra en altura",
-    photo: ADS_PHOTOS.obraAltura,
+    name: "Cubierta",
+    photo: ADS_PHOTOS.servicioImpermeabilizacion,
     unnamed: true,
   },
 ];
@@ -260,26 +253,26 @@ export const ADS_REFERENCIAS: Array<{
     name: "Edificio 9136 / Fundación Deveaux",
     place: "Ciudad de Colón",
     scope: "Reparación de fachada, sellado de grietas y trabajo en altura.",
-    contact: "Fundación Deveaux",
+    contact: "Administrador",
   },
   {
     name: "Comunidad Hebrea Shevet Ahim",
     place: "Ciudad de Panamá",
     scope: "Losas (>3.000 m²) y fachadas en altura (>2.000 m²).",
-    contact: "Dirección ejecutiva",
+    contact: "Administrador",
   },
   {
     name: "Sinagoga Bet Max Ve Sarah",
     place: "Ciudad de Panamá",
     scope:
       "Losa estructural, fachada y muros perimetrales. Impermeabilización GHOSTSHIELD 9500.",
-    contact: "Comunidad Hebrea de Panamá",
+    contact: "Administrador",
   },
   {
     name: "Supermercados XTRA",
     place: "Panamá",
     scope: "Ejecución de sistemas de impermeabilización integrales.",
-    contact: "Gerente de proyectos",
+    contact: "Gerente de proyecto",
   },
 ];
 

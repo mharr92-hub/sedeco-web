@@ -8,13 +8,23 @@ GTM/GA4 se inyectan solo si existen `NEXT_PUBLIC_GTM_ID` / `NEXT_PUBLIC_GA4_ID`.
 
 | Evento | Cuándo | ¿Conversión Ads? |
 |---|---|---|
-| `form_step1` | Continuar del paso 1 (form corto de 2 pasos) | Micro |
-| `form_submit` | Submit OK, antes de `/gracias` | **Primaria** |
-| `whatsapp_click` | Click WA | **Primaria** |
-| `lead_form_start` / `lead_form_submit` | Alias legacy (mismo flujo) | No duplicar en GTM si ya usa `form_*` |
+| `lead_form_start` | Primer foco / abrir el form | Micro |
+| `lead_form_step_2` | Continuar del paso 1 al 2 | Micro |
+| `form_step1` | Alias del mismo paso (legacy) | No duplicar si ya usa `lead_form_step_2` |
+| `lead_submit` | Submit OK, antes de `/gracias` | **Primaria** |
+| `lead_form_submit` / `form_submit` | Alias legacy del mismo submit | No duplicar en GTM |
+| `whatsapp_click` | Click WA (`location`: header, hero, sticky, footer, thank_you, bottom) | **Primaria** |
+| `phone_click` | Click teléfono | Micro |
+| `form_error` | Validación o fallo de servidor. Incluye `reason` | No |
 | `thank_you_view` | `/gracias` | **No** (evitar doble conteo) |
 
-`dataLayer.push` ocurre igual sin IDs. El snippet de GTM **no** se carga si `NEXT_PUBLIC_GTM_ID` está vacío.
+`dataLayer.push` ocurre igual sin IDs. El snippet de GTM **no** se carga si `NEXT_PUBLIC_GTM_ID` está vacío. No hay GA4 inventado ni acciones de conversión Ads en este repo.
+
+Cuando Mark pegue el GTM ID en `NEXT_PUBLIC_GTM_ID` (formato `GTM-XXXXXXX`):
+
+1. En GTM, disparadores de Custom Event: `lead_submit`, `whatsapp_click`, `lead_form_step_2`, `form_error`.
+2. Variables de capa de datos: `landing`, `location`, `problem`, `reason`.
+3. Conversiones Ads: enlazar solo `lead_submit` y `whatsapp_click`. No usar `thank_you_view`.
 
 CTA único en sitio y anuncios: **Solicitar inspección**.  
 Garantía: **garantía por escrito según sistema y alcance contratado**. Nunca años ni «de por vida».  
@@ -39,7 +49,7 @@ WhatsApp: +507 6550-8320. Geo: Ciudad de Panamá + área metro; Colón opcional 
 
 ## Message-match (KEYWORD → RSA H1 → LANDING H1 → CTA)
 
-CTA en todos: Solicitar inspección (excepto filtraciones, cuyo CTA de LP sigue siendo «Revisar mi filtración» para no tocar esa página más que las 3 cards).
+CTA en todos: **Solicitar inspección**.
 
 | Intención | Keyword ejemplo | RSA H1 (≤30) | Landing | H1 de la página |
 |---|---|---|---|---|
