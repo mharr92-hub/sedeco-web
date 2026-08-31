@@ -1,38 +1,33 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef, useState } from "react";
+import {
+  startTransition,
+  useActionState,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
 import {
   submitAdsLead,
   type SubmitAdsLeadResult,
 } from "@/app/actions/submit-ads-lead";
-import type { AdsLanding } from "@/lib/data/ads-landings";
-import {
-  problemaValues,
-  tipoPropiedadValues,
-} from "@/lib/data/ads-landings";
+import type { LeadPageContext } from "@/lib/data/service-pages";
+import { tipoPropiedadValues } from "@/lib/data/ads-landings";
 import { TRACKING_PARAM_KEYS } from "@/lib/tracking";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ADS_OPEN_FORM_EVENT } from "@/components/ads/ads-form-events";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
+  INSPECTION_SLA,
   PHONE_OFFICE_PRIMARY,
   telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 import { TrackedLink } from "@/components/ads/tracked-link";
-
-const PROBLEMA_OPTIONS: Array<{ value: (typeof problemaValues)[number]; label: string }> = [
-  { value: "filtracion", label: "Filtración" },
-  { value: "azotea", label: "Azotea" },
-  { value: "fachada", label: "Fachada" },
-  { value: "grietas", label: "Grietas" },
-  { value: "piscina", label: "Piscina" },
-  { value: "tanque", label: "Tanque" },
-  { value: "otro", label: "Otro" },
-];
 
 const PROPIEDAD_OPTIONS: Array<{
   value: (typeof tipoPropiedadValues)[number];
@@ -47,7 +42,13 @@ const PROPIEDAD_OPTIONS: Array<{
   { value: "otro", label: "Otro" },
 ];
 
-export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
+export function AdsLeadDock({
+  landing,
+  inline = false,
+}: {
+  landing: LeadPageContext;
+  inline?: boolean;
+}) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const started = useRef(false);
 
@@ -90,10 +91,11 @@ export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
       <div
         id="formulario"
         className={cn(
-          "md:block",
           sheetOpen
             ? "fixed inset-0 z-50 flex items-end justify-center bg-[#1A2E8A]/40 p-0 md:static md:bg-transparent md:p-0"
-            : "hidden md:block",
+            : inline
+              ? "block"
+              : "hidden md:block",
         )}
         role={sheetOpen ? "dialog" : undefined}
         aria-modal={sheetOpen ? true : undefined}
@@ -104,7 +106,7 @@ export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
       >
         <div
           className={cn(
-            "w-full bg-white shadow-[0_12px_40px_rgba(26,46,138,0.12)]",
+            "relative w-full bg-white shadow-[0_12px_40px_rgba(26,46,138,0.12)]",
             sheetOpen
               ? "max-h-[92vh] overflow-y-auto rounded-t-2xl p-5 pb-8 md:max-h-none md:rounded-xl md:p-6"
               : "rounded-xl p-6",
@@ -130,7 +132,7 @@ export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
             </p>
           )}
           <p className="mb-5 text-sm leading-relaxed text-[#5C6578]">
-            Sin compromiso. Mark le responde el próximo día hábil.
+            Sin compromiso. {INSPECTION_SLA}
           </p>
           <AdsLeadForm
             landing={landing}
@@ -211,11 +213,20 @@ function AdsLeadForm({
   landing,
   onStart,
 }: {
-  landing: AdsLanding;
+  landing: LeadPageContext;
   onStart: () => void;
 }) {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
+  const [values, setValues] = useState({
+    nombre: "",
+    telefono: "",
+    problema: landing.defaultProblema,
+    descripcion: "",
+    tipoPropiedad: "",
+    ubicacion: "",
+    puedeEnviarFotos: "si" as "si" | "no",
+  });
   const [state, formAction, isPending] = useActionState<
     SubmitAdsLeadResult | undefined,
     FormData
@@ -229,19 +240,29 @@ function AdsLeadForm({
     track({
       event: "lead_form_submit",
       landing: landing.slug,
-      problem: landing.defaultProblema,
+      problem: values.problema,
+    });
+    track({
+      event: "lead_submit",
+      landing: landing.slug,
+      problem: values.problema,
+    });
+    track({
+      event: "form_submit",
+      landing: landing.slug,
+      problem: values.problema,
     });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);
-  }, [state, landing.slug, landing.defaultProblema, router]);
+  }, [state, landing.slug, values.problema, router]);
 
   useEffect(() => {
     if (state && !state.ok) {
-      track({ event: "form_error", landing: landing.slug });
-      if (state.fields?.nombre || state.fields?.telefono || state.fields?.problema) {
-        setStep(1);
-      }
+      const reason = state.fields
+        ? `validation:${Object.keys(state.fields).join(",")}`
+        : (state.error ?? "server");
+      track({ event: "form_error", landing: landing.slug, reason });
     }
   }, [state, landing.slug]);
 
@@ -250,18 +271,18 @@ function AdsLeadForm({
     state && !state.ok && !state.fields ? state.error : undefined;
 
   function handleContinue(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     if (step === 1) {
-      const data = new FormData(e.currentTarget);
-      const nombre = String(data.get("nombre") ?? "").trim();
-      const telefono = String(data.get("telefono") ?? "").trim();
-      const problema = String(data.get("problema") ?? "").trim();
       const errors: string[] = [];
-      if (nombre.length < 2) errors.push("nombre");
-      if (telefono.length < 7) errors.push("telefono");
-      if (!problema) errors.push("problema");
+      if (values.nombre.trim().length < 2) errors.push("nombre");
+      if (values.telefono.trim().length < 7) errors.push("telefono");
+      if (!values.problema) errors.push("problema");
       if (errors.length > 0) {
-        e.preventDefault();
-        track({ event: "form_error", landing: landing.slug });
+        track({
+          event: "form_error",
+          landing: landing.slug,
+          reason: `validation_step1:${errors.join(",")}`,
+        });
         const first = document.getElementById(
           errors[0] === "nombre"
             ? "ads-nombre"
@@ -272,12 +293,26 @@ function AdsLeadForm({
         first?.focus();
         return;
       }
-      e.preventDefault();
+      track({
+        event: "form_step1",
+        landing: landing.slug,
+        problem: values.problema,
+      });
+      track({
+        event: "lead_form_step_2",
+        landing: landing.slug,
+        problem: values.problema,
+      });
       setStep(2);
       requestAnimationFrame(() => {
         document.getElementById("ads-tipoPropiedad")?.focus();
       });
+      return;
     }
+    const formData = new FormData(e.currentTarget);
+    startTransition(() => {
+      formAction(formData);
+    });
   }
 
   return (
@@ -286,7 +321,7 @@ function AdsLeadForm({
       action={formAction}
       onSubmit={handleContinue}
       onFocusCapture={onStart}
-      className="grid gap-4"
+      className="relative grid gap-4"
       noValidate
     >
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
@@ -310,6 +345,8 @@ function AdsLeadForm({
           name="nombre"
           autoComplete="name"
           required
+          value={values.nombre}
+          onChange={(nombre) => setValues((v) => ({ ...v, nombre }))}
           error={fieldErrors?.nombre}
         />
         <Field
@@ -320,14 +357,19 @@ function AdsLeadForm({
           autoComplete="tel"
           placeholder="+507 6000-0000"
           required
+          value={values.telefono}
+          onChange={(telefono) => setValues((v) => ({ ...v, telefono }))}
           error={fieldErrors?.telefono}
         />
         <SelectField
           id="ads-problema"
           label="¿Cuál es el problema?"
           name="problema"
-          options={PROBLEMA_OPTIONS}
-          defaultValue={landing.defaultProblema}
+          options={landing.problemaOptions}
+          value={values.problema}
+          onChange={(problema) =>
+            setValues((v) => ({ ...v, problema: problema as typeof v.problema }))
+          }
           required
           error={fieldErrors?.problema}
         />
@@ -337,6 +379,8 @@ function AdsLeadForm({
           name="descripcion"
           rows={3}
           placeholder="Ej.: se moja el cielo raso del último piso después de llover."
+          value={values.descripcion}
+          onChange={(descripcion) => setValues((v) => ({ ...v, descripcion }))}
           error={fieldErrors?.descripcion}
         />
         <button
@@ -353,6 +397,8 @@ function AdsLeadForm({
           label="Tipo de propiedad"
           name="tipoPropiedad"
           options={PROPIEDAD_OPTIONS}
+          value={values.tipoPropiedad}
+          onChange={(tipoPropiedad) => setValues((v) => ({ ...v, tipoPropiedad }))}
           required
           error={fieldErrors?.tipoPropiedad}
         />
@@ -363,6 +409,8 @@ function AdsLeadForm({
           autoComplete="address-level2"
           placeholder="Ej.: San Francisco, Punta Pacífica, Costa del Este"
           required
+          value={values.ubicacion}
+          onChange={(ubicacion) => setValues((v) => ({ ...v, ubicacion }))}
           error={fieldErrors?.ubicacion}
         />
         <fieldset>
@@ -377,8 +425,11 @@ function AdsLeadForm({
                 name="puedeEnviarFotos"
                 value="si"
                 required
+                checked={values.puedeEnviarFotos === "si"}
+                onChange={() =>
+                  setValues((v) => ({ ...v, puedeEnviarFotos: "si" }))
+                }
                 className="accent-[#2B4BF2]"
-                defaultChecked
               />
               Sí
             </label>
@@ -387,6 +438,10 @@ function AdsLeadForm({
                 type="radio"
                 name="puedeEnviarFotos"
                 value="no"
+                checked={values.puedeEnviarFotos === "no"}
+                onChange={() =>
+                  setValues((v) => ({ ...v, puedeEnviarFotos: "no" }))
+                }
                 className="accent-[#2B4BF2]"
               />
               Ahora no
@@ -414,7 +469,7 @@ function AdsLeadForm({
             disabled={isPending}
             className="inline-flex min-h-12 flex-1 items-center justify-center rounded-md bg-[#2B4BF2] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1A2E8A] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isPending ? "Enviando..." : "Solicitar evaluación"}
+            {isPending ? "Enviando..." : "Solicitar inspección"}
           </button>
         </div>
       </div>
@@ -452,6 +507,8 @@ function Field({
   required,
   autoComplete,
   placeholder,
+  value,
+  onChange,
   error,
 }: {
   id: string;
@@ -461,6 +518,8 @@ function Field({
   required?: boolean;
   autoComplete?: string;
   placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
   error?: string;
 }) {
   return (
@@ -476,6 +535,8 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(
@@ -497,7 +558,8 @@ function SelectField({
   label,
   name,
   options,
-  defaultValue,
+  value,
+  onChange,
   required,
   error,
 }: {
@@ -505,7 +567,8 @@ function SelectField({
   label: string;
   name: string;
   options: ReadonlyArray<{ value: string; label: string }>;
-  defaultValue?: string;
+  value: string;
+  onChange: (value: string) => void;
   required?: boolean;
   error?: string;
 }) {
@@ -519,7 +582,8 @@ function SelectField({
         id={id}
         name={name}
         required={required}
-        defaultValue={defaultValue ?? ""}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(
@@ -551,6 +615,8 @@ function TextareaField({
   name,
   rows = 3,
   placeholder,
+  value,
+  onChange,
   error,
 }: {
   id: string;
@@ -558,6 +624,8 @@ function TextareaField({
   name: string;
   rows?: number;
   placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
   error?: string;
 }) {
   return (
@@ -570,6 +638,8 @@ function TextareaField({
         name={name}
         rows={rows}
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(

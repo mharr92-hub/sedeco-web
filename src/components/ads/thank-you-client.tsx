@@ -1,24 +1,40 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { adsLandings, type AdsLandingSlug } from "@/lib/data/ads-landings";
+import { adsLandings } from "@/lib/data/ads-landings";
+import {
+  isLeadPageSlug,
+  servicePages,
+  type LeadPageSlug,
+} from "@/lib/data/service-pages";
 import { track } from "@/lib/analytics";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 
-function isLandingSlug(value: string | null): value is AdsLandingSlug {
-  return Boolean(value && value in adsLandings);
+function getThankYou(from: string | null): {
+  slug: LeadPageSlug;
+  thankYouWhatsapp: string;
+} {
+  if (from && from in adsLandings) {
+    const landing = adsLandings["filtraciones-panama"];
+    return {
+      slug: landing.slug,
+      thankYouWhatsapp: landing.thankYouWhatsapp,
+    };
+  }
+  if (isLeadPageSlug(from) && from !== "filtraciones-panama") {
+    const page = servicePages[from];
+    return { slug: page.slug, thankYouWhatsapp: page.thankYouWhatsapp };
+  }
+  const fallback = servicePages["impermeabilizacion-panama"];
+  return { slug: fallback.slug, thankYouWhatsapp: fallback.thankYouWhatsapp };
 }
 
 function ThankYouInner() {
   const searchParams = useSearchParams();
-  const from = searchParams.get("from");
-  const landing = isLandingSlug(from)
-    ? adsLandings[from]
-    : adsLandings["impermeabilizacion-panama"];
+  const landing = getThankYou(searchParams.get("from"));
 
   const waHref = useMemo(
     () => whatsappHref(landing.thankYouWhatsapp),

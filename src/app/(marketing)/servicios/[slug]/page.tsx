@@ -6,8 +6,9 @@ import { LeadCtaBand } from "@/components/site/lead-cta-band";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { getCasesByService } from "@/lib/data/cases";
 import { getAllServices, getServiceBySlug } from "@/lib/data/services";
+import { CANONICAL_ORIGIN } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+const siteUrl = CANONICAL_ORIGIN;
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 type ServicioParams = { slug: string };

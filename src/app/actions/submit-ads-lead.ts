@@ -10,17 +10,22 @@ import {
 import { getConvexClient } from "@/lib/convex-server";
 import { sendLeadNotification } from "@/lib/email/lead-notification";
 import { trackingFromFormData } from "@/lib/tracking";
+import { leadSubmitErrorMessage } from "@/lib/site";
 
 const createLeadRef = makeFunctionReference<"mutation">("leads:createLead");
 const markNotifiedRef = makeFunctionReference<"mutation">("leads:markNotified");
 
 const PROBLEMA_LABEL: Record<string, string> = {
   filtracion: "Filtración",
-  azotea: "Azotea",
+  azotea: "Azotea / losa",
   fachada: "Fachada",
+  "reparacion-estructural": "Reparación estructural",
   grietas: "Grietas",
   piscina: "Piscina",
   tanque: "Tanque",
+  pisos: "Pisos industriales",
+  pintura: "Pintura de fachada",
+  mantenimiento: "Mantenimiento de PH",
   otro: "Otro",
 };
 
@@ -113,8 +118,7 @@ export async function submitAdsLead(
     );
     return {
       ok: false,
-      error:
-        "El sistema de leads aún no está completamente configurado. Por favor escríbanos por WhatsApp al +507 6550-8320 o a mark@selladodeconcreto.com.",
+      error: leadSubmitErrorMessage(),
     };
   }
 
@@ -145,8 +149,7 @@ export async function submitAdsLead(
     console.error("[submitAdsLead] Error guardando lead en Convex:", err);
     return {
       ok: false,
-      error:
-        "No pudimos registrar su solicitud. Intente de nuevo o escríbanos al +507 6550-8320.",
+      error: leadSubmitErrorMessage(),
     };
   }
 

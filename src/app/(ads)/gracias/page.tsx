@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ThankYouClient } from "@/components/ads/thank-you-client";
-import { LEGAL_NAME } from "@/lib/site";
+import {
+  CANONICAL_ORIGIN,
+  INSPECTION_SLA,
+  LEGAL_NAME,
+  SITE_EMAIL,
+  WHATSAPP_DISPLAY,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Solicitud recibida · SEDECO Panamá" },
-  description:
-    "Recibimos su solicitud de evaluación. Mark le responde el próximo día hábil.",
+  description: `Recibimos su solicitud de inspección. ${INSPECTION_SLA} Envíe fotos por WhatsApp ${WHATSAPP_DISPLAY}.`,
   robots: { index: false, follow: false },
-  alternates: { canonical: "/gracias" },
+  alternates: { canonical: `${CANONICAL_ORIGIN}/gracias` },
+  openGraph: {
+    url: `${CANONICAL_ORIGIN}/gracias`,
+    title: "Solicitud recibida · SEDECO Panamá",
+    description: `Recibimos su solicitud de inspección. ${INSPECTION_SLA}`,
+  },
 };
 
 export default function GraciasPage() {
@@ -32,11 +42,18 @@ export default function GraciasPage() {
           Recibimos su caso.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-[#5C6578]">
-          Mark le responde el próximo día hábil. Si puede, envíe fotos ahora por
-          WhatsApp — ayudan a preparar la inspección. Las fotos no sustituyen la
-          visita.
+          {INSPECTION_SLA} Si puede, envíe fotos ahora por WhatsApp (
+          {WHATSAPP_DISPLAY}) — ayudan a preparar la inspección. Las fotos no
+          sustituyen la visita.
         </p>
         <ThankYouClient />
+        <p className="mt-4 text-sm text-[#5C6578]">
+          También puede escribir a{" "}
+          <a href={`mailto:${SITE_EMAIL}`} className="underline underline-offset-2">
+            {SITE_EMAIL}
+          </a>
+          .
+        </p>
         <p className="mt-10 text-xs text-[#5C6578]">{LEGAL_NAME}</p>
       </div>
     </main>

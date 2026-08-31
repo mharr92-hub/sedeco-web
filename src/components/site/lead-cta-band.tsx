@@ -1,4 +1,5 @@
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
+import { INSPECTION_SLA } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
@@ -14,7 +15,7 @@ type LeadCtaBandProps = {
 export function LeadCtaBand({
   eyebrow,
   title,
-  subtitle = "Cuéntanos qué está pasando y Mark Harrick te responde dentro del próximo día hábil.",
+  subtitle = `Cuéntenos qué está pasando. ${INSPECTION_SLA}`,
   href = "/#contacto",
   variant = "light",
 }: LeadCtaBandProps) {
@@ -60,7 +61,7 @@ export function LeadCtaBand({
             href={href}
             className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600"
           >
-            Solicitar diagnóstico
+            Solicitar inspección
           </a>
           <a
             href={`https://wa.me/${whatsapp}`}

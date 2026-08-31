@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
+import { CANONICAL_ORIGIN } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ const jetbrains = JetBrains_Mono({
   preload: false,
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

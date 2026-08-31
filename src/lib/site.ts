@@ -1,5 +1,8 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sedeco.lat";
+
+/** Public canonical origin for service pages (www). */
+export const CANONICAL_ORIGIN = "https://www.sedeco.lat";
 
 export const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
@@ -13,6 +16,17 @@ export const PHONE_OFFICE_SECONDARY =
 
 export const SITE_EMAIL =
   process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
+
+/** Public inspection SLA. Do not invent a paid vs free price. */
+export const INSPECTION_SLA = "Le contactamos en horario hábil." as const;
+
+export const OFFICE_HOURS = {
+  days: "Mo-Fr",
+  opens: "08:00",
+  closes: "17:00",
+  timeZone: "America/Panama",
+  label: "Lunes a viernes, 08:00–17:00 (hora de Panamá)",
+} as const;
 
 export const LEGAL_ENTITY = "TANYA ENGINEERING, S.A.";
 export const TRADE_NAME = "SEDECO Panamá";
@@ -28,7 +42,7 @@ export const ADDRESS = {
 } as const;
 
 export const GUARANTEE_LINE =
-  "garantía por escrito según sistema y alcance" as const;
+  "garantía por escrito según sistema y alcance contratado" as const;
 
 export const GUARANTEE_TOOLTIP =
   "Aplican términos y condiciones según sistema y alcance contratado." as const;
@@ -39,4 +53,45 @@ export function whatsappHref(message: string): string {
 
 export function telHref(phone: string): string {
   return `tel:${phone.replace(/[^\d+]/g, "")}`;
+}
+
+export function leadSubmitErrorMessage(): string {
+  return `No pudimos registrar su solicitud. Escríbanos por WhatsApp al ${WHATSAPP_DISPLAY} o a ${SITE_EMAIL}.`;
+}
+
+export function localBusinessJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${CANONICAL_ORIGIN}/#localbusiness`,
+    name: "SEDECO Panamá",
+    legalName: LEGAL_NAME,
+    url: CANONICAL_ORIGIN,
+    email: SITE_EMAIL,
+    telephone: [
+      PHONE_OFFICE_PRIMARY,
+      PHONE_OFFICE_SECONDARY,
+      WHATSAPP_DISPLAY,
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${ADDRESS.building}, ${ADDRESS.street}, ${ADDRESS.suite}`,
+      addressLocality: "Punta Paitilla, Ciudad de Panamá",
+      addressCountry: "PA",
+    },
+    areaServed: ["Ciudad de Panamá", "Colón"],
+    openingHours: `${OFFICE_HOURS.days} ${OFFICE_HOURS.opens}-${OFFICE_HOURS.closes}`,
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
+      opens: OFFICE_HOURS.opens,
+      closes: OFFICE_HOURS.closes,
+    },
+  };
 }

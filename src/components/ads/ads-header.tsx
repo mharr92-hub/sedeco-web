@@ -4,17 +4,21 @@ import Link from "next/link";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
-import type { AdsLanding } from "@/lib/data/ads-landings";
+import type { LeadPageContext } from "@/lib/data/service-pages";
 import { openAdsForm } from "@/components/ads/ads-form-events";
 
-const nav = [
-  { href: "#casos", label: "Casos" },
-  { href: "#capacidad", label: "Capacidad" },
-  { href: "#referencias", label: "Referencias" },
-  { href: "#preguntas", label: "Preguntas" },
-] as const;
-
-export function AdsHeader({ landing }: { landing: AdsLanding }) {
+export function AdsHeader({
+  landing,
+  nav = [
+    { href: "#casos", label: "Casos" },
+    { href: "#capacidad", label: "Capacidad" },
+    { href: "#referencias", label: "Referencias" },
+    { href: "#preguntas", label: "Preguntas" },
+  ],
+}: {
+  landing: LeadPageContext;
+  nav?: ReadonlyArray<{ href: string; label: string }>;
+}) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070F26]/85 backdrop-blur supports-[backdrop-filter]:bg-[#070F26]/75">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 md:h-[4.5rem] md:px-8">
@@ -55,8 +59,7 @@ export function AdsHeader({ landing }: { landing: AdsLanding }) {
             onClick={() => openAdsForm("header")}
             className="inline-flex min-h-11 items-center rounded-md bg-[#F5A623] px-3 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c] md:px-4"
           >
-            <span className="hidden sm:inline">{landing.cta}</span>
-            <span className="sm:hidden">Inspección</span>
+            <span className="text-xs sm:text-sm">{landing.cta}</span>
           </button>
         </div>
       </div>

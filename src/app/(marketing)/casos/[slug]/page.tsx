@@ -5,8 +5,9 @@ import { LeadCtaBand } from "@/components/site/lead-cta-band";
 import { SiteFooter } from "@/components/site/footer";
 import { getAllCases, getCaseBySlug } from "@/lib/data/cases";
 import { getServiceBySlug } from "@/lib/data/services";
+import { CANONICAL_ORIGIN } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+const siteUrl = CANONICAL_ORIGIN;
 const numberFormatter = new Intl.NumberFormat("es-PA");
 
 type CasoParams = { slug: string };

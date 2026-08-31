@@ -1,9 +1,6 @@
 import { z } from "zod";
-import {
-  ADS_LANDING_SLUGS,
-  problemaValues,
-  tipoPropiedadValues,
-} from "@/lib/data/ads-landings";
+import { problemaValues, tipoPropiedadValues } from "@/lib/data/ads-landings";
+import { LEAD_PAGE_SLUGS } from "@/lib/data/service-pages";
 
 export const tipoProyectoValues = [
   "residencial",
@@ -86,14 +83,14 @@ export const adsLeadFormSchema = z.object({
     .trim()
     .refine(
       (v) =>
-        ADS_LANDING_SLUGS.some((slug) => v === `/${slug}`) || v === "/gracias",
+        LEAD_PAGE_SLUGS.some((slug) => v === `/${slug}`) || v === "/gracias",
       "Origen de landing no válido.",
     ),
   source: z
     .string()
     .trim()
     .refine(
-      (v) => ADS_LANDING_SLUGS.some((slug) => v === `ads_${slug}`),
+      (v) => LEAD_PAGE_SLUGS.some((slug) => v === `ads_${slug}`),
       "Origen no válido.",
     ),
 });

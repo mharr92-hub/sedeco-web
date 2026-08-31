@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
+import { SERVICE_CTA } from "@/lib/data/service-pages";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 const navLinks = [
-  { href: "/servicios", label: "Servicios" },
+  { href: "/#servicios", label: "Servicios" },
   { href: "/casos", label: "Casos" },
   { href: "/#contacto", label: "Contacto" },
 ];
@@ -50,8 +51,7 @@ export function SiteHeader() {
             href="/#contacto"
             className="inline-flex items-center rounded-md bg-accent-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-600 md:px-4"
           >
-            <span className="hidden sm:inline">Solicitar diagnóstico</span>
-            <span className="sm:hidden">Diagnóstico</span>
+            <span className="text-xs sm:text-sm">{SERVICE_CTA}</span>
           </Link>
         </div>
       </div>

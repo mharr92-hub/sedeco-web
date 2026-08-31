@@ -14,7 +14,6 @@ import {
   ADS_REFERENCIAS,
   ADS_SERVICE_COLUMNS,
   ADS_SUCCESS_CASES,
-  ADS_MILLENIUM_CASE,
   getAdsHeroPhoto,
 } from "@/lib/data/ads-visuals";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
@@ -24,7 +23,11 @@ import { OpenFormButton } from "@/components/ads/open-form-button";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { ViewOnce } from "@/components/ads/view-once";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { SITE_URL, whatsappHref } from "@/lib/site";
+import {
+  CANONICAL_ORIGIN,
+  localBusinessJsonLd,
+  whatsappHref,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
@@ -42,27 +45,15 @@ export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
     "@type": "Service",
     name: landing.serviceType,
     description: landing.description,
-    url: `${SITE_URL}${landing.path}`,
+    url: `${CANONICAL_ORIGIN}${landing.path}`,
     areaServed: [
       { "@type": "City", name: "Ciudad de Panamá" },
       { "@type": "AdministrativeArea", name: "Área metro de Panamá" },
       { "@type": "City", name: "Colón" },
     ],
-    provider: {
-      "@type": "GeneralContractor",
-      name: "SEDECO Panamá",
-      legalName: "TANYA ENGINEERING, S.A.",
-      url: SITE_URL,
-      telephone: "+507 383-5175",
-      email: "mark@selladodeconcreto.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "RBS Tower, Ave. Balboa y Ramón H. Jurado, Oficina 103A",
-        addressLocality: "Punta Paitilla, Ciudad de Panamá",
-        addressCountry: "PA",
-      },
-    },
+    provider: { "@id": `${CANONICAL_ORIGIN}/#localbusiness` },
   };
+  const localJsonLd = localBusinessJsonLd();
 
   return (
     <>
@@ -75,6 +66,11 @@ export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localJsonLd) }}
       />
       <main className="bg-[#070F26] text-white">
         <Hero landing={landing} />
@@ -98,8 +94,10 @@ function Hero({ landing }: { landing: AdsLanding }) {
   const dual = hero.mobile.src !== hero.desktop.src;
 
   return (
-    <section className="relative min-h-[85svh] text-white md:min-h-[92svh]">
-      <div className="absolute inset-0">
+    <section id="diagnostico" className="relative min-h-[85svh] text-white md:min-h-[92svh]">
+      {/* Decorative full-bleed photo. pointer-events-none so it cannot steal
+          clicks from the hero CTAs or the docked form. */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {dual ? (
           <>
             <AdsPhotoFill
@@ -167,12 +165,22 @@ function Hero({ landing }: { landing: AdsLanding }) {
             <GuaranteeLine className="text-white" />.
           </p>
         </div>
-        <div className="relative z-10 hidden min-h-[22rem] md:block" />
+        {/* Reserves the right column so the hero stays tall enough for the
+            docked form. Must not paint above the form: a previous `relative z-10`
+            spacer intercepted every click on Nombre / WhatsApp / problema /
+            descripción while remaining visually transparent. */}
+        <div
+          className="pointer-events-none hidden min-h-[22rem] md:block"
+          aria-hidden="true"
+        />
       </div>
 
+      {/* No z-index on this wrapper: AdsLeadDock's mobile sheet is `fixed z-50`
+          and must stay above the sticky header (`z-40`). A stacking context
+          here would trap the sheet underneath the header. */}
       <div className="md:pointer-events-none">
         <div className="mx-auto max-w-6xl md:px-8">
-          <div className="md:pointer-events-auto md:absolute md:bottom-16 md:right-8 md:w-[min(100%,26rem)] lg:right-[max(2rem,calc((100%-72rem)/2+2rem))]">
+          <div className="md:pointer-events-auto md:absolute md:bottom-16 md:right-8 md:z-20 md:w-[min(100%,26rem)] lg:right-[max(2rem,calc((100%-72rem)/2+2rem))]">
             <AdsLeadDock landing={landing} />
           </div>
         </div>
@@ -190,7 +198,7 @@ function Magnitud() {
             Magnitud
           </p>
           <h2 className="mt-4 font-ads text-3xl font-semibold tracking-tight text-white md:text-5xl">
-            Esta gente ejecuta proyectos grandes.
+            Capacidad de ejecución en edificios de gran altura.
           </h2>
           <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8">
             {ADS_MAGNITUD.map((item) => (
@@ -262,31 +270,6 @@ function StarCases({ landing }: { landing: AdsLanding }) {
           </div>
         </article>
       ))}
-      <article className="grid md:grid-cols-2">
-        <div className="flex flex-col justify-center bg-[#1A2E8A] px-5 py-16 text-white md:min-h-[55vh] md:px-12">
-          <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F5A623]">
-            Caso de éxito
-          </p>
-          <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-5xl">
-            {ADS_MILLENIUM_CASE.name}
-          </h2>
-          <p className="mt-3 font-ads text-lg md:text-xl">
-            {ADS_MILLENIUM_CASE.metrics}
-          </p>
-          <p className="mt-5 max-w-prose text-base leading-relaxed text-white/85">
-            {ADS_MILLENIUM_CASE.scope} Carta de respaldo de la promotora.
-          </p>
-          <blockquote className="mt-6 border-l-2 border-[#F5A623] pl-5 text-lg leading-relaxed">
-            «{ADS_MILLENIUM_CASE.quote}»
-          </blockquote>
-        </div>
-        <div className="relative min-h-[40vh] md:min-h-[55vh]">
-          <AdsPhotoFill
-            photo={ADS_MILLENIUM_CASE.photo}
-            sizes="(min-width: 768px) 50vw, 100vw"
-          />
-        </div>
-      </article>
     </section>
   );
 }
@@ -306,7 +289,7 @@ function Metodo() {
             Quiénes / método
           </p>
           <h2 className="mt-4 font-ads text-3xl font-semibold tracking-tight text-[#1A2E8A] md:text-4xl">
-            {ADS_POSITIONING}
+            El origen del agua se inspecciona. No se adivina.
           </h2>
           <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
             {ADS_METODO_BODY}
@@ -375,7 +358,7 @@ function Servicios({ currentPath }: { currentPath: string }) {
           Servicios
         </p>
         <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-5xl">
-          El síntoma indica el frente de trabajo
+          El diagnóstico define el frente de trabajo
         </h2>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {ADS_SERVICE_COLUMNS.map((col) => {
