@@ -49,14 +49,18 @@ export default function OpenGraphImage() {
           </div>
           <div
             style={{
-              fontSize: 32,
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              fontSize: 28,
               color: "#AFBDEC",
               lineHeight: 1.3,
-              maxWidth: 900,
+              maxWidth: 980,
               fontFamily: "system-ui, sans-serif",
             }}
           >
-            Aplicadores autorizados de Ghostshield® · Garantía hasta 100 años
+            <span>Aplicadores autorizados de Ghostshield®</span>
+            <span>garantía por escrito según sistema y alcance</span>
           </div>
         </div>
 

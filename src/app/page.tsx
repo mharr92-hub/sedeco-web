@@ -28,7 +28,7 @@ const jsonLd = {
     { "@type": "Person", name: "Roni Litmanovich", jobTitle: "Gerente Operativo" },
   ],
   description:
-    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía de hasta 100 años.",
+    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía por escrito según sistema y alcance.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Edificio RBS, Planta Baja, Oficina 103A, Paitilla",
@@ -61,8 +61,9 @@ export default function HomePage() {
           </h1>
           <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
             En SEDECO damos resultados concretos en todo lo que hacemos.
-            Impermeabilización con nanotecnología molecular y garantía de hasta
-            100 años, diseñada para el clima costero y húmedo de Panamá.
+            Impermeabilización con nanotecnología molecular y garantía por
+            escrito según sistema y alcance, diseñada para el clima costero y
+            húmedo de Panamá.
           </p>
           <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
             +100,000 m²
@@ -103,7 +104,7 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-3">
             <article className="rounded-lg border border-ink-200 bg-white p-6">
               <h3 className="font-display text-xl mb-2">
-                Garantía de 100 años
+                Garantía por escrito según sistema y alcance
               </h3>
               <p className="text-ink-500 text-sm leading-relaxed">
                 Ghostshield se vuelve parte permanente de la estructura. La

@@ -21,6 +21,8 @@ export type Case = {
   result?: string;
   signedBy?: { name: string; role: string };
   featured?: boolean;
+  /** When false, the case is kept internally but omitted from public marketing surfaces. */
+  listed?: boolean;
   order: number;
 };
 
@@ -40,7 +42,8 @@ const cases: Case[] = [
     result:
       "Sellado permanente con LITHI TEK 9500 y poliuretano. Carta de respaldo firmada por el cliente.",
     signedBy: { name: "Lennys Alcántara", role: "SI Inmobiliaria" },
-    featured: true,
+    featured: false,
+    listed: false,
     order: 10,
   },
   {
@@ -113,6 +116,7 @@ const cases: Case[] = [
     result:
       "Trabajos entregados con carta de respaldo firmada por la fundación.",
     signedBy: { name: "Yamileth Samaniego", role: "Fundación Deveaux" },
+    featured: true,
     order: 50,
   },
   {
@@ -142,6 +146,8 @@ const cases: Case[] = [
     workType: "Impermeabilización de fachada",
     services: ["fachadas", "impermeabilizacion"],
     scope: "Edificio de 36 pisos. Fachada compleja.",
+    featured: false,
+    listed: false,
     order: 80,
   },
   {
@@ -150,6 +156,8 @@ const cases: Case[] = [
     workType: "Impermeabilización de fachada y piscina",
     services: ["fachadas", "piscinas", "azoteas", "impermeabilizacion"],
     scope: "Edificio de 17 pisos. Fachada y piscina en azotea.",
+    featured: false,
+    listed: false,
     order: 90,
   },
   {
@@ -171,21 +179,29 @@ const cases: Case[] = [
 
 const sortByOrder = (a: Case, b: Case) => a.order - b.order;
 
+function isPublicCase(c: Case): boolean {
+  return c.listed !== false;
+}
+
 export function getAllCases(): Case[] {
-  return [...cases].sort(sortByOrder);
+  return cases.filter(isPublicCase).sort(sortByOrder);
 }
 
 export function getFeaturedCases(limit?: number): Case[] {
-  const featured = cases.filter((c) => c.featured).sort(sortByOrder);
+  const featured = cases
+    .filter((c) => c.featured && isPublicCase(c))
+    .sort(sortByOrder);
   return typeof limit === "number" ? featured.slice(0, limit) : featured;
 }
 
 export function getCaseBySlug(slug: string): Case | undefined {
-  return cases.find((c) => c.slug === slug);
+  const found = cases.find((c) => c.slug === slug);
+  if (!found || !isPublicCase(found)) return undefined;
+  return found;
 }
 
 export function getCasesByService(service: ServiceSlug): Case[] {
   return cases
-    .filter((c) => c.services.includes(service))
+    .filter((c) => c.services.includes(service) && isPublicCase(c))
     .sort(sortByOrder);
 }

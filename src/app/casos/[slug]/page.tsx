@@ -11,6 +11,8 @@ const numberFormatter = new Intl.NumberFormat("es-PA");
 
 type CasoParams = { slug: string };
 
+export const dynamicParams = false;
+
 export function generateStaticParams(): CasoParams[] {
   return getAllCases().map((c) => ({ slug: c.slug }));
 }

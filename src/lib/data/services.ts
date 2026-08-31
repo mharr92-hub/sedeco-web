@@ -44,7 +44,7 @@ const services: Service[] = [
       "Silicona Progressive Materials",
       "Uretano de inyección",
     ],
-    warranty: "Hasta 100 años con LITHI TEK 9500 (Ghostshield).",
+    warranty: "garantía por escrito según sistema y alcance",
     seoTitle: "Impermeabilización en Panamá — metodología integral SEDECO",
     seoDescription:
       "Metodología completa de impermeabilización en Panamá: inspección NDT, preparación de superficie, reparación de defectos y sistema impermeabilizante con Ghostshield, Sika y Progressive Materials.",
@@ -76,9 +76,9 @@ const services: Service[] = [
       "Sikalastic 1k",
       "Uretano de inyección",
     ],
-    warranty: "Hasta 100 años con LITHI TEK 9500.",
+    warranty: "garantía por escrito según sistema y alcance",
     seoDescription:
-      "Impermeabilización de fachadas en Panamá con LITHI TEK 9500. Protección vertical permanente para edificios costeros, sal y humedad. Casos: PH Torres Ebelle 22,000 m².",
+      "Impermeabilización de fachadas en Panamá con LITHI TEK 9500. Protección vertical permanente para edificios costeros, sal y humedad.",
     order: 20,
   },
   {
@@ -106,10 +106,9 @@ const services: Service[] = [
       "Sikalastic 1k",
       "Uretano de inyección",
     ],
-    warranty:
-      "Hasta 100 años con LITHI TEK 9500. Hasta 20 años con silicona Progressive Materials.",
+    warranty: "garantía por escrito según sistema y alcance",
     seoDescription:
-      "Impermeabilización de azoteas y losas en Panamá. LITHI TEK 9500 (100 años) o silicona Progressive (20 años) según sustrato. Casos: Millenium Park 1,100 m², PH Mónaco, Fundación Deveaux.",
+      "Impermeabilización de azoteas y losas en Panamá. LITHI TEK 9500 o silicona Progressive según sustrato. Casos: Millenium Park 1,100 m², PH Mónaco, Fundación Deveaux.",
     order: 30,
   },
   {
@@ -161,10 +160,9 @@ const services: Service[] = [
       "Reacción química: el producto se vuelve parte permanente de la estructura.",
     ],
     products: ["LITHI TEK 9500", "Ghostshield 4500"],
-    warranty:
-      "Hasta 100 años — el producto se vuelve parte permanente de la estructura.",
+    warranty: "garantía por escrito según sistema y alcance",
     seoDescription:
-      "Sellado permanente de concreto en Panamá con Ghostshield (LITHI TEK 9500). Nanotecnología molecular, garantía de hasta 100 años. Aplicador autorizado en Panamá desde 2017.",
+      "Sellado permanente de concreto en Panamá con Ghostshield (LITHI TEK 9500). Nanotecnología molecular y garantía por escrito según sistema y alcance. Aplicador autorizado en Panamá desde 2017.",
     order: 50,
   },
   {
@@ -215,7 +213,7 @@ const services: Service[] = [
       "LITHI TEK 9500",
       "Sika Monotop 107",
     ],
-    warranty: "Hasta 100 años en la zona sellada con LITHI TEK 9500.",
+    warranty: "garantía por escrito según sistema y alcance",
     seoDescription:
       "Reparación de grietas en concreto en Panamá. Uretano de inyección + LITHI TEK 9500 para sellado permanente de fisuras estructurales y filtraciones.",
     order: 70,
