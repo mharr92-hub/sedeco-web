@@ -1,10 +1,5 @@
 import type { AdsLanding } from "@/lib/data/ads-landings";
-import {
-  ADS_POSITIONING,
-  ADS_PRIMARY_SERVICES,
-  ADS_SECONDARY_SERVICES,
-  ADS_SERVICE_MIX_NOTE,
-} from "@/lib/data/ads-landings";
+import { ADS_POSITIONING } from "@/lib/data/ads-landings";
 import {
   ADS_CAPACITY_BARS,
   ADS_HERO_KICKER,
@@ -103,7 +98,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
   const dual = hero.mobile.src !== hero.desktop.src;
 
   return (
-    <section className="relative min-h-[85svh] text-white md:min-h-[92svh]">
+    <section id="diagnostico" className="relative min-h-[85svh] text-white md:min-h-[92svh]">
       {/* Decorative full-bleed photo. pointer-events-none so it cannot steal
           clicks from the hero CTAs or the docked form. */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -392,7 +387,7 @@ function Servicios({ currentPath }: { currentPath: string }) {
           Servicios
         </p>
         <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-5xl">
-          El síntoma indica el frente de trabajo
+          El diagnóstico define el frente de trabajo
         </h2>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {ADS_SERVICE_COLUMNS.map((col) => {
@@ -426,48 +421,6 @@ function Servicios({ currentPath }: { currentPath: string }) {
             );
           })}
         </ul>
-        <p className="mt-10 max-w-3xl text-sm leading-relaxed text-[#5C6578]">
-          {ADS_SERVICE_MIX_NOTE}
-        </p>
-        <div className="mt-8 grid gap-8 md:grid-cols-2">
-          <div>
-            <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
-              Servicio principal
-            </p>
-            <ul className="mt-4 space-y-4">
-              {ADS_PRIMARY_SERVICES.map((item) => (
-                <li key={item.title}>
-                  <a
-                    href={item.href}
-                    className="font-ads text-base font-semibold text-[#1A2E8A] hover:text-[#2B4BF2]"
-                  >
-                    {item.title}
-                  </a>
-                  <p className="mt-1 text-sm leading-relaxed text-[#5C6578]">
-                    {item.line}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
-              También evaluamos
-            </p>
-            <ul className="mt-4 space-y-4">
-              {ADS_SECONDARY_SERVICES.map((item) => (
-                <li key={item.title}>
-                  <p className="font-ads text-base font-semibold text-[#1A2E8A]">
-                    {item.title}
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-[#5C6578]">
-                    {item.line}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
   );

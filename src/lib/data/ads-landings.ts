@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import {
+  CANONICAL_ORIGIN,
   GUARANTEE_LINE,
-  SITE_URL,
 } from "@/lib/site";
 
 export const ADS_LANDING_SLUGS = [
-  "impermeabilizacion-panama",
   "filtraciones-panama",
-  "impermeabilizacion-fachadas",
-  "impermeabilizacion-azoteas",
-  "sellado-concreto",
 ] as const;
 
 export type AdsLandingSlug = (typeof ADS_LANDING_SLUGS)[number];
@@ -19,10 +15,12 @@ export const problemaValues = [
   "azotea",
   "fachada",
   "reparacion-estructural",
-  "inspeccion-obra",
   "grietas",
   "piscina",
   "tanque",
+  "pisos",
+  "pintura",
+  "mantenimiento",
   "otro",
 ] as const;
 
@@ -52,6 +50,7 @@ export type AdsLanding = {
   cta: string;
   ctaSticky: string;
   defaultProblema: ProblemaValue;
+  problemaOptions: ReadonlyArray<{ value: ProblemaValue; label: string }>;
   whatsappMessage: string;
   thankYouWhatsapp: string;
   problemTitle: string;
@@ -93,7 +92,7 @@ export const ADS_STEPS = [
   },
     {
       title: "Reparamos",
-      body: "Grietas, juntas, fallos de sello y, cuando aplica, reparación estructural se atienden antes de impermeabilizar encima.",
+      body: "Grietas, juntas y fallos de sello se atienden antes de impermeabilizar encima.",
     },
   {
     title: "Impermeabilizamos",
@@ -139,7 +138,7 @@ export const SERVICE_NEED_CARDS = [
     when: "Cuando el agua aparece en un apartamento, PH o local y no está claro de dónde entra.",
   },
   {
-    href: "/impermeabilizacion-azoteas",
+    href: "/impermeabilizacion-panama",
     title: "Azoteas y losas",
     when: "Cuando el último piso se moja, la losa está fisurada o el techo ya no contiene la lluvia.",
   },
@@ -149,8 +148,8 @@ export const SERVICE_NEED_CARDS = [
     when: "Cuando hay manchas verticales, humedad en muros o uniones de ventanas en altura.",
   },
   {
-    href: "/sellado-concreto",
-    title: "Sellado de concreto",
+    href: "/pisos-industriales-panama",
+    title: "Pisos industriales",
     when: "Cuando la superficie es concreto o acero expuesto y necesita un sellado, no una pintura.",
   },
   {
@@ -159,50 +158,6 @@ export const SERVICE_NEED_CARDS = [
     when: "Cuando hay más de un frente: azotea, fachada, juntas o un edificio completo.",
   },
 ] as const;
-
-/** Servicio principal — las cinco LPs de conversión. Sin rutas nuevas. */
-export const ADS_PRIMARY_SERVICES = [
-  {
-    href: "/impermeabilizacion-azoteas",
-    title: "Impermeabilización de techos y azoteas",
-    line: "Concreto y zinc. El sistema depende del sustrato, no de un producto único.",
-  },
-  {
-    href: "/impermeabilizacion-panama",
-    title: "Sellado de juntas",
-    line: "Encuentros, ventanas y juntas que dejan pasar agua.",
-  },
-  {
-    href: "/impermeabilizacion-fachadas",
-    title: "Rehabilitación y pintura de fachadas",
-    line: "Verticales, juntas y recubrimiento según el muro.",
-  },
-  {
-    href: "/impermeabilizacion-fachadas",
-    title: "Trabajos en altura",
-    line: "Acceso y ejecución en fachadas de edificios en el área metro.",
-  },
-  {
-    href: "/sellado-concreto",
-    title: "Sellado de concreto",
-    line: "Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto.",
-  },
-] as const;
-
-/** Captura adicional — sin LP dedicada; el form y el copy de las cinco LPs alcanzan. */
-export const ADS_SECONDARY_SERVICES = [
-  {
-    title: "Reparación estructural",
-    line: "Grietas, losas y defectos de concreto se reparan cuando el diagnóstico lo pide, antes de impermeabilizar encima.",
-  },
-  {
-    title: "Inspección de obra",
-    line: "Inspección técnica y termografía de edificio para localizar el camino del agua antes de intervenir.",
-  },
-] as const;
-
-export const ADS_SERVICE_MIX_NOTE =
-  "El servicio principal es el diagnóstico y el sistema correcto de impermeabilización, fachadas, azoteas o sellado de concreto. También evaluamos reparación estructural e inspección de obra cuando el caso lo pide.";
 
 export const PATCH_VS_METHOD = {
   patchTitle: "Parche",
@@ -252,61 +207,9 @@ const SHARED_FAQS: AdsFaq[] = [
     q: "¿Puedo enviar fotos por WhatsApp?",
     a: "Sí. Después de solicitar la evaluación le dejamos un enlace para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
   },
-  {
-    q: "¿También hacen reparación estructural o inspección de obra?",
-    a: "Sí, como captura adicional cuando el diagnóstico lo pide: reparación estructural de concreto y inspección de obra (inspección técnica y termografía). El servicio principal sigue siendo el diagnóstico y el sistema correcto de impermeabilización, fachadas, azoteas o sellado de concreto. Primero diagnosticamos. Después el sistema correcto.",
-  },
 ];
 
 export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
-  "impermeabilizacion-panama": {
-    slug: "impermeabilizacion-panama",
-    path: "/impermeabilizacion-panama",
-    source: "ads_impermeabilizacion-panama",
-    title: "Impermeabilización en Panamá con diagnóstico primero",
-    description:
-      "Impermeabilización en Ciudad de Panamá y área metro. Primero diagnosticamos el origen del agua; después el sistema correcto. Solicite una inspección.",
-    h1: "Impermeabilización en Panamá que empieza con un diagnóstico correcto.",
-    cta: "Solicitar inspección",
-    ctaSticky: "Solicitar inspección",
-    defaultProblema: "filtracion",
-    whatsappMessage:
-      "Hola, quiero una inspección de impermeabilización en Ciudad de Panamá.",
-    thankYouWhatsapp:
-      "Hola, solicité una inspección de impermeabilización. Les envío fotos del problema.",
-    problemTitle: "Una filtración no siempre entra por donde aparece",
-    problemBody:
-      "Si el cielo raso de su apartamento se mancha, el agua puede venir de la azotea, de una junta, de una fachada o de una tubería. Pintar la mancha no cierra el camino del agua.",
-    problemBullets: [
-      "La humedad baja por el concreto y aparece metros más abajo.",
-      "Un recubrimiento vencido en la losa moja el último piso después de cada lluvia.",
-      "El mismo síntoma en fachada, azotea o junta pide un sistema distinto.",
-    ],
-    productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. El diagnóstico dice si hace falta sellado de concreto, un sistema de azotea, trabajo en fachada, sellado de juntas o reparación de grietas. También evaluamos reparación estructural e inspección de obra (inspección técnica y termografía) cuando el caso lo pide.",
-    finalSupport:
-      "Cuéntenos qué está pasando en su edificio o vivienda. Inspeccionamos y le proponemos el sistema adecuado.",
-    serviceType: "Impermeabilización",
-    faqs: [
-      {
-        q: "¿Qué incluye una inspección de impermeabilización?",
-        a: "Revisamos el síntoma, el sustrato y los puntos de entrada. Con eso definimos si el trabajo es de azotea, fachada, sellado de concreto, juntas u otro sistema.",
-      },
-      {
-        q: "¿Impermeabilizan cualquier superficie con Ghostshield?",
-        a: "No. Ghostshield / LITHI TEK 9500 es solo para concreto o acero expuesto. El resto de sustratos lleva otro sistema.",
-      },
-      {
-        q: "¿Atienden PH, casas y locales comerciales?",
-        a: "Sí. Trabajamos con juntas de PH, administradores, casas, comercio e industria en Ciudad de Panamá y el área metro.",
-      },
-      {
-        q: "¿Cuál es el primer paso si no sé de dónde viene el agua?",
-        a: "Solicitar la inspección. El método SEDECO empieza por el origen, no por aplicar impermeabilizante a ciegas. Si el caso pide inspección de obra o termografía, se define en esa visita.",
-      },
-      ...SHARED_FAQS,
-    ],
-  },
   "filtraciones-panama": {
     slug: "filtraciones-panama",
     path: "/filtraciones-panama",
@@ -318,6 +221,15 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     cta: "Revisar mi filtración",
     ctaSticky: "Revisar filtración",
     defaultProblema: "filtracion",
+    problemaOptions: [
+      { value: "filtracion", label: "Filtración" },
+      { value: "azotea", label: "Azotea" },
+      { value: "fachada", label: "Fachada" },
+      { value: "grietas", label: "Grietas" },
+      { value: "piscina", label: "Piscina" },
+      { value: "tanque", label: "Tanque" },
+      { value: "otro", label: "Otro" },
+    ],
     whatsappMessage:
       "Hola, tengo una filtración y quiero que encuentren el origen antes de reparar.",
     thankYouWhatsapp:
@@ -331,7 +243,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       "El vecino de arriba o la azotea común pueden ser parte del camino del agua.",
     ],
     productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. Una filtración puede pedir reparación de grietas, sellado de concreto, un sistema de azotea, trabajo en fachada o una inspección técnica — con termografía cuando hace falta ver el camino del agua.",
+      "No todos los problemas de agua se resuelven con el mismo producto. Una filtración puede pedir reparación de grietas, sellado de concreto, un sistema de azotea o trabajo en fachada.",
     finalSupport:
       "Si su apartamento se está mojando, el siguiente paso es encontrar de dónde viene el agua — no volver a parchar la mancha.",
     serviceType: "Detección y reparación de filtraciones",
@@ -355,150 +267,6 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
       ...SHARED_FAQS,
     ],
   },
-  "impermeabilizacion-fachadas": {
-    slug: "impermeabilizacion-fachadas",
-    path: "/impermeabilizacion-fachadas",
-    source: "ads_impermeabilizacion-fachadas",
-    title: "Impermeabilización de fachadas para edificios en Panamá",
-    description:
-      "Impermeabilización de fachadas en Ciudad de Panamá. Evaluación en altura, origen de la humedad y sistema según el sustrato. Solicite evaluación de fachada.",
-    h1: "Impermeabilización de fachadas para edificios en Panamá",
-    cta: "Solicitar evaluación de fachada",
-    ctaSticky: "Evaluar fachada",
-    defaultProblema: "fachada",
-    whatsappMessage:
-      "Hola, quiero una evaluación de impermeabilización de fachada en Panamá.",
-    thankYouWhatsapp:
-      "Hola, solicité evaluación de fachada. Les envío fotos de las manchas o uniones.",
-    problemTitle: "Una filtración no siempre entra por donde aparece",
-    problemBody:
-      "En fachada el agua entra por juntas, ventanas, grietas o un recubrimiento vencido y puede aparecer dentro de un apartamento que no da al mismo punto.",
-    problemBullets: [
-      "Manchas verticales, eflorescencia o humedad que baja por el muro.",
-      "Filtraciones junto a ventanas o uniones constructivas.",
-      "Trabajos en altura que se pintaron y volvieron a fallar con la lluvia y el sol.",
-    ],
-    productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. En verticales usamos LANCO DRY-COAT cuando corresponde. El concreto o acero expuesto de fachada se evalúa con Ghostshield / LITHI TEK 9500 — nunca sobre zinc, metal ni membranas. Rehabilitación, pintura de fachada y trabajos en altura se definen después del diagnóstico.",
-    finalSupport:
-      "Antes de volver a pintar la fachada, conviene saber por dónde entra el agua y qué sistema admite ese muro.",
-    serviceType: "Impermeabilización de fachadas",
-    faqs: [
-      {
-        q: "¿Hacen trabajo de fachada en altura?",
-        a: "Sí. Evaluamos fachadas de edificios en Ciudad de Panamá y el área metro. El método de acceso se define después de la inspección.",
-      },
-      {
-        q: "¿Qué producto usan en fachadas?",
-        a: "Depende del sustrato. LANCO DRY-COAT para verticales cuando aplica. Ghostshield / LITHI TEK 9500 solo si hay concreto o acero expuesto. No se usa LithiTek sobre zinc, metal ni membranas.",
-      },
-      {
-        q: "¿Una fachada costera se trata igual que una interior?",
-        a: "El clima de Panamá — humedad y, en muchos casos, sal — entra en el diagnóstico. El sistema se elige después de ver el muro, no antes.",
-      },
-      {
-        q: "¿Sirve impermeabilizar solo el apartamento que se moja?",
-        a: "A veces el origen está en un tramo de fachada común. Por eso inspeccionamos el muro, no solo el interior de la unidad.",
-      },
-      ...SHARED_FAQS,
-    ],
-  },
-  "impermeabilizacion-azoteas": {
-    slug: "impermeabilizacion-azoteas",
-    path: "/impermeabilizacion-azoteas",
-    source: "ads_impermeabilizacion-azoteas",
-    title: "Impermeabilización de azoteas y losas en Panamá",
-    description:
-      "Impermeabilización de azoteas y losas en Ciudad de Panamá. Diagnóstico del origen, sistema según concreto o zinc, e inspección técnica. Solicite inspección de azotea.",
-    h1: "Impermeabilización de azoteas y losas en Panamá",
-    cta: "Solicitar inspección de azotea",
-    ctaSticky: "Inspeccionar azotea",
-    defaultProblema: "azotea",
-    whatsappMessage:
-      "Hola, quiero una inspección de impermeabilización de azotea o losa en Panamá.",
-    thankYouWhatsapp:
-      "Hola, solicité inspección de azotea o losa. Les envío fotos de la cubierta y de las filtraciones.",
-    problemTitle: "Una filtración no siempre entra por donde aparece",
-    problemBody:
-      "El último piso se moja y se piensa en el techo. A veces es la losa, un drenaje, una junta o un sistema ya vencido. El material de la cubierta cambia el producto.",
-    problemBullets: [
-      "Filtraciones en el último piso después de cada lluvia.",
-      "Membrana o pintura impermeabilizante agrietada que hay que reaplicar.",
-      "Cubierta de zinc o metal tratada como si fuera concreto — o al revés.",
-    ],
-    productIntro:
-      "No todos los problemas de agua se resuelven con el mismo producto. En losas de concreto puede aplicar sellado con Ghostshield / LITHI TEK 9500. En techos de zinc o metal el sistema principal es HS 3200 Series (Progressive Materials). LithiTek no se aplica sobre zinc, metal ni membranas. Si la losa pide reparación estructural, se atiende antes de impermeabilizar.",
-    finalSupport:
-      "Si la azotea o la losa está mojando el interior, el siguiente paso es inspeccionar el sustrato y elegir el sistema correcto.",
-    serviceType: "Impermeabilización de azoteas y losas",
-    faqs: [
-      {
-        q: "¿Impermeabilizan azoteas de PH y de casas?",
-        a: "Sí. Inspeccionamos losas, azoteas y cubiertas en PH, casas y edificios comerciales en Ciudad de Panamá y el área metro.",
-      },
-      {
-        q: "¿Qué sistema usan si el techo es de zinc?",
-        a: "HS 3200 Series (Progressive Materials) es el sistema principal para cubiertas de zinc o metal. Ghostshield / LITHI TEK 9500 no se usa sobre zinc, metal ni membranas.",
-      },
-      {
-        q: "¿Y si la losa es de concreto?",
-        a: "Se evalúa si corresponde un sellado de concreto (Ghostshield / LITHI TEK 9500 sobre concreto o acero expuesto) u otro sistema horizontal según el estado de la losa.",
-      },
-      {
-        q: "¿La inspección incluye drenajes y juntas?",
-        a: "Sí. El agua a menudo entra por encuentros, desagües y juntas, no por el centro de la losa. Eso se revisa en la visita.",
-      },
-      ...SHARED_FAQS,
-    ],
-  },
-  "sellado-concreto": {
-    slug: "sellado-concreto",
-    path: "/sellado-concreto",
-    source: "ads_sellado-concreto",
-    title: "Sellado de concreto permanente en Panamá | SEDECO",
-    description:
-      "Sellado de concreto en Panamá con Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto. Diagnóstico primero. Solicite evaluación.",
-    h1: "Sellado permanente de concreto en Panamá, con el sistema correcto.",
-    cta: "Solicitar evaluación",
-    ctaSticky: "Solicitar evaluación",
-    defaultProblema: "otro",
-    whatsappMessage:
-      "Hola, quiero una evaluación de sellado de concreto en Panamá.",
-    thankYouWhatsapp:
-      "Hola, solicité evaluación de sellado de concreto. Les envío fotos de la losa o superficie.",
-    problemTitle: "Una filtración no siempre entra por donde aparece",
-    problemBody:
-      "El concreto poroso deja pasar agua y sales. Un recubrimiento que se descama no es lo mismo que un sellado del concreto. Primero confirmamos que el sustrato sea concreto o acero expuesto.",
-    problemBullets: [
-      "Losa o muro de concreto que absorbe agua y la suelta hacia el interior.",
-      "Pinturas impermeabilizantes que se desprenden y hay que rehacer.",
-      "Confusión entre concreto, zinc y membranas: cada uno pide un sistema distinto.",
-    ],
-    productIntro:
-      "Ghostshield / LITHI TEK 9500 es para concreto o acero expuesto. Nunca zinc, metal de techo ni membranas. Si su cubierta es de zinc, el camino es HS 3200 Series u otro sistema — no sellado nano sobre metal. La reparación estructural del concreto, cuando aplica, va antes del sellado.",
-    finalSupport:
-      "Si lo que necesita es sellar concreto de verdad, empiece por una evaluación del sustrato. No aplicamos LithiTek donde no corresponde.",
-    serviceType: "Sellado permanente de concreto",
-    faqs: [
-      {
-        q: "¿Qué es el sellado de concreto que ustedes hacen?",
-        a: "Es un tratamiento sobre concreto o acero expuesto con Ghostshield / LITHI TEK 9500, cuando el diagnóstico confirma que ese es el sustrato y el sistema correcto. No es pintar el concreto.",
-      },
-      {
-        q: "¿Sirve para techos de zinc o membranas?",
-        a: "No. LITHI TEK 9500 no se aplica sobre zinc, metal ni membranas. Para zinc o metal el sistema principal es HS 3200 Series (Progressive Materials).",
-      },
-      {
-        q: "¿Son aplicadores autorizados de Ghostshield?",
-        a: "Sí. SEDECO es aplicador autorizado de Ghostshield® (KreteTek Industries) en Panamá. Trabajamos también con sistemas Sika y Progressive Materials según el caso.",
-      },
-      {
-        q: "¿Tienen un caso de losa nueva sellada?",
-        a: "PH Quadrat, en San Francisco, es un sellado de losa nueva con LITHI TEK 9500, con carta de respaldo firmada por el cliente.",
-      },
-      ...SHARED_FAQS,
-    ],
-  },
 };
 
 export function getAdsLanding(slug: AdsLandingSlug): AdsLanding {
@@ -506,11 +274,11 @@ export function getAdsLanding(slug: AdsLandingSlug): AdsLanding {
 }
 
 export function adsMetadata(landing: AdsLanding): Metadata {
-  const url = `${SITE_URL}${landing.path}`;
+  const url = `${CANONICAL_ORIGIN}${landing.path}`;
   return {
     title: { absolute: `${landing.title} · SEDECO Panamá` },
     description: landing.description,
-    alternates: { canonical: landing.path },
+    alternates: { canonical: url },
     openGraph: {
       title: landing.title,
       description: landing.description,

@@ -1,5 +1,3 @@
-import type { AdsLandingSlug } from "@/lib/data/ads-landings";
-
 export type AdsPhoto = {
   src: string;
   alt: string;
@@ -90,10 +88,10 @@ export const ADS_PHOTOS = {
 
 export const ADS_HERO_KICKER = "INGENIERÍA QUE PROTEGE ESTRUCTURAS.";
 export const ADS_HERO_SUB =
-  "Diagnóstico · Impermeabilización · Fachadas y azoteas · Sellado de concreto · Ciudad de Panamá";
+  "Diagnóstico · Restauración · Impermeabilización · Ciudad de Panamá · 2026";
 
 export const ADS_METODO_BODY =
-  "Primero diagnosticamos. Después el sistema correcto. Inspeccionamos la estructura, localizamos el origen del agua y elegimos el sistema según el sustrato: impermeabilización de techos y azoteas (concreto y zinc), sellado de juntas, rehabilitación y pintura de fachadas, trabajos en altura y sellado de concreto. Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto — nunca sobre zinc, metal de techo ni membranas. También evaluamos reparación estructural e inspección de obra (inspección técnica y termografía) cuando el caso lo pide. Entregamos con garantía por escrito según sistema y alcance.";
+  "Primero diagnosticamos. Después el sistema correcto. Inspeccionamos la estructura, localizamos el origen del agua y elegimos el sistema según el sustrato. Ghostshield / LITHI TEK 9500 solo sobre concreto o acero expuesto — nunca sobre zinc, metal de techo ni membranas. Entregamos con garantía por escrito según sistema y alcance.";
 
 export const ADS_METODO_BULLETS = [
   "Diagnóstico",
@@ -159,22 +157,22 @@ export const ADS_SERVICE_COLUMNS: Array<{
   photo: AdsPhoto;
 }> = [
   {
-    href: "/impermeabilizacion-fachadas",
-    title: "Fachadas",
-    line: "Verticales, juntas, rehabilitación y trabajo en altura.",
-    photo: ADS_PHOTOS.servicioFachadas,
+    href: "#diagnostico",
+    title: "Diagnóstico",
+    line: "Encontrar el origen antes de reparar.",
+    photo: ADS_PHOTOS.aguaConcreto,
   },
   {
     href: "/impermeabilizacion-panama",
     title: "Impermeabilización",
-    line: "Azoteas, juntas y sistema según el sustrato, no un producto único.",
+    line: "Azotea, losa, tanque o piscina: sistema según el sustrato.",
     photo: ADS_PHOTOS.servicioImpermeabilizacion,
   },
   {
-    href: "/filtraciones-panama",
-    title: "Diagnóstico",
-    line: "Origen del agua, inspección técnica y termografía cuando aplica.",
-    photo: ADS_PHOTOS.aguaConcreto,
+    href: "/impermeabilizacion-fachadas",
+    title: "Fachadas en altura",
+    line: "Juntas, sellos de ventanas y recubrimientos con equipo propio.",
+    photo: ADS_PHOTOS.servicioFachadas,
   },
 ];
 
@@ -285,7 +283,7 @@ export const ADS_REFERENCIAS: Array<{
   },
 ];
 
-export function getAdsHeroPhoto(slug: AdsLandingSlug): {
+export function getAdsHeroPhoto(slug: string): {
   mobile: AdsPhoto;
   desktop: AdsPhoto;
 } {

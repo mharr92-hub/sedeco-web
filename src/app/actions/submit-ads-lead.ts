@@ -19,10 +19,12 @@ const PROBLEMA_LABEL: Record<string, string> = {
   azotea: "Azotea / losa",
   fachada: "Fachada",
   "reparacion-estructural": "Reparación estructural",
-  "inspeccion-obra": "Inspección de obra",
   grietas: "Grietas",
   piscina: "Piscina",
   tanque: "Tanque",
+  pisos: "Pisos industriales",
+  pintura: "Pintura de fachada",
+  mantenimiento: "Mantenimiento de PH",
   otro: "Otro",
 };
 

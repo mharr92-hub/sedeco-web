@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
-import { ServiceCard } from "@/components/site/service-card";
 import { SiteFooter } from "@/components/site/footer";
 import { LeadCtaBand } from "@/components/site/lead-cta-band";
-import { getAllServices } from "@/lib/data/services";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+import {
+  HOME_SERVICE_CARDS,
+  HOME_SERVICES_FOOTNOTE,
+  HOME_SERVICES_SUBTITLE,
+  HOME_SERVICES_TITLE,
+  SERVICE_NAV,
+} from "@/lib/data/service-pages";
+import { CANONICAL_ORIGIN } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Servicios · impermeabilización y sellado de concreto en Panamá",
-  description:
-    "Servicios de SEDECO en Panamá: impermeabilización integral, fachadas, azoteas, filtraciones, sellado de concreto, tanques, grietas y piscinas. Aplicadores autorizados de Ghostshield.",
-  alternates: { canonical: "/servicios" },
+  title: { absolute: "Servicios · SEDECO Panamá" },
+  description: HOME_SERVICES_SUBTITLE,
+  alternates: { canonical: `${CANONICAL_ORIGIN}/servicios` },
 };
 
 export default function ServiciosPage() {
-  const services = getAllServices();
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Servicios SEDECO Panamá",
-    itemListElement: services.map((s, idx) => ({
+    itemListElement: SERVICE_NAV.map((s, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
       item: {
         "@type": "Service",
-        name: s.name,
-        description: s.tagline,
-        url: `${siteUrl}/servicios/${s.slug}`,
-        provider: { "@type": "Organization", name: "SEDECO" },
+        name: s.label,
+        url: `${CANONICAL_ORIGIN}${s.href}`,
+        provider: { "@type": "Organization", name: "SEDECO Panamá" },
       },
     })),
   };
@@ -46,31 +46,59 @@ export default function ServiciosPage() {
             Servicios SEDECO
           </p>
           <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
-            Impermeabilización y sellado de concreto en Panamá.
+            {HOME_SERVICES_TITLE}
           </h1>
           <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
-            Ocho líneas de servicio respaldadas por productos certificados
-            (Ghostshield, Sika, Progressive Materials) y por la metodología
-            SEDECO: diagnóstico antes que parche.
+            {HOME_SERVICES_SUBTITLE}
           </p>
         </section>
 
         <section
-          aria-label="Lista de servicios"
+          aria-label="Mapa de servicios"
           className="border-t border-ink-100 bg-ink-50"
         >
           <div className="container py-20 md:py-24">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {services.map((s) => (
-                <ServiceCard key={s.slug} service={s} />
+            <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {HOME_SERVICE_CARDS.map((card) => (
+                <li key={card.href}>
+                  <a
+                    href={card.href}
+                    className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-colors hover:border-accent-500"
+                  >
+                    <h2 className="font-display text-xl text-navy-900">
+                      {card.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                      {card.line}
+                    </p>
+                  </a>
+                </li>
               ))}
-            </div>
+              <li>
+                <a
+                  href="/pintura-edificios-panama"
+                  className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-colors hover:border-accent-500"
+                >
+                  <h2 className="font-display text-xl text-navy-900">
+                    Pintura de edificios
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                    Pintura de fachadas en altura, con la fachada reparada
+                    primero.
+                  </p>
+                </a>
+              </li>
+            </ul>
+            <p className="mt-8 text-sm leading-relaxed text-ink-500">
+              {HOME_SERVICES_FOOTNOTE}
+            </p>
           </div>
         </section>
 
         <LeadCtaBand
-          title="¿No estás seguro qué servicio necesitas?"
-          subtitle="Cuéntanos qué está pasando y Mark Harrick te responde dentro del próximo día hábil con el diagnóstico correcto."
+          title="¿No está seguro qué servicio necesita?"
+          subtitle="Cuéntenos qué está pasando. Mark le responde el próximo día hábil."
+          href="/#contacto"
         />
       </main>
       <SiteFooter />

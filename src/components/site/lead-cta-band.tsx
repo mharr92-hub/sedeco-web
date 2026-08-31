@@ -60,7 +60,7 @@ export function LeadCtaBand({
             href={href}
             className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600"
           >
-            Solicitar diagnóstico
+            Solicitar inspección
           </a>
           <a
             href={`https://wa.me/${whatsapp}`}

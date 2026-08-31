@@ -6,11 +6,8 @@ import {
   submitAdsLead,
   type SubmitAdsLeadResult,
 } from "@/app/actions/submit-ads-lead";
-import type { AdsLanding } from "@/lib/data/ads-landings";
-import {
-  problemaValues,
-  tipoPropiedadValues,
-} from "@/lib/data/ads-landings";
+import type { LeadPageContext } from "@/lib/data/service-pages";
+import { tipoPropiedadValues } from "@/lib/data/ads-landings";
 import { TRACKING_PARAM_KEYS } from "@/lib/tracking";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -23,18 +20,6 @@ import {
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 import { TrackedLink } from "@/components/ads/tracked-link";
-
-const PROBLEMA_OPTIONS: Array<{ value: (typeof problemaValues)[number]; label: string }> = [
-  { value: "filtracion", label: "Filtración" },
-  { value: "azotea", label: "Azotea / losa" },
-  { value: "fachada", label: "Fachada" },
-  { value: "reparacion-estructural", label: "Reparación estructural" },
-  { value: "inspeccion-obra", label: "Inspección de obra" },
-  { value: "grietas", label: "Grietas" },
-  { value: "piscina", label: "Piscina" },
-  { value: "tanque", label: "Tanque" },
-  { value: "otro", label: "Otro" },
-];
 
 const PROPIEDAD_OPTIONS: Array<{
   value: (typeof tipoPropiedadValues)[number];
@@ -49,7 +34,13 @@ const PROPIEDAD_OPTIONS: Array<{
   { value: "otro", label: "Otro" },
 ];
 
-export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
+export function AdsLeadDock({
+  landing,
+  inline = false,
+}: {
+  landing: LeadPageContext;
+  inline?: boolean;
+}) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const started = useRef(false);
 
@@ -92,10 +83,11 @@ export function AdsLeadDock({ landing }: { landing: AdsLanding }) {
       <div
         id="formulario"
         className={cn(
-          "md:block",
           sheetOpen
             ? "fixed inset-0 z-50 flex items-end justify-center bg-[#1A2E8A]/40 p-0 md:static md:bg-transparent md:p-0"
-            : "hidden md:block",
+            : inline
+              ? "block"
+              : "hidden md:block",
         )}
         role={sheetOpen ? "dialog" : undefined}
         aria-modal={sheetOpen ? true : undefined}
@@ -213,7 +205,7 @@ function AdsLeadForm({
   landing,
   onStart,
 }: {
-  landing: AdsLanding;
+  landing: LeadPageContext;
   onStart: () => void;
 }) {
   const router = useRouter();
@@ -230,6 +222,11 @@ function AdsLeadForm({
     redirected.current = true;
     track({
       event: "lead_form_submit",
+      landing: landing.slug,
+      problem: landing.defaultProblema,
+    });
+    track({
+      event: "form_submit",
       landing: landing.slug,
       problem: landing.defaultProblema,
     });
@@ -275,6 +272,11 @@ function AdsLeadForm({
         return;
       }
       e.preventDefault();
+      track({
+        event: "form_step1",
+        landing: landing.slug,
+        problem: problema,
+      });
       setStep(2);
       requestAnimationFrame(() => {
         document.getElementById("ads-tipoPropiedad")?.focus();
@@ -328,7 +330,7 @@ function AdsLeadForm({
           id="ads-problema"
           label="¿Cuál es el problema?"
           name="problema"
-          options={PROBLEMA_OPTIONS}
+          options={landing.problemaOptions}
           defaultValue={landing.defaultProblema}
           required
           error={fieldErrors?.problema}

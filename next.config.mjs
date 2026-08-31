@@ -54,6 +54,56 @@ const nextConfig = {
     return [
       { source: "/inicio", destination: "/", permanent: true },
       { source: "/home", destination: "/", permanent: true },
+      {
+        source: "/sellado-concreto",
+        destination: "/pisos-industriales-panama",
+        statusCode: 301,
+      },
+      {
+        source: "/impermeabilizacion-azoteas",
+        destination: "/impermeabilizacion-panama",
+        statusCode: 301,
+      },
+      {
+        source: "/servicios/impermeabilizacion",
+        destination: "/impermeabilizacion-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/fachadas",
+        destination: "/impermeabilizacion-fachadas",
+        permanent: true,
+      },
+      {
+        source: "/servicios/azoteas",
+        destination: "/impermeabilizacion-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/filtraciones",
+        destination: "/filtraciones-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/sellado-concreto",
+        destination: "/pisos-industriales-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/tanques",
+        destination: "/impermeabilizacion-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/grietas",
+        destination: "/reparacion-estructural-panama",
+        permanent: true,
+      },
+      {
+        source: "/servicios/piscinas",
+        destination: "/impermeabilizacion-panama",
+        permanent: true,
+      },
       ...legacyHostRedirects,
     ];
   },

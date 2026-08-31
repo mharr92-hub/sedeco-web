@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllServices } from "@/lib/data/services";
+import { SERVICE_NAV } from "@/lib/data/service-pages";
 import { LegalNav } from "@/components/site/legal-nav";
 import { LEGAL_ENTITY, TRADE_NAME } from "@/lib/site";
 
@@ -10,15 +10,14 @@ const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 export function SiteFooter() {
-  const services = getAllServices();
   return (
     <footer className="border-t border-ink-100 bg-white">
       <div className="container grid gap-12 py-16 md:grid-cols-4">
         <div>
           <p className="font-display text-xl text-navy-900">SEDECO</p>
           <p className="mt-2 text-sm text-ink-500 leading-relaxed">
-            Sellado de concreto permanente en Panamá. Aplicadores autorizados
-            de Ghostshield® y distribuidores de Progressive Materials.
+            Primero diagnosticamos. Después el sistema correcto. Garantía por
+            escrito según sistema y alcance contratado.
           </p>
         </div>
         <div>
@@ -26,13 +25,13 @@ export function SiteFooter() {
             Servicios
           </p>
           <ul className="space-y-2 text-sm">
-            {services.map((s) => (
-              <li key={s.slug}>
+            {SERVICE_NAV.map((s) => (
+              <li key={s.href}>
                 <Link
-                  href={`/servicios/${s.slug}`}
+                  href={s.href}
                   className="text-ink-700 transition-colors hover:text-accent-600"
                 >
-                  {s.shortName}
+                  {s.label}
                 </Link>
               </li>
             ))}

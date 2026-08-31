@@ -4,17 +4,21 @@ import Link from "next/link";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
-import type { AdsLanding } from "@/lib/data/ads-landings";
+import type { LeadPageContext } from "@/lib/data/service-pages";
 import { openAdsForm } from "@/components/ads/ads-form-events";
 
-const nav = [
-  { href: "#casos", label: "Casos" },
-  { href: "#capacidad", label: "Capacidad" },
-  { href: "#referencias", label: "Referencias" },
-  { href: "#preguntas", label: "Preguntas" },
-] as const;
-
-export function AdsHeader({ landing }: { landing: AdsLanding }) {
+export function AdsHeader({
+  landing,
+  nav = [
+    { href: "#casos", label: "Casos" },
+    { href: "#capacidad", label: "Capacidad" },
+    { href: "#referencias", label: "Referencias" },
+    { href: "#preguntas", label: "Preguntas" },
+  ],
+}: {
+  landing: LeadPageContext;
+  nav?: ReadonlyArray<{ href: string; label: string }>;
+}) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070F26]/85 backdrop-blur supports-[backdrop-filter]:bg-[#070F26]/75">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 md:h-[4.5rem] md:px-8">

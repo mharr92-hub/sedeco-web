@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
-import { AdsFooter } from "@/components/ads/ads-footer";
-import { AdsHeader } from "@/components/ads/ads-header";
-import { AdsLandingPage } from "@/components/ads/ads-landing";
-import { adsMetadata, getAdsLanding } from "@/lib/data/ads-landings";
+import { ServiceOfferPage } from "@/components/ads/service-offer-page";
+import { getServicePage, servicePageMetadata } from "@/lib/data/service-pages";
 
-const landing = getAdsLanding("impermeabilizacion-fachadas");
+const page = getServicePage("impermeabilizacion-fachadas");
 
-export const metadata: Metadata = adsMetadata(landing);
+export const metadata: Metadata = servicePageMetadata(page);
 
 export default function ImpermeabilizacionFachadasPage() {
-  return (
-    <>
-      <AdsHeader landing={landing} />
-      <AdsLandingPage landing={landing} />
-      <AdsFooter landing={landing} />
-    </>
-  );
+  return <ServiceOfferPage page={page} />;
 }

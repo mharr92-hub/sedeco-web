@@ -11,9 +11,9 @@ import {
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
-import type { AdsLanding } from "@/lib/data/ads-landings";
+import type { LeadPageContext } from "@/lib/data/service-pages";
 
-export function AdsFooter({ landing }: { landing: AdsLanding }) {
+export function AdsFooter({ landing }: { landing: LeadPageContext }) {
   return (
     <footer className="border-t border-white/10 bg-[#070F26] text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 md:px-8">

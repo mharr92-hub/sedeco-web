@@ -1,5 +1,8 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.sedeco.lat";
+
+/** Public canonical origin for service pages (www). */
+export const CANONICAL_ORIGIN = "https://www.sedeco.lat";
 
 export const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
@@ -28,7 +31,7 @@ export const ADDRESS = {
 } as const;
 
 export const GUARANTEE_LINE =
-  "garantía por escrito según sistema y alcance" as const;
+  "garantía por escrito según sistema y alcance contratado" as const;
 
 export const GUARANTEE_TOOLTIP =
   "Aplican términos y condiciones según sistema y alcance contratado." as const;

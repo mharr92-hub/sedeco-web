@@ -5,10 +5,18 @@ import { LeadForm } from "@/components/site/lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { getFeaturedCases } from "@/lib/data/cases";
+import {
+  HOME_SERVICE_CARDS,
+  HOME_SERVICES_FOOTNOTE,
+  HOME_SERVICES_SUBTITLE,
+  HOME_SERVICES_TITLE,
+  SERVICE_CTA,
+} from "@/lib/data/service-pages";
+import { CANONICAL_ORIGIN } from "@/lib/site";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sedeco.lat";
+const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -77,7 +85,7 @@ export default function HomePage() {
               href="#contacto"
               className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium hover:bg-accent-600 transition-colors"
             >
-              Solicitar diagnóstico
+              {SERVICE_CTA}
             </a>
             <a
               href={`https://wa.me/${whatsapp}`}
@@ -92,6 +100,44 @@ export default function HomePage() {
         </section>
 
         <TrustBar />
+
+        <section
+          id="servicios"
+          aria-labelledby="servicios-titulo"
+          className="border-t border-ink-100 bg-white"
+        >
+          <div className="container py-20 md:py-24">
+            <h2
+              id="servicios-titulo"
+              className="font-display text-3xl md:text-display-md text-navy-900 max-w-4xl"
+            >
+              {HOME_SERVICES_TITLE}
+            </h2>
+            <p className="mt-4 max-w-3xl text-ink-500 leading-relaxed">
+              {HOME_SERVICES_SUBTITLE}
+            </p>
+            <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {HOME_SERVICE_CARDS.map((card) => (
+                <li key={card.href}>
+                  <a
+                    href={card.href}
+                    className="flex h-full flex-col rounded-lg border border-ink-200 bg-ink-50 p-6 transition-colors hover:border-accent-500"
+                  >
+                    <h3 className="font-display text-xl text-navy-900">
+                      {card.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                      {card.line}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-sm leading-relaxed text-ink-500">
+              {HOME_SERVICES_FOOTNOTE}
+            </p>
+          </div>
+        </section>
 
         <section className="container py-20 md:py-24 border-t border-ink-100">
           <h2 className="font-display text-3xl md:text-display-md text-navy-900 mb-3">
@@ -179,7 +225,7 @@ export default function HomePage() {
                 id="contacto-titulo"
                 className="font-display text-3xl md:text-display-md text-navy-900"
               >
-                Solicitar un diagnóstico
+                Solicitar inspección
               </h2>
               <p className="mt-4 text-ink-500 leading-relaxed">
                 Cuéntanos qué está pasando con tu estructura y Mark Harrick te
