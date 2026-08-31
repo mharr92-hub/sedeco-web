@@ -3,6 +3,8 @@ import {
   CANONICAL_ORIGIN,
   GUARANTEE_LINE,
   INSPECTION_SLA,
+  OG_IMAGE,
+  OG_IMAGE_URL,
 } from "@/lib/site";
 
 export const ADS_LANDING_SLUGS = [
@@ -283,11 +285,13 @@ export function adsMetadata(landing: AdsLanding): Metadata {
       locale: "es_PA",
       type: "website",
       siteName: "SEDECO Panamá",
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: landing.title,
       description: landing.description,
+      images: [OG_IMAGE_URL],
     },
     robots: { index: true, follow: true },
   };

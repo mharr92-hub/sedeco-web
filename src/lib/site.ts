@@ -4,6 +4,18 @@ export const SITE_URL =
 /** Public canonical origin for service pages (www). */
 export const CANONICAL_ORIGIN = "https://www.sedeco.lat";
 
+/** Static 1200×630 share image (official lockup on white). */
+export const OG_IMAGE_PATH = "/og-image.png";
+export const OG_IMAGE_URL = `${CANONICAL_ORIGIN}${OG_IMAGE_PATH}`;
+
+export const OG_IMAGE = {
+  url: OG_IMAGE_URL,
+  width: 1200,
+  height: 630,
+  alt: "SEDECO Panamá — Sellado de concreto permanente",
+  type: "image/png",
+} as const;
+
 export const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 

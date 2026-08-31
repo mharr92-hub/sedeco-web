@@ -5,6 +5,7 @@ import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
   LEGAL_NAME,
+  OG_IMAGE,
   SITE_EMAIL,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     url: `${CANONICAL_ORIGIN}/gracias`,
     title: "Solicitud recibida · SEDECO Panamá",
     description: `Recibimos su solicitud de inspección. ${INSPECTION_SLA}`,
+    images: [OG_IMAGE],
   },
 };
 

@@ -12,7 +12,12 @@ import {
   HOME_SERVICES_TITLE,
   SERVICE_CTA,
 } from "@/lib/data/service-pages";
-import { CANONICAL_ORIGIN, INSPECTION_SLA, SITE_EMAIL } from "@/lib/site";
+import {
+  CANONICAL_ORIGIN,
+  INSPECTION_SLA,
+  OG_IMAGE,
+  SITE_EMAIL,
+} from "@/lib/site";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
@@ -20,7 +25,7 @@ const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
   alternates: { canonical: `${CANONICAL_ORIGIN}/` },
-  openGraph: { url: CANONICAL_ORIGIN },
+  openGraph: { url: CANONICAL_ORIGIN, images: [OG_IMAGE] },
 };
 
 const jsonLd = {
