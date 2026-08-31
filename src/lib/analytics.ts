@@ -28,6 +28,22 @@ declare global {
   }
 }
 
+/** GTM container ID. Undefined unless NEXT_PUBLIC_GTM_ID is set at build time. */
+export function getGtmContainerId(): string | undefined {
+  const id = process.env.NEXT_PUBLIC_GTM_ID?.trim();
+  return id || undefined;
+}
+
+/**
+ * Direct GA4 measurement ID for gtag.js.
+ * Returns undefined when GTM is set so GA4 is not injected twice.
+ */
+export function getDirectGa4MeasurementId(): string | undefined {
+  if (getGtmContainerId()) return undefined;
+  const id = process.env.NEXT_PUBLIC_GA4_ID?.trim();
+  return id || undefined;
+}
+
 /**
  * Push a conversion event to dataLayer. GTM/GA4 (if configured) consume this.
  * Always pushes, even without GTM/GA4 IDs. Do not also send gtag event()

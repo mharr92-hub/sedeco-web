@@ -1,22 +1,24 @@
 import Script from "next/script";
+import {
+  getDirectGa4MeasurementId,
+  getGtmContainerId,
+} from "@/lib/analytics";
 
 export function DataLayerInit() {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
-  const ga4Id = process.env.NEXT_PUBLIC_GA4_ID?.trim();
-  const useGtm = Boolean(gtmId);
-  const useGa4Direct = Boolean(ga4Id) && !useGtm;
+  const gtmId = getGtmContainerId();
+  const ga4Id = getDirectGa4MeasurementId();
 
   return (
     <>
       <Script id="sedeco-datalayer" strategy="beforeInteractive">
         {`window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"dl_init"});`}
       </Script>
-      {useGtm ? (
+      {gtmId ? (
         <Script id="sedeco-gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':Date.now(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
         </Script>
       ) : null}
-      {useGa4Direct ? (
+      {ga4Id ? (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
@@ -32,7 +34,7 @@ export function DataLayerInit() {
 }
 
 export function GtmNoscript() {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
+  const gtmId = getGtmContainerId();
   if (!gtmId) return null;
   return (
     <noscript>

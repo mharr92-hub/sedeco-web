@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getAllServices } from "@/lib/data/services";
+import { LegalNav } from "@/components/site/legal-nav";
+import { LEGAL_ENTITY, TRADE_NAME } from "@/lib/site";
 
 const phoneDisplay =
   process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6550-8320";
@@ -101,9 +103,12 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-ink-100">
-        <div className="container py-6 text-xs text-ink-400">
-          © {new Date().getFullYear()} SEDECO, S.A. — Damos resultados concretos
-          en todo lo que hacemos.
+        <div className="container flex flex-col gap-3 py-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {LEGAL_ENTITY} — {TRADE_NAME}. Damos
+            resultados concretos en todo lo que hacemos.
+          </p>
+          <LegalNav linkClassName="transition-colors hover:text-accent-600" />
         </div>
       </div>
     </footer>

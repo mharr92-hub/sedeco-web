@@ -14,7 +14,11 @@ export const PHONE_OFFICE_SECONDARY =
 export const SITE_EMAIL =
   process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
 
-export const LEGAL_NAME = "TANYA ENGINEERING, S.A. / SEDECO Panamá";
+export const LEGAL_ENTITY = "TANYA ENGINEERING, S.A.";
+export const TRADE_NAME = "SEDECO Panamá";
+export const LEGAL_NAME = `${LEGAL_ENTITY} / ${TRADE_NAME}`;
+export const RUC = "155694261-2-2020";
+export const LEGAL_UPDATED = "31 de agosto de 2026";
 
 export const ADDRESS = {
   building: "RBS Tower",
