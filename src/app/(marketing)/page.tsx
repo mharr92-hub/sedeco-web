@@ -15,7 +15,7 @@ import {
 import { CANONICAL_ORIGIN, INSPECTION_SLA, SITE_EMAIL } from "@/lib/site";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
-const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@sedeco.lat";
+const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
 const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {

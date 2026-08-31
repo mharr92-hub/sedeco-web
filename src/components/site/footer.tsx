@@ -6,7 +6,7 @@ import { LEGAL_ENTITY, TRADE_NAME } from "@/lib/site";
 const phoneDisplay =
   process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6550-8320";
 const phoneOffice = process.env.NEXT_PUBLIC_PHONE_OFFICE ?? "+507 383-5176";
-const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@sedeco.lat";
+const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 export function SiteFooter() {

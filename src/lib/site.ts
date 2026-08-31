@@ -15,7 +15,7 @@ export const PHONE_OFFICE_SECONDARY =
   process.env.NEXT_PUBLIC_PHONE_OFFICE ?? "+507 383-5176";
 
 export const SITE_EMAIL =
-  process.env.NEXT_PUBLIC_EMAIL ?? "mark@sedeco.lat";
+  process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
 
 /** Public inspection SLA. Do not invent a paid vs free price. */
 export const INSPECTION_SLA = "Le contactamos en horario hábil." as const;

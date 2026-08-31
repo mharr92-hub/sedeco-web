@@ -5,6 +5,7 @@ import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
   LEGAL_NAME,
+  SITE_EMAIL,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 
@@ -46,6 +47,13 @@ export default function GraciasPage() {
           sustituyen la visita.
         </p>
         <ThankYouClient />
+        <p className="mt-4 text-sm text-[#5C6578]">
+          También puede escribir a{" "}
+          <a href={`mailto:${SITE_EMAIL}`} className="underline underline-offset-2">
+            {SITE_EMAIL}
+          </a>
+          .
+        </p>
         <p className="mt-10 text-xs text-[#5C6578]">{LEGAL_NAME}</p>
       </div>
     </main>
