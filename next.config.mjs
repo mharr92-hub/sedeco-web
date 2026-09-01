@@ -94,8 +94,13 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/filtraciones-panama",
+        destination: "/filtraciones",
+        statusCode: 301,
+      },
+      {
         source: "/servicios/filtraciones",
-        destination: "/filtraciones-panama",
+        destination: "/filtraciones",
         permanent: true,
       },
       {

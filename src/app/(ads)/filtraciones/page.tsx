@@ -4,11 +4,11 @@ import { AdsHeader } from "@/components/ads/ads-header";
 import { AdsLandingPage } from "@/components/ads/ads-landing";
 import { adsMetadata, getAdsLanding } from "@/lib/data/ads-landings";
 
-const landing = getAdsLanding("filtraciones-panama");
+const landing = getAdsLanding("filtraciones");
 
 export const metadata: Metadata = adsMetadata(landing);
 
-export default function FiltracionesPanamaPage() {
+export default function FiltracionesPage() {
   return (
     <>
       <AdsHeader landing={landing} />

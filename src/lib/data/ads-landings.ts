@@ -8,7 +8,7 @@ import {
 } from "@/lib/site";
 
 export const ADS_LANDING_SLUGS = [
-  "filtraciones-panama",
+  "filtraciones",
 ] as const;
 
 export type AdsLandingSlug = (typeof ADS_LANDING_SLUGS)[number];
@@ -136,7 +136,7 @@ export const SUBSTRATE_BLOCKS = [
 
 export const SERVICE_NEED_CARDS = [
   {
-    href: "/filtraciones-panama",
+    href: "/filtraciones",
     title: "Filtraciones",
     when: "Cuando el agua aparece en un apartamento, PH o local y no está claro de dónde entra.",
   },
@@ -209,14 +209,14 @@ const SHARED_FAQS: AdsFaq[] = [
 ];
 
 export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
-  "filtraciones-panama": {
-    slug: "filtraciones-panama",
-    path: "/filtraciones-panama",
-    source: "ads_filtraciones-panama",
+  filtraciones: {
+    slug: "filtraciones",
+    path: "/filtraciones",
+    source: "ads_filtraciones",
     title: "Filtraciones en Panamá: encontramos el origen antes de reparar",
     description:
       "¿Filtración en su apartamento o PH en Panamá? Encontramos el origen del agua antes de reparar. Diagnóstico en Ciudad de Panamá y área metro.",
-    h1: "¿Tienes una filtración? Encontramos el origen antes de reparar.",
+    h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
     cta: "Solicitar inspección",
     ctaSticky: "Solicitar inspección",
     defaultProblema: "filtracion",
