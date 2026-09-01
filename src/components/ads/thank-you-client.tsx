@@ -17,14 +17,15 @@ function getThankYou(from: string | null): {
   slug: LeadPageSlug;
   thankYouWhatsapp: string;
 } {
-  if (from && from in adsLandings) {
-    const landing = adsLandings["filtraciones-panama"];
+  const adsFrom = from === "filtraciones-panama" ? "filtraciones" : from;
+  if (adsFrom && adsFrom in adsLandings) {
+    const landing = adsLandings[adsFrom as keyof typeof adsLandings];
     return {
       slug: landing.slug,
       thankYouWhatsapp: landing.thankYouWhatsapp,
     };
   }
-  if (isLeadPageSlug(from) && from !== "filtraciones-panama") {
+  if (isLeadPageSlug(from) && from !== "filtraciones") {
     const page = servicePages[from];
     return { slug: page.slug, thankYouWhatsapp: page.thankYouWhatsapp };
   }

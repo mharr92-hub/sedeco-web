@@ -14,7 +14,7 @@ export const SERVICE_CTA = "Solicitar inspección" as const;
 
 export const LEAD_PAGE_SLUGS = [
   "impermeabilizacion-panama",
-  "filtraciones-panama",
+  "filtraciones",
   "impermeabilizacion-fachadas",
   "pisos-industriales-panama",
   "reparacion-estructural-panama",
@@ -115,7 +115,7 @@ export const HOME_SERVICE_CARDS = [
     line: "Azoteas, losas, fachadas, tanques y piscinas. Sistema según el sustrato, no un producto único.",
   },
   {
-    href: "/filtraciones-panama",
+    href: "/filtraciones",
     title: "Diagnóstico de filtraciones",
     line: "Encontramos el origen del agua antes de reparar y lo entregamos en un informe técnico.",
   },
@@ -144,7 +144,7 @@ export const HOME_SERVICE_CARDS = [
 /** IA / nav order: keep three core, then new pages with pisos first. */
 export const SERVICE_NAV = [
   { href: "/impermeabilizacion-panama", label: "Impermeabilización" },
-  { href: "/filtraciones-panama", label: "Diagnóstico" },
+  { href: "/filtraciones", label: "Diagnóstico" },
   { href: "/impermeabilizacion-fachadas", label: "Fachadas en altura" },
   { href: "/pisos-industriales-panama", label: "Pisos industriales" },
   { href: "/reparacion-estructural-panama", label: "Reparación estructural" },
@@ -172,7 +172,7 @@ export type ServicePage = LeadPageContext & {
 };
 
 export const servicePages: Record<
-  Exclude<LeadPageSlug, "filtraciones-panama">,
+  Exclude<LeadPageSlug, "filtraciones">,
   ServicePage
 > = {
   "impermeabilizacion-panama": {
@@ -353,14 +353,14 @@ export const servicePages: Record<
 };
 
 export function getServicePage(
-  slug: Exclude<LeadPageSlug, "filtraciones-panama">,
+  slug: Exclude<LeadPageSlug, "filtraciones">,
 ): ServicePage {
   return servicePages[slug];
 }
 
 export function getAllServicePages(): ServicePage[] {
-  return SERVICE_NAV.filter((item) => item.href !== "/filtraciones-panama").map(
-    (item) => servicePages[item.href.slice(1) as Exclude<LeadPageSlug, "filtraciones-panama">],
+  return SERVICE_NAV.filter((item) => item.href !== "/filtraciones").map(
+    (item) => servicePages[item.href.slice(1) as Exclude<LeadPageSlug, "filtraciones">],
   );
 }
 

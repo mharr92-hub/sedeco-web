@@ -37,7 +37,7 @@ WhatsApp: +507 6550-8320. Geo: Ciudad de Panamá + área metro; Colón opcional 
 | Página | Ads | Notas |
 |---|---|---|
 | `/impermeabilizacion-panama` | **Core** (pausada) | Zinc y juntas son sección dentro de esta página. `/impermeabilizacion-azoteas` → 301 aquí. |
-| `/filtraciones-panama` | **Core** (pausada) | Solo diagnóstico. No mezclar pisos / estructural / mantenimiento. |
+| `/filtraciones` | **Core** (pausada) | Solo diagnóstico. No mezclar pisos / estructural / mantenimiento. |
 | `/impermeabilizacion-fachadas` | **Core** (pausada) | Contenido: fachadas en altura / restauración. URL se mantiene. |
 | `/pisos-industriales-panama` | **Core** (pausada) | B2B. `/sellado-concreto` → 301 aquí. |
 | `/reparacion-estructural-panama` | **Later** (página live, campaña no) | Crear campaña solo cuando el núcleo esté estable. |
@@ -54,7 +54,7 @@ CTA en todos: **Solicitar inspección**.
 | Intención | Keyword ejemplo | RSA H1 (≤30) | Landing | H1 de la página |
 |---|---|---|---|---|
 | Impermeabilización | impermeabilizacion panama | Impermeabilización Panamá | `/impermeabilizacion-panama` | Impermeabilización en Panamá: el sistema correcto para cada superficie. |
-| Filtración / origen | filtraciones panama | ¿Filtración en su edificio? | `/filtraciones-panama` | ¿Tienes una filtración? Encontramos el origen antes de reparar. |
+| Filtración / origen | filtraciones panama | ¿Filtración en su edificio? | `/filtraciones` | ¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar. |
 | Fachadas en altura | restauracion fachadas panama | Fachadas en altura Panamá | `/impermeabilizacion-fachadas` | Restauración de fachadas en altura con equipo propio. |
 | Pisos industriales | pisos epoxicos panama | Pisos industriales Panamá | `/pisos-industriales-panama` | Pisos que aguantan la operación: epóxicos, concreto pulido y sellado industrial. |
 | Reparación estructural (later) | reparacion estructural panama | Reparación estructural | `/reparacion-estructural-panama` | Reparación estructural: recuperamos la losa antes de protegerla. |
@@ -103,7 +103,7 @@ Azoteas / techos de zinc: keywords hacia `/impermeabilizacion-panama` (no hay LP
 
 ## Campaña 2 — Filtraciones (core)
 
-- **Landing:** `/filtraciones-panama`
+- **Landing:** `/filtraciones`
 - **Intención:** síntoma (mancha, gotera, origen)
 - **Keywords:** filtraciones panama, filtracion apartamento panama, detectar filtracion edificio, de donde viene la filtracion, humedad cielo raso panama
 - **No** keywords de pisos, estructural ni mantenimiento hacia esta LP.
@@ -150,4 +150,4 @@ Azoteas / techos de zinc: keywords hacia `/impermeabilizacion-panama` (no hay LP
 - GHOSTSHIELD LITHI-TEK 9500: solo concreto o acero expuesto. Nunca zinc, metal ni membranas
 - SiliconFlex Lanco 20 Años = nombre de producto, no plazo de garantía
 - Garantía pública: «garantía por escrito según sistema y alcance contratado»
-- Formulario: email opcional; WhatsApp obligatorio. Opciones de `problema` alineadas a cada página (no volcar todos los servicios en `/filtraciones-panama`)
+- Formulario: email opcional; WhatsApp obligatorio. Opciones de `problema` alineadas a cada página (no volcar todos los servicios en `/filtraciones`)
