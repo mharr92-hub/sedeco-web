@@ -19,36 +19,6 @@ export const ADS_PHOTOS = {
     alt: "Dos torres residenciales con fachada ondulada contra el cielo de Ciudad de Panamá",
     ...LANDSCAPE,
   },
-  casoEbelle: {
-    src: "/obras/caso-ebelle.jpg",
-    alt: "PH Torres Ebelle en Marbella, dos torres residenciales de gran altura vistas desde la calle",
-    ...PORTRAIT,
-  },
-  wallEbelle: {
-    src: "/obras/wall-ebelle.jpg",
-    alt: "PH Torres Ebelle, Marbella, Ciudad de Panamá",
-    ...PORTRAIT,
-  },
-  casoTwinTowers: {
-    src: "/obras/caso-twin-towers.jpg",
-    alt: "PH Twin Towers, torre de 36 pisos con muro cortina curvo en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
-  wallTwinTowers: {
-    src: "/obras/wall-twin-towers.jpg",
-    alt: "PH Twin Towers, fachada de gran altura en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
-  casoConstellation: {
-    src: "/obras/caso-constellation.jpg",
-    alt: "PH Constellation Tower, fachada residencial en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
-  wallConstellation: {
-    src: "/obras/wall-constellation.jpg",
-    alt: "PH Constellation, edificio residencial en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
   joyTower: {
     src: "/obras/ph-joy-tower.jpg",
     alt: "PH Joy Tower, torre blanca curva de gran altura en Ciudad de Panamá",

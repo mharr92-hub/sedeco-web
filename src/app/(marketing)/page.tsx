@@ -261,8 +261,8 @@ export default function HomePage() {
               </a>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {featuredCases.map((c) => (
-                <CaseCard key={c.slug} caseItem={c} />
+              {featuredCases.map((c, index) => (
+                <CaseCard key={c.slug} caseItem={c} priority={index === 0} />
               ))}
             </div>
           </div>
