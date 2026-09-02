@@ -31,11 +31,9 @@ export type Case = {
 };
 
 /**
- * Allowlist of named projects that *may* appear on /casos, home, related
- * cases, sitemap, and detail URLs — and only when they also have a real
- * project photo. Restricted PHs (Ebelle, Twin Towers, Constellation) are
- * not in this set. MAG / Shevet / Deveaux / Quadrat / Bet Max stay in the
- * set so they surface automatically when Mark supplies a real photo.
+ * Named projects from Catálogo SEDECO 2026 that may appear publicly —
+ * and only when they also have a real obra photo (`image`).
+ * Twin Towers, Ebelle and Constellation are never in this set (404).
  */
 const PUBLIC_CASE_SLUGS = new Set([
   "hospital-manuel-amador-guerrero",
@@ -44,6 +42,8 @@ const PUBLIC_CASE_SLUGS = new Set([
   "fundacion-deveaux",
   "ph-quadrat",
   "sinagoga-bet-max-ve-sarah",
+  "ph-millenium-park",
+  "ph-monaco",
 ]);
 
 const cases: Case[] = [
