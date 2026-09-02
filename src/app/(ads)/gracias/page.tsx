@@ -25,22 +25,22 @@ export const metadata: Metadata = {
 
 export default function GraciasPage() {
   return (
-    <main className="bg-[#F5F6FA]">
-      <header className="border-b border-[#D6E8FF] bg-white">
-        <div className="mx-auto flex h-16 max-w-6xl items-center px-5 md:px-8">
+    <main className="bg-white">
+      <header className="border-b-2 border-[#F5A623] bg-[#1A2E8A]">
+        <div className="brand-wrap flex h-16 items-center md:h-[4.5rem]">
           <Link
             href="/"
-            className="font-display text-xl font-semibold text-[#1A2E8A]"
+            className="font-display text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
           >
             SEDECO
           </Link>
         </div>
       </header>
-      <div className="mx-auto max-w-xl px-5 py-16 md:py-24">
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#2B4BF2]">
+      <div className="mx-auto max-w-xl px-5 py-16 md:py-20">
+        <p className="brand-kicker-blue">
           Solicitud recibida
         </p>
-        <h1 className="mt-4 font-display text-3xl text-[#1A2E8A] md:text-4xl">
+        <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-[#1A2E8A] md:text-4xl">
           Recibimos su caso.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-[#5C6578]">

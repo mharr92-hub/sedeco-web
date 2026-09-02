@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Case } from "@/lib/data/cases";
-import { cn } from "@/lib/utils";
 
 const numberFormatter = new Intl.NumberFormat("es-PA");
 
@@ -31,14 +30,9 @@ export function CaseCard({
   } = caseItem;
 
   return (
-    <article
-      className={cn(
-        "brand-card flex h-full flex-col overflow-hidden bg-white transition-colors hover:border-accent-500",
-        image ? "" : "p-6",
-      )}
-    >
+    <article className="brand-card flex h-full flex-col overflow-hidden">
       {image ? (
-        <div className="relative aspect-[16/10] w-full bg-navy-50">
+        <div className="relative aspect-[16/10] w-full bg-[#EEF1FB]">
           <Image
             src={image.src}
             alt={image.alt}
@@ -50,71 +44,71 @@ export function CaseCard({
         </div>
       ) : null}
 
-      <div className={cn("flex flex-1 flex-col", image ? "p-6" : "")}>
-        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
-          {workType}
-        </p>
-        <h3 className="mt-3 font-display text-xl font-bold text-navy-600">
+      <div className="flex flex-1 flex-col p-6">
+        <p className="brand-kicker-gold">{workType}</p>
+        <h3 className="mt-3 font-display text-xl font-semibold text-[#1A2E8A]">
           <Link
             href={`/casos/${slug}`}
-            className="transition-colors hover:text-accent-600"
+            className="transition-colors hover:text-[#F5A623]"
           >
             {name}
           </Link>
         </h3>
         {location ? (
-          <p className="mt-1 text-sm text-ink-500">{location}</p>
+          <p className="mt-1 text-sm text-[#5C6578]">{location}</p>
         ) : null}
 
         {squareMeters ? (
-          <div className="mt-6 border-t border-navy-100 pt-5">
-            <div className="font-display text-4xl font-extrabold text-navy-600">
+          <div className="mt-6">
+            <div className="font-display text-4xl font-semibold text-[#1A2E8A]">
               {numberFormatter.format(squareMeters)} m²
             </div>
             {squareMetersDetail ? (
-              <p className="mt-2 text-xs text-ink-400">{squareMetersDetail}</p>
+              <p className="mt-2 text-xs text-[#5C6578]">{squareMetersDetail}</p>
             ) : null}
           </div>
         ) : null}
 
         {scope ? (
           <div className="mt-6">
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.22em] text-ink-400">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
               Alcance
             </p>
-            <p className="text-sm leading-relaxed text-ink-500">{scope}</p>
+            <p className="text-sm leading-relaxed text-[#5C6578]">{scope}</p>
           </div>
         ) : null}
 
         {problem ? (
           <div className="mt-5">
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.22em] text-ink-400">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
               Problema
             </p>
-            <p className="text-sm leading-relaxed text-ink-500">{problem}</p>
+            <p className="text-sm leading-relaxed text-[#5C6578]">{problem}</p>
           </div>
         ) : null}
 
         {result ? (
           <div className="mt-5">
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.22em] text-ink-400">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
               Resultado
             </p>
-            <p className="text-sm leading-relaxed text-ink-500">{result}</p>
+            <p className="text-sm leading-relaxed text-[#5C6578]">{result}</p>
           </div>
         ) : null}
 
         {signedBy ? (
-          <p className="mt-6 border-t border-navy-100 pt-5 text-xs text-ink-500">
+          <p className="mt-6 text-xs text-[#5C6578]">
             Carta de respaldo · {signedBy.name}
-            <span className="block text-ink-400">{signedBy.role}</span>
+            {signedBy.role ? (
+              <span className="block">{signedBy.role}</span>
+            ) : null}
           </p>
         ) : null}
 
-        <div className="mt-6 flex flex-1 items-end border-t border-navy-100 pt-5">
+        <div className="mt-6 flex flex-1 items-end">
           <a
             href={ctaHref}
-            className="inline-flex items-center text-sm font-semibold text-navy-600 transition-colors hover:text-accent-600"
+            className="inline-flex items-center text-sm font-semibold text-[#1A2E8A] transition-colors hover:text-[#F5A623]"
           >
             Solicitar inspección similar →
           </a>

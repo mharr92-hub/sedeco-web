@@ -10,7 +10,7 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   title: "Casos · Proyectos entregados",
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: Hospital Manuel Amador Guerrero, PH Joy Tower, Shevet Ahim, Fundación Deveaux y más.",
+    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá, con foto de obra. PH Joy Tower en Calle 50.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 
@@ -43,27 +43,22 @@ export default function CasosPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="container py-20 md:py-24">
-          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
-            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
-            Portafolio SEDECO
-          </p>
-          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
-            Proyectos entregados.
-          </h1>
-          <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
-            Más de 100,000 m² de concreto impermeabilizados en Panamá. Estos son
-            los proyectos hito en residencial, comunitario y fundaciones,
-            respaldados por cartas firmadas de los clientes.
-          </p>
+        <section className="bg-white text-[#1A2E8A]">
+          <div className="brand-wrap brand-section">
+            <p className="brand-kicker-blue">Casos</p>
+            <h1 className="mt-3 max-w-4xl font-display text-3xl font-semibold tracking-tight md:text-5xl">
+              Proyectos entregados.
+            </h1>
+            <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
+              Más de 100,000 m² de concreto impermeabilizados en Panamá.
+              Publicamos aquí los proyectos con foto de obra verificada.
+            </p>
+          </div>
         </section>
 
-        <section
-          aria-label="Lista de proyectos"
-          className="border-t border-ink-100 bg-white"
-        >
-          <div className="container py-20 md:py-24">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section aria-label="Lista de proyectos" className="bg-white">
+          <div className="brand-wrap pb-16 md:pb-20">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {cases.map((c, index) => (
                 <div key={c.slug} id={c.slug}>
                   <CaseCard caseItem={c} priority={index < 3} />
@@ -73,7 +68,10 @@ export default function CasosPage() {
           </div>
         </section>
 
-        <LeadCtaBand title="¿Tu edificio necesita una inspección como estas?" />
+        <LeadCtaBand
+          variant="dark"
+          title="¿Tu edificio necesita una inspección como estas?"
+        />
       </main>
       <SiteFooter />
     </>

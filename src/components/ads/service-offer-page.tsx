@@ -80,7 +80,7 @@ function Hero({ page }: { page: ServicePage }) {
             event="cta_hero_click"
             landing={page.slug}
             location="hero"
-            className="inline-flex min-h-12 items-center rounded-md bg-[#F5A623] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#e0981c]"
+            className="btn-gold-lg"
           >
             {page.cta}
           </OpenFormButton>

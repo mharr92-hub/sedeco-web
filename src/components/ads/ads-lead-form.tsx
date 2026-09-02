@@ -334,7 +334,7 @@ function AdsLeadForm({
       <input type="hidden" name="landingPath" value={landing.path} />
       <TrackingHiddenFields />
 
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#5C6578]">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C6578]">
         Paso {step} de 2
       </p>
 
