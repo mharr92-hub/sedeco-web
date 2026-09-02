@@ -10,7 +10,7 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   title: "Casos · Proyectos entregados",
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: Hospital Manuel Amador Guerrero, PH Joy Tower, Shevet Ahim, Fundación Deveaux y más.",
+    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá, con foto de obra. PH Joy Tower en Calle 50.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 
@@ -50,9 +50,8 @@ export default function CasosPage() {
               Proyectos entregados.
             </h1>
             <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
-              Más de 100,000 m² de concreto impermeabilizados en Panamá. Estos son
-              los proyectos hito en residencial, comunitario y fundaciones,
-              respaldados por cartas firmadas de los clientes.
+              Más de 100,000 m² de concreto impermeabilizados en Panamá.
+              Publicamos aquí los proyectos con foto de obra verificada.
             </p>
           </div>
         </section>

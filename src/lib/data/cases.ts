@@ -31,9 +31,11 @@ export type Case = {
 };
 
 /**
- * Only these slugs may appear on /casos, home featured, service related
- * cases, sitemap case URLs, or other public marketing surfaces.
- * Restricted PHs (Ebelle, Twin Towers, Constellation, and others) stay internal.
+ * Allowlist of named projects that *may* appear on /casos, home, related
+ * cases, sitemap, and detail URLs — and only when they also have a real
+ * project photo. Restricted PHs (Ebelle, Twin Towers, Constellation) are
+ * not in this set. MAG / Shevet / Deveaux / Quadrat / Bet Max stay in the
+ * set so they surface automatically when Mark supplies a real photo.
  */
 const PUBLIC_CASE_SLUGS = new Set([
   "hospital-manuel-amador-guerrero",
@@ -248,7 +250,11 @@ function sortPublicCases(a: Case, b: Case): number {
 }
 
 function isPublicCase(c: Case): boolean {
-  return c.listed !== false && PUBLIC_CASE_SLUGS.has(c.slug);
+  return (
+    c.listed !== false &&
+    PUBLIC_CASE_SLUGS.has(c.slug) &&
+    hasCasePhoto(c)
+  );
 }
 
 export function getAllCases(): Case[] {

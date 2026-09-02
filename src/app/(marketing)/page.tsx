@@ -251,8 +251,8 @@ export default function HomePage() {
                 className="mb-0"
               >
                 <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
-                  Proyectos respaldados por cartas firmadas de los clientes.
-                  Estos son tres de los hitos más visibles del portafolio.
+                  Proyectos con foto de obra verificada. Más casos se publican
+                  cuando hay fotografía real del edificio.
                 </p>
               </SectionHeading>
               <a
