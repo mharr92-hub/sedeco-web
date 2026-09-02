@@ -8,18 +8,18 @@ export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <a
       href={`/servicios/${service.slug}`}
-      className="group flex flex-col rounded-lg border border-ink-200 bg-white p-6 transition-colors hover:border-ink-300"
+      className="brand-card group flex flex-col bg-white p-6 transition-colors hover:border-accent-500"
     >
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-700">
+      <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
         {service.shortName}
       </p>
-      <h3 className="mt-3 font-display text-xl text-navy-900">
+      <h3 className="mt-3 font-display text-xl font-bold text-navy-600">
         {service.name}
       </h3>
-      <p className="mt-3 text-sm text-ink-500 leading-relaxed">
+      <p className="mt-3 text-sm leading-relaxed text-ink-500">
         {service.tagline}
       </p>
-      <span className="mt-6 pt-5 border-t border-ink-200 text-sm font-medium text-accent-600 group-hover:text-accent-700">
+      <span className="mt-6 border-t border-navy-100 pt-5 text-sm font-semibold text-navy-600 group-hover:text-accent-600">
         Ver servicio →
       </span>
     </a>

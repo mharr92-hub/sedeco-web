@@ -43,7 +43,8 @@ export default function CasosPage() {
       />
       <main>
         <section className="container py-20 md:py-24">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
+          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
+            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
             Portafolio SEDECO
           </p>
           <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">

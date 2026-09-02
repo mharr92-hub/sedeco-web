@@ -42,7 +42,8 @@ export default function ServiciosPage() {
       />
       <main>
         <section className="container py-20 md:py-24">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
+          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
+            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
             Servicios SEDECO
           </p>
           <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
@@ -63,7 +64,7 @@ export default function ServiciosPage() {
                 <li key={card.href}>
                   <a
                     href={card.href}
-                    className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-colors hover:border-accent-500"
+                    className="brand-card flex h-full flex-col p-6 transition-colors hover:border-accent-500"
                   >
                     <h2 className="font-display text-xl text-navy-900">
                       {card.title}
@@ -77,7 +78,7 @@ export default function ServiciosPage() {
               <li>
                 <a
                   href="/pintura-edificios-panama"
-                  className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 transition-colors hover:border-accent-500"
+                  className="brand-card flex h-full flex-col p-6 transition-colors hover:border-accent-500"
                 >
                   <h2 className="font-display text-xl text-navy-900">
                     Pintura de edificios
