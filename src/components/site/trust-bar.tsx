@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 const stats = [
   { value: "+50", label: "Proyectos culminados" },
   { value: "+100,000 m²", label: "Concreto impermeabilizado" },
@@ -9,34 +7,19 @@ const stats = [
 
 export function TrustBar() {
   return (
-    <section
-      aria-label="Cifras de SEDECO"
-      className="bg-navy-900 text-white"
-    >
-      <div className="container grid grid-cols-2 gap-x-8 gap-y-10 py-14 md:grid-cols-5 md:gap-x-0">
-        {stats.map((stat, idx) => (
-          <div
-            key={stat.label}
-            className={cn(
-              "md:border-l md:border-navy-800 md:pl-8",
-              idx === 0 && "md:border-l-0 md:pl-0",
-              idx === 1 && "md:col-span-2",
-            )}
-          >
-            <div
-              className={cn(
-                "font-display text-4xl text-white",
-                idx === 1 ? "md:text-6xl" : "md:text-5xl",
-              )}
-            >
+    <section aria-label="Cifras de SEDECO">
+      <ul className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:gap-x-8">
+        {stats.map((stat) => (
+          <li key={stat.label}>
+            <p className="font-display text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl">
               {stat.value}
-            </div>
-            <div className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-navy-300">
+            </p>
+            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/65">
               {stat.label}
-            </div>
-          </div>
+            </p>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

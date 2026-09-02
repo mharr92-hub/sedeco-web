@@ -1,26 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
 import { CANONICAL_ORIGIN, OG_IMAGE, OG_IMAGE_URL } from "@/lib/site";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "fallback",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "fallback",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-montserrat",
   display: "swap",
-  preload: false,
+  fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
 const siteUrl = CANONICAL_ORIGIN;
@@ -72,11 +60,11 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrains.variable}`}
+      className={montserrat.variable}
       suppressHydrationWarning
     >
       <body
-        className="min-h-screen bg-white text-ink-900 font-sans antialiased"
+        className="min-h-screen bg-white font-sans text-ink-500 antialiased"
         suppressHydrationWarning
       >
         <DataLayerInit />

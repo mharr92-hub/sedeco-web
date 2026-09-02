@@ -10,16 +10,34 @@
   }
 
   body {
-    @apply bg-ink-50 text-ink-900 font-sans antialiased;
+    @apply bg-white font-sans text-ink-500 antialiased;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-display tracking-tight text-navy-900;
+    @apply font-display font-extrabold tracking-tight;
   }
 
   ::selection {
-    @apply bg-accent-100 text-accent-900;
+    @apply bg-accent-100 text-navy-700;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply inline-flex min-h-11 items-center justify-center rounded-md bg-accent-500 px-4 text-sm font-semibold text-navy-600 transition-colors hover:bg-accent-600;
+  }
+
+  .btn-gold-lg {
+    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-accent-500 px-5 text-sm font-semibold text-navy-600 transition-colors hover:bg-accent-600;
+  }
+
+  .brand-card {
+    @apply rounded-md border border-accent-400 bg-navy-50;
+  }
+
+  .brand-hero-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
   }
 }

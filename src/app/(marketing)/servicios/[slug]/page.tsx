@@ -92,10 +92,7 @@ export default async function ServicioDetailPage({
             {service.description}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="/#contacto"
-              className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium hover:bg-accent-600 transition-colors"
-            >
+            <a href="/#contacto" className="btn-gold-lg">
               Solicitar diagnóstico
             </a>
             <a

@@ -40,11 +40,11 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
 
   if (state?.ok) {
     return (
-      <div className="rounded-lg border border-success/30 bg-white p-8">
-        <h3 className="font-display text-2xl text-navy-900">
+      <div className="rounded-md border border-success/30 bg-white p-8">
+        <h3 className="font-display text-2xl font-extrabold text-navy-600">
           Recibimos tu solicitud.
         </h3>
-        <p className="mt-3 text-ink-600 leading-relaxed">
+        <p className="mt-3 leading-relaxed text-ink-500">
           {state.emailQueued
             ? `Enviamos la notificación a Mark. ${INSPECTION_SLA}`
             : `Quedó registrada. ${INSPECTION_SLA} Si necesita atención inmediata, escríbanos a ${SITE_EMAIL} o por WhatsApp.`}
@@ -52,7 +52,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         <button
           type="button"
           onClick={onReset}
-          className="mt-6 inline-flex items-center text-sm font-medium text-accent-600 transition-colors hover:text-accent-700"
+          className="mt-6 inline-flex items-center text-sm font-semibold text-navy-600 transition-colors hover:text-accent-600"
         >
           Enviar otra solicitud →
         </button>
@@ -130,7 +130,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60"
+          className="btn-gold-lg disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Enviando..." : "Solicitar inspección"}
         </button>
@@ -165,10 +165,10 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-ink-700"
+        className="mb-1.5 block text-sm font-medium text-navy-600"
       >
         {label}
-        {required && <span className="ml-0.5 text-accent-600">*</span>}
+        {required && <span className="ml-0.5 text-accent-500">*</span>}
       </label>
       <input
         id={name}
@@ -180,10 +180,10 @@ function Field({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "w-full rounded-md border bg-white px-4 py-2.5 text-ink-900 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "min-h-12 w-full rounded-md border bg-white px-4 text-navy-600 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
           error
             ? "border-danger focus:border-danger"
-            : "border-ink-200 focus:border-accent-500",
+            : "border-navy-100 focus:border-accent-500",
         )}
       />
       {error && (
@@ -210,7 +210,7 @@ function SelectField({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-ink-700"
+        className="mb-1.5 block text-sm font-medium text-navy-600"
       >
         {label}
       </label>
@@ -221,10 +221,10 @@ function SelectField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "w-full rounded-md border bg-white px-4 py-2.5 text-ink-900 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "min-h-12 w-full rounded-md border bg-white px-4 text-navy-600 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
           error
             ? "border-danger focus:border-danger"
-            : "border-ink-200 focus:border-accent-500",
+            : "border-navy-100 focus:border-accent-500",
         )}
       >
         {options.map((opt) => (
@@ -261,10 +261,10 @@ function TextareaField({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-ink-700"
+        className="mb-1.5 block text-sm font-medium text-navy-600"
       >
         {label}
-        {required && <span className="ml-0.5 text-accent-600">*</span>}
+        {required && <span className="ml-0.5 text-accent-500">*</span>}
       </label>
       <textarea
         id={name}
@@ -275,10 +275,10 @@ function TextareaField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "w-full resize-y rounded-md border bg-white px-4 py-2.5 text-ink-900 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "w-full resize-y rounded-md border bg-white px-4 py-3 text-navy-600 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
           error
             ? "border-danger focus:border-danger"
-            : "border-ink-200 focus:border-accent-500",
+            : "border-navy-100 focus:border-accent-500",
         )}
       />
       {error && (

@@ -11,18 +11,20 @@ const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink-100 bg-white">
+    <footer className="bg-navy-700 text-white">
       <div className="container grid gap-12 py-16 md:grid-cols-4">
         <div>
-          <p className="font-display text-xl text-navy-900">SEDECO</p>
-          <p className="mt-2 text-sm text-ink-500 leading-relaxed">
+          <p className="font-display text-xl font-extrabold tracking-[0.18em] text-white">
+            SEDECO
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-white/70">
             Diagnóstico de filtraciones e impermeabilización en Ciudad de
             Panamá y Colón. Garantía por escrito según sistema y alcance
             contratado.
           </p>
         </div>
         <div>
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
             Servicios
           </p>
           <ul className="space-y-2 text-sm">
@@ -30,7 +32,7 @@ export function SiteFooter() {
               <li key={s.href}>
                 <Link
                   href={s.href}
-                  className="text-ink-700 transition-colors hover:text-accent-600"
+                  className="text-white/80 transition-colors hover:text-accent-500"
                 >
                   {s.label}
                 </Link>
@@ -39,7 +41,7 @@ export function SiteFooter() {
             <li className="pt-2">
               <Link
                 href="/casos"
-                className="font-medium text-ink-900 transition-colors hover:text-accent-600"
+                className="font-semibold text-white transition-colors hover:text-accent-500"
               >
                 Casos →
               </Link>
@@ -47,10 +49,10 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
             Oficina
           </p>
-          <address className="not-italic text-sm text-ink-600 leading-relaxed">
+          <address className="not-italic text-sm leading-relaxed text-white/70">
             Paitilla, Edificio RBS
             <br />
             Planta Baja, Oficina 103A
@@ -59,7 +61,7 @@ export function SiteFooter() {
           </address>
         </div>
         <div>
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
             Contacto
           </p>
           <ul className="space-y-2 text-sm">
@@ -68,7 +70,7 @@ export function SiteFooter() {
                 href={`https://wa.me/${whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-ink-700 hover:text-accent-600 transition-colors"
+                className="text-white/80 transition-colors hover:text-accent-500"
               >
                 WhatsApp · {phoneDisplay}
               </a>
@@ -76,7 +78,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`tel:${phoneOffice.replace(/\s/g, "")}`}
-                className="text-ink-700 hover:text-accent-600 transition-colors"
+                className="text-white/80 transition-colors hover:text-accent-500"
               >
                 Oficina · {phoneOffice}
               </a>
@@ -84,7 +86,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${email}`}
-                className="text-ink-700 hover:text-accent-600 transition-colors"
+                className="text-white/80 transition-colors hover:text-accent-500"
               >
                 {email}
               </a>
@@ -94,7 +96,7 @@ export function SiteFooter() {
                 href="https://instagram.com/sedecopanama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-ink-700 hover:text-accent-600 transition-colors"
+                className="text-white/80 transition-colors hover:text-accent-500"
               >
                 Instagram · @sedecopanama
               </a>
@@ -102,13 +104,13 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-ink-100">
-        <div className="container flex flex-col gap-3 py-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/10">
+        <div className="container flex flex-col gap-3 py-6 pb-24 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between md:pb-6">
           <p>
             © {new Date().getFullYear()} {LEGAL_ENTITY} — {TRADE_NAME}. Damos
             resultados concretos en todo lo que hacemos.
           </p>
-          <LegalNav linkClassName="transition-colors hover:text-accent-600" />
+          <LegalNav linkClassName="transition-colors hover:text-accent-500" />
         </div>
       </div>
     </footer>

@@ -8,28 +8,25 @@ export default function NotFound() {
     <>
       <SiteHeader />
       <main className="container py-32 text-center md:py-40">
-        <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
+        <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
           Error 404
         </p>
-        <h1 className="font-display text-display-md text-navy-900 md:text-display-lg">
+        <h1 className="font-display text-display-md font-extrabold text-navy-600 md:text-display-lg">
           Página no encontrada.
         </h1>
-        <p className="mx-auto mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
+        <p className="mx-auto mt-6 max-w-prose text-lg leading-relaxed text-ink-500">
           La página que buscas no existe o fue movida. Volvamos a tu
           diagnóstico.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a
-            href="/#contacto"
-            className="inline-flex items-center rounded-md bg-accent-500 px-6 py-3 text-white font-medium transition-colors hover:bg-accent-600"
-          >
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <a href="/#contacto" className="btn-gold-lg">
             Solicitar diagnóstico
           </a>
           <a
             href={`https://wa.me/${whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium transition-colors hover:border-ink-300"
+            className="inline-flex min-h-12 items-center rounded-md border border-navy-600 px-5 text-sm font-semibold text-navy-600 transition-colors hover:bg-navy-50"
           >
             WhatsApp directo
           </a>

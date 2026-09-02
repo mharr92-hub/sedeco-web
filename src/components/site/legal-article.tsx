@@ -13,7 +13,8 @@ export function LegalArticle({
     <>
       <main>
         <article className="container py-16 md:py-24">
-          <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
+          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
+            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
             Legal
           </p>
           <h1 className="max-w-4xl font-display text-4xl text-navy-900 sm:text-display-md">
