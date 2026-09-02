@@ -19,16 +19,6 @@ export const ADS_PHOTOS = {
     alt: "Dos torres residenciales con fachada ondulada contra el cielo de Ciudad de Panamá",
     ...LANDSCAPE,
   },
-  casoConstellation: {
-    src: "/obras/caso-constellation.jpg",
-    alt: "PH Constellation Tower, fachada residencial en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
-  wallConstellation: {
-    src: "/obras/wall-constellation.jpg",
-    alt: "PH Constellation, edificio residencial en Ciudad de Panamá",
-    ...PORTRAIT,
-  },
   joyTower: {
     src: "/obras/ph-joy-tower.jpg",
     alt: "PH Joy Tower, torre blanca curva de gran altura en Ciudad de Panamá",

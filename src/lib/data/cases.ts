@@ -33,7 +33,7 @@ export type Case = {
 /**
  * Only these slugs may appear on /casos, home featured, service related
  * cases, sitemap case URLs, or other public marketing surfaces.
- * Restricted PHs (Ebelle, Twin Towers, and others) stay internal.
+ * Restricted PHs (Ebelle, Twin Towers, Constellation, and others) stay internal.
  */
 const PUBLIC_CASE_SLUGS = new Set([
   "hospital-manuel-amador-guerrero",
