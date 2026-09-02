@@ -178,7 +178,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
       {/* No z-index on this wrapper: AdsLeadDock's mobile sheet is `fixed z-50`
           and must stay above the sticky header (`z-40`). A stacking context
           here would trap the sheet underneath the header. */}
-      <div className="md:pointer-events-none">
+      <div id="contacto" className="scroll-mt-24 md:pointer-events-none">
         <div className="mx-auto max-w-6xl md:px-8">
           <div className="md:pointer-events-auto md:absolute md:bottom-16 md:right-8 md:z-20 md:w-[min(100%,26rem)] lg:right-[max(2rem,calc((100%-72rem)/2+2rem))]">
             <AdsLeadDock landing={landing} />
@@ -352,7 +352,7 @@ function Problemas({ landing }: { landing: AdsLanding }) {
 
 function Servicios({ currentPath }: { currentPath: string }) {
   return (
-    <section className="bg-white text-[#1A2E8A]">
+    <section id="servicios" className="scroll-mt-24 bg-white text-[#1A2E8A]">
       <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
         <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
           Servicios

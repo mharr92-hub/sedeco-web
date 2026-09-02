@@ -272,8 +272,12 @@ export function getAdsLanding(slug: AdsLandingSlug): AdsLanding {
   return adsLandings[slug];
 }
 
-export function adsMetadata(landing: AdsLanding): Metadata {
-  const url = `${CANONICAL_ORIGIN}${landing.path}`;
+export function adsMetadata(
+  landing: AdsLanding,
+  options?: { canonicalPath?: "/" | `/${string}` },
+): Metadata {
+  const path = options?.canonicalPath ?? landing.path;
+  const url = path === "/" ? CANONICAL_ORIGIN : `${CANONICAL_ORIGIN}${path}`;
   return {
     title: { absolute: `${landing.title} · SEDECO Panamá` },
     description: landing.description,
