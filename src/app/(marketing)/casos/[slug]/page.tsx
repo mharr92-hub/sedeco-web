@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeadCtaBand } from "@/components/site/lead-cta-band";
@@ -32,6 +33,20 @@ export async function generateMetadata({
     title: c.name,
     description,
     alternates: { canonical: `/casos/${c.slug}` },
+    ...(c.image
+      ? {
+          openGraph: {
+            images: [
+              {
+                url: c.image.src,
+                width: c.image.width,
+                height: c.image.height,
+                alt: c.image.alt,
+              },
+            ],
+          },
+        }
+      : {}),
   };
 }
 
@@ -55,6 +70,7 @@ export default async function CasoDetailPage({
     description: c.scope ?? c.workType,
     url: `${siteUrl}/casos/${c.slug}`,
     ...(c.location ? { location: { "@type": "Place", name: c.location } } : {}),
+    ...(c.image ? { image: `${siteUrl}${c.image.src}` } : {}),
     provider: {
       "@type": "Organization",
       name: "SEDECO",
@@ -113,7 +129,19 @@ export default async function CasoDetailPage({
         </nav>
 
         <section className="container py-20 md:py-24">
-          <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent-600">
+          {c.image ? (
+            <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-md border border-accent-400 bg-navy-50">
+              <Image
+                src={c.image.src}
+                alt={c.image.alt}
+                fill
+                priority
+                sizes="(min-width: 1280px) 1280px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          ) : null}
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
             {c.workType}
           </p>
           <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900">

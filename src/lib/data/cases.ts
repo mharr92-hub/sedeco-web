@@ -1,3 +1,5 @@
+import { ADS_PHOTOS, type AdsPhoto } from "@/lib/data/ads-visuals";
+
 export type ServiceSlug =
   | "fachadas"
   | "azoteas"
@@ -23,8 +25,24 @@ export type Case = {
   featured?: boolean;
   /** When false, the case is kept internally but omitted from public marketing surfaces. */
   listed?: boolean;
+  /** Real project photo only. Never a generated stand-in of a named building. */
+  image?: AdsPhoto;
   order: number;
 };
+
+/**
+ * Only these slugs may appear on /casos, home featured, service related
+ * cases, sitemap case URLs, or other public marketing surfaces.
+ * Restricted PHs (Ebelle, Twin Towers, and others) stay internal.
+ */
+const PUBLIC_CASE_SLUGS = new Set([
+  "hospital-manuel-amador-guerrero",
+  "ph-joy-tower",
+  "shevet-ahim",
+  "fundacion-deveaux",
+  "ph-quadrat",
+  "sinagoga-bet-max-ve-sarah",
+]);
 
 const cases: Case[] = [
   {
@@ -37,14 +55,40 @@ const cases: Case[] = [
       "22,000 m² verticales en 8 caras (77 m de altura), tratados con LITHI TEK 9500 y poliuretano para grietas.",
     squareMeters: 22000,
     squareMetersDetail: "22,000 m² verticales en 8 caras",
-    problem:
-      "Proteger una fachada de 8 caras y 77 m de altura expuesta al clima costero de Marbella.",
-    result:
-      "Sellado permanente con LITHI TEK 9500 y poliuretano. Carta de respaldo firmada por el cliente.",
-    signedBy: { name: "Lennys Alcántara", role: "SI Inmobiliaria" },
     featured: false,
     listed: false,
     order: 10,
+  },
+  {
+    slug: "ph-twin-towers",
+    name: "PH Twin Towers",
+    workType: "Impermeabilización de fachada",
+    services: ["fachadas", "impermeabilizacion"],
+    scope: "Edificio de 36 pisos. Fachada compleja.",
+    featured: false,
+    listed: false,
+    order: 11,
+  },
+  {
+    slug: "ph-joy-tower",
+    name: "PH Joy Tower",
+    location: "Calle 50, Ciudad de Panamá",
+    workType: "Reparación y pintura de fachada",
+    services: ["fachadas"],
+    scope:
+      "2 torres residenciales de 16 pisos cada una. Reparación y pintura de fachada, reemplazo de sellos en vidrios, pintura de escaleras de emergencia y estacionamientos, y reemplazo de repellos desprendidos en las paredes de concreto de la fachada.",
+    featured: true,
+    image: ADS_PHOTOS.joyTower,
+    order: 12,
+  },
+  {
+    slug: "ph-dos-mares",
+    name: "PH Dos Mares",
+    workType: "Proyecto del portafolio",
+    services: ["impermeabilizacion"],
+    scope: "Edificio de 10 pisos.",
+    listed: false,
+    order: 13,
   },
   {
     slug: "shevet-ahim",
@@ -67,6 +111,36 @@ const cases: Case[] = [
     order: 20,
   },
   {
+    slug: "sinagoga-bet-max-ve-sarah",
+    name: "Sinagoga Bet Max Ve Sarah",
+    location: "Ciudad de Panamá",
+    workType: "Sellado de concreto e impermeabilización",
+    services: ["azoteas", "fachadas", "impermeabilizacion", "sellado-concreto"],
+    scope:
+      "Losa estructural, fachada y muros perimetrales. Impermeabilización GHOSTSHIELD 9500.",
+    order: 22,
+  },
+  {
+    slug: "hospital-manuel-amador-guerrero",
+    name: "Hospital Manuel Amador Guerrero",
+    location: "Colón (MINSA / IMED)",
+    workType: "Impermeabilización de cubiertas y muros",
+    services: ["azoteas", "fachadas", "impermeabilizacion"],
+    scope:
+      "Impermeabilización de 16,000 m² de cubiertas (GhostShield 9500 y/o 4500 y HS 100% silicona), muros perimetrales con DRY COAT-LANCO y reparaciones de albañilería.",
+    squareMeters: 16000,
+    squareMetersDetail: "16,000 m² de cubiertas",
+    problem:
+      "Proteger 16,000 m² de azoteas, muros perimetrales y albañilería del hospital.",
+    result:
+      "Trabajos entregados. Carta de recomendación del Consorcio de Instalaciones Médicas de Panamá (IMED).",
+    signedBy: {
+      name: "Ing. Agustín García",
+      role: "Gerente de proyecto, Consorcio IMED",
+    },
+    order: 25,
+  },
+  {
     slug: "ph-millenium-park",
     name: "PH Millenium Park",
     location: "Vía Transístmica, Ciudad de Panamá",
@@ -82,7 +156,8 @@ const cases: Case[] = [
       name: "Johnatan Fincheltub",
       role: "Promotora Millenium Group, S.A.",
     },
-    featured: true,
+    featured: false,
+    listed: false,
     order: 30,
   },
   {
@@ -99,6 +174,7 @@ const cases: Case[] = [
     result:
       "750 m² entregados. Carta de respaldo firmada por la junta del PH.",
     signedBy: { name: "Nicola Pirro", role: "Tesorero, PH Mónaco" },
+    listed: false,
     order: 40,
   },
   {
@@ -138,17 +214,8 @@ const cases: Case[] = [
     workType: "Proyecto residencial multi-torre",
     services: ["impermeabilizacion"],
     scope: "96 unidades en 3 torres.",
-    order: 70,
-  },
-  {
-    slug: "ph-twin-towers",
-    name: "PH Twin Towers",
-    workType: "Impermeabilización de fachada",
-    services: ["fachadas", "impermeabilizacion"],
-    scope: "Edificio de 36 pisos. Fachada compleja.",
-    featured: false,
     listed: false,
-    order: 80,
+    order: 70,
   },
   {
     slug: "ph-constellation",
@@ -161,36 +228,37 @@ const cases: Case[] = [
     order: 90,
   },
   {
-    slug: "ph-dos-mares",
-    name: "PH Dos Mares",
-    workType: "Proyecto del portafolio",
-    services: ["impermeabilizacion"],
-    scope: "Edificio de 10 pisos.",
-    order: 100,
-  },
-  {
     slug: "the-towers",
     name: "The Towers",
     workType: "Proyecto del portafolio",
     services: [],
+    listed: false,
     order: 110,
   },
 ];
 
-const sortByOrder = (a: Case, b: Case) => a.order - b.order;
+export function hasCasePhoto(c: Case): boolean {
+  return Boolean(c.image);
+}
+
+function sortPublicCases(a: Case, b: Case): number {
+  const photoDelta = Number(hasCasePhoto(b)) - Number(hasCasePhoto(a));
+  if (photoDelta !== 0) return photoDelta;
+  return a.order - b.order;
+}
 
 function isPublicCase(c: Case): boolean {
-  return c.listed !== false;
+  return c.listed !== false && PUBLIC_CASE_SLUGS.has(c.slug);
 }
 
 export function getAllCases(): Case[] {
-  return cases.filter(isPublicCase).sort(sortByOrder);
+  return cases.filter(isPublicCase).sort(sortPublicCases);
 }
 
 export function getFeaturedCases(limit?: number): Case[] {
   const featured = cases
     .filter((c) => c.featured && isPublicCase(c))
-    .sort(sortByOrder);
+    .sort(sortPublicCases);
   return typeof limit === "number" ? featured.slice(0, limit) : featured;
 }
 
@@ -203,16 +271,16 @@ export function getCaseBySlug(slug: string): Case | undefined {
 export function getCasesByService(service: ServiceSlug): Case[] {
   return cases
     .filter((c) => c.services.includes(service) && isPublicCase(c))
-    .sort(sortByOrder);
+    .sort(sortPublicCases);
 }
 
 /** Public Ads proof only. Restricted PHs are never returned. */
 const ADS_PROOF_SLUGS = [
   "shevet-ahim",
-  "ph-millenium-park",
   "fundacion-deveaux",
-  "ph-monaco",
   "ph-quadrat",
+  "hospital-manuel-amador-guerrero",
+  "ph-joy-tower",
 ] as const;
 
 export function getAdsProofCases(): Case[] {

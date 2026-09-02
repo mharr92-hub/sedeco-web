@@ -10,7 +10,7 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   title: "Casos · Proyectos entregados",
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: Shevet Ahim, Millenium Park, Mónaco, Deveaux y más.",
+    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá: Hospital Manuel Amador Guerrero, PH Joy Tower, Shevet Ahim, Fundación Deveaux y más.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 
@@ -30,6 +30,7 @@ export default function CasosPage() {
         ...(c.location ? { location: c.location } : {}),
         description: c.scope ?? c.workType,
         url: `${siteUrl}/casos#${c.slug}`,
+        ...(c.image ? { image: `${siteUrl}${c.image.src}` } : {}),
       },
     })),
   };
@@ -63,9 +64,9 @@ export default function CasosPage() {
         >
           <div className="container py-20 md:py-24">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {cases.map((c) => (
+              {cases.map((c, index) => (
                 <div key={c.slug} id={c.slug}>
-                  <CaseCard caseItem={c} />
+                  <CaseCard caseItem={c} priority={index < 3} />
                 </div>
               ))}
             </div>
