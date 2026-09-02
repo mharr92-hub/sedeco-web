@@ -109,60 +109,55 @@ export default async function CasoDetailPage({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <main>
-        <nav
-          aria-label="Migas de pan"
-          className="border-b border-ink-100 bg-ink-50"
-        >
-          <div className="container py-4 text-sm text-ink-500">
+      <main className="bg-white text-[#1A2E8A]">
+        <nav aria-label="Migas de pan" className="border-b border-[#D6E8FF]">
+          <div className="brand-wrap py-4 text-sm text-[#5C6578]">
             <Link
               href="/casos"
-              className="transition-colors hover:text-accent-600"
+              className="transition-colors hover:text-[#F5A623]"
             >
               Casos
             </Link>
-            <span aria-hidden="true" className="mx-2 text-ink-300">
+            <span aria-hidden="true" className="mx-2 text-[#5C6578]/50">
               /
             </span>
-            <span className="text-ink-900">{c.name}</span>
+            <span className="text-[#1A2E8A]">{c.name}</span>
           </div>
         </nav>
 
-        <section className="container py-20 md:py-24">
+        <section className="brand-wrap brand-section">
           {c.image ? (
-            <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-md border border-accent-400 bg-navy-50">
+            <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden border border-[#F5A623] bg-[#EEF1FB]">
               <Image
                 src={c.image.src}
                 alt={c.image.alt}
                 fill
                 priority
-                sizes="(min-width: 1280px) 1280px, 100vw"
+                sizes="(min-width: 1152px) 1152px, 100vw"
                 className="object-cover"
               />
             </div>
           ) : null}
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
-            {c.workType}
-          </p>
-          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900">
+          <p className="brand-kicker-gold">{c.workType}</p>
+          <h1 className="mt-3 max-w-4xl font-display text-3xl font-semibold tracking-tight md:text-5xl">
             {c.name}
           </h1>
           {c.location ? (
-            <p className="mt-3 text-lg text-ink-500">{c.location}</p>
+            <p className="mt-3 text-base text-[#5C6578]">{c.location}</p>
           ) : null}
 
           {c.squareMeters || c.scope ? (
-            <div className="mt-12 grid gap-10 border-t border-ink-100 pt-10 md:grid-cols-[5fr_7fr]">
+            <div className="mt-10 grid gap-10 border-t border-[#D6E8FF] pt-10 md:grid-cols-[5fr_7fr]">
               {c.squareMeters ? (
                 <div>
-                  <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
                     Superficie tratada
                   </p>
-                  <div className="font-display text-display-md text-navy-900 md:text-display-lg">
+                  <div className="font-display text-4xl font-semibold text-[#1A2E8A] md:text-6xl">
                     {numberFormatter.format(c.squareMeters)} m²
                   </div>
                   {c.squareMetersDetail ? (
-                    <p className="mt-2 text-sm text-ink-500">
+                    <p className="mt-2 text-sm text-[#5C6578]">
                       {c.squareMetersDetail}
                     </p>
                   ) : null}
@@ -172,10 +167,10 @@ export default async function CasoDetailPage({
               )}
               {c.scope ? (
                 <div>
-                  <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
                     Alcance
                   </p>
-                  <p className="text-ink-700 leading-relaxed">{c.scope}</p>
+                  <p className="leading-relaxed text-[#5C6578]">{c.scope}</p>
                 </div>
               ) : null}
             </div>
@@ -183,17 +178,15 @@ export default async function CasoDetailPage({
         </section>
 
         {c.problem ? (
-          <section className="border-t border-ink-100 bg-white">
-            <div className="container py-20 md:py-24 grid gap-10 md:grid-cols-[5fr_7fr]">
+          <section className="border-t border-[#D6E8FF] bg-white">
+            <div className="brand-wrap brand-section grid gap-10 md:grid-cols-[5fr_7fr]">
               <div>
-                <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
-                  Problema
-                </p>
-                <h2 className="font-display text-3xl text-navy-900">
+                <p className="brand-kicker-blue">Problema</p>
+                <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight">
                   Qué resolvimos
                 </h2>
               </div>
-              <p className="text-ink-700 leading-relaxed text-lg">
+              <p className="text-base leading-relaxed text-[#5C6578]">
                 {c.problem}
               </p>
             </div>
@@ -201,17 +194,15 @@ export default async function CasoDetailPage({
         ) : null}
 
         {c.result ? (
-          <section className="border-t border-ink-100 bg-ink-50">
-            <div className="container py-20 md:py-24 grid gap-10 md:grid-cols-[5fr_7fr]">
+          <section className="border-t border-[#D6E8FF] bg-white">
+            <div className="brand-wrap brand-section grid gap-10 md:grid-cols-[5fr_7fr]">
               <div>
-                <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
-                  Resultado
-                </p>
-                <h2 className="font-display text-3xl text-navy-900">
+                <p className="brand-kicker-blue">Resultado</p>
+                <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight">
                   Lo que entregamos
                 </h2>
               </div>
-              <p className="text-ink-700 leading-relaxed text-lg">
+              <p className="text-base leading-relaxed text-[#5C6578]">
                 {c.result}
               </p>
             </div>
@@ -219,28 +210,24 @@ export default async function CasoDetailPage({
         ) : null}
 
         {c.signedBy ? (
-          <section className="border-t border-ink-100 bg-white">
-            <div className="container py-20 md:py-24">
-              <div className="rounded-lg border border-ink-100 p-6 md:p-8">
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
-                  Carta de respaldo firmada
-                </p>
-                <p className="font-display text-2xl text-navy-900 md:text-3xl">
+          <section className="border-t border-[#D6E8FF] bg-white">
+            <div className="brand-wrap brand-section">
+              <article className="brand-card p-6 md:p-8">
+                <p className="brand-kicker-gold">Carta de respaldo firmada</p>
+                <p className="mt-3 font-display text-2xl font-semibold md:text-3xl">
                   {c.signedBy.name}
                 </p>
-                <p className="mt-1 text-ink-500">{c.signedBy.role}</p>
-              </div>
+                <p className="mt-1 text-[#5C6578]">{c.signedBy.role}</p>
+              </article>
             </div>
           </section>
         ) : null}
 
         {relatedServices.length > 0 ? (
-          <section className="border-t border-ink-100 bg-ink-50">
-            <div className="container py-20 md:py-24">
-              <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-ink-400">
-                Servicios aplicados
-              </p>
-              <h2 className="font-display text-3xl text-navy-900 mb-10">
+          <section className="border-t border-[#D6E8FF] bg-white">
+            <div className="brand-wrap brand-section">
+              <p className="brand-kicker-blue">Servicios aplicados</p>
+              <h2 className="mt-3 mb-10 font-display text-3xl font-semibold tracking-tight">
                 Lo que hicimos en este proyecto
               </h2>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -248,19 +235,17 @@ export default async function CasoDetailPage({
                   <Link
                     key={s.slug}
                     href={`/servicios/${s.slug}`}
-                    className="group flex items-start gap-3 rounded-lg border border-ink-100 bg-white p-5 transition-colors hover:border-accent-200"
+                    className="brand-card group p-5"
                   >
-                    <div>
-                      <p className="font-display text-lg text-navy-900 group-hover:text-accent-700">
-                        {s.shortName}
-                      </p>
-                      <p className="mt-1 text-sm text-ink-500 leading-relaxed">
-                        {s.tagline}
-                      </p>
-                      <span className="mt-3 inline-flex text-sm font-medium text-accent-600 group-hover:text-accent-700">
-                        Ver servicio →
-                      </span>
-                    </div>
+                    <p className="font-display text-lg font-semibold text-[#1A2E8A] group-hover:text-[#F5A623]">
+                      {s.shortName}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
+                      {s.tagline}
+                    </p>
+                    <span className="mt-3 inline-flex text-sm font-semibold text-[#1A2E8A] group-hover:text-[#F5A623]">
+                      Ver servicio →
+                    </span>
                   </Link>
                 ))}
               </div>

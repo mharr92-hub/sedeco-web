@@ -10,13 +10,13 @@
   }
 
   body {
-    @apply bg-white font-sans text-ink-500 antialiased;
+    @apply bg-white font-sans text-[#5C6578] antialiased;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-display font-extrabold tracking-tight;
+    @apply font-display font-semibold tracking-tight;
   }
 
   ::selection {
@@ -25,19 +25,42 @@
 }
 
 @layer components {
+  /* Same buttons as /filtraciones */
   .btn-gold {
-    @apply inline-flex min-h-11 items-center justify-center rounded-md bg-accent-500 px-4 text-sm font-semibold text-navy-600 transition-colors hover:bg-accent-600;
+    @apply inline-flex min-h-11 items-center justify-center rounded-md bg-[#F5A623] px-4 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c];
   }
 
   .btn-gold-lg {
-    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-accent-500 px-5 text-sm font-semibold text-navy-600 transition-colors hover:bg-accent-600;
+    @apply inline-flex min-h-12 items-center justify-center rounded-md bg-[#F5A623] px-5 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c];
   }
 
+  .btn-wa-outline {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15;
+  }
+
+  /* Gold-border cream cards (Rev. 2 / Casos) */
   .brand-card {
-    @apply rounded-md border border-accent-400 bg-navy-50;
+    @apply rounded-md border border-[#F5A623] bg-white;
   }
 
-  .brand-hero-cut {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
+  /* Same page measure as /filtraciones */
+  .brand-wrap {
+    @apply mx-auto max-w-6xl px-5 md:px-8;
+  }
+
+  .brand-section {
+    @apply py-16 md:py-20;
+  }
+
+  .brand-kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em];
+  }
+
+  .brand-kicker-gold {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F5A623];
+  }
+
+  .brand-kicker-blue {
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2];
   }
 }

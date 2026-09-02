@@ -64,7 +64,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-screen bg-white font-sans text-ink-500 antialiased"
+        className="min-h-screen bg-white font-sans text-[#5C6578] antialiased"
         suppressHydrationWarning
       >
         <DataLayerInit />

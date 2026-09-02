@@ -20,11 +20,11 @@ export function AdsHeader({
   nav?: ReadonlyArray<{ href: string; label: string }>;
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#070F26]/85 backdrop-blur supports-[backdrop-filter]:bg-[#070F26]/75">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 md:h-[4.5rem] md:px-8">
+    <header className="sticky top-0 z-40 border-b-2 border-[#F5A623] bg-[#1A2E8A]">
+      <div className="brand-wrap flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
         <Link
           href={landing.path}
-          className="font-ads text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
+          className="font-display text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
         >
           SEDECO
         </Link>
@@ -57,7 +57,7 @@ export function AdsHeader({
           <button
             type="button"
             onClick={() => openAdsForm("header")}
-            className="inline-flex min-h-11 items-center rounded-md bg-[#F5A623] px-3 text-sm font-semibold text-[#1A2E8A] transition-colors hover:bg-[#e0981c] md:px-4"
+            className="btn-gold md:px-4"
           >
             <span className="text-xs sm:text-sm">{landing.cta}</span>
           </button>

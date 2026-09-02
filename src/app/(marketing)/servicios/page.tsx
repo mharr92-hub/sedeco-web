@@ -41,35 +41,28 @@ export default function ServiciosPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="container py-20 md:py-24">
-          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
-            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
-            Servicios SEDECO
-          </p>
-          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
-            {HOME_SERVICES_TITLE}
-          </h1>
-          <p className="mt-6 max-w-prose text-lg text-ink-500 leading-relaxed">
-            {HOME_SERVICES_SUBTITLE}
-          </p>
+        <section className="bg-white text-[#1A2E8A]">
+          <div className="brand-wrap brand-section">
+            <p className="brand-kicker-blue">Servicios</p>
+            <h1 className="mt-3 max-w-4xl font-display text-3xl font-semibold tracking-tight md:text-5xl">
+              {HOME_SERVICES_TITLE}
+            </h1>
+            <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
+              {HOME_SERVICES_SUBTITLE}
+            </p>
+          </div>
         </section>
 
-        <section
-          aria-label="Mapa de servicios"
-          className="border-t border-ink-100 bg-ink-50"
-        >
-          <div className="container py-20 md:py-24">
-            <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section aria-label="Mapa de servicios" className="bg-white">
+          <div className="brand-wrap pb-16 md:pb-20">
+            <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {HOME_SERVICE_CARDS.map((card) => (
                 <li key={card.href}>
-                  <a
-                    href={card.href}
-                    className="brand-card flex h-full flex-col p-6 transition-colors hover:border-accent-500"
-                  >
-                    <h2 className="font-display text-xl text-navy-900">
+                  <a href={card.href} className="brand-card flex h-full flex-col p-6">
+                    <h2 className="font-display text-xl font-semibold text-[#1A2E8A]">
                       {card.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                    <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
                       {card.line}
                     </p>
                   </a>
@@ -78,25 +71,26 @@ export default function ServiciosPage() {
               <li>
                 <a
                   href="/pintura-edificios-panama"
-                  className="brand-card flex h-full flex-col p-6 transition-colors hover:border-accent-500"
+                  className="brand-card flex h-full flex-col p-6"
                 >
-                  <h2 className="font-display text-xl text-navy-900">
+                  <h2 className="font-display text-xl font-semibold text-[#1A2E8A]">
                     Pintura de edificios
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                  <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
                     Pintura de fachadas en altura, con la fachada reparada
                     primero.
                   </p>
                 </a>
               </li>
             </ul>
-            <p className="mt-8 text-sm leading-relaxed text-ink-500">
+            <p className="mt-8 text-sm leading-relaxed text-[#5C6578]">
               {HOME_SERVICES_FOOTNOTE}
             </p>
           </div>
         </section>
 
         <LeadCtaBand
+          variant="dark"
           title="¿No está seguro qué servicio necesita?"
           subtitle={`Cuéntenos qué está pasando. ${INSPECTION_SLA}`}
           href="/#contacto"

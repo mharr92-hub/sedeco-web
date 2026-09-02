@@ -12,18 +12,15 @@ export function LegalArticle({
   return (
     <>
       <main>
-        <article className="container py-16 md:py-24">
-          <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-navy-600">
-            <span className="inline-block h-5 w-1.5 bg-accent-500" aria-hidden="true" />
-            Legal
-          </p>
-          <h1 className="max-w-4xl font-display text-4xl text-navy-900 sm:text-display-md">
+        <article className="brand-wrap brand-section">
+          <p className="brand-kicker-blue">Legal</p>
+          <h1 className="mt-3 max-w-4xl font-display text-3xl font-semibold tracking-tight text-[#1A2E8A] md:text-5xl">
             {title}
           </h1>
-          <p className="mt-4 text-sm text-ink-400">
+          <p className="mt-4 text-sm text-[#5C6578]">
             Actualizado: {LEGAL_UPDATED}
           </p>
-          <div className="mt-10 max-w-prose space-y-8 text-ink-700 leading-relaxed">
+          <div className="mt-10 max-w-prose space-y-8 leading-relaxed text-[#5C6578]">
             {children}
           </div>
         </article>
@@ -42,7 +39,9 @@ export function LegalSection({
 }) {
   return (
     <section>
-      <h2 className="mb-3 font-display text-xl text-navy-900">{title}</h2>
+      <h2 className="mb-3 font-display text-xl font-semibold text-[#1A2E8A]">
+        {title}
+      </h2>
       <div className="space-y-3">{children}</div>
     </section>
   );

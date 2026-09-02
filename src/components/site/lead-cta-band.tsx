@@ -1,8 +1,9 @@
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { INSPECTION_SLA } from "@/lib/site";
+import { INSPECTION_SLA, whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
+import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { cn } from "@/lib/utils";
 
-const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
+const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 type LeadCtaBandProps = {
   eyebrow?: string;
@@ -21,13 +22,13 @@ export function LeadCtaBand({
 }: LeadCtaBandProps) {
   const isDark = variant === "dark";
   return (
-    <section className={isDark ? "bg-navy-600 text-white" : "bg-navy-50"}>
-      <div className="container py-16 text-center md:py-20">
+    <section className={isDark ? "bg-[#070F26] text-white" : "bg-white"}>
+      <div className="brand-wrap brand-section text-center">
         {eyebrow ? (
           <p
             className={cn(
-              "mb-5 text-[11px] font-bold uppercase tracking-[0.22em]",
-              isDark ? "text-accent-500" : "text-navy-600",
+              "mb-5 text-[11px] font-semibold uppercase tracking-[0.22em]",
+              isDark ? "text-[#F5A623]" : "text-[#2B4BF2]",
             )}
           >
             {eyebrow}
@@ -35,37 +36,37 @@ export function LeadCtaBand({
         ) : null}
         <h2
           className={cn(
-            "font-display text-3xl font-extrabold md:text-display-md",
-            isDark ? "text-white" : "text-navy-600",
+            "font-display text-3xl font-semibold tracking-tight md:text-5xl",
+            isDark ? "text-white" : "text-[#1A2E8A]",
           )}
         >
           {title}
         </h2>
         <p
           className={cn(
-            "mx-auto mt-4 max-w-prose leading-relaxed",
-            isDark ? "text-white/75" : "text-ink-500",
+            "mx-auto mt-5 max-w-prose text-base leading-relaxed",
+            isDark ? "text-white/80" : "text-[#5C6578]",
           )}
         >
           {subtitle}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={href} className="btn-gold-lg">
-            Solicitar inspección
+            {SERVICE_CTA}
           </a>
           <a
-            href={`https://wa.me/${whatsapp}`}
+            href={whatsappHref(waMessage)}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
               "inline-flex min-h-12 items-center gap-2 rounded-md px-5 text-sm font-semibold transition-colors",
               isDark
-                ? "border border-white/25 bg-white/10 text-white hover:bg-white/15"
-                : "border border-navy-600 text-navy-600 hover:bg-navy-50",
+                ? "border border-white/25 text-white hover:bg-white/15"
+                : "border border-[#1A2E8A] text-[#1A2E8A] hover:bg-[#EEF1FB]",
             )}
           >
             <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp directo
+            WhatsApp {WHATSAPP_DISPLAY}
           </a>
         </div>
       </div>

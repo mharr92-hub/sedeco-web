@@ -143,7 +143,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
               event="cta_hero_click"
               landing={landing.slug}
               location="hero"
-              className="inline-flex min-h-12 items-center rounded-md bg-[#F5A623] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#e0981c]"
+              className="btn-gold-lg"
             >
               {landing.cta}
             </OpenFormButton>
@@ -154,7 +154,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
               href={whatsappHref(landing.whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15"
+              className="btn-wa-outline"
             >
               <WhatsAppGlyph className="text-[#25D366]" />
               WhatsApp +507 6550-8320
@@ -262,7 +262,7 @@ function StarCases({ landing }: { landing: AdsLanding }) {
                 event="cta_bottom_click"
                 landing={landing.slug}
                 location="star_case"
-                className="mt-8 inline-flex min-h-12 w-fit items-center rounded-md bg-[#F5A623] px-5 text-sm font-semibold text-[#1A2E8A]"
+                className="btn-gold-lg mt-8 w-fit"
               >
                 {landing.cta}
               </OpenFormButton>
@@ -558,7 +558,7 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
             event="cta_bottom_click"
             landing={landing.slug}
             location="bottom"
-            className="inline-flex min-h-12 items-center rounded-md bg-[#F5A623] px-5 text-sm font-semibold text-[#1A2E8A]"
+            className="btn-gold-lg"
           >
             {landing.cta}
           </OpenFormButton>

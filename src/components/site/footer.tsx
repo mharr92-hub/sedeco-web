@@ -1,30 +1,36 @@
 import Link from "next/link";
 import { SERVICE_NAV } from "@/lib/data/service-pages";
 import { LegalNav } from "@/components/site/legal-nav";
-import { LEGAL_ENTITY, TRADE_NAME } from "@/lib/site";
+import {
+  ADDRESS,
+  INSPECTION_SLA,
+  LEGAL_NAME,
+  PHONE_OFFICE_PRIMARY,
+  PHONE_OFFICE_SECONDARY,
+  SITE_EMAIL,
+  telHref,
+  whatsappHref,
+  WHATSAPP_DISPLAY,
+} from "@/lib/site";
 
-const phoneDisplay =
-  process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6550-8320";
-const phoneOffice = process.env.NEXT_PUBLIC_PHONE_OFFICE ?? "+507 383-5176";
-const email = process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
-const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
+const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy-700 text-white">
-      <div className="container grid gap-12 py-16 md:grid-cols-4">
+    <footer className="border-t border-white/10 bg-[#070F26] text-white">
+      <div className="brand-wrap grid gap-10 py-14 md:grid-cols-4">
         <div>
-          <p className="font-display text-xl font-extrabold tracking-[0.18em] text-white">
+          <p className="font-display text-xl font-semibold tracking-[0.18em] text-white">
             SEDECO
           </p>
           <p className="mt-2 text-sm leading-relaxed text-white/70">
             Diagnóstico de filtraciones e impermeabilización en Ciudad de
-            Panamá y Colón. Garantía por escrito según sistema y alcance
-            contratado.
+            Panamá y Colón. {INSPECTION_SLA}
           </p>
+          <p className="mt-4 text-xs leading-relaxed text-white/55">{LEGAL_NAME}</p>
         </div>
         <div>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
+          <p className="mb-3 font-display text-[11px] uppercase tracking-[0.18em] text-white/55">
             Servicios
           </p>
           <ul className="space-y-2 text-sm">
@@ -32,7 +38,7 @@ export function SiteFooter() {
               <li key={s.href}>
                 <Link
                   href={s.href}
-                  className="text-white/80 transition-colors hover:text-accent-500"
+                  className="text-white/80 transition-colors hover:text-[#F5A623]"
                 >
                   {s.label}
                 </Link>
@@ -41,7 +47,7 @@ export function SiteFooter() {
             <li className="pt-2">
               <Link
                 href="/casos"
-                className="font-semibold text-white transition-colors hover:text-accent-500"
+                className="font-semibold text-white transition-colors hover:text-[#F5A623]"
               >
                 Casos →
               </Link>
@@ -49,46 +55,56 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
+          <p className="mb-3 font-display text-[11px] uppercase tracking-[0.18em] text-white/55">
             Oficina
           </p>
           <address className="not-italic text-sm leading-relaxed text-white/70">
-            Paitilla, Edificio RBS
+            {ADDRESS.building}
             <br />
-            Planta Baja, Oficina 103A
+            {ADDRESS.street}
             <br />
-            Ciudad de Panamá, Panamá
+            {ADDRESS.locality}
+            <br />
+            {ADDRESS.suite}
           </address>
         </div>
         <div>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
+          <p className="mb-3 font-display text-[11px] uppercase tracking-[0.18em] text-white/55">
             Contacto
           </p>
           <ul className="space-y-2 text-sm">
             <li>
               <a
-                href={`https://wa.me/${whatsapp}`}
+                href={whatsappHref(waMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 transition-colors hover:text-accent-500"
+                className="text-white hover:text-[#F5A623]"
               >
-                WhatsApp · {phoneDisplay}
+                WhatsApp · {WHATSAPP_DISPLAY}
               </a>
             </li>
             <li>
               <a
-                href={`tel:${phoneOffice.replace(/\s/g, "")}`}
-                className="text-white/80 transition-colors hover:text-accent-500"
+                href={telHref(PHONE_OFFICE_PRIMARY)}
+                className="text-white hover:text-[#F5A623]"
               >
-                Oficina · {phoneOffice}
+                Tel · {PHONE_OFFICE_PRIMARY}
               </a>
             </li>
             <li>
               <a
-                href={`mailto:${email}`}
-                className="text-white/80 transition-colors hover:text-accent-500"
+                href={telHref(PHONE_OFFICE_SECONDARY)}
+                className="text-white hover:text-[#F5A623]"
               >
-                {email}
+                Tel · {PHONE_OFFICE_SECONDARY}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                className="text-white hover:text-[#F5A623]"
+              >
+                {SITE_EMAIL}
               </a>
             </li>
             <li>
@@ -96,7 +112,7 @@ export function SiteFooter() {
                 href="https://instagram.com/sedecopanama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 transition-colors hover:text-accent-500"
+                className="text-white hover:text-[#F5A623]"
               >
                 Instagram · @sedecopanama
               </a>
@@ -105,12 +121,11 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container flex flex-col gap-3 py-6 pb-24 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between md:pb-6">
+        <div className="brand-wrap flex flex-wrap items-center justify-between gap-3 py-6 pb-24 text-xs text-white/55 md:pb-6">
           <p>
-            © {new Date().getFullYear()} {LEGAL_ENTITY} — {TRADE_NAME}. Damos
-            resultados concretos en todo lo que hacemos.
+            © {new Date().getFullYear()} {LEGAL_NAME}
           </p>
-          <LegalNav linkClassName="transition-colors hover:text-accent-500" />
+          <LegalNav linkClassName="hover:text-[#F5A623]" />
         </div>
       </div>
     </footer>

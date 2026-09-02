@@ -1,34 +1,34 @@
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { SERVICE_CTA } from "@/lib/data/service-pages";
+import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 
-const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
+const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 export default function NotFound() {
   return (
     <>
       <SiteHeader />
-      <main className="container py-32 text-center md:py-40">
-        <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.22em] text-accent-600">
-          Error 404
-        </p>
-        <h1 className="font-display text-display-md font-extrabold text-navy-600 md:text-display-lg">
+      <main className="brand-wrap py-24 text-center md:py-32">
+        <p className="brand-kicker-gold">Error 404</p>
+        <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-[#1A2E8A] md:text-5xl">
           Página no encontrada.
         </h1>
-        <p className="mx-auto mt-6 max-w-prose text-lg leading-relaxed text-ink-500">
+        <p className="mx-auto mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
           La página que buscas no existe o fue movida. Volvamos a tu
-          diagnóstico.
+          inspección.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href="/#contacto" className="btn-gold-lg">
-            Solicitar diagnóstico
+            {SERVICE_CTA}
           </a>
           <a
-            href={`https://wa.me/${whatsapp}`}
+            href={whatsappHref(waMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center rounded-md border border-navy-600 px-5 text-sm font-semibold text-navy-600 transition-colors hover:bg-navy-50"
+            className="inline-flex min-h-12 items-center rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"
           >
-            WhatsApp directo
+            WhatsApp {WHATSAPP_DISPLAY}
           </a>
         </div>
       </main>

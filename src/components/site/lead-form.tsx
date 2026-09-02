@@ -41,10 +41,10 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
   if (state?.ok) {
     return (
       <div className="rounded-md border border-success/30 bg-white p-8">
-        <h3 className="font-display text-2xl font-extrabold text-navy-600">
+        <h3 className="font-display text-2xl font-semibold text-[#1A2E8A]">
           Recibimos tu solicitud.
         </h3>
-        <p className="mt-3 leading-relaxed text-ink-500">
+        <p className="mt-3 leading-relaxed text-[#5C6578]">
           {state.emailQueued
             ? `Enviamos la notificación a Mark. ${INSPECTION_SLA}`
             : `Quedó registrada. ${INSPECTION_SLA} Si necesita atención inmediata, escríbanos a ${SITE_EMAIL} o por WhatsApp.`}
@@ -52,7 +52,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         <button
           type="button"
           onClick={onReset}
-          className="mt-6 inline-flex items-center text-sm font-semibold text-navy-600 transition-colors hover:text-accent-600"
+          className="mt-6 inline-flex items-center text-sm font-semibold text-[#1A2E8A] transition-colors hover:text-[#F5A623]"
         >
           Enviar otra solicitud →
         </button>
@@ -134,7 +134,7 @@ function LeadFormInner({ onReset }: { onReset: () => void }) {
         >
           {isPending ? "Enviando..." : "Solicitar inspección"}
         </button>
-        <p className="text-xs text-ink-400">
+        <p className="text-xs text-[#5C6578]">
           {INSPECTION_SLA}
         </p>
       </div>
@@ -165,7 +165,7 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-navy-600"
+        className="mb-1.5 block text-sm font-medium text-[#1A2E8A]"
       >
         {label}
         {required && <span className="ml-0.5 text-accent-500">*</span>}
@@ -180,7 +180,7 @@ function Field({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "min-h-12 w-full rounded-md border bg-white px-4 text-navy-600 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "min-h-12 w-full rounded-md border bg-white px-4 text-[#1A2E8A] placeholder:text-[#5C6578] transition-shadow focus:outline-none focus:ring-2 focus:ring-[#F5A623]/30",
           error
             ? "border-danger focus:border-danger"
             : "border-navy-100 focus:border-accent-500",
@@ -210,7 +210,7 @@ function SelectField({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-navy-600"
+        className="mb-1.5 block text-sm font-medium text-[#1A2E8A]"
       >
         {label}
       </label>
@@ -221,7 +221,7 @@ function SelectField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "min-h-12 w-full rounded-md border bg-white px-4 text-navy-600 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "min-h-12 w-full rounded-md border bg-white px-4 text-[#1A2E8A] transition-shadow focus:outline-none focus:ring-2 focus:ring-[#F5A623]/30",
           error
             ? "border-danger focus:border-danger"
             : "border-navy-100 focus:border-accent-500",
@@ -261,7 +261,7 @@ function TextareaField({
     <div>
       <label
         htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-navy-600"
+        className="mb-1.5 block text-sm font-medium text-[#1A2E8A]"
       >
         {label}
         {required && <span className="ml-0.5 text-accent-500">*</span>}
@@ -275,7 +275,7 @@ function TextareaField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={cn(
-          "w-full resize-y rounded-md border bg-white px-4 py-3 text-navy-600 placeholder:text-ink-400 transition-shadow focus:outline-none focus:ring-2 focus:ring-accent-500/30",
+          "w-full resize-y rounded-md border bg-white px-4 py-3 text-[#1A2E8A] placeholder:text-[#5C6578] transition-shadow focus:outline-none focus:ring-2 focus:ring-[#F5A623]/30",
           error
             ? "border-danger focus:border-danger"
             : "border-navy-100 focus:border-accent-500",

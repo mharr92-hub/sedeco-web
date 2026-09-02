@@ -6,10 +6,15 @@ import { LeadCtaBand } from "@/components/site/lead-cta-band";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { getCasesByService } from "@/lib/data/cases";
 import { getAllServices, getServiceBySlug } from "@/lib/data/services";
-import { CANONICAL_ORIGIN } from "@/lib/site";
+import { SERVICE_CTA } from "@/lib/data/service-pages";
+import {
+  CANONICAL_ORIGIN,
+  whatsappHref,
+  WHATSAPP_DISPLAY,
+} from "@/lib/site";
 
 const siteUrl = CANONICAL_ORIGIN;
-const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
+const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 type ServicioParams = { slug: string };
 
@@ -77,63 +82,62 @@ export default async function ServicioDetailPage({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main>
-        <section className="container py-20 md:py-24">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-600 mb-5">
-            Servicios SEDECO · {service.shortName}
+      <main className="bg-white text-[#1A2E8A]">
+        <section className="brand-wrap brand-section">
+          <p className="brand-kicker-blue">
+            Servicios · {service.shortName}
           </p>
-          <h1 className="font-display text-4xl sm:text-display-md md:text-display-lg text-navy-900 max-w-4xl">
+          <h1 className="mt-3 max-w-4xl font-display text-3xl font-semibold tracking-tight md:text-5xl">
             {service.name}
           </h1>
-          <p className="mt-4 max-w-prose text-lg text-ink-600 leading-relaxed">
+          <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
             {service.tagline}
           </p>
-          <p className="mt-6 max-w-prose text-ink-600 leading-relaxed">
+          <p className="mt-4 max-w-prose leading-relaxed text-[#5C6578]">
             {service.description}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a href="/#contacto" className="btn-gold-lg">
-              Solicitar diagnóstico
+              {SERVICE_CTA}
             </a>
             <a
-              href={`https://wa.me/${whatsapp}`}
+              href={whatsappHref(waMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-6 py-3 text-ink-900 font-medium hover:border-ink-300 transition-colors"
+              className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"
             >
               <WhatsAppGlyph className="text-[#25D366]" />
-              WhatsApp directo
+              WhatsApp {WHATSAPP_DISPLAY}
             </a>
           </div>
         </section>
 
         <section
           aria-labelledby="senales-titulo"
-          className="border-t border-ink-100 bg-white"
+          className="border-t border-[#D6E8FF] bg-white"
         >
-          <div className="container py-20 md:py-24 grid gap-12 md:grid-cols-[5fr_7fr]">
+          <div className="brand-wrap brand-section grid gap-10 md:grid-cols-[5fr_7fr]">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
-                Estás aquí porque
-              </p>
+              <p className="brand-kicker-blue">Estás aquí porque</p>
               <h2
                 id="senales-titulo"
-                className="font-display text-3xl text-navy-900"
+                className="mt-3 font-display text-3xl font-semibold tracking-tight"
               >
                 Señales de que necesitas este servicio
               </h2>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {service.problemSignals.map((signal) => (
                 <li
                   key={signal}
-                  className="flex gap-3 text-ink-700 leading-relaxed"
+                  className="font-display text-xl font-semibold text-[#1A2E8A]"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent-500"
-                  />
-                  <span>{signal}</span>
+                  <span className="mr-3 text-[#F5A623]" aria-hidden="true">
+                    —
+                  </span>
+                  <span className="text-base font-normal leading-relaxed text-[#5C6578]">
+                    {signal}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -142,52 +146,42 @@ export default async function ServicioDetailPage({
 
         <section
           aria-labelledby="metodo-titulo"
-          className="border-t border-ink-100 bg-ink-50"
+          className="border-t border-[#D6E8FF] bg-white"
         >
-          <div className="container py-20 md:py-24">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
-              Cómo lo hacemos
-            </p>
+          <div className="brand-wrap brand-section">
+            <p className="brand-kicker-blue">Cómo lo hacemos</p>
             <h2
               id="metodo-titulo"
-              className="font-display text-3xl text-navy-900 mb-12"
+              className="mt-3 mb-10 font-display text-3xl font-semibold tracking-tight"
             >
               Método SEDECO
             </h2>
-            <div className="grid gap-12 md:grid-cols-[7fr_5fr]">
-              <ol className="space-y-4">
+            <div className="grid gap-10 md:grid-cols-[7fr_5fr]">
+              <ol className="space-y-3">
                 {service.approach.map((step, idx) => (
-                  <li
-                    key={step}
-                    className="rounded-lg border border-ink-100 bg-white p-5"
-                  >
-                    <p className="font-mono text-xs tracking-[0.2em] text-accent-600 mb-3">
+                  <li key={step} className="brand-card p-5">
+                    <p className="brand-kicker-gold">
                       {String(idx + 1).padStart(2, "0")}
                     </p>
-                    <p className="text-ink-700 leading-relaxed">{step}</p>
+                    <p className="mt-3 leading-relaxed text-[#5C6578]">{step}</p>
                   </li>
                 ))}
               </ol>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C6578]">
                   Productos aplicados
                 </p>
-                <ul className="space-y-2 text-sm text-ink-600">
+                <ul className="space-y-2 text-sm text-[#5C6578]">
                   {service.products.map((p) => (
-                    <li
-                      key={p}
-                      className="rounded border border-ink-100 bg-white px-3 py-2"
-                    >
+                    <li key={p} className="brand-card px-3 py-2">
                       {p}
                     </li>
                   ))}
                 </ul>
                 {service.warranty ? (
-                  <div className="mt-6 border-l-2 border-accent-500 pl-5 py-2">
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-700 mb-1">
-                      Garantía
-                    </p>
-                    <p className="text-sm text-ink-700 leading-relaxed">
+                  <div className="mt-6 border-l-2 border-[#F5A623] py-2 pl-5">
+                    <p className="brand-kicker-gold mb-1">Garantía</p>
+                    <p className="text-sm leading-relaxed text-[#5C6578]">
                       {service.warranty}
                     </p>
                   </div>
@@ -200,29 +194,27 @@ export default async function ServicioDetailPage({
         {relatedCases.length > 0 ? (
           <section
             aria-labelledby="casos-titulo"
-            className="border-t border-ink-100 bg-white"
+            className="border-t border-[#D6E8FF] bg-white"
           >
-            <div className="container py-20 md:py-24">
-              <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+            <div className="brand-wrap brand-section">
+              <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-400 mb-3">
-                    Casos relacionados
-                  </p>
+                  <p className="brand-kicker-blue">Casos relacionados</p>
                   <h2
                     id="casos-titulo"
-                    className="font-display text-3xl text-navy-900"
+                    className="mt-3 font-display text-3xl font-semibold tracking-tight"
                   >
                     Proyectos donde aplicamos este servicio
                   </h2>
                 </div>
                 <a
                   href="/casos"
-                  className="inline-flex items-center text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors"
+                  className="inline-flex items-center text-sm font-semibold text-[#1A2E8A] hover:text-[#F5A623]"
                 >
                   Ver todos los casos →
                 </a>
               </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCases.slice(0, 6).map((c) => (
                   <CaseCard key={c.slug} caseItem={c} />
                 ))}
