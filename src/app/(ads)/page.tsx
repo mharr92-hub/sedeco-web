@@ -4,8 +4,12 @@ import { adsMetadata, getAdsLanding } from "@/lib/data/ads-landings";
 
 const landing = getAdsLanding("filtraciones");
 
-export const metadata: Metadata = adsMetadata(landing);
+/**
+ * Homepage is the filtraciones landing, not a redirect.
+ * Search ads stay on `/filtraciones`. Canonical stays `/`.
+ */
+export const metadata: Metadata = adsMetadata(landing, { canonicalPath: "/" });
 
-export default function FiltracionesPage() {
+export default function HomePage() {
   return <FiltracionesLanding />;
 }
