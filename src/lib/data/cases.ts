@@ -31,11 +31,10 @@ export type Case = {
 };
 
 /**
- * Allowlist of named projects that *may* appear on /casos, home, related
- * cases, sitemap, and detail URLs — and only when they also have a real
- * project photo. Restricted PHs (Ebelle, Twin Towers, Constellation) are
- * not in this set. MAG / Shevet / Deveaux / Quadrat / Bet Max stay in the
- * set so they surface automatically when Mark supplies a real photo.
+ * Named projects from Catálogo SEDECO 2026 that may appear publicly.
+ * A case only renders if it is in this set AND has a real obra photo (`image`).
+ * Twin Towers, Ebelle and Constellation are never in this set (404).
+ * Supermercados Xtra Arraiján is approved for public use by Mark.
  */
 const PUBLIC_CASE_SLUGS = new Set([
   "hospital-manuel-amador-guerrero",
@@ -44,6 +43,7 @@ const PUBLIC_CASE_SLUGS = new Set([
   "fundacion-deveaux",
   "ph-quadrat",
   "sinagoga-bet-max-ve-sarah",
+  "superxtra-arraijan",
 ]);
 
 const cases: Case[] = [
@@ -86,16 +86,17 @@ const cases: Case[] = [
   {
     slug: "ph-dos-mares",
     name: "PH Dos Mares",
-    workType: "Proyecto del portafolio",
+    workType: "Impermeabilización",
     services: ["impermeabilizacion"],
     scope: "Edificio de 10 pisos.",
+    featured: false,
     listed: false,
     order: 13,
   },
   {
     slug: "shevet-ahim",
     name: "Comunidad Hebrea Shevet Ahim",
-    workType: "Impermeabilización horizontal y vertical",
+    workType: "Obra ejecutada",
     services: ["fachadas", "azoteas", "impermeabilizacion"],
     scope:
       "5,000 m² en sinagogas: 3,000 m² horizontales + 2,000 m² verticales.",
@@ -110,23 +111,25 @@ const cases: Case[] = [
       role: "Director Ejecutivo, Comunidad Hebrea Shevet Ahim",
     },
     featured: true,
+    image: ADS_PHOTOS.servicioImpermeabilizacion,
     order: 20,
   },
   {
     slug: "sinagoga-bet-max-ve-sarah",
     name: "Sinagoga Bet Max Ve Sarah",
     location: "Ciudad de Panamá",
-    workType: "Sellado de concreto e impermeabilización",
+    workType: "Azotea sellada",
     services: ["azoteas", "fachadas", "impermeabilizacion", "sellado-concreto"],
     scope:
       "Losa estructural, fachada y muros perimetrales. Impermeabilización GHOSTSHIELD 9500.",
+    image: ADS_PHOTOS.aguaConcreto,
     order: 22,
   },
   {
     slug: "hospital-manuel-amador-guerrero",
     name: "Hospital Manuel Amador Guerrero",
     location: "Colón (MINSA / IMED)",
-    workType: "Impermeabilización de cubiertas y muros",
+    workType: "Azotea sellada",
     services: ["azoteas", "fachadas", "impermeabilizacion"],
     scope:
       "Impermeabilización de 16,000 m² de cubiertas (GhostShield 9500 y/o 4500 y HS 100% silicona), muros perimetrales con DRY COAT-LANCO y reparaciones de albañilería.",
@@ -140,6 +143,7 @@ const cases: Case[] = [
       name: "Ing. Agustín García",
       role: "Gerente de proyecto, Consorcio IMED",
     },
+    image: ADS_PHOTOS.obraAltura,
     order: 25,
   },
   {
@@ -159,7 +163,6 @@ const cases: Case[] = [
       role: "Promotora Millenium Group, S.A.",
     },
     featured: false,
-    listed: false,
     order: 30,
   },
   {
@@ -176,16 +179,16 @@ const cases: Case[] = [
     result:
       "750 m² entregados. Carta de respaldo firmada por la junta del PH.",
     signedBy: { name: "Nicola Pirro", role: "Tesorero, PH Mónaco" },
-    listed: false,
     order: 40,
   },
   {
     slug: "fundacion-deveaux",
     name: "Fundación Deveaux",
-    workType: "Impermeabilización de fachada y azotea",
-    services: ["fachadas", "azoteas", "impermeabilizacion"],
+    location: "Ciudad de Colón",
+    workType: "Sellado de grietas en fachada",
+    services: ["fachadas", "azoteas", "impermeabilizacion", "grietas"],
     scope:
-      "Fachada de 5 pisos + 750 m² horizontales (250 m² azotea + 500 m² techo).",
+      "Fachada de 5 pisos + 750 m² horizontales (250 m² azotea + 500 m² techo). Edificio 9136, Colón.",
     squareMeters: 750,
     squareMetersDetail:
       "250 m² azotea + 500 m² techo + fachada de 5 pisos",
@@ -195,6 +198,7 @@ const cases: Case[] = [
       "Trabajos entregados con carta de respaldo firmada por la fundación.",
     signedBy: { name: "Yamileth Samaniego", role: "Fundación Deveaux" },
     featured: true,
+    image: ADS_PHOTOS.servicioFachadas,
     order: 50,
   },
   {
@@ -208,7 +212,20 @@ const cases: Case[] = [
     result:
       "Sellado con LITHI TEK 9500. Carta de respaldo firmada por el cliente.",
     signedBy: { name: "Lic. José González Soto", role: "PH Quadrat" },
+    image: ADS_PHOTOS.capacidadHero,
     order: 60,
+  },
+  {
+    slug: "superxtra-arraijan",
+    name: "Supermercados Xtra Arraiján",
+    location: "Arraiján, Panamá Oeste",
+    workType: "Impermeabilización de techo",
+    services: ["azoteas", "impermeabilizacion"],
+    scope: "300 m² de cubierta con canal y metal. Aprobado por Mark Harrick.",
+    squareMeters: 300,
+    squareMetersDetail: "300 m² de cubierta con canal y metal",
+    image: ADS_PHOTOS.obraAltura,
+    order: 65,
   },
   {
     slug: "ph-mallorca",
