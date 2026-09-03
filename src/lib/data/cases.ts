@@ -1,4 +1,8 @@
-import { ADS_PHOTOS, type AdsPhoto } from "@/lib/data/ads-visuals";
+import {
+  ADS_PHOTOS,
+  CASE_PHOTOS,
+  type AdsPhoto,
+} from "@/lib/data/ads-visuals";
 
 export type ServiceSlug =
   | "fachadas"
@@ -111,7 +115,7 @@ const cases: Case[] = [
       role: "Director Ejecutivo, Comunidad Hebrea Shevet Ahim",
     },
     featured: true,
-    image: ADS_PHOTOS.servicioImpermeabilizacion,
+    image: CASE_PHOTOS.shevetAhim,
     order: 20,
   },
   {
@@ -122,7 +126,7 @@ const cases: Case[] = [
     services: ["azoteas", "fachadas", "impermeabilizacion", "sellado-concreto"],
     scope:
       "Losa estructural, fachada y muros perimetrales. Impermeabilización GHOSTSHIELD 9500.",
-    image: ADS_PHOTOS.aguaConcreto,
+    image: CASE_PHOTOS.betMaxVeSarah,
     order: 22,
   },
   {
@@ -143,7 +147,7 @@ const cases: Case[] = [
       name: "Ing. Agustín García",
       role: "Gerente de proyecto, Consorcio IMED",
     },
-    image: ADS_PHOTOS.obraAltura,
+    image: CASE_PHOTOS.hospitalMag,
     order: 25,
   },
   {
@@ -198,7 +202,7 @@ const cases: Case[] = [
       "Trabajos entregados con carta de respaldo firmada por la fundación.",
     signedBy: { name: "Yamileth Samaniego", role: "Fundación Deveaux" },
     featured: true,
-    image: ADS_PHOTOS.servicioFachadas,
+    image: CASE_PHOTOS.fundacionDeveaux,
     order: 50,
   },
   {
