@@ -10,7 +10,7 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   title: "Casos · Proyectos entregados",
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá, con foto de obra. PH Joy Tower en Calle 50.",
+    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá, con foto de obra verificada.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 
@@ -61,7 +61,7 @@ export default function CasosPage() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {cases.map((c, index) => (
                 <div key={c.slug} id={c.slug}>
-                  <CaseCard caseItem={c} priority={index < 3} />
+                  <CaseCard caseItem={c} priority={index < 4} />
                 </div>
               ))}
             </div>
