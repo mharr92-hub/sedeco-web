@@ -8,6 +8,34 @@ export type AdsPhoto = {
 const PORTRAIT = { width: 1024, height: 1536 } as const;
 const LANDSCAPE = { width: 1536, height: 1024 } as const;
 
+/** Real obra photos for named Casos cards (not generic stock). */
+export const CASE_PHOTOS = {
+  hospitalMag: {
+    src: "/images/casos/hospital-manuel-amador-guerrero.jpg",
+    alt: "Hospital Manuel Amador Guerrero, azotea sellada en Colón",
+    width: 269,
+    height: 201,
+  },
+  fundacionDeveaux: {
+    src: "/images/casos/fundacion-deveaux.jpg",
+    alt: "Fundación Deveaux, sellado de grietas en fachada, Edificio 9136 Colón",
+    width: 398,
+    height: 480,
+  },
+  betMaxVeSarah: {
+    src: "/images/casos/sinagoga-bet-max-ve-sarah.jpg",
+    alt: "Sinagoga Bet Max Ve Sarah, azotea sellada en Ciudad de Panamá",
+    width: 464,
+    height: 480,
+  },
+  shevetAhim: {
+    src: "/images/casos/comunidad-hebrea-shevet-ahim.jpg",
+    alt: "Comunidad Hebrea Shevet Ahim, obra ejecutada en Ciudad de Panamá",
+    width: 371,
+    height: 480,
+  },
+} as const satisfies Record<string, AdsPhoto>;
+
 export const ADS_PHOTOS = {
   heroTorres: {
     src: "/obras/hero-torres.jpg",
