@@ -39,14 +39,11 @@ export type Case = {
 const PUBLIC_CASE_SLUGS = new Set([
   "hospital-manuel-amador-guerrero",
   "ph-joy-tower",
-  "ph-dos-mares",
   "shevet-ahim",
   "fundacion-deveaux",
   "ph-quadrat",
   "sinagoga-bet-max-ve-sarah",
   "superxtra-arraijan",
-  "ph-millenium-park",
-  "ph-monaco",
 ]);
 
 const cases: Case[] = [
@@ -89,11 +86,11 @@ const cases: Case[] = [
   {
     slug: "ph-dos-mares",
     name: "PH Dos Mares",
-        workType: "Impermeabilización",
-        services: ["impermeabilizacion"],
-        scope: "Edificio de 10 pisos.",
-    featured: true,
-    image: ADS_PHOTOS.dosMares,
+    workType: "Impermeabilización",
+    services: ["impermeabilizacion"],
+    scope: "Edificio de 10 pisos.",
+    featured: false,
+    listed: false,
     order: 13,
   },
   {
