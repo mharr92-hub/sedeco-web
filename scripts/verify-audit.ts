@@ -2,9 +2,11 @@ import assert from "node:assert/strict";
 import { localBusinessJsonLd, NAP_STREET_ADDRESS, OFFICE_PHONES } from "../src/lib/site";
 import { panamaMobileMessage } from "../src/lib/validations/lead";
 import {
+  applyFirstTouchReferrer,
   attributionFromCookieHeader,
   attributionFromSearch,
   mergeTracking,
+  referrerForLead,
   resolveAttribution,
   trackingFieldsFromAttribution,
 } from "../src/lib/tracking";
@@ -47,6 +49,46 @@ const formWins = mergeTracking(
   trackingFieldsFromAttribution({ gclid: "FROMCOOKIE" }),
 );
 assert.equal(formWins.gclid, "FROMURL");
+
+const withReferrer = attributionFromCookieHeader(
+  `sedeco_attribution=${encodeURIComponent(JSON.stringify({ gclid: "X", referrer: "https://www.google.com/aclk" }))}`,
+);
+assert.equal(withReferrer.gclid, "X");
+assert.equal(withReferrer.referrer, "https://www.google.com/aclk");
+
+const blankReferrer = attributionFromCookieHeader(
+  `sedeco_attribution=${encodeURIComponent(JSON.stringify({ gclid: "X", referrer: "" }))}`,
+);
+assert.equal(blankReferrer.referrer, undefined);
+
+const keptReferrer = applyFirstTouchReferrer(
+  { gclid: "X", referrer: "https://www.google.com/aclk" },
+  { utm_source: "google" },
+  undefined,
+);
+assert.equal(keptReferrer.gclid, "X");
+assert.equal(keptReferrer.utm_source, "google");
+assert.equal(keptReferrer.referrer, "https://www.google.com/aclk");
+
+const firstReferrer = applyFirstTouchReferrer(
+  {},
+  { gclid: "X" },
+  "https://www.google.com/aclk",
+);
+assert.equal(firstReferrer.referrer, "https://www.google.com/aclk");
+
+assert.equal(
+  referrerForLead("https://www.sedeco.lat/casos", {
+    referrer: "https://www.google.com/aclk",
+  }),
+  "https://www.google.com/aclk",
+);
+assert.equal(
+  referrerForLead("https://news.example/story", {
+    referrer: "https://www.google.com/aclk",
+  }),
+  "https://news.example/story",
+);
 
 assert.equal(panamaMobileMessage("+507 6550-8320"), undefined);
 assert.equal(panamaMobileMessage("65508320"), undefined);

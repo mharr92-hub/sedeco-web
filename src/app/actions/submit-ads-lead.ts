@@ -14,6 +14,7 @@ import { sendLeadNotification } from "@/lib/email/lead-notification";
 import {
   attributionFromCookieHeader,
   mergeTracking,
+  referrerForLead,
   trackingFieldsFromAttribution,
   trackingFromFormData,
 } from "@/lib/tracking";
@@ -131,12 +132,13 @@ export async function submitAdsLead(
 
   const hdrs = await headers();
   const userAgent = hdrs.get("user-agent") ?? undefined;
-  const referrer = hdrs.get("referer") ?? undefined;
-  // Hidden fields already prefer the URL over the cookie. The cookie fills
-  // any key the form did not send, and empty fields cannot wipe a stored gclid.
+  const storedAttribution = attributionFromCookieHeader(hdrs.get("cookie"));
+  // A same-site POST Referer is the form page. The cookie keeps the external
+  // referrer captured with the click id. Empty values still cannot wipe gclid.
+  const referrer = referrerForLead(hdrs.get("referer"), storedAttribution);
   const tracking = mergeTracking(
     trackingFromFormData(formData),
-    trackingFieldsFromAttribution(attributionFromCookieHeader(hdrs.get("cookie"))),
+    trackingFieldsFromAttribution(storedAttribution),
   );
   const mensaje = composeMensaje(parsed.data);
 
