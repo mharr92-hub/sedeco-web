@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
@@ -189,9 +190,9 @@ export default function HomePage() {
               con informe, para ubicar el origen antes de abrir o reparar.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/inspeccion-boroscopica" className="btn-gold-lg">
+              <Link href="/inspeccion-boroscopica" className="btn-gold-lg">
                 Ver la inspección
-              </a>
+              </Link>
               <a
                 href={whatsappHref(
                   "Hola, quiero una inspección con cámara boroscópica en un desagüe.",
@@ -272,12 +273,12 @@ export default function HomePage() {
                   cuando hay fotografía real del edificio.
                 </p>
               </SectionHeading>
-              <a
+              <Link
                 href="/casos"
                 className="inline-flex min-h-6 items-center text-sm font-semibold text-[#1A2E8A] transition-colors hover:text-[#7A5209]"
               >
                 Ver todos los casos →
-              </a>
+              </Link>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {featuredCases.map((c) => (

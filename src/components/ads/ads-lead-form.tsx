@@ -3,6 +3,7 @@
 import {
   startTransition,
   useActionState,
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -70,6 +71,12 @@ export function AdsLeadDock({
   const [sheetOpen, setSheetOpen] = useState(false);
   const started = useRef(false);
 
+  const markFormStart = useCallback(() => {
+    if (started.current) return;
+    started.current = true;
+    gtagEvent("lead_form_start", { form: analyticsFormName(landing) });
+  }, [landing]);
+
   useEffect(() => {
     const onOpen = (event: Event) => {
       const detail = (event as CustomEvent<{ sheet?: boolean; location?: string }>)
@@ -81,7 +88,7 @@ export function AdsLeadDock({
     };
     window.addEventListener(ADS_OPEN_FORM_EVENT, onOpen);
     return () => window.removeEventListener(ADS_OPEN_FORM_EVENT, onOpen);
-  }, [landing.slug]);
+  }, [markFormStart]);
 
   useEffect(() => {
     if (!sheetOpen) return;
@@ -97,12 +104,6 @@ export function AdsLeadDock({
       window.removeEventListener("keydown", onKey);
     };
   }, [sheetOpen]);
-
-  function markFormStart() {
-    if (started.current) return;
-    started.current = true;
-    gtagEvent("lead_form_start", { form: analyticsFormName(landing) });
-  }
 
   if (embed) {
     return (
@@ -265,7 +266,7 @@ function AdsLeadForm({
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);
-  }, [state, landing.slug, values.problema, router]);
+  }, [state, landing, router]);
 
   useEffect(() => {
     if (state && !state.ok) {

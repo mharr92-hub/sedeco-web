@@ -33,8 +33,8 @@ Las 7 fichas de casos enlazaban a `/servicios/*` y el hero marcaba `priority` en
 | # | Estado | Archivos | Verificación | Pendiente |
 | --- | --- | --- | --- | --- |
 | 11 | HECHO | `src/lib/data/cases.ts` (`SERVICE_PUBLIC_PATH`), `src/app/(marketing)/casos/[slug]/page.tsx` | Fachadas → `/impermeabilizacion-fachadas`; impermeabilización, azoteas, tanques y piscinas → `/impermeabilizacion-panama`; sellado → `/pisos-industriales-panama`; grietas → `/reparacion-estructural-panama`; filtraciones → `/filtraciones`. | — |
-| 6 | HECHO en código / LCP NO MEDIDO | `src/components/ads/ads-photo.tsx`, `src/app/(marketing)/page.tsx`, `src/components/ads/ads-landing.tsx`, `src/app/(marketing)/casos/page.tsx`, `src/components/analytics/data-layer.tsx` | Preload del hero con `media`. En móvil la foto de escritorio va `loading=lazy`. En `/casos` solo la primera tarjeta lleva `priority`. `/servicios` no tiene imagen de hero (LCP de texto). gtag y GTM ya usan `afterInteractive`. No se tocó el contenedor. | Medir LCP móvil en la verificación final. |
-| 15 | HECHO en código / LCP NO MEDIDO | mismos que #6 | Se quitaron `lead-form.tsx`, `service-card.tsx` y `submit-lead.ts`, que ya no se importan. `lucide-react`, `react-hook-form`, `@hookform/resolvers` y `class-variance-authority` no tienen imports, así que no entran al bundle. | LCP móvil NO MEDIDO hasta el cierre. |
+| 6 | HECHO en código. Meta LCP &lt;2,5 s: `/casos` y `/servicios` sí; `/` no | `src/components/ads/ads-photo.tsx`, `src/app/(marketing)/page.tsx`, `src/components/ads/ads-landing.tsx`, `src/app/(marketing)/casos/page.tsx`, `src/components/analytics/data-layer.tsx` | El hero es un `picture`: el preload apunta a `/_next/image`, no al JPEG original (~380 KB). gtag, GTM y el init del dataLayer usan `afterInteractive`. En `/casos` solo la primera tarjeta lleva `priority`. | LCP simulado de `/` sigue sobre 2,5 s (ver cierre). |
+| 15 | HECHO en código. Misma meta de LCP que #6 | mismos que #6 | Se quitaron `lead-form.tsx`, `service-card.tsx` y `submit-lead.ts`. `lucide-react`, `react-hook-form`, `@hookform/resolvers` y `class-variance-authority` no tienen imports. | LCP de `/` y `/filtraciones` medido, por encima de 2,5 s. |
 | 14 | HECHO | `src/app/globals.css`, `src/components/site/case-card.tsx`, `src/components/ads/ads-landing.tsx`, `src/components/ads/service-offer-page.tsx`, `src/app/(marketing)/casos/[slug]/page.tsx`, `src/app/(marketing)/servicios/[slug]/page.tsx`, `src/app/(marketing)/page.tsx` | Texto dorado sobre blanco pasa de `#F5A623` (2.03:1) a `#7A5209` (6.91:1). El dorado sobre `#070F26` se deja (9.37:1). Cuerpo `#5C6578` sobre blanco: 5.85:1. No se modificó la barra de cifras. | — |
 | 20 | HECHO | `src/components/site/footer.tsx`, `src/components/ads/ads-footer.tsx` | Etiquetas del footer a `text-xs` (12px). Enlaces con `min-h-6` (24px). | — |
 | 25 | HECHO | `next.config.mjs` (sin cambio: ya era un salto) | `curl -sIL https://www.sedeco.lat/servicios/{impermeabilizacion,fachadas,azoteas,filtraciones,sellado-concreto,tanques,grietas,piscinas}`: cada uno responde 308 a la URL final y el siguiente salto es 200. | — |
@@ -69,3 +69,22 @@ LP `/inspeccion-boroscopica` y bloque en home: HECHO. Title «Inspección borosc
 | `/inspeccion-boroscopica` | no existía | Inspección boroscópica desagües Panamá \| SEDECO | 47 |
 | `/servicios` | Servicios · SEDECO Panamá | Servicios · SEDECO Panamá | 25 |
 | `/casos` | Casos · Proyectos entregados · SEDECO Panamá | Casos de obra en Panamá \| SEDECO | 32 |
+
+## Verificación final
+
+`npm run build` (Next.js 15.5.15, 34 páginas) y `CI=true npx next lint --max-warnings 0` pasan. `scripts/verify-audit.ts`: atribución, teléfono de Panamá y NAP ok. No hay `.env`, `.env.local` ni `.env.production`: el insert en `public.leads` es NO ENCONTRADO. No se inventó una fila.
+
+Lighthouse móvil (simulacro Slow 4G, mediana de 3 corridas, `http://127.0.0.1:3456`, 23 sep 2026):
+
+| Ruta | LCP simulado (ms) | Performance | LCP observado en el laboratorio (ms) |
+| --- | --- | --- | --- |
+| `/` | 3466, 3462, 3014 → mediana 3462 | 0,91 | 88, 104, 83 |
+| `/casos` | 2228, 2202, 2211 → mediana 2211 | 0,98 | 67, 58, 59 |
+| `/filtraciones` | 3015, 3460, 3460 → mediana 3460 | 0,91 | 73, 82, 80 |
+| `/servicios` | 2059, 1659, 2046 → mediana 2046 | 0,98 | no anotado |
+
+`curl -sIL http://127.0.0.1:3456/servicios/fachadas`: 308 a `/impermeabilizacion-fachadas` y después 200. Un salto.
+
+Los bloques C y D quedaron en el mismo commit (`accfaaf`): el `git add` del SEO también incluyó el hero, el contraste y los enlaces de casos. El commit posterior cierra lint (`next/link`, deps de hooks, dataLayer `afterInteractive`, `.eslintrc.json`) y el preload del hero optimizado.
+
+No se hace merge a `main`: el LCP simulado de `/` y `/filtraciones` queda sobre 2,5 s, y el lead real no se pudo confirmar.
