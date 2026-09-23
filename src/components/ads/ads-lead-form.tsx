@@ -15,7 +15,11 @@ import {
 } from "@/app/actions/submit-ads-lead";
 import type { LeadPageContext } from "@/lib/data/service-pages";
 import { tipoPropiedadValues } from "@/lib/data/ads-landings";
-import { TRACKING_PARAM_KEYS } from "@/lib/tracking";
+import {
+  rememberAttribution,
+  TRACKING_PARAM_KEYS,
+  type AttributionParams,
+} from "@/lib/tracking";
 import { gtagEvent, track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ADS_OPEN_FORM_EVENT } from "@/components/ads/ads-form-events";
@@ -479,15 +483,10 @@ function AdsLeadForm({
 }
 
 function TrackingHiddenFields() {
-  const [values, setValues] = useState<Record<string, string>>({});
+  const [values, setValues] = useState<AttributionParams>({});
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const next: Record<string, string> = {};
-    for (const key of TRACKING_PARAM_KEYS) {
-      const value = params.get(key)?.trim();
-      if (value) next[key] = value.slice(0, 200);
-    }
-    setValues(next);
+    // Current URL wins; cookie/sessionStorage fill keys dropped by navigation.
+    setValues(rememberAttribution(window.location.search));
   }, []);
   return (
     <>
