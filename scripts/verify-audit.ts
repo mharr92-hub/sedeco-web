@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { localBusinessJsonLd, NAP_STREET_ADDRESS, OFFICE_PHONES } from "../src/lib/site";
 import { panamaMobileMessage } from "../src/lib/validations/lead";
 import {
   attributionFromCookieHeader,
@@ -54,4 +55,32 @@ assert.ok(panamaMobileMessage("3835175"));
 assert.ok(panamaMobileMessage("12345678"));
 assert.ok(panamaMobileMessage("6550832"));
 
-console.log("verify-audit: attribution and phone ok");
+const business = localBusinessJsonLd();
+assert.equal(business["@type"], "LocalBusiness");
+assert.equal(business.legalName, "Tanya Engineering, S.A.");
+assert.equal(business.address.streetAddress, NAP_STREET_ADDRESS);
+assert.deepEqual(business.telephone, [...OFFICE_PHONES]);
+assert.equal(typeof business.image, "string");
+assert.ok(business.image.startsWith("https://"));
+assert.equal(business.geo["@type"], "GeoCoordinates");
+assert.equal(typeof business.geo.latitude, "number");
+assert.equal(typeof business.geo.longitude, "number");
+
+const titles = [
+  "SEDECO Panamá | sellado e impermeabilización",
+  "Filtraciones y detección de fugas Panamá | SEDECO",
+  "Restauración e impermeabilización de fachadas | SEDECO",
+  "Pintura de edificios en Panamá | SEDECO",
+  "Impermeabilización de azoteas y losas | SEDECO",
+  "Pisos industriales en Panamá | SEDECO",
+  "Reparación estructural en Panamá | SEDECO",
+  "Mantenimiento de PH en Panamá | SEDECO",
+  "Inspección boroscópica desagües Panamá | SEDECO",
+  "Servicios · SEDECO Panamá",
+  "Casos de obra en Panamá | SEDECO",
+];
+for (const title of titles) {
+  assert.ok(title.length <= 60, title);
+}
+
+console.log("verify-audit: attribution, phone and NAP ok");

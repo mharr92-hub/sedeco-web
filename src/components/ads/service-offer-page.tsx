@@ -97,10 +97,17 @@ function Hero({ page }: { page: ServicePage }) {
             WhatsApp {WHATSAPP_DISPLAY}
           </TrackedLink>
         </div>
-        <p className="mt-5 text-sm text-white/70">
-          Primero diagnosticamos. Después el sistema correcto. Garantía por
-          escrito según sistema y alcance contratado.
-        </p>
+        {page.showGuaranteeNote === false ? (
+          <p className="mt-5 text-sm text-white/80">
+            Primero el diagnóstico y el informe. Después se decide si hay que
+            abrir o reparar.
+          </p>
+        ) : (
+          <p className="mt-5 text-sm text-white/80">
+            Primero diagnosticamos. Después el sistema correcto. Garantía por
+            escrito según sistema y alcance contratado.
+          </p>
+        )}
       </div>
     </section>
   );
@@ -184,12 +191,12 @@ function Close({ page }: { page: ServicePage }) {
           <div id="como-funciona" className="mt-12 scroll-mt-24">
             <h3 className="font-ads text-2xl font-semibold">Cómo funciona</h3>
             <ol className="mt-6 grid gap-4 sm:grid-cols-2">
-              {HOW_IT_WORKS_STEPS.map((step, idx) => (
+              {(page.steps ?? HOW_IT_WORKS_STEPS).map((step, idx) => (
                 <li
                   key={step.title}
                   className="rounded-lg border border-[#D6E8FF] bg-white p-5"
                 >
-                  <p className="font-ads text-3xl text-[#F5A623]">{idx + 1}</p>
+                  <p className="font-ads text-3xl text-[#7A5209]">{idx + 1}</p>
                   <p className="mt-2 font-ads text-lg font-semibold">{step.title}</p>
                   <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
                     {step.body}

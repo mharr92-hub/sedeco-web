@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeadCtaBand } from "@/components/site/lead-cta-band";
 import { SiteFooter } from "@/components/site/footer";
-import { getAllCases, getCaseBySlug } from "@/lib/data/cases";
+import { getAllCases, getCaseBySlug, SERVICE_PUBLIC_PATH } from "@/lib/data/cases";
 import { getServiceBySlug } from "@/lib/data/services";
 import { CANONICAL_ORIGIN } from "@/lib/site";
 
@@ -114,7 +114,7 @@ export default async function CasoDetailPage({
           <div className="brand-wrap py-4 text-sm text-[#5C6578]">
             <Link
               href="/casos"
-              className="transition-colors hover:text-[#F5A623]"
+              className="inline-flex min-h-6 items-center transition-colors hover:text-[#7A5209]"
             >
               Casos
             </Link>
@@ -234,16 +234,16 @@ export default async function CasoDetailPage({
                 {relatedServices.map((s) => (
                   <Link
                     key={s.slug}
-                    href={`/servicios/${s.slug}`}
+                    href={SERVICE_PUBLIC_PATH[s.slug]}
                     className="brand-card group p-5"
                   >
-                    <p className="font-display text-lg font-semibold text-[#1A2E8A] group-hover:text-[#F5A623]">
+                    <p className="font-display text-lg font-semibold text-[#1A2E8A] group-hover:text-[#7A5209]">
                       {s.shortName}
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
                       {s.tagline}
                     </p>
-                    <span className="mt-3 inline-flex text-sm font-semibold text-[#1A2E8A] group-hover:text-[#F5A623]">
+                    <span className="mt-3 inline-flex min-h-6 items-center text-sm font-semibold text-[#1A2E8A] group-hover:text-[#7A5209]">
                       Ver servicio →
                     </span>
                   </Link>

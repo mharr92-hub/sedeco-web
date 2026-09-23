@@ -132,7 +132,7 @@ export default async function ServicioDetailPage({
                   key={signal}
                   className="font-display text-xl font-semibold text-[#1A2E8A]"
                 >
-                  <span className="mr-3 text-[#F5A623]" aria-hidden="true">
+                  <span className="mr-3 text-[#7A5209]" aria-hidden="true">
                     —
                   </span>
                   <span className="text-base font-normal leading-relaxed text-[#5C6578]">
@@ -209,7 +209,7 @@ export default async function ServicioDetailPage({
                 </div>
                 <a
                   href="/casos"
-                  className="inline-flex items-center text-sm font-semibold text-[#1A2E8A] hover:text-[#F5A623]"
+                  className="inline-flex min-h-6 items-center text-sm font-semibold text-[#1A2E8A] hover:text-[#7A5209]"
                 >
                   Ver todos los casos →
                 </a>

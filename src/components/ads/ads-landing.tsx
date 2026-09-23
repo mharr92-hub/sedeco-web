@@ -17,7 +17,7 @@ import {
   getAdsHeroPhoto,
 } from "@/lib/data/ads-visuals";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
-import { AdsPhotoFill } from "@/components/ads/ads-photo";
+import { AdsPhotoFill, ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { GuaranteeLine } from "@/components/ads/guarantee-line";
 import { OpenFormButton } from "@/components/ads/open-form-button";
 import { TrackedLink } from "@/components/ads/tracked-link";
@@ -91,31 +91,13 @@ export function AdsLandingPage({ landing }: { landing: AdsLanding }) {
 
 function Hero({ landing }: { landing: AdsLanding }) {
   const hero = getAdsHeroPhoto(landing.slug);
-  const dual = hero.mobile.src !== hero.desktop.src;
 
   return (
     <section id="diagnostico" className="relative min-h-[85svh] text-white md:min-h-[92svh]">
       {/* Decorative full-bleed photo. pointer-events-none so it cannot steal
           clicks from the hero CTAs or the docked form. */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        {dual ? (
-          <>
-            <AdsPhotoFill
-              photo={hero.mobile}
-              priority
-              className="md:hidden"
-              sizes="100vw"
-            />
-            <AdsPhotoFill
-              photo={hero.desktop}
-              priority
-              className="hidden md:block"
-              sizes="100vw"
-            />
-          </>
-        ) : (
-          <AdsPhotoFill photo={hero.mobile} priority sizes="100vw" />
-        )}
+        <ResponsiveHeroPhotos mobile={hero.mobile} desktop={hero.desktop} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#070F26]/90 via-[#1A2E8A]/70 to-[#070F26]/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#070F26] via-transparent to-[#070F26]/40" />
       </div>
@@ -300,7 +282,7 @@ function Metodo() {
                 key={item}
                 className="font-ads text-xl font-semibold text-[#1A2E8A]"
               >
-                <span className="mr-3 text-[#F5A623]" aria-hidden="true">
+                <span className="mr-3 text-[#7A5209]" aria-hidden="true">
                   —
                 </span>
                 {item}
@@ -520,10 +502,10 @@ function Faqs({ landing }: { landing: AdsLanding }) {
               <summary className="cursor-pointer list-none font-ads text-lg font-semibold text-[#1A2E8A] marker:content-none [&::-webkit-details-marker]:hidden">
                 <span className="flex items-start justify-between gap-4">
                   {faq.q}
-                  <span className="text-[#F5A623] group-open:hidden" aria-hidden="true">
+                  <span className="text-[#7A5209] group-open:hidden" aria-hidden="true">
                     +
                   </span>
-                  <span className="hidden text-[#F5A623] group-open:inline" aria-hidden="true">
+                  <span className="hidden text-[#7A5209] group-open:inline" aria-hidden="true">
                     −
                   </span>
                 </span>

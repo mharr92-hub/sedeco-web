@@ -8,9 +8,9 @@ import { CANONICAL_ORIGIN } from "@/lib/site";
 const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
-  title: "Casos · Proyectos entregados",
+  title: { absolute: "Casos de obra en Panamá | SEDECO" },
   description:
-    "Proyectos de impermeabilización y sellado de concreto entregados por SEDECO en Panamá, con foto de obra verificada.",
+    "Proyectos entregados por SEDECO en Panamá, con fotografía real de la obra en hospitales, PH y otros edificios donde ya se intervino la estructura.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 
@@ -61,7 +61,7 @@ export default function CasosPage() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {cases.map((c, index) => (
                 <div key={c.slug} id={c.slug}>
-                  <CaseCard caseItem={c} priority={index < 4} />
+                  <CaseCard caseItem={c} priority={index === 0} />
                 </div>
               ))}
             </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { LegalArticle, LegalSection } from "@/components/site/legal-article";
 import {
-  ADDRESS,
   LEGAL_ENTITY,
+  NAP_STREET_ADDRESS,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
   RUC,
@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacidad",
   description:
-    "Aviso de privacidad de TANYA ENGINEERING, S.A. (SEDECO Panamá): qué datos recibimos en formularios, WhatsApp y medición, y cómo puede ejercer sus derechos.",
+    "Aviso de privacidad de Tanya Engineering, S.A. (SEDECO): datos de formularios y WhatsApp, medición con Google Analytics 4 y cómo pedir acceso o supresión.",
   alternates: { canonical: "/privacidad" },
 };
 
@@ -25,8 +25,8 @@ export default function PrivacidadPage() {
       <LegalSection title="Quién es responsable">
         <p>
           El responsable del tratamiento de sus datos es {LEGAL_ENTITY}, nombre
-          comercial {TRADE_NAME}, RUC {RUC}. Oficina: {ADDRESS.building},{" "}
-          {ADDRESS.street}, {ADDRESS.locality}. Sitio: sedeco.lat.
+          comercial {TRADE_NAME}, RUC {RUC}. Oficina: {NAP_STREET_ADDRESS}.
+          Sitio: sedeco.lat.
         </p>
         <p>
           Este aviso es breve y factual, según la Ley 81 de 2019 de la República
@@ -118,9 +118,7 @@ export default function PrivacidadPage() {
         <p>
           {LEGAL_ENTITY} ({TRADE_NAME})
           <br />
-          {ADDRESS.building}, {ADDRESS.street}
-          <br />
-          {ADDRESS.locality}
+          {NAP_STREET_ADDRESS}
           <br />
           Tel. {PHONE_OFFICE_PRIMARY} / {PHONE_OFFICE_SECONDARY}
           <br />

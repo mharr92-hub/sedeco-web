@@ -26,7 +26,7 @@ export function CaseCard({ caseItem, priority = false }: CaseCardProps) {
           />
         </div>
         <div className="p-5">
-          <h3 className="font-display text-xl font-semibold text-[#1A2E8A] transition-colors group-hover:text-[#F5A623]">
+          <h3 className="font-display text-xl font-semibold text-[#1A2E8A] transition-colors group-hover:text-[#7A5209]">
             {name}
           </h3>
           <p className="brand-kicker-gold mt-2">{workType}</p>

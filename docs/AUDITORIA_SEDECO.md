@@ -25,3 +25,47 @@ El teléfono aceptaba cualquier cadena de 7 dígitos y el paso 1 no mostraba el 
 | 13 | HECHO | `src/components/ads/ads-lead-form.tsx`, `src/app/(marketing)/page.tsx` | Home usa el formulario de 2 pasos. El correo no se pide. La descripción es opcional. | — |
 | 18 | HECHO | `src/app/layout.tsx`, `src/app/(marketing)/page.tsx`, `src/lib/site.ts` | Title por defecto, H1 y los textos de home que decían «permanente» pasan a «de larga duración». No se reescribieron claims de Ghostshield ni cifras. El title SEO final de `/` se ajusta en el bloque D al texto acordado. | — |
 | 21 | HECHO | `src/app/(marketing)/privacidad/page.tsx`, `src/app/(marketing)/terminos/page.tsx` | Los enlaces usan `whatsappHref`, que arma `https://wa.me/50765508320?text=`. | — |
+
+## Bloque C — técnico
+
+Las 7 fichas de casos enlazaban a `/servicios/*` y el hero marcaba `priority` en las dos fotos, así que el móvil precargaba también la de escritorio. El dorado `#F5A623` sobre blanco queda en 2.03:1 y el footer usaba 11px.
+
+| # | Estado | Archivos | Verificación | Pendiente |
+| --- | --- | --- | --- | --- |
+| 11 | HECHO | `src/lib/data/cases.ts` (`SERVICE_PUBLIC_PATH`), `src/app/(marketing)/casos/[slug]/page.tsx` | Fachadas → `/impermeabilizacion-fachadas`; impermeabilización, azoteas, tanques y piscinas → `/impermeabilizacion-panama`; sellado → `/pisos-industriales-panama`; grietas → `/reparacion-estructural-panama`; filtraciones → `/filtraciones`. | — |
+| 6 | HECHO en código / LCP NO MEDIDO | `src/components/ads/ads-photo.tsx`, `src/app/(marketing)/page.tsx`, `src/components/ads/ads-landing.tsx`, `src/app/(marketing)/casos/page.tsx`, `src/components/analytics/data-layer.tsx` | Preload del hero con `media`. En móvil la foto de escritorio va `loading=lazy`. En `/casos` solo la primera tarjeta lleva `priority`. `/servicios` no tiene imagen de hero (LCP de texto). gtag y GTM ya usan `afterInteractive`. No se tocó el contenedor. | Medir LCP móvil en la verificación final. |
+| 15 | HECHO en código / LCP NO MEDIDO | mismos que #6 | Se quitaron `lead-form.tsx`, `service-card.tsx` y `submit-lead.ts`, que ya no se importan. `lucide-react`, `react-hook-form`, `@hookform/resolvers` y `class-variance-authority` no tienen imports, así que no entran al bundle. | LCP móvil NO MEDIDO hasta el cierre. |
+| 14 | HECHO | `src/app/globals.css`, `src/components/site/case-card.tsx`, `src/components/ads/ads-landing.tsx`, `src/components/ads/service-offer-page.tsx`, `src/app/(marketing)/casos/[slug]/page.tsx`, `src/app/(marketing)/servicios/[slug]/page.tsx`, `src/app/(marketing)/page.tsx` | Texto dorado sobre blanco pasa de `#F5A623` (2.03:1) a `#7A5209` (6.91:1). El dorado sobre `#070F26` se deja (9.37:1). Cuerpo `#5C6578` sobre blanco: 5.85:1. No se modificó la barra de cifras. | — |
+| 20 | HECHO | `src/components/site/footer.tsx`, `src/components/ads/ads-footer.tsx` | Etiquetas del footer a `text-xs` (12px). Enlaces con `min-h-6` (24px). | — |
+| 25 | HECHO | `next.config.mjs` (sin cambio: ya era un salto) | `curl -sIL https://www.sedeco.lat/servicios/{impermeabilizacion,fachadas,azoteas,filtraciones,sellado-concreto,tanques,grietas,piscinas}`: cada uno responde 308 a la URL final y el siguiente salto es 200. | — |
+
+## Bloque D — SEO
+
+El JSON-LD de home decía «SEDECO, S.A.» y otra dirección. Los titles de las landing pasaban de 60 caracteres o no llevaban la keyword acordada. `lastmod` era `new Date()` en cada generación. No existía `/inspeccion-boroscopica`.
+
+| # | Estado | Archivos | Verificación | Pendiente |
+| --- | --- | --- | --- | --- |
+| 9 | HECHO | `src/lib/site.ts`, footers, `privacidad`, `terminos` | `legalName` «Tanya Engineering, S.A.». Dirección única: «RBS Tower, Ave. Balboa y Ramón H. Jurado, Planta Baja, Oficina 103A, Punta Paitilla». Teléfonos: +507 383-5175, +507 383-5176, +507 6550-8320. | — |
+| 10 | HECHO | `src/lib/data/service-pages.ts`, `src/lib/data/ads-landings.ts`, `src/app/(marketing)/page.tsx`, `servicios/page.tsx` | Fachadas: «restauración e impermeabilización de fachadas». Pintura: «pintura de edificios». Home: marca + sellado de concreto. `/servicios` no lleva una keyword principal. | — |
+| 16 | HECHO | mismos titles | Todos los titles de la tabla quedan en ≤60. `scripts/verify-audit.ts` lo afirma. | — |
+| 17 | HECHO | descriptions de home, LPs, casos, servicios, privacidad y términos | Descriptions entre 120 y 155 caracteres (medidas al redactarlas). | — |
+| 22 | HECHO | `src/lib/site.ts` `localBusinessJsonLd` | `image` (OG) y `geo` del pin publicado de RBS Tower (near-place.com, 8.9777693, -79.5158156). Validación estructural en `scripts/verify-audit.ts`. Rich Results de Google: NO MEDIDO (la página no está publicada en esta rama). | Rich Results en la URL pública, después del deploy. |
+| 23 | HECHO | `src/app/sitemap.ts` | Se quitó `lastModified: new Date()`. No hay fecha real de cada URL. | — |
+
+LP `/inspeccion-boroscopica` y bloque en home: HECHO. Title «Inspección boroscópica desagües Panamá | SEDECO». H1 «Inspección con cámara boroscópica en desagües». Incluye diagnóstico e informe y WhatsApp +507 6550-8320. Sin precios ni plazos de garantía.
+
+### Titles antes / después
+
+| Ruta | Antes (main) | Después | Chars |
+| --- | --- | --- | --- |
+| `/` | SEDECO Panamá — Sellado de concreto permanente | SEDECO Panamá \| sellado e impermeabilización | 44 |
+| `/filtraciones` | Filtraciones en Panamá: encontramos el origen antes de reparar · SEDECO Panamá | Filtraciones y detección de fugas Panamá \| SEDECO | 49 |
+| `/impermeabilizacion-fachadas` | Restauración de fachadas en altura en Panamá \| SEDECO | Restauración e impermeabilización de fachadas \| SEDECO | 54 |
+| `/pintura-edificios-panama` | Pintura de edificios y fachadas en altura en Panamá \| SEDECO | Pintura de edificios en Panamá \| SEDECO | 39 |
+| `/impermeabilizacion-panama` | Impermeabilización en Panamá · Azoteas, losas y tanques \| SEDECO | Impermeabilización de azoteas y losas \| SEDECO | 46 |
+| `/pisos-industriales-panama` | Pisos epóxicos e industriales en Panamá \| SEDECO | Pisos industriales en Panamá \| SEDECO | 37 |
+| `/reparacion-estructural-panama` | Reparación estructural de losas y concreto en Panamá \| SEDECO | Reparación estructural en Panamá \| SEDECO | 41 |
+| `/mantenimiento-ph` | Mantenimiento preventivo de edificios y PH en Panamá \| SEDECO | Mantenimiento de PH en Panamá \| SEDECO | 38 |
+| `/inspeccion-boroscopica` | no existía | Inspección boroscópica desagües Panamá \| SEDECO | 47 |
+| `/servicios` | Servicios · SEDECO Panamá | Servicios · SEDECO Panamá | 25 |
+| `/casos` | Casos · Proyectos entregados · SEDECO Panamá | Casos de obra en Panamá \| SEDECO | 32 |

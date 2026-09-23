@@ -24,6 +24,7 @@ export const problemaValues = [
   "pisos",
   "pintura",
   "mantenimiento",
+  "desague",
   "otro",
 ] as const;
 
@@ -213,9 +214,9 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     slug: "filtraciones",
     path: "/filtraciones",
     source: "ads_filtraciones",
-    title: "Filtraciones en Panamá: encontramos el origen antes de reparar",
+    title: "Filtraciones y detección de fugas Panamá | SEDECO",
     description:
-      "¿Filtración en su apartamento o PH en Panamá? Encontramos el origen del agua antes de reparar. Diagnóstico en Ciudad de Panamá y área metro.",
+      "Detección de filtraciones y fugas en Panamá. Localizamos el origen del agua en apartamentos y PH antes de reparar. Diagnóstico en Ciudad de Panamá y Colón.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
     cta: "Solicitar inspección",
     ctaSticky: "Solicitar inspección",
@@ -275,7 +276,7 @@ export function getAdsLanding(slug: AdsLandingSlug): AdsLanding {
 export function adsMetadata(landing: AdsLanding): Metadata {
   const url = `${CANONICAL_ORIGIN}${landing.path}`;
   return {
-    title: { absolute: `${landing.title} · SEDECO Panamá` },
+    title: { absolute: landing.title },
     description: landing.description,
     alternates: { canonical: url },
     openGraph: {

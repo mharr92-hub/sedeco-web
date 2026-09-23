@@ -30,6 +30,7 @@ const PROBLEMA_LABEL: Record<string, string> = {
   pisos: "Pisos industriales",
   pintura: "Pintura de fachada",
   mantenimiento: "Mantenimiento de PH",
+  desague: "Desagüe",
   otro: "Otro",
 };
 

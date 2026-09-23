@@ -4,6 +4,17 @@ import {
   type AdsPhoto,
 } from "@/lib/data/ads-visuals";
 
+export const SERVICE_PUBLIC_PATH: Record<ServiceSlug, string> = {
+  fachadas: "/impermeabilizacion-fachadas",
+  azoteas: "/impermeabilizacion-panama",
+  tanques: "/impermeabilizacion-panama",
+  grietas: "/reparacion-estructural-panama",
+  piscinas: "/impermeabilizacion-panama",
+  filtraciones: "/filtraciones",
+  "sellado-concreto": "/pisos-industriales-panama",
+  impermeabilizacion: "/impermeabilizacion-panama",
+};
+
 export type ServiceSlug =
   | "fachadas"
   | "azoteas"

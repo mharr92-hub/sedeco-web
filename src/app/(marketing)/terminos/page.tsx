@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalArticle, LegalSection } from "@/components/site/legal-article";
 import {
-  ADDRESS,
   GUARANTEE_LINE,
+  NAP_STREET_ADDRESS,
   LEGAL_ENTITY,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Términos",
   description:
-    "Términos de uso del sitio SEDECO Panamá. Una inspección o cotización no es un contrato. La garantía es por escrito según sistema y alcance.",
+    "Términos del sitio SEDECO Panamá. Pedir una inspección no crea un contrato de obra. Si hay garantía, queda por escrito según el sistema y el alcance.",
   alternates: { canonical: "/terminos" },
 };
 
@@ -27,8 +27,8 @@ export default function TerminosPage() {
       <LegalSection title="Quién opera este sitio">
         <p>
           Este sitio lo opera {LEGAL_ENTITY}, nombre comercial {TRADE_NAME}, RUC{" "}
-          {RUC}, con oficina en {ADDRESS.building}, {ADDRESS.street},{" "}
-          {ADDRESS.locality}. Al usarlo, usted acepta estos términos.
+          {RUC}, con oficina en {NAP_STREET_ADDRESS}. Al usarlo, usted acepta
+          estos términos.
         </p>
       </LegalSection>
 
