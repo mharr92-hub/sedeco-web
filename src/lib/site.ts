@@ -12,7 +12,7 @@ export const OG_IMAGE = {
   url: OG_IMAGE_URL,
   width: 1200,
   height: 630,
-  alt: "SEDECO Panamá | sellado e impermeabilización",
+  alt: "SEDECO Panamá | sellado de concreto",
   type: "image/png",
 } as const;
 

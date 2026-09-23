@@ -214,9 +214,9 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     slug: "filtraciones",
     path: "/filtraciones",
     source: "ads_filtraciones",
-    title: "Filtraciones y detección de fugas Panamá | SEDECO",
+    title: "Filtraciones y fugas Panamá | SEDECO",
     description:
-      "Detección de filtraciones y fugas en Panamá. Localizamos el origen del agua en apartamentos y PH antes de reparar. Diagnóstico en Ciudad de Panamá y Colón.",
+      "Detección e inspección de filtraciones en techos y fachadas. Solicite inspección.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
     cta: "Solicitar inspección",
     ctaSticky: "Solicitar inspección",

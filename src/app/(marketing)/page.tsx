@@ -39,9 +39,9 @@ const SERVICE_PHOTOS = {
   "/mantenimiento-ph": ADS_PHOTOS.joyTower,
 } as const;
 
-const HOME_TITLE = "SEDECO Panamá | sellado e impermeabilización";
+const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
 const HOME_DESCRIPTION =
-  "SEDECO en Panamá: sellado de concreto e impermeabilización en la ciudad y en Colón. Diagnóstico previo y más de 100,000 m² aplicados.";
+  "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.";
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },

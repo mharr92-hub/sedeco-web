@@ -225,9 +225,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de impermeabilización en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de impermeabilización. Les envío fotos del problema.",
-    metaTitle: "Impermeabilización de azoteas y losas | SEDECO",
+    metaTitle: "Impermeabilización Panamá | SEDECO",
     metaDescription:
-      "Impermeabilización de azoteas, losas, tanques y piscinas en Panamá. Diagnosticamos el sustrato y aplicamos el sistema que corresponde a esa superficie.",
+      "Impermeabilización de techos, tanques y concreto. Diagnóstico en sitio.",
     h1: "Impermeabilización en Panamá: el sistema correcto para cada superficie.",
     sub: "Azoteas, losas, fachadas, tanques y piscinas. Primero diagnosticamos el sustrato; después aplicamos el sistema y lo garantizamos por escrito.",
     bullets: [
@@ -255,9 +255,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de fachada en altura en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de fachada en altura. Les envío fotos de las manchas o uniones.",
-    metaTitle: "Restauración e impermeabilización de fachadas | SEDECO",
+    metaTitle: "Restauración e impermeabilización de fachadas",
     metaDescription:
-      "Restauración e impermeabilización de fachadas en Ciudad de Panamá: grietas, sellos y pintura en altura con guindolas propias certificadas.",
+      "Sellado y restauración de fachadas en Panamá. Solicite inspección técnica.",
     h1: "Restauración e impermeabilización de fachadas en altura.",
     sub: "Reparación de grietas y repellos, sellos de ventanas y juntas, impermeabilización y pintura. Guindolas eléctricas ZLP 630 certificadas: no dependemos de terceros para llegar a su fachada.",
     bullets: [
@@ -280,9 +280,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de pisos industriales en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de pisos industriales. Les envío fotos del sustrato.",
-    metaTitle: "Pisos industriales en Panamá | SEDECO",
+    metaTitle: "Pisos industriales Panamá | SEDECO",
     metaDescription:
-      "Pisos industriales y comerciales en Panamá: epóxicos, concreto pulido y sellado para bodegas, plantas y estacionamientos, con diagnóstico del sustrato.",
+      "Sistemas para pisos industriales en Panamá. Solicite inspección técnica.",
     h1: "Pisos que aguantan la operación: epóxicos, concreto pulido y sellado industrial.",
     sub: "Para bodegas, plantas, supermercados, estacionamientos y comercios. Preparación mecánica del sustrato, sistema según el uso y garantía por escrito.",
     bullets: [
@@ -344,9 +344,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de pintura de edificios en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de pintura de edificios. Les envío fotos de la fachada.",
-    metaTitle: "Pintura de edificios en Panamá | SEDECO",
+    metaTitle: "Pintura de edificios Panamá | SEDECO",
     metaDescription:
-      "Pintura de edificios en Ciudad de Panamá. Reparamos grietas y sellos de la fachada antes de pintar, con guindolas propias y personal asegurado.",
+      "Pintura de edificios y mantenimiento de fachadas. Solicite inspección.",
     h1: "Pintura de edificios en altura, con la fachada reparada primero.",
     sub: "No pintamos sobre grietas ni humedad: reparamos, sellamos y después pintamos. Por eso la pintura dura.",
     bullets: [
@@ -394,9 +394,9 @@ export const servicePages: Record<
       "Hola, quiero una inspección con cámara boroscópica en un desagüe.",
     thankYouWhatsapp:
       "Hola, solicité una inspección con cámara boroscópica. Les cuento en qué desagüe está el problema.",
-    metaTitle: "Inspección boroscópica desagües Panamá | SEDECO",
+    metaTitle: "Inspección boroscópica desagües | SEDECO",
     metaDescription:
-      "Inspección con cámara boroscópica en desagües de edificios en Panamá. El diagnóstico queda en un informe para ubicar el origen antes de abrir.",
+      "Cámara en tuberías de desagüe. Diagnóstico e informe. Solicite inspección.",
     h1: "Inspección con cámara boroscópica en desagües",
     sub: "Recorremos el desagüe con cámara para ver dónde entra o se detiene el agua. El resultado es un diagnóstico con informe, antes de abrir o reparar.",
     bullets: [

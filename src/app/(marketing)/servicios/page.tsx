@@ -11,9 +11,9 @@ import {
 import { CANONICAL_ORIGIN, INSPECTION_SLA } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Servicios · SEDECO Panamá" },
+  title: { absolute: "Servicios SEDECO Panamá" },
   description:
-    "Índice de trabajos de SEDECO en Ciudad de Panamá y Colón: diagnóstico, altura, pisos, estructura y mantenimiento. Elija el frente de su edificio.",
+    "Sellado, impermeabilización y servicios técnicos. Solicite inspección.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/servicios` },
 };
 

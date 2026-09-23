@@ -19,26 +19,26 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SEDECO Panamá | sellado e impermeabilización",
+    default: "SEDECO Panamá | sellado de concreto",
     template: "%s · SEDECO Panamá",
   },
   description:
-    "SEDECO en Panamá: sellado de concreto e impermeabilización en la ciudad y en Colón. Diagnóstico previo y más de 100,000 m² aplicados.",
+    "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
   openGraph: {
     type: "website",
     locale: "es_PA",
     siteName: "SEDECO Panamá",
     url: siteUrl,
-    title: "SEDECO Panamá | sellado e impermeabilización",
+    title: "SEDECO Panamá | sellado de concreto",
     description:
-      "SEDECO en Panamá: sellado de concreto e impermeabilización en la ciudad y en Colón. Diagnóstico previo y más de 100,000 m² aplicados.",
+      "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEDECO Panamá | sellado e impermeabilización",
+    title: "SEDECO Panamá | sellado de concreto",
     description:
-      "SEDECO en Panamá: sellado de concreto e impermeabilización en la ciudad y en Colón. Diagnóstico previo y más de 100,000 m² aplicados.",
+      "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
     images: [OG_IMAGE_URL],
   },
   icons: {

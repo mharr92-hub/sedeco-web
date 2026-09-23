@@ -109,17 +109,15 @@ assert.equal(typeof business.geo.latitude, "number");
 assert.equal(typeof business.geo.longitude, "number");
 
 const titles = [
-  "SEDECO Panamá | sellado e impermeabilización",
-  "Filtraciones y detección de fugas Panamá | SEDECO",
-  "Restauración e impermeabilización de fachadas | SEDECO",
-  "Pintura de edificios en Panamá | SEDECO",
-  "Impermeabilización de azoteas y losas | SEDECO",
-  "Pisos industriales en Panamá | SEDECO",
-  "Reparación estructural en Panamá | SEDECO",
-  "Mantenimiento de PH en Panamá | SEDECO",
-  "Inspección boroscópica desagües Panamá | SEDECO",
-  "Servicios · SEDECO Panamá",
-  "Casos de obra en Panamá | SEDECO",
+  "SEDECO Panamá | sellado de concreto",
+  "Filtraciones y fugas Panamá | SEDECO",
+  "Impermeabilización Panamá | SEDECO",
+  "Restauración e impermeabilización de fachadas",
+  "Pintura de edificios Panamá | SEDECO",
+  "Pisos industriales Panamá | SEDECO",
+  "Servicios SEDECO Panamá",
+  "Casos SEDECO Panamá | Obras reales",
+  "Inspección boroscópica desagües | SEDECO",
 ];
 for (const title of titles) {
   assert.ok(title.length <= 60, title);

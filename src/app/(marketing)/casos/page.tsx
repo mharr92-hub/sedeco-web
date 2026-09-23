@@ -8,9 +8,8 @@ import { CANONICAL_ORIGIN } from "@/lib/site";
 const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
-  title: { absolute: "Casos de obra en Panamá | SEDECO" },
-  description:
-    "Proyectos entregados por SEDECO en Panamá, con fotografía real de la obra en hospitales, PH y otros edificios donde ya se intervino la estructura.",
+  title: { absolute: "Casos SEDECO Panamá | Obras reales" },
+  description: "Proyectos de sellado e impermeabilización en Panamá.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 

@@ -47,34 +47,38 @@ El JSON-LD de home decía «SEDECO, S.A.» y otra dirección. Los titles de las 
 | --- | --- | --- | --- | --- |
 | 9 | HECHO | `src/lib/site.ts`, footers, `privacidad`, `terminos` | `legalName` «Tanya Engineering, S.A.». Dirección única: «RBS Tower, Ave. Balboa y Ramón H. Jurado, Planta Baja, Oficina 103A, Punta Paitilla». Teléfonos: +507 383-5175, +507 383-5176, +507 6550-8320. | — |
 | 10 | HECHO | `src/lib/data/service-pages.ts`, `src/lib/data/ads-landings.ts`, `src/app/(marketing)/page.tsx`, `servicios/page.tsx` | Fachadas: «restauración e impermeabilización de fachadas». Pintura: «pintura de edificios». Home: marca + sellado de concreto. `/servicios` no lleva una keyword principal. | — |
-| 16 | HECHO | mismos titles | Todos los titles de la tabla quedan en ≤60. `scripts/verify-audit.ts` lo afirma. | — |
-| 17 | HECHO | descriptions de home, LPs, casos, servicios, privacidad y términos | Descriptions entre 120 y 155 caracteres (medidas al redactarlas). | — |
+| 16 | HECHO | titles de home, LPs, casos y servicios | Copy exacto de Content. Todos ≤60. `scripts/verify-audit.ts`. | — |
+| 17 | HECHO con el copy pedido | descriptions de esas mismas rutas | Texto exacto de Content. Miden 52–81 caracteres, bajo el piso de 120. No se inventó texto para llegar al rango. | Content puede alargar las metas si quiere 120–155. |
 | 22 | HECHO | `src/lib/site.ts` `localBusinessJsonLd` | `image` (OG) y `geo` del pin publicado de RBS Tower (near-place.com, 8.9777693, -79.5158156). Validación estructural en `scripts/verify-audit.ts`. Rich Results de Google: NO MEDIDO (la página no está publicada en esta rama). | Rich Results en la URL pública, después del deploy. |
 | 23 | HECHO | `src/app/sitemap.ts` | Se quitó `lastModified: new Date()`. No hay fecha real de cada URL. | — |
 
-LP `/inspeccion-boroscopica` y bloque en home: HECHO. Title «Inspección boroscópica desagües Panamá | SEDECO». H1 «Inspección con cámara boroscópica en desagües». Incluye diagnóstico e informe y WhatsApp +507 6550-8320. Sin precios ni plazos de garantía.
+LP `/inspeccion-boroscopica` y bloque en home: HECHO. Title «Inspección boroscópica desagües | SEDECO». H1 «Inspección con cámara boroscópica en desagües». Incluye diagnóstico e informe y WhatsApp +507 6550-8320. Sin precios ni plazos de garantía.
 
-### Titles antes / después
+### Titles y metas de Content (copy exacto)
 
-| Ruta | Antes (main) | Después | Chars |
-| --- | --- | --- | --- |
-| `/` | SEDECO Panamá — Sellado de concreto permanente | SEDECO Panamá \| sellado e impermeabilización | 44 |
-| `/filtraciones` | Filtraciones en Panamá: encontramos el origen antes de reparar · SEDECO Panamá | Filtraciones y detección de fugas Panamá \| SEDECO | 49 |
-| `/impermeabilizacion-fachadas` | Restauración de fachadas en altura en Panamá \| SEDECO | Restauración e impermeabilización de fachadas \| SEDECO | 54 |
-| `/pintura-edificios-panama` | Pintura de edificios y fachadas en altura en Panamá \| SEDECO | Pintura de edificios en Panamá \| SEDECO | 39 |
-| `/impermeabilizacion-panama` | Impermeabilización en Panamá · Azoteas, losas y tanques \| SEDECO | Impermeabilización de azoteas y losas \| SEDECO | 46 |
-| `/pisos-industriales-panama` | Pisos epóxicos e industriales en Panamá \| SEDECO | Pisos industriales en Panamá \| SEDECO | 37 |
-| `/reparacion-estructural-panama` | Reparación estructural de losas y concreto en Panamá \| SEDECO | Reparación estructural en Panamá \| SEDECO | 41 |
-| `/mantenimiento-ph` | Mantenimiento preventivo de edificios y PH en Panamá \| SEDECO | Mantenimiento de PH en Panamá \| SEDECO | 38 |
-| `/inspeccion-boroscopica` | no existía | Inspección boroscópica desagües Panamá \| SEDECO | 47 |
-| `/servicios` | Servicios · SEDECO Panamá | Servicios · SEDECO Panamá | 25 |
-| `/casos` | Casos · Proyectos entregados · SEDECO Panamá | Casos de obra en Panamá \| SEDECO | 32 |
+Titles ≤60. Las metas se pegaron tal cual las entregó Content: todas quedan bajo 120 caracteres. No se alargaron.
+
+| Ruta | Title | T | Meta | M |
+| --- | --- | --- | --- | --- |
+| `/` | SEDECO Panamá \| sellado de concreto | 35 | Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica. | 80 |
+| `/filtraciones` | Filtraciones y fugas Panamá \| SEDECO | 36 | Detección e inspección de filtraciones en techos y fachadas. Solicite inspección. | 81 |
+| `/impermeabilizacion-panama` | Impermeabilización Panamá \| SEDECO | 34 | Impermeabilización de techos, tanques y concreto. Diagnóstico en sitio. | 71 |
+| `/impermeabilizacion-fachadas` | Restauración e impermeabilización de fachadas | 45 | Sellado y restauración de fachadas en Panamá. Solicite inspección técnica. | 74 |
+| `/pintura-edificios-panama` | Pintura de edificios Panamá \| SEDECO | 36 | Pintura de edificios y mantenimiento de fachadas. Solicite inspección. | 70 |
+| `/pisos-industriales-panama` | Pisos industriales Panamá \| SEDECO | 34 | Sistemas para pisos industriales en Panamá. Solicite inspección técnica. | 72 |
+| `/servicios` | Servicios SEDECO Panamá | 23 | Sellado, impermeabilización y servicios técnicos. Solicite inspección. | 70 |
+| `/casos` | Casos SEDECO Panamá \| Obras reales | 34 | Proyectos de sellado e impermeabilización en Panamá. | 52 |
+| `/inspeccion-boroscopica` | Inspección boroscópica desagües \| SEDECO | 40 | Cámara en tuberías de desagüe. Diagnóstico e informe. Solicite inspección. | 74 |
+
+## Bloque C en esta ronda
+
+Sin cambio de código. Hero, contraste, enlaces de casos y redirects siguen como en `accfaaf` y `75c39a5`. El LCP simulado medido antes no se volvió a correr.
 
 ## Verificación final
 
 `npm run build` (Next.js 15.5.15, 34 páginas) y `CI=true npx next lint --max-warnings 0` pasan. `scripts/verify-audit.ts`: atribución, teléfono de Panamá y NAP ok. No hay `.env`, `.env.local` ni `.env.production`: el insert en `public.leads` es NO ENCONTRADO. No se inventó una fila.
 
-Lighthouse móvil (simulacro Slow 4G, mediana de 3 corridas, `http://127.0.0.1:3456`, 23 sep 2026):
+Lighthouse móvil de la medición anterior (simulacro Slow 4G, mediana de 3 corridas, `http://127.0.0.1:3456`, 23 sep 2026). Esta ronda solo cambia copy; no se volvió a medir:
 
 | Ruta | LCP simulado (ms) | Performance | LCP observado en el laboratorio (ms) |
 | --- | --- | --- | --- |
