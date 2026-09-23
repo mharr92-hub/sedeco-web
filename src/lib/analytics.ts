@@ -29,7 +29,8 @@ export type AnalyticsPayload = {
 
 declare global {
   interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -43,13 +44,31 @@ export function getGtmContainerId(): string | undefined {
 const DEFAULT_GA4_ID = "G-1CWPNC75XE";
 
 /**
- * Direct GA4 measurement ID for gtag.js.
- * Returns undefined when GTM is set so GA4 is not injected twice.
+ * GA4 measurement ID for gtag.js. Loads alongside GTM on purpose: the GTM
+ * container carries no GA4 tag, so gtag is the only path into GA4. If a GA4
+ * tag is ever added to the container, drop this so hits are not counted twice.
  */
 export function getDirectGa4MeasurementId(): string | undefined {
-  if (getGtmContainerId()) return undefined;
   const id = process.env.NEXT_PUBLIC_GA4_ID?.trim();
   return id || DEFAULT_GA4_ID;
+}
+
+/**
+ * Send an event straight to GA4. Falls back to queueing on dataLayer when
+ * gtag.js has not finished loading — gtag drains that queue on init.
+ * Never pass personal data (name, phone, email) in params.
+ */
+export function gtagEvent(
+  name: string,
+  params: Record<string, unknown> = {},
+): void {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag === "function") {
+    window.gtag("event", name, params);
+    return;
+  }
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push(["event", name, params]);
 }
 
 /**

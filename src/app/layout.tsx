@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
+import { WhatsAppClickTracker } from "@/components/analytics/whatsapp-click-tracker";
 import { CANONICAL_ORIGIN, OG_IMAGE, OG_IMAGE_URL } from "@/lib/site";
 
 const montserrat = Montserrat({
@@ -69,6 +70,7 @@ export default function RootLayout({
       >
         <DataLayerInit />
         <GtmNoscript />
+        <WhatsAppClickTracker />
         {children}
       </body>
     </html>

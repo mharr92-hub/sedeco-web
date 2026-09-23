@@ -16,7 +16,7 @@ import {
 import type { LeadPageContext } from "@/lib/data/service-pages";
 import { tipoPropiedadValues } from "@/lib/data/ads-landings";
 import { TRACKING_PARAM_KEYS } from "@/lib/tracking";
-import { track } from "@/lib/analytics";
+import { gtagEvent, track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ADS_OPEN_FORM_EVENT } from "@/components/ads/ads-form-events";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
@@ -252,6 +252,7 @@ function AdsLeadForm({
       landing: landing.slug,
       problem: values.problema,
     });
+    gtagEvent("generate_lead", { form: landing.slug });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);
