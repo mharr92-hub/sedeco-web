@@ -83,14 +83,18 @@ export const adsLeadFormSchema = z.object({
     .trim()
     .refine(
       (v) =>
-        LEAD_PAGE_SLUGS.some((slug) => v === `/${slug}`) || v === "/gracias",
+        v === "/" ||
+        v === "/gracias" ||
+        LEAD_PAGE_SLUGS.some((slug) => v === `/${slug}`),
       "Origen de landing no válido.",
     ),
   source: z
     .string()
     .trim()
     .refine(
-      (v) => LEAD_PAGE_SLUGS.some((slug) => v === `ads_${slug}`),
+      (v) =>
+        v === "web_home" ||
+        LEAD_PAGE_SLUGS.some((slug) => v === `ads_${slug}`),
       "Origen no válido.",
     ),
 });

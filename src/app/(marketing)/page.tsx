@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
-import { LeadForm } from "@/components/site/lead-form";
+import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { SectionHeading } from "@/components/site/section-heading";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
@@ -10,6 +10,7 @@ import { AdsPhotoFill } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
 import { getFeaturedCases } from "@/lib/data/cases";
 import {
+  HOME_LEAD,
   HOME_SERVICE_CARDS,
   HOME_SERVICES_FOOTNOTE,
   HOME_SERVICES_SUBTITLE,
@@ -323,7 +324,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="brand-card bg-white p-6 text-[#1A2E8A] md:p-8">
-              <LeadForm />
+              <AdsLeadDock landing={HOME_LEAD} embed />
             </div>
           </div>
         </section>

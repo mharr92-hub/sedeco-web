@@ -133,6 +133,59 @@ function persistAttribution(params: AttributionParams): void {
 }
 
 /**
+ * URL values win per key. Stored values fill keys the current URL does not
+ * have. Empty URL values are already dropped, so they cannot wipe a gclid.
+ */
+export function resolveAttribution(
+  fromUrl: AttributionParams,
+  stored: AttributionParams,
+): AttributionParams {
+  return { ...stored, ...fromUrl };
+}
+
+export function trackingFieldsFromAttribution(
+  attribution: AttributionParams,
+): TrackingFields {
+  const out: TrackingFields = {};
+  for (const key of TRACKING_PARAM_KEYS) {
+    const value = attribution[key];
+    if (value) out[PARAM_TO_FIELD[key]] = value;
+  }
+  return out;
+}
+
+/** Form fields win. The cookie only fills keys the form did not send. */
+export function mergeTracking(
+  primary: TrackingFields,
+  fallback: TrackingFields,
+): TrackingFields {
+  const out: TrackingFields = { ...fallback };
+  for (const key of Object.keys(primary) as (keyof TrackingFields)[]) {
+    const value = primary[key]?.trim();
+    if (value) out[key] = value;
+  }
+  return out;
+}
+
+export function attributionFromCookieHeader(
+  cookieHeader: string | null,
+): AttributionParams {
+  if (!cookieHeader) return {};
+  const prefix = `${ATTRIBUTION_STORAGE_KEY}=`;
+  for (const part of cookieHeader.split(";")) {
+    const trimmed = part.trim();
+    if (!trimmed.startsWith(prefix)) continue;
+    const encoded = trimmed.slice(prefix.length);
+    try {
+      return parseAttributionPayload(decodeURIComponent(encoded));
+    } catch {
+      return parseAttributionPayload(encoded);
+    }
+  }
+  return {};
+}
+
+/**
  * URL values win per key; stored values fill keys the current URL does not
  * have. Writes the cookie and sessionStorage only when this URL actually
  * carries attribution — a fresh visit must not invent a gclid.
@@ -140,7 +193,7 @@ function persistAttribution(params: AttributionParams): void {
 export function rememberAttribution(search: string): AttributionParams {
   const fromUrl = attributionFromSearch(search);
   const stored = readStoredAttribution();
-  const resolved: AttributionParams = { ...stored, ...fromUrl };
+  const resolved = resolveAttribution(fromUrl, stored);
   if (Object.keys(fromUrl).length > 0) {
     persistAttribution(resolved);
   }
@@ -150,13 +203,7 @@ export function rememberAttribution(search: string): AttributionParams {
 export function parseTrackingParams(
   params: Pick<URLSearchParams, "get">,
 ): TrackingFields {
-  const out: TrackingFields = {};
-  const attribution = attributionFromSearch(params);
-  for (const key of TRACKING_PARAM_KEYS) {
-    const value = attribution[key];
-    if (value) out[PARAM_TO_FIELD[key]] = value;
-  }
-  return out;
+  return trackingFieldsFromAttribution(attributionFromSearch(params));
 }
 
 export function trackingFromFormData(formData: FormData): TrackingFields {

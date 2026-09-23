@@ -44,8 +44,8 @@ export default function PrivacidadPage() {
             descripción y si puede enviar fotos.
           </li>
           <li>
-            Formulario del sitio principal: nombre, correo, teléfono, tipo de
-            proyecto y mensaje.
+            Formulario del sitio principal: nombre, WhatsApp, tipo de problema,
+            descripción si la escribe, tipo de propiedad y zona.
           </li>
           <li>
             Parámetros de campaña si llega desde un anuncio (UTM, y en su caso
@@ -75,17 +75,14 @@ export default function PrivacidadPage() {
           por sí solo.
         </p>
         <p>
-          Google Tag Manager, Google Analytics 4 o cookies de Google Ads solo se
-          cargan si están configurados en el entorno de publicación. Si GTM está
-          activo, GA4 no se inyecta además por gtag, para no contar dos veces.
-          Si esas variables no están definidas, no insertamos contenedor ni
-          píxel de Google.
+          Usamos Google Analytics 4. Google puede detectar y enviar de forma
+          hasheada datos que usted proporcione en formularios (p. ej. correo o
+          teléfono) para medición. No usamos esos datos para vender ni compartir
+          listas.
         </p>
         <p>
-          Esas herramientas, cuando existen, pueden usar cookies o
-          identificadores para medir visitas y el rendimiento de anuncios. Usted
-          puede bloquear cookies en su navegador; el sitio y WhatsApp siguen
-          funcionando.
+          Esa medición usa gtag en el sitio. Usted puede bloquear cookies en su
+          navegador; el sitio y WhatsApp siguen funcionando.
         </p>
       </LegalSection>
 

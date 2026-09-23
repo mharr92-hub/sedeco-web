@@ -13,7 +13,10 @@ import {
   submitAdsLead,
   type SubmitAdsLeadResult,
 } from "@/app/actions/submit-ads-lead";
-import type { LeadPageContext } from "@/lib/data/service-pages";
+import {
+  analyticsFormName,
+  type LeadPageContext,
+} from "@/lib/data/service-pages";
 import { tipoPropiedadValues } from "@/lib/data/ads-landings";
 import {
   rememberAttribution,
@@ -21,6 +24,13 @@ import {
   type AttributionParams,
 } from "@/lib/tracking";
 import { gtagEvent, track } from "@/lib/analytics";
+
+function reportFormError(form: string, fields: string[]): void {
+  const names = fields.length > 0 ? fields : ["envio"];
+  for (const field of names) {
+    gtagEvent("form_error", { form, field });
+  }
+}
 import { cn } from "@/lib/utils";
 import { ADS_OPEN_FORM_EVENT } from "@/components/ads/ads-form-events";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
@@ -49,9 +59,12 @@ const PROPIEDAD_OPTIONS: Array<{
 export function AdsLeadDock({
   landing,
   inline = false,
+  embed = false,
 }: {
   landing: LeadPageContext;
   inline?: boolean;
+  /** Form only. The marketing home already has its own WhatsApp button. */
+  embed?: boolean;
 }) {
   const [sheetOpen, setSheetOpen] = useState(false);
   const started = useRef(false);
@@ -62,7 +75,7 @@ export function AdsLeadDock({
         .detail;
       if (detail?.sheet) {
         setSheetOpen(true);
-        markFormStart(landing.slug);
+        markFormStart();
       }
     };
     window.addEventListener(ADS_OPEN_FORM_EVENT, onOpen);
@@ -84,10 +97,16 @@ export function AdsLeadDock({
     };
   }, [sheetOpen]);
 
-  function markFormStart(slug: string) {
+  function markFormStart() {
     if (started.current) return;
     started.current = true;
-    track({ event: "lead_form_start", landing: slug });
+    gtagEvent("lead_form_start", { form: analyticsFormName(landing) });
+  }
+
+  if (embed) {
+    return (
+      <AdsLeadForm landing={landing} onStart={markFormStart} />
+    );
   }
 
   return (
@@ -138,10 +157,7 @@ export function AdsLeadDock({
           <p className="mb-5 text-sm leading-relaxed text-[#5C6578]">
             Sin compromiso. {INSPECTION_SLA}
           </p>
-          <AdsLeadForm
-            landing={landing}
-            onStart={() => markFormStart(landing.slug)}
-          />
+          <AdsLeadForm landing={landing} onStart={markFormStart} />
         </div>
       </div>
 
@@ -170,7 +186,7 @@ export function AdsLeadDock({
                 location: "sticky",
               });
               setSheetOpen(true);
-              markFormStart(landing.slug);
+              markFormStart();
             }}
             className="inline-flex h-12 items-center justify-center rounded-md bg-[#2B4BF2] px-3 text-sm font-semibold text-white"
           >
@@ -241,22 +257,7 @@ function AdsLeadForm({
   useEffect(() => {
     if (!state?.ok || redirected.current) return;
     redirected.current = true;
-    track({
-      event: "lead_form_submit",
-      landing: landing.slug,
-      problem: values.problema,
-    });
-    track({
-      event: "lead_submit",
-      landing: landing.slug,
-      problem: values.problema,
-    });
-    track({
-      event: "form_submit",
-      landing: landing.slug,
-      problem: values.problema,
-    });
-    gtagEvent("generate_lead", { form: landing.slug });
+    gtagEvent("generate_lead", { form: analyticsFormName(landing) });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);
@@ -264,12 +265,10 @@ function AdsLeadForm({
 
   useEffect(() => {
     if (state && !state.ok) {
-      const reason = state.fields
-        ? `validation:${Object.keys(state.fields).join(",")}`
-        : (state.error ?? "server");
-      track({ event: "form_error", landing: landing.slug, reason });
+      const fields = state.fields ? Object.keys(state.fields) : [];
+      reportFormError(analyticsFormName(landing), fields);
     }
-  }, [state, landing.slug]);
+  }, [state, landing]);
 
   const fieldErrors = !state?.ok ? state?.fields : undefined;
   const generalError =
@@ -283,11 +282,7 @@ function AdsLeadForm({
       if (values.telefono.trim().length < 7) errors.push("telefono");
       if (!values.problema) errors.push("problema");
       if (errors.length > 0) {
-        track({
-          event: "form_error",
-          landing: landing.slug,
-          reason: `validation_step1:${errors.join(",")}`,
-        });
+        reportFormError(analyticsFormName(landing), errors);
         const first = document.getElementById(
           errors[0] === "nombre"
             ? "ads-nombre"
@@ -298,16 +293,7 @@ function AdsLeadForm({
         first?.focus();
         return;
       }
-      track({
-        event: "form_step1",
-        landing: landing.slug,
-        problem: values.problema,
-      });
-      track({
-        event: "lead_form_step_2",
-        landing: landing.slug,
-        problem: values.problema,
-      });
+      gtagEvent("lead_form_step_2", { form: analyticsFormName(landing) });
       setStep(2);
       requestAnimationFrame(() => {
         document.getElementById("ads-tipoPropiedad")?.focus();

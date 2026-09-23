@@ -66,9 +66,9 @@ export const FILTRACIONES_PROBLEMA_OPTIONS = options(
 );
 
 export type LeadPageContext = {
-  slug: LeadPageSlug;
-  path: `/${LeadPageSlug}`;
-  source: `ads_${LeadPageSlug}`;
+  slug: string;
+  path: string;
+  source: string;
   cta: string;
   ctaSticky: string;
   defaultProblema: ProblemaValue;
@@ -76,6 +76,32 @@ export type LeadPageContext = {
   whatsappMessage: string;
   thankYouWhatsapp: string;
 };
+
+/** Home inspection form. Same fields as Ads, stored as source web_home. */
+export const HOME_LEAD: LeadPageContext = {
+  slug: "home",
+  path: "/",
+  source: "web_home",
+  cta: SERVICE_CTA,
+  ctaSticky: SERVICE_CTA,
+  defaultProblema: "filtracion",
+  problemaOptions: options(
+    "filtracion",
+    "azotea",
+    "fachada",
+    "grietas",
+    "pisos",
+    "otro",
+  ),
+  whatsappMessage:
+    "Hola, quiero una inspección para un problema de filtración.",
+  thankYouWhatsapp:
+    "Hola, solicité una inspección desde sedeco.lat. Les envío fotos del problema.",
+};
+
+export function analyticsFormName(landing: { source: string; slug: string }): string {
+  return landing.source === "web_home" ? "home" : landing.slug;
+}
 
 export const HOW_IT_WORKS_STEPS = [
   {

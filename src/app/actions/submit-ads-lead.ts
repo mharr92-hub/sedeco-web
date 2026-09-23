@@ -11,7 +11,12 @@ import {
   type AdsLeadInsert,
 } from "@/lib/supabase-server";
 import { sendLeadNotification } from "@/lib/email/lead-notification";
-import { trackingFromFormData } from "@/lib/tracking";
+import {
+  attributionFromCookieHeader,
+  mergeTracking,
+  trackingFieldsFromAttribution,
+  trackingFromFormData,
+} from "@/lib/tracking";
 import { leadSubmitErrorMessage } from "@/lib/site";
 
 const PROBLEMA_LABEL: Record<string, string> = {
@@ -123,24 +128,33 @@ export async function submitAdsLead(
     };
   }
 
-  const tracking = trackingFromFormData(formData);
+  const hdrs = await headers();
+  const userAgent = hdrs.get("user-agent") ?? undefined;
+  const referrer = hdrs.get("referer") ?? undefined;
+  // Hidden fields already prefer the URL over the cookie. The cookie fills
+  // any key the form did not send, and empty fields cannot wipe a stored gclid.
+  const tracking = mergeTracking(
+    trackingFromFormData(formData),
+    trackingFieldsFromAttribution(attributionFromCookieHeader(hdrs.get("cookie"))),
+  );
   const mensaje = composeMensaje(parsed.data);
 
   const supabase = getSupabaseServiceClient();
   if (!supabase) {
     console.error(
-      "[submitAdsLead] SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no configurada. Lead NO persistido:",
-      JSON.stringify({ ...parsed.data, ...tracking, mensaje }),
+      "[submitAdsLead] SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no configurada. Lead NO persistido.",
+      JSON.stringify({
+        source: parsed.data.source,
+        landingPath: parsed.data.landingPath,
+        gclid: tracking.gclid ?? null,
+        utm_source: tracking.utmSource ?? null,
+      }),
     );
     return {
       ok: false,
       error: leadSubmitErrorMessage(),
     };
   }
-
-  const hdrs = await headers();
-  const userAgent = hdrs.get("user-agent") ?? undefined;
-  const referrer = hdrs.get("referer") ?? undefined;
 
   const payload = {
     nombre: parsed.data.nombre,

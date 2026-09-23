@@ -8,15 +8,21 @@ import { adsLandings } from "@/lib/data/ads-landings";
 import {
   isLeadPageSlug,
   servicePages,
-  type LeadPageSlug,
 } from "@/lib/data/service-pages";
 import { track } from "@/lib/analytics";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 
 function getThankYou(from: string | null): {
-  slug: LeadPageSlug;
+  slug: string;
   thankYouWhatsapp: string;
 } {
+  if (from === "home") {
+    return {
+      slug: "home",
+      thankYouWhatsapp:
+        "Hola, solicité una inspección desde sedeco.lat. Les envío fotos del problema.",
+    };
+  }
   const adsFrom = from === "filtraciones-panama" ? "filtraciones" : from;
   if (adsFrom && adsFrom in adsLandings) {
     const landing = adsLandings[adsFrom as keyof typeof adsLandings];
