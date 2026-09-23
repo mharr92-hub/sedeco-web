@@ -58,7 +58,7 @@ const jsonLd = {
     { "@type": "Person", name: "Roni Litmanovich", jobTitle: "Gerente Operativo" },
   ],
   description:
-    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía por escrito según sistema y alcance.",
+    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización de larga duración de concreto con nanotecnología y garantía por escrito según sistema y alcance.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Edificio RBS, Planta Baja, Oficina 103A, Paitilla",
@@ -105,7 +105,7 @@ export default function HomePage() {
               SEDECO
             </p>
             <h1 className="mt-5 max-w-xl font-display text-[1.65rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              Sellado de concreto permanente.
+              Sellado de concreto de larga duración.
             </h1>
             <p className="mt-5 max-w-3xl font-display text-xl font-semibold leading-snug text-white md:text-2xl">
               Aplicadores autorizados de Ghostshield® en Panamá
@@ -210,7 +210,7 @@ export default function HomePage() {
                   Garantía por escrito según sistema y alcance
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
-                  Ghostshield se vuelve parte permanente de la estructura. La
+                  Ghostshield se vuelve parte de larga duración de la estructura. La
                   protección no se desgasta porque no es un recubrimiento — es
                   químicamente parte del concreto.
                 </p>

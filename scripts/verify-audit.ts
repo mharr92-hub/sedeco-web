@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { panamaMobileMessage } from "../src/lib/validations/lead";
 import {
   attributionFromCookieHeader,
   attributionFromSearch,
@@ -46,4 +47,11 @@ const formWins = mergeTracking(
 );
 assert.equal(formWins.gclid, "FROMURL");
 
-console.log("verify-audit: attribution ok");
+assert.equal(panamaMobileMessage("+507 6550-8320"), undefined);
+assert.equal(panamaMobileMessage("65508320"), undefined);
+assert.equal(panamaMobileMessage("50765508320"), undefined);
+assert.ok(panamaMobileMessage("3835175"));
+assert.ok(panamaMobileMessage("12345678"));
+assert.ok(panamaMobileMessage("6550832"));
+
+console.log("verify-audit: attribution and phone ok");

@@ -11,7 +11,7 @@ import {
   SITE_EMAIL,
   TRADE_NAME,
   WHATSAPP_DISPLAY,
-  WHATSAPP_NUMBER,
+  whatsappHref,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -105,7 +105,9 @@ export default function TerminosPage() {
           <br />
           WhatsApp:{" "}
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={whatsappHref(
+              "Hola, escribo desde los términos de uso de SEDECO.",
+            )}
             className="text-navy-700 underline underline-offset-2 hover:text-accent-600"
           >
             {WHATSAPP_DISPLAY}

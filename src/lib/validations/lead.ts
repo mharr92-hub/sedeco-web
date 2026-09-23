@@ -13,6 +13,21 @@ export const tipoProyectoValues = [
 
 export type TipoProyecto = (typeof tipoProyectoValues)[number];
 
+/** Panama mobile: 8 digits starting with 6. Accepts +507, spaces and dashes. */
+export function panamaMobileMessage(value: string): string | undefined {
+  const compact = value.replace(/[\s().-]/g, "");
+  if (!compact) return "Indique su WhatsApp.";
+  if (!/^\+?\d+$/.test(compact)) {
+    return "Use solo dígitos y, si quiere, +507.";
+  }
+  let digits = compact.startsWith("+") ? compact.slice(1) : compact;
+  if (digits.startsWith("507")) digits = digits.slice(3);
+  if (!/^6\d{7}$/.test(digits)) {
+    return "Ingrese un celular de Panamá: 8 dígitos y que empiece con 6. Puede incluir +507.";
+  }
+  return undefined;
+}
+
 const optionalText = (max: number) =>
   z
     .string()
@@ -35,9 +50,13 @@ export const leadFormSchema = z.object({
   telefono: z
     .string()
     .trim()
-    .regex(/^[+\d\s\-()]+$/, "Solo dígitos, espacios y los símbolos + - ( ).")
-    .min(7, "Teléfono muy corto.")
-    .max(20, "Teléfono muy largo."),
+    .max(20, "Teléfono muy largo.")
+    .superRefine((value, ctx) => {
+      const message = panamaMobileMessage(value);
+      if (message) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+      }
+    }),
   tipoProyecto: z
     .union([z.enum(tipoProyectoValues), z.literal("")])
     .optional()
@@ -60,9 +79,13 @@ export const adsLeadFormSchema = z.object({
   telefono: z
     .string()
     .trim()
-    .regex(/^[+\d\s\-()]+$/, "Solo dígitos, espacios y los símbolos + - ( ).")
-    .min(7, "WhatsApp muy corto.")
-    .max(20, "WhatsApp muy largo."),
+    .max(20, "WhatsApp muy largo.")
+    .superRefine((value, ctx) => {
+      const message = panamaMobileMessage(value);
+      if (message) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+      }
+    }),
   problema: z.enum(problemaValues, {
     errorMap: () => ({ message: "Seleccione el tipo de problema." }),
   }),
