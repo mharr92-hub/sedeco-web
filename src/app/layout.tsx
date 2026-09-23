@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { AttributionCapture } from "@/components/analytics/attribution-capture";
 import { DataLayerInit, GtmNoscript } from "@/components/analytics/data-layer";
 import { WhatsAppClickTracker } from "@/components/analytics/whatsapp-click-tracker";
 import { CANONICAL_ORIGIN, OG_IMAGE, OG_IMAGE_URL } from "@/lib/site";
@@ -70,6 +72,9 @@ export default function RootLayout({
       >
         <DataLayerInit />
         <GtmNoscript />
+        <Suspense fallback={null}>
+          <AttributionCapture />
+        </Suspense>
         <WhatsAppClickTracker />
         {children}
       </body>
