@@ -216,7 +216,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     source: "ads_filtraciones",
     title: "Filtraciones y fugas Panamá | SEDECO",
     description:
-      "Detección e inspección de filtraciones en techos y fachadas. Solicite inspección.",
+      "Detección de filtraciones y fugas en techos, losas y fachadas en Panamá. Encontramos el origen del agua antes de reparar. Solicite inspección.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
     cta: "Solicitar inspección",
     ctaSticky: "Solicitar inspección",

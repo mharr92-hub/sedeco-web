@@ -9,7 +9,8 @@ const siteUrl = CANONICAL_ORIGIN;
 
 export const metadata: Metadata = {
   title: { absolute: "Casos SEDECO Panamá | Obras reales" },
-  description: "Proyectos de sellado e impermeabilización en Panamá.",
+  description:
+    "Casos reales de SEDECO en Panamá: PH, hospitales, templos y comercios con sellado e impermeabilización de concreto. Vea las obras y resultados.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/casos` },
 };
 

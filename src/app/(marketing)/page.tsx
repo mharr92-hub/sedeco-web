@@ -41,7 +41,7 @@ const SERVICE_PHOTOS = {
 
 const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
 const HOME_DESCRIPTION =
-  "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.";
+  "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.";
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },

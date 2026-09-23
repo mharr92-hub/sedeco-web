@@ -27,8 +27,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const c = getCaseBySlug(slug);
   if (!c) return {};
-  const description =
-    c.scope ?? `Proyecto SEDECO en Panamá: ${c.name}.`;
+  const description = c.metaDescription ?? c.scope ?? c.workType;
   return {
     title: c.name,
     description,

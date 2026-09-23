@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s · SEDECO Panamá",
   },
   description:
-    "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
+    "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
   openGraph: {
     type: "website",
     locale: "es_PA",
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "SEDECO Panamá | sellado de concreto",
     description:
-      "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
+      "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "SEDECO Panamá | sellado de concreto",
     description:
-      "Sellado de concreto e impermeabilización en Panamá. Solicite inspección técnica.",
+      "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
     images: [OG_IMAGE_URL],
   },
   icons: {

@@ -13,7 +13,7 @@ import { CANONICAL_ORIGIN, INSPECTION_SLA } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Servicios SEDECO Panamá" },
   description:
-    "Sellado, impermeabilización y servicios técnicos. Solicite inspección.",
+    "Servicios de SEDECO en Panamá: sellado de concreto, impermeabilización, fachadas, pisos industriales y reparación estructural. Solicite inspección.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/servicios` },
 };
 

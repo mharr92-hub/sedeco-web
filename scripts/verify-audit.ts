@@ -118,6 +118,8 @@ const titles = [
   "Servicios SEDECO Panamá",
   "Casos SEDECO Panamá | Obras reales",
   "Inspección boroscópica desagües | SEDECO",
+  "Reparación estructural Panamá | SEDECO",
+  "Mantenimiento de PH Panamá | SEDECO",
 ];
 for (const title of titles) {
   assert.ok(title.length <= 60, title);

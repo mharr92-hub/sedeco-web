@@ -47,16 +47,16 @@ El JSON-LD de home decía «SEDECO, S.A.» y otra dirección. Los titles de las 
 | --- | --- | --- | --- | --- |
 | 9 | HECHO | `src/lib/site.ts`, footers, `privacidad`, `terminos` | `legalName` «Tanya Engineering, S.A.». Dirección única: «RBS Tower, Ave. Balboa y Ramón H. Jurado, Planta Baja, Oficina 103A, Punta Paitilla». Teléfonos: +507 383-5175, +507 383-5176, +507 6550-8320. | — |
 | 10 | HECHO | `src/lib/data/service-pages.ts`, `src/lib/data/ads-landings.ts`, `src/app/(marketing)/page.tsx`, `servicios/page.tsx` | Fachadas: «restauración e impermeabilización de fachadas». Pintura: «pintura de edificios». Home: marca + sellado de concreto. `/servicios` no lleva una keyword principal. | — |
-| 16 | HECHO | titles de home, LPs, casos y servicios | Copy exacto de Content. Todos ≤60. `scripts/verify-audit.ts`. | — |
-| 17 | HECHO con el copy pedido | descriptions de esas mismas rutas | Texto exacto de Content. Miden 52–81 caracteres, bajo el piso de 120. No se inventó texto para llegar al rango. | Content puede alargar las metas si quiere 120–155. |
+| 16 | HECHO | titles de home, LPs, casos y servicios | Titles de Content, más «Reparación estructural Panamá \| SEDECO» (38) y «Mantenimiento de PH Panamá \| SEDECO» (35). `scripts/check-meta.ts` exige ≤60 en todo el sitemap. | — |
+| 17 | HECHO | descriptions del sitemap | Metas de Content en 120–155. Pintura: se quitó «mantenimiento de fachadas» (esa página no ofrece el plan de PH) y se usó el texto de la propia página. Casos públicos con datos ya publicados. `scripts/check-meta.ts`. | — |
 | 22 | HECHO | `src/lib/site.ts` `localBusinessJsonLd` | `image` (OG) y `geo` del pin publicado de RBS Tower (near-place.com, 8.9777693, -79.5158156). Validación estructural en `scripts/verify-audit.ts`. Rich Results de Google: NO MEDIDO (la página no está publicada en esta rama). | Rich Results en la URL pública, después del deploy. |
 | 23 | HECHO | `src/app/sitemap.ts` | Se quitó `lastModified: new Date()`. No hay fecha real de cada URL. | — |
 
 LP `/inspeccion-boroscopica` y bloque en home: HECHO. Title «Inspección boroscópica desagües | SEDECO». H1 «Inspección con cámara boroscópica en desagües». Incluye diagnóstico e informe y WhatsApp +507 6550-8320. Sin precios ni plazos de garantía.
 
-### Titles y metas de Content (copy exacto)
+### Titles y metas de Content (copy corto, reemplazado)
 
-Titles ≤60. Las metas se pegaron tal cual las entregó Content: todas quedan bajo 120 caracteres. No se alargaron.
+La ronda anterior pegó metas de 52–81 caracteres. La tabla de abajo quedó sustituida por las descriptions de 120–155 de la sección siguiente.
 
 | Ruta | Title | T | Meta | M |
 | --- | --- | --- | --- | --- |
@@ -69,6 +69,39 @@ Titles ≤60. Las metas se pegaron tal cual las entregó Content: todas quedan b
 | `/servicios` | Servicios SEDECO Panamá | 23 | Sellado, impermeabilización y servicios técnicos. Solicite inspección. | 70 |
 | `/casos` | Casos SEDECO Panamá \| Obras reales | 34 | Proyectos de sellado e impermeabilización en Panamá. | 52 |
 | `/inspeccion-boroscopica` | Inspección boroscópica desagües \| SEDECO | 40 | Cámara en tuberías de desagüe. Diagnóstico e informe. Solicite inspección. | 74 |
+
+### Meta descriptions (ronda 120–155)
+
+`/inspeccion-boroscopica` ya existía (`src/app/(ads)/inspeccion-boroscopica/page.tsx`) y ya entra al sitemap por `LEAD_PAGE_SLUGS`. No se creó otra página.
+
+Pintura: Content decía «mantenimiento de fachadas». Esa página es pintura en altura (grietas y sellos antes de pintar), no el plan de mantenimiento de PH. Se reemplazó esa frase. Quedó en 144 caracteres.
+
+Shevet Ahim no tiene campo `location`. La ubicación «Ciudad de Panamá» sale del alt de la foto que ya renderiza la ficha. Fundación Deveaux y Sinagoga Bet Max Ve Sarah no estaban en la lista de cinco, pero están en el sitemap; sus descriptions usan solo alcance, sistema y lugar ya publicados, para que el chequeo no falle.
+
+`npx tsx scripts/check-meta.ts`: 20 URLs del sitemap, todas con title ≤60 y description 120–155.
+
+| URL | Title (len) | Description (len) | Estado |
+| --- | --- | --- | --- |
+| `/` | SEDECO Panamá \| sellado de concreto (35) | 136 | OK |
+| `/filtraciones` | Filtraciones y fugas Panamá \| SEDECO (36) | 142 | OK |
+| `/impermeabilizacion-panama` | Impermeabilización Panamá \| SEDECO (34) | 146 | OK |
+| `/impermeabilizacion-fachadas` | Restauración e impermeabilización de fachadas (45) | 137 | OK |
+| `/pintura-edificios-panama` | Pintura de edificios Panamá \| SEDECO (36) | 144 | OK, sin «mantenimiento de fachadas» |
+| `/pisos-industriales-panama` | Pisos industriales Panamá \| SEDECO (34) | 134 | OK |
+| `/reparacion-estructural-panama` | Reparación estructural Panamá \| SEDECO (38) | 141 | OK |
+| `/mantenimiento-ph` | Mantenimiento de PH Panamá \| SEDECO (35) | 145 | OK |
+| `/inspeccion-boroscopica` | Inspección boroscópica desagües \| SEDECO (40) | 142 | OK, ya existía |
+| `/servicios` | Servicios SEDECO Panamá (23) | 147 | OK |
+| `/casos` | Casos SEDECO Panamá \| Obras reales (34) | 143 | OK |
+| `/casos/ph-joy-tower` | PH Joy Tower · SEDECO Panamá (28) | 145 | OK |
+| `/casos/hospital-manuel-amador-guerrero` | Hospital Manuel Amador Guerrero · SEDECO Panamá (47) | 144 | OK |
+| `/casos/ph-quadrat` | PH Quadrat · SEDECO Panamá (26) | 130 | OK |
+| `/casos/superxtra-arraijan` | Supermercados Xtra Arraiján · SEDECO Panamá (43) | 138 | OK |
+| `/casos/shevet-ahim` | Comunidad Hebrea Shevet Ahim · SEDECO Panamá (44) | 143 | OK, lugar desde el alt |
+| `/casos/fundacion-deveaux` | Fundación Deveaux · SEDECO Panamá (33) | 139 | OK, extra del sitemap |
+| `/casos/sinagoga-bet-max-ve-sarah` | Sinagoga Bet Max Ve Sarah · SEDECO Panamá (41) | 133 | OK, extra del sitemap |
+| `/privacidad` | Privacidad · SEDECO Panamá (26) | 154 | OK, sin cambio de texto |
+| `/terminos` | Términos · SEDECO Panamá (24) | 149 | OK, sin cambio de texto |
 
 ## Bloque C en esta ronda
 
