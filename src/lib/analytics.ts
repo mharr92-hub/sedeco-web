@@ -39,6 +39,9 @@ export function getGtmContainerId(): string | undefined {
   return id || undefined;
 }
 
+/** Propiedad GA4 de SEDECO. Fallback si no hay NEXT_PUBLIC_GA4_ID en el entorno. */
+const DEFAULT_GA4_ID = "G-1CWPNC75XE";
+
 /**
  * Direct GA4 measurement ID for gtag.js.
  * Returns undefined when GTM is set so GA4 is not injected twice.
@@ -46,7 +49,7 @@ export function getGtmContainerId(): string | undefined {
 export function getDirectGa4MeasurementId(): string | undefined {
   if (getGtmContainerId()) return undefined;
   const id = process.env.NEXT_PUBLIC_GA4_ID?.trim();
-  return id || undefined;
+  return id || DEFAULT_GA4_ID;
 }
 
 /**
