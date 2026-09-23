@@ -10,7 +10,7 @@ export function DataLayerInit() {
 
   return (
     <>
-      <Script id="sedeco-datalayer" strategy="beforeInteractive">
+      <Script id="sedeco-datalayer" strategy="afterInteractive">
         {`window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"dl_init"});`}
       </Script>
       {gtmId ? (

@@ -57,7 +57,7 @@
   }
 
   .brand-kicker-gold {
-    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F5A623];
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-[#7A5209];
   }
 
   .brand-kicker-blue {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseCard } from "@/components/site/case-card";
 import { SiteFooter } from "@/components/site/footer";
@@ -97,9 +98,9 @@ export default async function ServicioDetailPage({
             {service.description}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/#contacto" className="btn-gold-lg">
+            <Link href="/#contacto" className="btn-gold-lg">
               {SERVICE_CTA}
-            </a>
+            </Link>
             <a
               href={whatsappHref(waMessage)}
               target="_blank"
@@ -132,7 +133,7 @@ export default async function ServicioDetailPage({
                   key={signal}
                   className="font-display text-xl font-semibold text-[#1A2E8A]"
                 >
-                  <span className="mr-3 text-[#F5A623]" aria-hidden="true">
+                  <span className="mr-3 text-[#7A5209]" aria-hidden="true">
                     —
                   </span>
                   <span className="text-base font-normal leading-relaxed text-[#5C6578]">
@@ -207,12 +208,12 @@ export default async function ServicioDetailPage({
                     Proyectos donde aplicamos este servicio
                   </h2>
                 </div>
-                <a
+                <Link
                   href="/casos"
-                  className="inline-flex items-center text-sm font-semibold text-[#1A2E8A] hover:text-[#F5A623]"
+                  className="inline-flex min-h-6 items-center text-sm font-semibold text-[#1A2E8A] hover:text-[#7A5209]"
                 >
                   Ver todos los casos →
-                </a>
+                </Link>
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCases.slice(0, 6).map((c) => (

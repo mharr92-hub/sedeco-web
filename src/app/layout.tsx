@@ -19,26 +19,26 @@ const siteUrl = CANONICAL_ORIGIN;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SEDECO Panamá — Sellado de concreto permanente",
+    default: "SEDECO Panamá | sellado de concreto",
     template: "%s · SEDECO Panamá",
   },
   description:
-    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía por escrito según sistema y alcance. Más de 100,000 m² impermeabilizados.",
+    "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
   openGraph: {
     type: "website",
     locale: "es_PA",
     siteName: "SEDECO Panamá",
     url: siteUrl,
-    title: "SEDECO Panamá — Sellado de concreto permanente",
+    title: "SEDECO Panamá | sellado de concreto",
     description:
-      "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía por escrito según sistema y alcance.",
+      "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEDECO Panamá — Sellado de concreto permanente",
+    title: "SEDECO Panamá | sellado de concreto",
     description:
-      "Damos resultados concretos en todo lo que hacemos. Impermeabilización con nanotecnología molecular y garantía por escrito según sistema y alcance.",
+      "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.",
     images: [OG_IMAGE_URL],
   },
   icons: {

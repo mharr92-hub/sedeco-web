@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import { LegalArticle, LegalSection } from "@/components/site/legal-article";
 import {
-  ADDRESS,
   LEGAL_ENTITY,
+  NAP_STREET_ADDRESS,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
   RUC,
   SITE_EMAIL,
   TRADE_NAME,
   WHATSAPP_DISPLAY,
-  WHATSAPP_NUMBER,
+  whatsappHref,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacidad",
   description:
-    "Aviso de privacidad de TANYA ENGINEERING, S.A. (SEDECO Panamá): qué datos recibimos en formularios, WhatsApp y medición, y cómo puede ejercer sus derechos.",
+    "Aviso de privacidad de Tanya Engineering, S.A. (SEDECO): datos de formularios y WhatsApp, medición con Google Analytics 4 y cómo pedir acceso o supresión.",
   alternates: { canonical: "/privacidad" },
 };
 
@@ -25,8 +25,8 @@ export default function PrivacidadPage() {
       <LegalSection title="Quién es responsable">
         <p>
           El responsable del tratamiento de sus datos es {LEGAL_ENTITY}, nombre
-          comercial {TRADE_NAME}, RUC {RUC}. Oficina: {ADDRESS.building},{" "}
-          {ADDRESS.street}, {ADDRESS.locality}. Sitio: sedeco.lat.
+          comercial {TRADE_NAME}, RUC {RUC}. Oficina: {NAP_STREET_ADDRESS}.
+          Sitio: sedeco.lat.
         </p>
         <p>
           Este aviso es breve y factual, según la Ley 81 de 2019 de la República
@@ -44,8 +44,8 @@ export default function PrivacidadPage() {
             descripción y si puede enviar fotos.
           </li>
           <li>
-            Formulario del sitio principal: nombre, correo, teléfono, tipo de
-            proyecto y mensaje.
+            Formulario del sitio principal: nombre, WhatsApp, tipo de problema,
+            descripción si la escribe, tipo de propiedad y zona.
           </li>
           <li>
             Parámetros de campaña si llega desde un anuncio (UTM, y en su caso
@@ -75,17 +75,14 @@ export default function PrivacidadPage() {
           por sí solo.
         </p>
         <p>
-          Google Tag Manager, Google Analytics 4 o cookies de Google Ads solo se
-          cargan si están configurados en el entorno de publicación. Si GTM está
-          activo, GA4 no se inyecta además por gtag, para no contar dos veces.
-          Si esas variables no están definidas, no insertamos contenedor ni
-          píxel de Google.
+          Usamos Google Analytics 4. Google puede detectar y enviar de forma
+          hasheada datos que usted proporcione en formularios (p. ej. correo o
+          teléfono) para medición. No usamos esos datos para vender ni compartir
+          listas.
         </p>
         <p>
-          Esas herramientas, cuando existen, pueden usar cookies o
-          identificadores para medir visitas y el rendimiento de anuncios. Usted
-          puede bloquear cookies en su navegador; el sitio y WhatsApp siguen
-          funcionando.
+          Esa medición usa gtag en el sitio. Usted puede bloquear cookies en su
+          navegador; el sitio y WhatsApp siguen funcionando.
         </p>
       </LegalSection>
 
@@ -121,15 +118,13 @@ export default function PrivacidadPage() {
         <p>
           {LEGAL_ENTITY} ({TRADE_NAME})
           <br />
-          {ADDRESS.building}, {ADDRESS.street}
-          <br />
-          {ADDRESS.locality}
+          {NAP_STREET_ADDRESS}
           <br />
           Tel. {PHONE_OFFICE_PRIMARY} / {PHONE_OFFICE_SECONDARY}
           <br />
           WhatsApp:{" "}
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={whatsappHref("Hola, consulta sobre privacidad SEDECO")}
             className="text-navy-700 underline underline-offset-2 hover:text-accent-600"
           >
             {WHATSAPP_DISPLAY}

@@ -4,6 +4,17 @@ import {
   type AdsPhoto,
 } from "@/lib/data/ads-visuals";
 
+export const SERVICE_PUBLIC_PATH: Record<ServiceSlug, string> = {
+  fachadas: "/impermeabilizacion-fachadas",
+  azoteas: "/impermeabilizacion-panama",
+  tanques: "/impermeabilizacion-panama",
+  grietas: "/reparacion-estructural-panama",
+  piscinas: "/impermeabilizacion-panama",
+  filtraciones: "/filtraciones",
+  "sellado-concreto": "/pisos-industriales-panama",
+  impermeabilizacion: "/impermeabilizacion-panama",
+};
+
 export type ServiceSlug =
   | "fachadas"
   | "azoteas"
@@ -21,6 +32,8 @@ export type Case = {
   workType: string;
   services: ServiceSlug[];
   scope?: string;
+  /** Meta description, 120–155, built only from facts already on the case page. */
+  metaDescription?: string;
   squareMeters?: number;
   squareMetersDetail?: string;
   problem?: string;
@@ -83,6 +96,8 @@ const cases: Case[] = [
     services: ["fachadas"],
     scope:
       "2 torres residenciales de 16 pisos cada una. Reparación y pintura de fachada, reemplazo de sellos en vidrios, pintura de escaleras de emergencia y estacionamientos, y reemplazo de repellos desprendidos en las paredes de concreto de la fachada.",
+    metaDescription:
+      "PH Joy Tower, Calle 50, Ciudad de Panamá: reparación y pintura de fachada en dos torres de 16 pisos, con sellos de vidrios, escaleras y repellos.",
     featured: true,
     image: ADS_PHOTOS.joyTower,
     order: 12,
@@ -104,6 +119,8 @@ const cases: Case[] = [
     services: ["fachadas", "azoteas", "impermeabilizacion"],
     scope:
       "5,000 m² en sinagogas: 3,000 m² horizontales + 2,000 m² verticales.",
+    metaDescription:
+      "Comunidad Hebrea Shevet Ahim en Ciudad de Panamá: impermeabilización de superficies horizontales y verticales en las sinagogas de la comunidad.",
     squareMeters: 5000,
     squareMetersDetail: "3,000 m² horizontales + 2,000 m² verticales",
     problem:
@@ -126,6 +143,8 @@ const cases: Case[] = [
     services: ["azoteas", "fachadas", "impermeabilizacion", "sellado-concreto"],
     scope:
       "Losa estructural, fachada y muros perimetrales. Impermeabilización GHOSTSHIELD 9500.",
+    metaDescription:
+      "Sinagoga Bet Max Ve Sarah en Ciudad de Panamá: impermeabilización GHOSTSHIELD 9500 en losa estructural, fachada y muros perimetrales.",
     image: CASE_PHOTOS.betMaxVeSarah,
     order: 22,
   },
@@ -137,6 +156,8 @@ const cases: Case[] = [
     services: ["azoteas", "fachadas", "impermeabilizacion"],
     scope:
       "Impermeabilización de 16,000 m² de cubiertas (GhostShield 9500 y/o 4500 y HS 100% silicona), muros perimetrales con DRY COAT-LANCO y reparaciones de albañilería.",
+    metaDescription:
+      "Hospital Manuel Amador Guerrero en Colón: impermeabilización de cubiertas con GhostShield y silicona HS, muros con DRY COAT-LANCO y albañilería.",
     squareMeters: 16000,
     squareMetersDetail: "16,000 m² de cubiertas",
     problem:
@@ -193,6 +214,8 @@ const cases: Case[] = [
     services: ["fachadas", "azoteas", "impermeabilizacion", "grietas"],
     scope:
       "Fachada de 5 pisos + 750 m² horizontales (250 m² azotea + 500 m² techo). Edificio 9136, Colón.",
+    metaDescription:
+      "Fundación Deveaux en Ciudad de Colón: sellado de grietas en fachada de 5 pisos y superficies horizontales de azotea y techo. Edificio 9136.",
     squareMeters: 750,
     squareMetersDetail:
       "250 m² azotea + 500 m² techo + fachada de 5 pisos",
@@ -212,6 +235,8 @@ const cases: Case[] = [
     workType: "Sellado de losa nueva",
     services: ["sellado-concreto", "impermeabilizacion"],
     scope: "Aplicación de LITHI TEK 9500 sobre losa nueva.",
+    metaDescription:
+      "PH Quadrat en San Francisco, Calle 73, Ciudad de Panamá: sellado de losa nueva con aplicación de LITHI TEK 9500 sobre el concreto.",
     problem: "Sellar permanentemente una losa nueva con nanotecnología.",
     result:
       "Sellado con LITHI TEK 9500. Carta de respaldo firmada por el cliente.",
@@ -226,6 +251,8 @@ const cases: Case[] = [
     workType: "Impermeabilización de techo",
     services: ["azoteas", "impermeabilizacion"],
     scope: "300 m² de cubierta con canal y metal. Aprobado por Mark Harrick.",
+    metaDescription:
+      "Supermercados Xtra en Arraiján, Panamá Oeste: impermeabilización de techo en cubierta de canal y metal. Obra de SEDECO sobre esa cubierta.",
     squareMeters: 300,
     squareMetersDetail: "300 m² de cubierta con canal y metal",
     image: ADS_PHOTOS.obraAltura,

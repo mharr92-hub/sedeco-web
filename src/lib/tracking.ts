@@ -43,6 +43,18 @@ const ATTRIBUTION_MAX_AGE_SECONDS = 90 * 24 * 60 * 60;
 
 export type AttributionParams = Partial<Record<TrackingParamKey, string>>;
 
+/** Click ids plus the first external referrer captured with them. */
+export type StoredAttribution = AttributionParams & {
+  referrer?: string;
+};
+
+const SITE_HOSTS = new Set([
+  "www.sedeco.lat",
+  "sedeco.lat",
+  "localhost",
+  "127.0.0.1",
+]);
+
 function sanitizeAttributionValue(
   raw: string | null | undefined,
 ): string | undefined {
@@ -66,19 +78,41 @@ export function attributionFromSearch(
   return out;
 }
 
-function parseAttributionPayload(raw: string | null): AttributionParams {
+function sanitizeReferrer(raw: string | null | undefined): string | undefined {
+  if (!raw) return undefined;
+  const value = raw.replace(/[\r\n]/g, "").trim().slice(0, 500);
+  if (!value || !/^https?:\/\//i.test(value)) return undefined;
+  return value;
+}
+
+export function isSiteReferrer(raw: string | null | undefined): boolean {
+  if (!raw) return true;
+  try {
+    return SITE_HOSTS.has(new URL(raw).hostname);
+  } catch {
+    return false;
+  }
+}
+
+function parseAttributionPayload(raw: string | null): StoredAttribution {
   if (!raw) return {};
   try {
     const parsed: unknown = JSON.parse(raw);
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
       return {};
     }
-    return attributionFromSearch({
+    const record = parsed as Record<string, unknown>;
+    const params: StoredAttribution = attributionFromSearch({
       get: (key) => {
-        const value = (parsed as Record<string, unknown>)[key];
+        const value = record[key];
         return typeof value === "string" ? value : null;
       },
     });
+    const referrer = sanitizeReferrer(
+      typeof record.referrer === "string" ? record.referrer : null,
+    );
+    if (referrer && !isSiteReferrer(referrer)) params.referrer = referrer;
+    return params;
   } catch {
     return {};
   }
@@ -100,7 +134,7 @@ function readCookie(name: string): string | null {
   return null;
 }
 
-function readStoredAttribution(): AttributionParams {
+function readStoredAttribution(): StoredAttribution {
   if (typeof window === "undefined") return {};
   let fromSession: AttributionParams = {};
   try {
@@ -115,7 +149,7 @@ function readStoredAttribution(): AttributionParams {
   return { ...fromCookie, ...fromSession };
 }
 
-function persistAttribution(params: AttributionParams): void {
+function persistAttribution(params: StoredAttribution): void {
   if (typeof window === "undefined") return;
   if (Object.keys(params).length === 0) return;
   const payload = JSON.stringify(params);
@@ -133,14 +167,109 @@ function persistAttribution(params: AttributionParams): void {
 }
 
 /**
+ * URL values win per key. Stored values fill keys the current URL does not
+ * have. Empty URL values are already dropped, so they cannot wipe a gclid.
+ */
+export function resolveAttribution(
+  fromUrl: AttributionParams,
+  stored: AttributionParams,
+): AttributionParams {
+  return { ...stored, ...fromUrl };
+}
+
+/**
+ * Keeps the first external referrer. A later URL with no referrer, or an
+ * empty one, does not wipe it. A new click id can replace it.
+ */
+export function applyFirstTouchReferrer(
+  stored: StoredAttribution,
+  fromUrl: AttributionParams,
+  externalReferrer: string | undefined,
+): StoredAttribution {
+  const resolved: StoredAttribution = resolveAttribution(fromUrl, stored);
+  if (stored.referrer) resolved.referrer = stored.referrer;
+  const newClick =
+    (fromUrl.gclid !== undefined && fromUrl.gclid !== stored.gclid) ||
+    (fromUrl.gbraid !== undefined && fromUrl.gbraid !== stored.gbraid) ||
+    (fromUrl.wbraid !== undefined && fromUrl.wbraid !== stored.wbraid);
+  if (externalReferrer && (!resolved.referrer || newClick)) {
+    resolved.referrer = externalReferrer;
+  }
+  return resolved;
+}
+
+/** Same-site form posts keep the ad referrer stored with the click id. */
+export function referrerForLead(
+  headerReferrer: string | null | undefined,
+  stored: StoredAttribution,
+): string | undefined {
+  const header = headerReferrer?.trim() || undefined;
+  if (stored.referrer && isSiteReferrer(header)) return stored.referrer;
+  return header;
+}
+
+export function trackingFieldsFromAttribution(
+  attribution: AttributionParams,
+): TrackingFields {
+  const out: TrackingFields = {};
+  for (const key of TRACKING_PARAM_KEYS) {
+    const value = attribution[key];
+    if (value) out[PARAM_TO_FIELD[key]] = value;
+  }
+  return out;
+}
+
+/** Form fields win. The cookie only fills keys the form did not send. */
+export function mergeTracking(
+  primary: TrackingFields,
+  fallback: TrackingFields,
+): TrackingFields {
+  const out: TrackingFields = { ...fallback };
+  for (const key of Object.keys(primary) as (keyof TrackingFields)[]) {
+    const value = primary[key]?.trim();
+    if (value) out[key] = value;
+  }
+  return out;
+}
+
+export function attributionFromCookieHeader(
+  cookieHeader: string | null,
+): StoredAttribution {
+  if (!cookieHeader) return {};
+  const prefix = `${ATTRIBUTION_STORAGE_KEY}=`;
+  for (const part of cookieHeader.split(";")) {
+    const trimmed = part.trim();
+    if (!trimmed.startsWith(prefix)) continue;
+    const encoded = trimmed.slice(prefix.length);
+    try {
+      return parseAttributionPayload(decodeURIComponent(encoded));
+    } catch {
+      return parseAttributionPayload(encoded);
+    }
+  }
+  return {};
+}
+
+/**
  * URL values win per key; stored values fill keys the current URL does not
  * have. Writes the cookie and sessionStorage only when this URL actually
  * carries attribution — a fresh visit must not invent a gclid.
  */
-export function rememberAttribution(search: string): AttributionParams {
+function currentExternalReferrer(): string | undefined {
+  if (typeof document === "undefined") return undefined;
+  const referrer = sanitizeReferrer(document.referrer);
+  if (!referrer || isSiteReferrer(referrer)) return undefined;
+  return referrer;
+}
+
+export function rememberAttribution(search: string): StoredAttribution {
   const fromUrl = attributionFromSearch(search);
   const stored = readStoredAttribution();
-  const resolved: AttributionParams = { ...stored, ...fromUrl };
+  const resolved = applyFirstTouchReferrer(
+    stored,
+    fromUrl,
+    currentExternalReferrer(),
+  );
   if (Object.keys(fromUrl).length > 0) {
     persistAttribution(resolved);
   }
@@ -150,13 +279,7 @@ export function rememberAttribution(search: string): AttributionParams {
 export function parseTrackingParams(
   params: Pick<URLSearchParams, "get">,
 ): TrackingFields {
-  const out: TrackingFields = {};
-  const attribution = attributionFromSearch(params);
-  for (const key of TRACKING_PARAM_KEYS) {
-    const value = attribution[key];
-    if (value) out[PARAM_TO_FIELD[key]] = value;
-  }
-  return out;
+  return trackingFieldsFromAttribution(attributionFromSearch(params));
 }
 
 export function trackingFromFormData(formData: FormData): TrackingFields {

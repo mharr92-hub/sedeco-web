@@ -11,8 +11,9 @@ import {
 import { CANONICAL_ORIGIN, INSPECTION_SLA } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Servicios · SEDECO Panamá" },
-  description: HOME_SERVICES_SUBTITLE,
+  title: { absolute: "Servicios SEDECO Panamá" },
+  description:
+    "Servicios de SEDECO en Panamá: sellado de concreto, impermeabilización, fachadas, pisos industriales y reparación estructural. Solicite inspección.",
   alternates: { canonical: `${CANONICAL_ORIGIN}/servicios` },
 };
 
@@ -68,6 +69,19 @@ export default function ServiciosPage() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/inspeccion-boroscopica"
+                  className="brand-card flex h-full flex-col p-6"
+                >
+                  <h2 className="font-display text-xl font-semibold text-[#1A2E8A]">
+                    Inspección boroscópica
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
+                    Cámara en desagües. El diagnóstico queda en un informe.
+                  </p>
+                </a>
+              </li>
               <li>
                 <a
                   href="/pintura-edificios-panama"

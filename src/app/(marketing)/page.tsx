@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
-import { LeadForm } from "@/components/site/lead-form";
+import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { SectionHeading } from "@/components/site/section-heading";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { AdsPhotoFill } from "@/components/ads/ads-photo";
+import { AdsPhotoFill, ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
 import { getFeaturedCases } from "@/lib/data/cases";
 import {
+  HOME_LEAD,
   HOME_SERVICE_CARDS,
   HOME_SERVICES_FOOTNOTE,
   HOME_SERVICES_SUBTITLE,
@@ -19,6 +21,7 @@ import {
 import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
+  localBusinessJsonLd,
   OG_IMAGE,
   SITE_EMAIL,
   whatsappHref,
@@ -27,8 +30,6 @@ import {
 
 const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 const email = SITE_EMAIL;
-const siteUrl = CANONICAL_ORIGIN;
-
 const SERVICE_PHOTOS = {
   "/impermeabilizacion-panama": ADS_PHOTOS.servicioImpermeabilizacion,
   "/filtraciones": ADS_PHOTOS.aguaConcreto,
@@ -38,36 +39,25 @@ const SERVICE_PHOTOS = {
   "/mantenimiento-ph": ADS_PHOTOS.joyTower,
 } as const;
 
+const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
+const HOME_DESCRIPTION =
+  "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.";
+
 export const metadata: Metadata = {
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
   alternates: { canonical: `${CANONICAL_ORIGIN}/` },
-  openGraph: { url: CANONICAL_ORIGIN, images: [OG_IMAGE] },
+  openGraph: {
+    url: CANONICAL_ORIGIN,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 };
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "GeneralContractor",
-  name: "SEDECO",
-  legalName: "SEDECO, S.A.",
-  url: siteUrl,
-  email: SITE_EMAIL,
-  telephone: "+507 6550-8320",
-  foundingDate: "2020",
-  founder: [
-    { "@type": "Person", name: "Mark Harrick", jobTitle: "Gerente Comercial" },
-    { "@type": "Person", name: "Roni Litmanovich", jobTitle: "Gerente Operativo" },
-  ],
-  description:
-    "Aplicadores autorizados de Ghostshield® en Panamá. Impermeabilización permanente de concreto con nanotecnología y garantía por escrito según sistema y alcance.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Edificio RBS, Planta Baja, Oficina 103A, Paitilla",
-    addressLocality: "Ciudad de Panamá",
-    addressCountry: "PA",
-  },
-  areaServed: [
-    { "@type": "City", name: "Ciudad de Panamá" },
-    { "@type": "City", name: "Colón" },
-  ],
+  ...localBusinessJsonLd(),
+  description: HOME_DESCRIPTION,
   sameAs: ["https://instagram.com/sedecopanama"],
 };
 
@@ -83,17 +73,9 @@ export default function HomePage() {
       <main>
         <section className="relative min-h-[85svh] text-white md:min-h-[92svh]">
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <AdsPhotoFill
-              photo={ADS_PHOTOS.heroTorres}
-              priority
-              className="md:hidden"
-              sizes="100vw"
-            />
-            <AdsPhotoFill
-              photo={ADS_PHOTOS.coverFull}
-              priority
-              className="hidden md:block"
-              sizes="100vw"
+            <ResponsiveHeroPhotos
+              mobile={ADS_PHOTOS.heroTorres}
+              desktop={ADS_PHOTOS.coverFull}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#070F26]/90 via-[#1A2E8A]/70 to-[#070F26]/35" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#070F26] via-transparent to-[#070F26]/40" />
@@ -104,7 +86,7 @@ export default function HomePage() {
               SEDECO
             </p>
             <h1 className="mt-5 max-w-xl font-display text-[1.65rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              Sellado de concreto permanente.
+              Sellado de concreto de larga duración.
             </h1>
             <p className="mt-5 max-w-3xl font-display text-xl font-semibold leading-snug text-white md:text-2xl">
               Aplicadores autorizados de Ghostshield® en Panamá
@@ -190,6 +172,42 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section
+          id="inspeccion-boroscopica"
+          aria-labelledby="boroscopio-titulo"
+          className="border-t border-[#D6E8FF] bg-[#F5F6FA] text-[#1A2E8A]"
+        >
+          <div className="brand-wrap brand-section">
+            <p className="brand-kicker-blue">Desagües</p>
+            <h2
+              id="boroscopio-titulo"
+              className="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight md:text-4xl"
+            >
+              Inspección con cámara boroscópica en desagües
+            </h2>
+            <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
+              Recorremos el desagüe con cámara. El resultado es un diagnóstico
+              con informe, para ubicar el origen antes de abrir o reparar.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/inspeccion-boroscopica" className="btn-gold-lg">
+                Ver la inspección
+              </Link>
+              <a
+                href={whatsappHref(
+                  "Hola, quiero una inspección con cámara boroscópica en un desagüe.",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A]"
+              >
+                <WhatsAppGlyph className="text-[#25D366]" />
+                WhatsApp {WHATSAPP_DISPLAY}
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-[#070F26] text-white">
           <div className="brand-wrap brand-section">
             <SectionHeading
@@ -209,7 +227,7 @@ export default function HomePage() {
                   Garantía por escrito según sistema y alcance
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#5C6578]">
-                  Ghostshield se vuelve parte permanente de la estructura. La
+                  Ghostshield se vuelve parte de larga duración de la estructura. La
                   protección no se desgasta porque no es un recubrimiento — es
                   químicamente parte del concreto.
                 </p>
@@ -255,12 +273,12 @@ export default function HomePage() {
                   cuando hay fotografía real del edificio.
                 </p>
               </SectionHeading>
-              <a
+              <Link
                 href="/casos"
-                className="inline-flex items-center text-sm font-semibold text-[#1A2E8A] transition-colors hover:text-[#F5A623]"
+                className="inline-flex min-h-6 items-center text-sm font-semibold text-[#1A2E8A] transition-colors hover:text-[#7A5209]"
               >
                 Ver todos los casos →
-              </a>
+              </Link>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {featuredCases.map((c) => (
@@ -323,7 +341,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="brand-card bg-white p-6 text-[#1A2E8A] md:p-8">
-              <LeadForm />
+              <AdsLeadDock landing={HOME_LEAD} embed />
             </div>
           </div>
         </section>

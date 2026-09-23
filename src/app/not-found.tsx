@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
@@ -19,9 +20,9 @@ export default function NotFound() {
           inspección.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="/#contacto" className="btn-gold-lg">
+          <Link href="/#contacto" className="btn-gold-lg">
             {SERVICE_CTA}
-          </a>
+          </Link>
           <a
             href={whatsappHref(waMessage)}
             target="_blank"

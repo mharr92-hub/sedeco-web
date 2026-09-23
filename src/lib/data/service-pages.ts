@@ -20,6 +20,7 @@ export const LEAD_PAGE_SLUGS = [
   "reparacion-estructural-panama",
   "pintura-edificios-panama",
   "mantenimiento-ph",
+  "inspeccion-boroscopica",
 ] as const;
 
 export type LeadPageSlug = (typeof LEAD_PAGE_SLUGS)[number];
@@ -43,6 +44,7 @@ export const PROBLEMA_OPTION_CATALOG: Record<
   pisos: "Pisos industriales",
   pintura: "Pintura de fachada",
   mantenimiento: "Mantenimiento de PH",
+  desague: "Desagüe",
   otro: "Otro",
 };
 
@@ -66,9 +68,9 @@ export const FILTRACIONES_PROBLEMA_OPTIONS = options(
 );
 
 export type LeadPageContext = {
-  slug: LeadPageSlug;
-  path: `/${LeadPageSlug}`;
-  source: `ads_${LeadPageSlug}`;
+  slug: string;
+  path: string;
+  source: string;
   cta: string;
   ctaSticky: string;
   defaultProblema: ProblemaValue;
@@ -76,6 +78,32 @@ export type LeadPageContext = {
   whatsappMessage: string;
   thankYouWhatsapp: string;
 };
+
+/** Home inspection form. Same fields as Ads, stored as source web_home. */
+export const HOME_LEAD: LeadPageContext = {
+  slug: "home",
+  path: "/",
+  source: "web_home",
+  cta: SERVICE_CTA,
+  ctaSticky: SERVICE_CTA,
+  defaultProblema: "filtracion",
+  problemaOptions: options(
+    "filtracion",
+    "azotea",
+    "fachada",
+    "grietas",
+    "pisos",
+    "otro",
+  ),
+  whatsappMessage:
+    "Hola, quiero una inspección para un problema de filtración.",
+  thankYouWhatsapp:
+    "Hola, solicité una inspección desde sedeco.lat. Les envío fotos del problema.",
+};
+
+export function analyticsFormName(landing: { source: string; slug: string }): string {
+  return landing.source === "web_home" ? "home" : landing.slug;
+}
 
 export const HOW_IT_WORKS_STEPS = [
   {
@@ -150,6 +178,7 @@ export const SERVICE_NAV = [
   { href: "/reparacion-estructural-panama", label: "Reparación estructural" },
   { href: "/pintura-edificios-panama", label: "Pintura de edificios" },
   { href: "/mantenimiento-ph", label: "Mantenimiento PH" },
+  { href: "/inspeccion-boroscopica", label: "Inspección boroscópica" },
 ] as const;
 
 export type ServicePageRef = {
@@ -169,6 +198,9 @@ export type ServicePage = LeadPageContext & {
   zincSection?: { title: string; body: string; note: string };
   refs?: readonly ServicePageRef[];
   adsCampaign: "core" | "later" | "never";
+  /** When false, the offer page does not print a guarantee line. */
+  showGuaranteeNote?: boolean;
+  steps?: readonly { title: string; body: string }[];
 };
 
 export const servicePages: Record<
@@ -193,9 +225,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de impermeabilización en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de impermeabilización. Les envío fotos del problema.",
-    metaTitle: "Impermeabilización en Panamá · Azoteas, losas y tanques | SEDECO",
+    metaTitle: "Impermeabilización Panamá | SEDECO",
     metaDescription:
-      "Impermeabilización con diagnóstico previo y garantía por escrito. Azoteas, losas, fachadas, tanques y piscinas en Ciudad de Panamá y Colón.",
+      "Impermeabilización de techos, azoteas, tanques y losas de concreto en Panamá. Diagnóstico en sitio y sistema según cada caso. Solicite inspección.",
     h1: "Impermeabilización en Panamá: el sistema correcto para cada superficie.",
     sub: "Azoteas, losas, fachadas, tanques y piscinas. Primero diagnosticamos el sustrato; después aplicamos el sistema y lo garantizamos por escrito.",
     bullets: [
@@ -223,10 +255,10 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de fachada en altura en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de fachada en altura. Les envío fotos de las manchas o uniones.",
-    metaTitle: "Restauración de fachadas en altura en Panamá | SEDECO",
+    metaTitle: "Restauración e impermeabilización de fachadas",
     metaDescription:
-      "Reparación, sellos, impermeabilización y pintura de fachadas de edificios con guindolas propias certificadas. Ciudad de Panamá.",
-    h1: "Restauración de fachadas en altura con equipo propio.",
+      "Restauración e impermeabilización de fachadas en altura en Panamá: sellado de grietas, juntas y ventanas. Solicite su inspección técnica.",
+    h1: "Restauración e impermeabilización de fachadas en altura.",
     sub: "Reparación de grietas y repellos, sellos de ventanas y juntas, impermeabilización y pintura. Guindolas eléctricas ZLP 630 certificadas: no dependemos de terceros para llegar a su fachada.",
     bullets: [
       "+100,000 m² intervenidos en torres de Ciudad de Panamá.",
@@ -248,9 +280,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de pisos industriales en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de pisos industriales. Les envío fotos del sustrato.",
-    metaTitle: "Pisos epóxicos e industriales en Panamá | SEDECO",
+    metaTitle: "Pisos industriales Panamá | SEDECO",
     metaDescription:
-      "Pisos epóxicos, concreto pulido y sellado industrial para bodegas, comercios y estacionamientos. Diagnóstico del sustrato y garantía por escrito.",
+      "Sellado y sistemas para pisos industriales de concreto en Panamá: bodegas, plantas y estacionamientos. Solicite su inspección técnica.",
     h1: "Pisos que aguantan la operación: epóxicos, concreto pulido y sellado industrial.",
     sub: "Para bodegas, plantas, supermercados, estacionamientos y comercios. Preparación mecánica del sustrato, sistema según el uso y garantía por escrito.",
     bullets: [
@@ -287,9 +319,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de reparación estructural en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de reparación estructural. Les envío fotos de la losa o el acero expuesto.",
-    metaTitle: "Reparación estructural de losas y concreto en Panamá | SEDECO",
+    metaTitle: "Reparación estructural Panamá | SEDECO",
     metaDescription:
-      "Reparación de losas, grietas y acero expuesto con evaluación documentada y garantía por escrito. Ciudad de Panamá y Colón.",
+      "Reparación estructural de concreto en Panamá: grietas, acero expuesto y elementos dañados. Diagnóstico técnico en sitio. Solicite inspección.",
     h1: "Reparación estructural: recuperamos la losa antes de protegerla.",
     sub: "Losas, grietas, repellos desprendidos y acero expuesto. Evaluación documentada, reparación con morteros estructurales y protección final del concreto.",
     bullets: [
@@ -312,9 +344,9 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de pintura de edificios en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de pintura de edificios. Les envío fotos de la fachada.",
-    metaTitle: "Pintura de edificios y fachadas en altura en Panamá | SEDECO",
+    metaTitle: "Pintura de edificios Panamá | SEDECO",
     metaDescription:
-      "Pintura de fachadas de edificios con reparación previa de grietas y sellos. Guindolas propias y garantía por escrito. Ciudad de Panamá.",
+      "Pintura de edificios y torres en Panamá con trabajo en altura. Reparamos grietas y sellos de la fachada antes de pintar. Solicite su inspección.",
     h1: "Pintura de edificios en altura, con la fachada reparada primero.",
     sub: "No pintamos sobre grietas ni humedad: reparamos, sellamos y después pintamos. Por eso la pintura dura.",
     bullets: [
@@ -337,9 +369,9 @@ export const servicePages: Record<
       "Hola, quiero consultar el plan de mantenimiento anual para un PH en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité información del plan de mantenimiento anual para PH. Les cuento el tamaño del edificio.",
-    metaTitle: "Mantenimiento preventivo de edificios y PH en Panamá | SEDECO",
+    metaTitle: "Mantenimiento de PH Panamá | SEDECO",
     metaDescription:
-      "Plan anual de inspección y mantenimiento de azoteas, fachadas y drenajes para PH, con informe para la Junta Directiva.",
+      "Mantenimiento de PH y edificios en Panamá: filtraciones, fachadas, azoteas y concreto. Plan preventivo para administradores. Solicite inspección.",
     h1: "Mantenimiento anual para su PH: prevenir cuesta menos que la emergencia.",
     sub: "Inspección programada de azotea, fachada, juntas, sellos y drenajes, con informe anual para la Junta Directiva y prioridad de atención.",
     bullets: [
@@ -349,6 +381,46 @@ export const servicePages: Record<
     ],
     serviceType: "Mantenimiento anual de PH",
     adsCampaign: "never",
+  },
+  "inspeccion-boroscopica": {
+    slug: "inspeccion-boroscopica",
+    path: "/inspeccion-boroscopica",
+    source: "ads_inspeccion-boroscopica",
+    cta: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA,
+    defaultProblema: "desague",
+    problemaOptions: options("desague", "filtracion", "otro"),
+    whatsappMessage:
+      "Hola, quiero una inspección con cámara boroscópica en un desagüe.",
+    thankYouWhatsapp:
+      "Hola, solicité una inspección con cámara boroscópica. Les cuento en qué desagüe está el problema.",
+    metaTitle: "Inspección boroscópica desagües | SEDECO",
+    metaDescription:
+      "Inspección boroscópica con cámara en tuberías de desagüe en Panamá. Ubicamos obstrucciones y fallas y entregamos informe. Solicite inspección.",
+    h1: "Inspección con cámara boroscópica en desagües",
+    sub: "Recorremos el desagüe con cámara para ver dónde entra o se detiene el agua. El resultado es un diagnóstico con informe, antes de abrir o reparar.",
+    bullets: [
+      "Cámara por el ducto, sin adivinar el origen solo desde el interior.",
+      "Informe de lo observado para decidir el siguiente paso.",
+      "Coordinamos la visita por WhatsApp al +507 6550-8320.",
+    ],
+    serviceType: "Inspección boroscópica de desagües",
+    adsCampaign: "later",
+    showGuaranteeNote: false,
+    steps: [
+      {
+        title: "Acceso",
+        body: "Coordinamos la bajada al desagüe o al punto donde se puede introducir la cámara.",
+      },
+      {
+        title: "Cámara",
+        body: "Recorremos el ducto con la cámara boroscópica y registramos lo que se ve.",
+      },
+      {
+        title: "Informe",
+        body: "Entregamos el diagnóstico en un informe para decidir si hace falta abrir o reparar.",
+      },
+    ],
   },
 };
 

@@ -11,7 +11,13 @@ import {
   type AdsLeadInsert,
 } from "@/lib/supabase-server";
 import { sendLeadNotification } from "@/lib/email/lead-notification";
-import { trackingFromFormData } from "@/lib/tracking";
+import {
+  attributionFromCookieHeader,
+  mergeTracking,
+  referrerForLead,
+  trackingFieldsFromAttribution,
+  trackingFromFormData,
+} from "@/lib/tracking";
 import { leadSubmitErrorMessage } from "@/lib/site";
 
 const PROBLEMA_LABEL: Record<string, string> = {
@@ -25,6 +31,7 @@ const PROBLEMA_LABEL: Record<string, string> = {
   pisos: "Pisos industriales",
   pintura: "Pintura de fachada",
   mantenimiento: "Mantenimiento de PH",
+  desague: "Desagüe",
   otro: "Otro",
 };
 
@@ -123,24 +130,34 @@ export async function submitAdsLead(
     };
   }
 
-  const tracking = trackingFromFormData(formData);
+  const hdrs = await headers();
+  const userAgent = hdrs.get("user-agent") ?? undefined;
+  const storedAttribution = attributionFromCookieHeader(hdrs.get("cookie"));
+  // A same-site POST Referer is the form page. The cookie keeps the external
+  // referrer captured with the click id. Empty values still cannot wipe gclid.
+  const referrer = referrerForLead(hdrs.get("referer"), storedAttribution);
+  const tracking = mergeTracking(
+    trackingFromFormData(formData),
+    trackingFieldsFromAttribution(storedAttribution),
+  );
   const mensaje = composeMensaje(parsed.data);
 
   const supabase = getSupabaseServiceClient();
   if (!supabase) {
     console.error(
-      "[submitAdsLead] SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no configurada. Lead NO persistido:",
-      JSON.stringify({ ...parsed.data, ...tracking, mensaje }),
+      "[submitAdsLead] SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no configurada. Lead NO persistido.",
+      JSON.stringify({
+        source: parsed.data.source,
+        landingPath: parsed.data.landingPath,
+        gclid: tracking.gclid ?? null,
+        utm_source: tracking.utmSource ?? null,
+      }),
     );
     return {
       ok: false,
       error: leadSubmitErrorMessage(),
     };
   }
-
-  const hdrs = await headers();
-  const userAgent = hdrs.get("user-agent") ?? undefined;
-  const referrer = hdrs.get("referer") ?? undefined;
 
   const payload = {
     nombre: parsed.data.nombre,
