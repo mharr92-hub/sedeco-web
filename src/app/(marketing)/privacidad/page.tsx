@@ -124,9 +124,7 @@ export default function PrivacidadPage() {
           <br />
           WhatsApp:{" "}
           <a
-            href={whatsappHref(
-              "Hola, escribo desde el aviso de privacidad de SEDECO.",
-            )}
+            href={whatsappHref("Hola, consulta sobre privacidad SEDECO")}
             className="text-navy-700 underline underline-offset-2 hover:text-accent-600"
           >
             {WHATSAPP_DISPLAY}

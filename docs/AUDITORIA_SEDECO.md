@@ -23,8 +23,8 @@ El teléfono aceptaba cualquier cadena de 7 dígitos y el paso 1 no mostraba el 
 | --- | --- | --- | --- | --- |
 | 5 | HECHO | `src/lib/validations/lead.ts`, `src/components/ads/ads-lead-form.tsx` | Celular de Panamá: 8 dígitos que empiezan en 6; acepta `+507`, espacios y guiones. El mensaje queda bajo el campo, con `aria-live="polite"` y borde `border-danger`. `scripts/verify-audit.ts` cubre `+507 6550-8320`, `65508320` y rechaza `3835175` y `12345678`. | — |
 | 13 | HECHO | `src/components/ads/ads-lead-form.tsx`, `src/app/(marketing)/page.tsx` | Home usa el formulario de 2 pasos. El correo no se pide. La descripción es opcional. | — |
-| 18 | HECHO | `src/app/layout.tsx`, `src/app/(marketing)/page.tsx`, `src/lib/site.ts` | Title por defecto, H1 y los textos de home que decían «permanente» pasan a «de larga duración». No se reescribieron claims de Ghostshield ni cifras. El title SEO final de `/` se ajusta en el bloque D al texto acordado. | — |
-| 21 | HECHO | `src/app/(marketing)/privacidad/page.tsx`, `src/app/(marketing)/terminos/page.tsx` | Los enlaces usan `whatsappHref`, que arma `https://wa.me/50765508320?text=`. | — |
+| 18 | HECHO | `src/app/(marketing)/page.tsx` | H1 «Sellado de concreto de larga duración.» El cuerpo de home ya no dice «permanente». Claims de Ghostshield y cifras no se reescribieron. El title de `/` es el de Content, en el bloque D. | — |
+| 21 | HECHO | `src/app/(marketing)/privacidad/page.tsx`, `src/app/(marketing)/terminos/page.tsx` | `?text=` exacto: «Hola, consulta sobre privacidad SEDECO» y «Hola, consulta sobre términos SEDECO». | — |
 
 ## Bloque C — técnico
 

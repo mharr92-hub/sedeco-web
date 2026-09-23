@@ -105,9 +105,7 @@ export default function TerminosPage() {
           <br />
           WhatsApp:{" "}
           <a
-            href={whatsappHref(
-              "Hola, escribo desde los términos de uso de SEDECO.",
-            )}
+            href={whatsappHref("Hola, consulta sobre términos SEDECO")}
             className="text-navy-700 underline underline-offset-2 hover:text-accent-600"
           >
             {WHATSAPP_DISPLAY}
