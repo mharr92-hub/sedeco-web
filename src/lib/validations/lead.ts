@@ -63,9 +63,26 @@ export const adsLeadFormSchema = z.object({
     .regex(/^[+\d\s\-()]+$/, "Solo dígitos, espacios y los símbolos + - ( ).")
     .min(7, "WhatsApp muy corto.")
     .max(20, "WhatsApp muy largo."),
-  problema: z.enum(problemaValues, {
-    errorMap: () => ({ message: "Seleccione el tipo de problema." }),
-  }),
+  problema: z.preprocess(
+    (v) => {
+      const list = Array.isArray(v)
+        ? v
+        : typeof v === "string" && v.trim().length > 0
+          ? [v]
+          : [];
+      const trimmed = list.filter(
+        (x): x is string => typeof x === "string" && x.trim().length > 0,
+      );
+      return [...new Set(trimmed)];
+    },
+    z
+      .array(
+        z.enum(problemaValues, {
+          errorMap: () => ({ message: "Seleccione el tipo de problema." }),
+        }),
+      )
+      .min(1, "Seleccione al menos un tipo de problema."),
+  ),
   descripcion: optionalText(2000),
   tipoPropiedad: z.enum(tipoPropiedadValues, {
     errorMap: () => ({ message: "Seleccione el tipo de propiedad." }),
@@ -96,6 +113,21 @@ export const adsLeadFormSchema = z.object({
 });
 
 export type AdsLeadFormInput = z.infer<typeof adsLeadFormSchema>;
+
+/** Collect every checked `problema` checkbox from the Ads lead form. */
+export function problemasFromFormData(formData: FormData): string[] {
+  return formData
+    .getAll("problema")
+    .filter((v): v is string => typeof v === "string")
+    .map((v) => v.trim())
+    .filter((v) => v.length > 0);
+}
+
+/** Canonical comma-separated payload for `public.leads.problema` (text). */
+export function serializeProblemas(values: readonly string[]): string {
+  const selected = new Set(values);
+  return problemaValues.filter((value) => selected.has(value)).join(",");
+}
 
 export const adsLeadFieldKeys = [
   "nombre",
