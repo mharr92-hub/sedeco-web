@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrackedLink } from "@/components/ads/tracked-link";
+import { BrandLogo } from "@/components/site/brand-logo";
 import { LegalNav } from "@/components/site/legal-nav";
 import {
   INSPECTION_SLA,
@@ -19,9 +20,7 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
     <footer className="border-t border-white/10 bg-[#070F26] text-white">
       <div className="brand-wrap grid gap-10 py-14 md:grid-cols-3">
         <div>
-          <p className="font-display text-xl font-semibold tracking-[0.18em] text-white">
-            SEDECO
-          </p>
+          <BrandLogo size="footer" />
           <p className="mt-2 text-sm leading-relaxed text-white/80">
             Diagnóstico de filtraciones e impermeabilización en Ciudad de
             Panamá y Colón. {INSPECTION_SLA}

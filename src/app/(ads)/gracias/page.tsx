@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ThankYouClient } from "@/components/ads/thank-you-client";
+import { BrandLogo } from "@/components/site/brand-logo";
 import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
@@ -28,12 +28,7 @@ export default function GraciasPage() {
     <main className="bg-white">
       <header className="border-b-2 border-[#F5A623] bg-[#1A2E8A]">
         <div className="brand-wrap flex h-16 items-center md:h-[4.5rem]">
-          <Link
-            href="/"
-            className="font-display text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
-          >
-            SEDECO
-          </Link>
+          <BrandLogo />
         </div>
       </header>
       <div className="mx-auto max-w-xl px-5 py-16 md:py-20">

@@ -101,7 +101,7 @@ export function localBusinessJsonLd() {
     name: TRADE_NAME,
     legalName: LEGAL_ENTITY,
     image: OG_IMAGE_URL,
-    logo: `${CANONICAL_ORIGIN}/sedeco-logo.png`,
+    logo: `${CANONICAL_ORIGIN}/sedeco-logo.svg`,
     url: CANONICAL_ORIGIN,
     email: SITE_EMAIL,
     telephone: [...OFFICE_PHONES],

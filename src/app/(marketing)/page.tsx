@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/site/brand-logo";
 import { TrustBar } from "@/components/site/trust-bar";
 import { SiteFooter } from "@/components/site/footer";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
@@ -306,13 +306,7 @@ export default function HomePage() {
                 Cuéntenos qué está pasando con su estructura. {INSPECTION_SLA}
               </p>
               <div className="mt-8">
-                <Image
-                  src="/sedeco-logo.png"
-                  alt="SEDECO — Sellado de concreto"
-                  width={240}
-                  height={88}
-                  className="h-auto w-48"
-                />
+                <BrandLogo size="inline" />
               </div>
               <div className="mt-8 space-y-4 border-t border-white/15 pt-6">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F5A623]">

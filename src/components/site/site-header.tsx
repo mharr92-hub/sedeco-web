@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/site/brand-logo";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
@@ -15,13 +16,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b-2 border-[#F5A623] bg-[#1A2E8A]">
       <div className="brand-wrap flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
-        <Link
-          href="/"
-          aria-label="SEDECO Panamá"
-          className="font-display text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
-        >
-          SEDECO
-        </Link>
+        <BrandLogo />
 
         <nav
           aria-label="Principal"
@@ -38,7 +33,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <a
             href={whatsappHref(waMessage)}
             target="_blank"
