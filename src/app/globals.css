@@ -38,6 +38,10 @@
     @apply inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15;
   }
 
+  .btn-tel-outline {
+    @apply inline-flex min-h-12 items-center gap-2 rounded-md border border-white/70 bg-transparent px-5 text-sm font-semibold text-white hover:bg-white/10;
+  }
+
   /* Gold-border cream cards (Rev. 2 / Casos) */
   .brand-card {
     @apply rounded-md border border-[#F5A623] bg-white;

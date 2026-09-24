@@ -1,7 +1,7 @@
+import { AdsHeroCtas } from "@/components/ads/ads-hero-ctas";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { AdsFooter } from "@/components/ads/ads-footer";
 import { AdsHeader } from "@/components/ads/ads-header";
-import { OpenFormButton } from "@/components/ads/open-form-button";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
@@ -75,27 +75,8 @@ function Hero({ page }: { page: ServicePage }) {
             </li>
           ))}
         </ul>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <OpenFormButton
-            event="cta_hero_click"
-            landing={page.slug}
-            location="hero"
-            className="btn-gold-lg"
-          >
-            {page.cta}
-          </OpenFormButton>
-          <TrackedLink
-            event="whatsapp_click"
-            landing={page.slug}
-            location="hero"
-            href={whatsappHref(page.whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15"
-          >
-            <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp {WHATSAPP_DISPLAY}
-          </TrackedLink>
+        <div className="mt-10">
+          <AdsHeroCtas landing={page} />
         </div>
         {page.showGuaranteeNote === false ? (
           <p className="mt-5 text-sm text-white/80">
@@ -178,6 +159,7 @@ function Close({ page }: { page: ServicePage }) {
           <TrackedLink
             event="whatsapp_click"
             landing={page.slug}
+            source={page.source}
             location="bottom"
             href={whatsappHref(page.whatsappMessage)}
             target="_blank"

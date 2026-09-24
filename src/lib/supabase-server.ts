@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { CtaClickInsert } from "@/lib/cta-click";
 
 export type AdsLeadInsert = {
   nombre: string;
@@ -33,6 +34,13 @@ export type AdsLeadRow = AdsLeadInsert & {
   notification_error: string | null;
 };
 
+export type { CtaClickInsert };
+
+export type CtaClickRow = CtaClickInsert & {
+  id: string;
+  created_at: string;
+};
+
 type Database = {
   public: {
     Tables: {
@@ -40,6 +48,12 @@ type Database = {
         Row: AdsLeadRow;
         Insert: AdsLeadInsert;
         Update: Partial<AdsLeadRow>;
+        Relationships: [];
+      };
+      cta_clicks: {
+        Row: CtaClickRow;
+        Insert: CtaClickInsert;
+        Update: Partial<CtaClickRow>;
         Relationships: [];
       };
     };
@@ -51,9 +65,10 @@ type Database = {
 };
 
 /**
- * Server-only client for `public.leads`. Uses the service role so RLS does not
- * block inserts. Never import this module from a Client Component, and never
- * expose `SUPABASE_SERVICE_ROLE_KEY` with a `NEXT_PUBLIC_` prefix.
+ * Server-only client for `public.leads` and `public.cta_clicks`. Uses the
+ * service role so RLS does not block inserts. Never import this module from a
+ * Client Component, and never expose `SUPABASE_SERVICE_ROLE_KEY` with a
+ * `NEXT_PUBLIC_` prefix.
  */
 export function getSupabaseServiceClient(): SupabaseClient<Database> | null {
   const url = process.env.SUPABASE_URL;
