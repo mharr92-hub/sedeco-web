@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { TrackedLink } from "@/components/ads/tracked-link";
+import { BrandLogo } from "@/components/site/brand-logo";
 import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
@@ -28,12 +28,7 @@ export function AdsHeader({
   return (
     <header className="sticky top-0 z-40 border-b-2 border-[#F5A623] bg-[#1A2E8A]">
       <div className="brand-wrap flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
-        <Link
-          href={landing.path}
-          className="font-display text-xl font-semibold tracking-[0.18em] text-white md:text-2xl"
-        >
-          SEDECO
-        </Link>
+        <BrandLogo />
 
         <nav aria-label="En esta página" className="hidden items-center gap-3 md:flex lg:gap-7">
           {nav.map((item) => (
@@ -47,7 +42,7 @@ export function AdsHeader({
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <TrackedLink
             event="whatsapp_click"
             landing={landing.slug}
