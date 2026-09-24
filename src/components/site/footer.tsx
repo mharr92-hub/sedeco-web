@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/site/brand-logo";
-import { SERVICE_NAV } from "@/lib/data/service-pages";
+import { SERVICE_MENU } from "@/lib/data/integral-services";
 import { LegalNav } from "@/components/site/legal-nav";
 import {
   INSPECTION_SLA,
@@ -33,7 +33,7 @@ export function SiteFooter() {
             Servicios
           </p>
           <ul className="space-y-1 text-sm">
-            {SERVICE_NAV.map((s) => (
+            {SERVICE_MENU.map((s) => (
               <li key={s.href}>
                 <Link
                   href={s.href}

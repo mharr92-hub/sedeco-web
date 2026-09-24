@@ -77,6 +77,8 @@ export type LeadPageContext = {
   problemaOptions: readonly ProblemaOption[];
   whatsappMessage: string;
   thankYouWhatsapp: string;
+  /** Slug stored in public.leads.servicio. Absent on older landings. */
+  servicio?: string;
 };
 
 /** Home inspection form. Same fields as Ads, stored as source web_home. */

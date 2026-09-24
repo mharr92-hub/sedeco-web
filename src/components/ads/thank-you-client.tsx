@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { adsLandings } from "@/lib/data/ads-landings";
+import { getIntegralServiceBySlug } from "@/lib/data/integral-services";
 import {
   isLeadPageSlug,
   servicePages,
@@ -14,29 +15,50 @@ import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 
 function getThankYou(from: string | null): {
   slug: string;
+  source: string;
   thankYouWhatsapp: string;
 } {
   if (from === "home") {
     return {
       slug: "home",
+      source: "web_home",
       thankYouWhatsapp:
         "Hola, solicité una inspección desde sedeco.lat. Les envío fotos del problema.",
     };
+  }
+  if (from) {
+    const integral = getIntegralServiceBySlug(from);
+    if (integral) {
+      return {
+        slug: integral.slug,
+        source: integral.lead.source,
+        thankYouWhatsapp: integral.lead.thankYouWhatsapp,
+      };
+    }
   }
   const adsFrom = from === "filtraciones-panama" ? "filtraciones" : from;
   if (adsFrom && adsFrom in adsLandings) {
     const landing = adsLandings[adsFrom as keyof typeof adsLandings];
     return {
       slug: landing.slug,
+      source: landing.source,
       thankYouWhatsapp: landing.thankYouWhatsapp,
     };
   }
   if (isLeadPageSlug(from) && from !== "filtraciones") {
     const page = servicePages[from];
-    return { slug: page.slug, thankYouWhatsapp: page.thankYouWhatsapp };
+    return {
+      slug: page.slug,
+      source: page.source,
+      thankYouWhatsapp: page.thankYouWhatsapp,
+    };
   }
   const fallback = servicePages["impermeabilizacion-panama"];
-  return { slug: fallback.slug, thankYouWhatsapp: fallback.thankYouWhatsapp };
+  return {
+    slug: fallback.slug,
+    source: fallback.source,
+    thankYouWhatsapp: fallback.thankYouWhatsapp,
+  };
 }
 
 function ThankYouInner() {
@@ -57,7 +79,7 @@ function ThankYouInner() {
       <TrackedLink
         event="whatsapp_click"
         landing={landing.slug}
-        source={landing.slug === "home" ? "web_home" : `ads_${landing.slug}`}
+        source={landing.source}
         location="thank_you"
         href={waHref}
         target="_blank"

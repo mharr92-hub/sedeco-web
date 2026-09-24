@@ -1,6 +1,13 @@
 import { z } from "zod";
 import { problemaValues, tipoPropiedadValues } from "@/lib/data/ads-landings";
+import {
+  INTEGRAL_SERVICE_SLUGS,
+  isIntegralServicePath,
+  isIntegralServiceSource,
+} from "@/lib/data/integral-services";
 import { LEAD_PAGE_SLUGS } from "@/lib/data/service-pages";
+
+const LEAD_SERVICIO_VALUES = [...INTEGRAL_SERVICE_SLUGS, "filtraciones"] as const;
 
 export const tipoProyectoValues = [
   "residencial",
@@ -101,6 +108,10 @@ export const adsLeadFormSchema = z.object({
   puedeEnviarFotos: z.enum(["si", "no"], {
     errorMap: () => ({ message: "Indique si puede enviar fotos." }),
   }),
+  servicio: z
+    .union([z.enum(LEAD_SERVICIO_VALUES), z.literal(""), z.null()])
+    .optional()
+    .transform((value) => (value ? value : undefined)),
   landingPath: z
     .string()
     .trim()
@@ -108,7 +119,8 @@ export const adsLeadFormSchema = z.object({
       (v) =>
         v === "/" ||
         v === "/gracias" ||
-        LEAD_PAGE_SLUGS.some((slug) => v === `/${slug}`),
+        LEAD_PAGE_SLUGS.some((slug) => v === `/${slug}`) ||
+        isIntegralServicePath(v),
       "Origen de landing no válido.",
     ),
   source: z
@@ -117,7 +129,8 @@ export const adsLeadFormSchema = z.object({
     .refine(
       (v) =>
         v === "web_home" ||
-        LEAD_PAGE_SLUGS.some((slug) => v === `ads_${slug}`),
+        LEAD_PAGE_SLUGS.some((slug) => v === `ads_${slug}`) ||
+        isIntegralServiceSource(v),
       "Origen no válido.",
     ),
 });
