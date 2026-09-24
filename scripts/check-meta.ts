@@ -8,6 +8,7 @@ import { metadata as terminosMetadata } from "../src/app/(marketing)/terminos/pa
 import { getAdsLanding } from "../src/lib/data/ads-landings";
 import { getAllCases } from "../src/lib/data/cases";
 import { CANONICAL_ORIGIN } from "../src/lib/site";
+import { getIntegralServiceBySlug } from "../src/lib/data/integral-services";
 import {
   getServicePage,
   LEAD_PAGE_SLUGS,
@@ -70,6 +71,10 @@ function metaForPath(path: string): { title: string; description: string } {
       title: resolveTitle(terminosMetadata.title),
       description: resolveDescription(terminosMetadata.description),
     };
+  }
+  const integral = getIntegralServiceBySlug(path.slice(1));
+  if (integral && path === integral.path) {
+    return { title: integral.metaTitle, description: integral.metaDescription };
   }
   if (path === "/filtraciones") {
     const landing = getAdsLanding("filtraciones");

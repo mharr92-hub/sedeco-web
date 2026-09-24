@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
 import { cn } from "@/lib/utils";
 
 const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
@@ -19,7 +23,9 @@ export function WhatsAppGlyph({ className }: { className?: string }) {
 }
 
 export function WhatsAppFloat() {
-  const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const pathname = usePathname() ?? "/";
+  const serviceMessage = getIntegralServiceByPathname(pathname)?.lead.whatsappMessage;
+  const href = `https://wa.me/${phone}?text=${encodeURIComponent(serviceMessage ?? message)}`;
 
   return (
     <a

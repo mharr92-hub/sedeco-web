@@ -343,6 +343,27 @@ export function getAdsProofCases(): Case[] {
   );
 }
 
+/**
+ * The only named projects approved for public marketing.
+ * Order matches the authorized list: Joy Tower, Shevet Ahim, Bet Max Ve Sarah,
+ * Hospital MAG, Fundación Deveaux, PH Quadrat, Super Xtra Arraiján.
+ */
+const AUTHORIZED_SHOWCASE_SLUGS = [
+  "ph-joy-tower",
+  "shevet-ahim",
+  "sinagoga-bet-max-ve-sarah",
+  "hospital-manuel-amador-guerrero",
+  "fundacion-deveaux",
+  "ph-quadrat",
+  "superxtra-arraijan",
+] as const;
+
+export function getAuthorizedShowcaseCases(): Case[] {
+  return AUTHORIZED_SHOWCASE_SLUGS.map((slug) =>
+    cases.find((item) => item.slug === slug),
+  ).filter((item): item is Case => Boolean(item && isPublicCase(item)));
+}
+
 export function getAdsStarCase(): Case | undefined {
   return getAdsProofCases().find((c) => c.slug === "shevet-ahim");
 }

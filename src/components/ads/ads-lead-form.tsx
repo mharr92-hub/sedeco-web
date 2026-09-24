@@ -245,7 +245,10 @@ function AdsLeadForm({
   useEffect(() => {
     if (!state?.ok || redirected.current) return;
     redirected.current = true;
-    gtagEvent("generate_lead", { form: analyticsFormName(landing) });
+    gtagEvent("generate_lead", {
+      form: analyticsFormName(landing),
+      ...(landing.servicio ? { servicio: landing.servicio } : {}),
+    });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);
@@ -318,6 +321,9 @@ function AdsLeadForm({
       </div>
       <input type="hidden" name="source" value={landing.source} />
       <input type="hidden" name="landingPath" value={landing.path} />
+      {landing.servicio ? (
+        <input type="hidden" name="servicio" value={landing.servicio} />
+      ) : null}
       <TrackingHiddenFields />
 
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C6578]">

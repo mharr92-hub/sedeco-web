@@ -7,17 +7,11 @@ import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { SectionHeading } from "@/components/site/section-heading";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { AdsPhotoFill, ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
+import { ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
 import { getFeaturedCases } from "@/lib/data/cases";
-import {
-  HOME_LEAD,
-  HOME_SERVICE_CARDS,
-  HOME_SERVICES_FOOTNOTE,
-  HOME_SERVICES_SUBTITLE,
-  HOME_SERVICES_TITLE,
-  SERVICE_CTA,
-} from "@/lib/data/service-pages";
+import { HOME_LEAD, SERVICE_CTA } from "@/lib/data/service-pages";
+import { IntegralServicesHome } from "@/components/site/integral-services-section";
 import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
@@ -30,15 +24,6 @@ import {
 
 const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 const email = SITE_EMAIL;
-const SERVICE_PHOTOS = {
-  "/impermeabilizacion-panama": ADS_PHOTOS.servicioImpermeabilizacion,
-  "/filtraciones": ADS_PHOTOS.aguaConcreto,
-  "/impermeabilizacion-fachadas": ADS_PHOTOS.servicioFachadas,
-  "/pisos-industriales-panama": ADS_PHOTOS.capacidadHero,
-  "/reparacion-estructural-panama": ADS_PHOTOS.obraAltura,
-  "/mantenimiento-ph": ADS_PHOTOS.joyTower,
-} as const;
-
 const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
 const HOME_DESCRIPTION =
   "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.";
@@ -120,57 +105,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section
-          id="servicios"
-          aria-labelledby="servicios-titulo"
-          className="bg-white text-[#1A2E8A]"
-        >
-          <div className="brand-wrap brand-section">
-            <SectionHeading
-              kicker="Servicios"
-              title={HOME_SERVICES_TITLE}
-              titleId="servicios-titulo"
-            >
-              <p className="mt-5 max-w-prose text-base leading-relaxed text-[#5C6578]">
-                {HOME_SERVICES_SUBTITLE}
-              </p>
-            </SectionHeading>
-            <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {HOME_SERVICE_CARDS.map((card) => {
-                const photo =
-                  SERVICE_PHOTOS[card.href as keyof typeof SERVICE_PHOTOS];
-                return (
-                  <li key={card.href}>
-                    <a
-                      href={card.href}
-                      className="brand-card flex h-full flex-col overflow-hidden"
-                    >
-                      {photo ? (
-                        <div className="relative min-h-[14rem]">
-                          <AdsPhotoFill
-                            photo={photo}
-                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          />
-                        </div>
-                      ) : null}
-                      <div className="flex flex-1 flex-col p-5">
-                        <h3 className="font-display text-xl font-semibold text-[#1A2E8A]">
-                          {card.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-[#5C6578]">
-                          {card.line}
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="mt-8 text-sm leading-relaxed text-[#5C6578]">
-              {HOME_SERVICES_FOOTNOTE}
-            </p>
-          </div>
-        </section>
+        <IntegralServicesHome />
 
         <section
           id="inspeccion-boroscopica"

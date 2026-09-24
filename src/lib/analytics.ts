@@ -14,6 +14,7 @@ export const ANALYTICS_EVENTS = [
   "cta_bottom_click",
   "form_error",
   "thank_you_view",
+  "click_whatsapp",
 ] as const;
 
 export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number];
@@ -25,6 +26,8 @@ export type AnalyticsPayload = {
   problem?: string;
   source?: string;
   reason?: string;
+  /** Catalog slug for integral service pages. Never a name, phone or email. */
+  servicio?: string;
 };
 
 declare global {
@@ -86,5 +89,6 @@ export function track(payload: AnalyticsPayload): void {
     problem: payload.problem,
     source: payload.source,
     reason: payload.reason,
+    ...(payload.servicio ? { servicio: payload.servicio } : {}),
   });
 }

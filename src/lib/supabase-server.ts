@@ -23,6 +23,8 @@ export type AdsLeadInsert = {
   gclid?: string | null;
   gbraid?: string | null;
   wbraid?: string | null;
+  /** public.leads.servicio — catalog slug. Null on older forms. */
+  servicio?: string | null;
   status?: string;
 };
 

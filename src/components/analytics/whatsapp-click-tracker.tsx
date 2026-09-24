@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { gtagEvent } from "@/lib/analytics";
+import { gtagEvent, track } from "@/lib/analytics";
+import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
 
 /**
  * Sends whatsapp_click to GA4 for every wa.me link on the site.
@@ -16,7 +17,20 @@ export function WhatsAppClickTracker() {
       const target = event.target as Element | null;
       const link = target?.closest?.('a[href*="wa.me"]');
       if (!link) return;
-      gtagEvent("whatsapp_click", { page_path: window.location.pathname });
+      const servicio = getIntegralServiceByPathname(
+        window.location.pathname,
+      )?.slug;
+      gtagEvent("whatsapp_click", {
+        page_path: window.location.pathname,
+        ...(servicio ? { servicio } : {}),
+      });
+      if (servicio) {
+        track({
+          event: "click_whatsapp",
+          servicio,
+          landing: servicio,
+        });
+      }
     }
 
     document.addEventListener("click", onClick, true);

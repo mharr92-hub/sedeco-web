@@ -60,6 +60,7 @@ function composeMensaje(input: {
   puedeEnviarFotos: string;
   descripcion?: string;
   landingPath: string;
+  servicio?: string;
 }): string {
   const lines = [
     `Problema: ${PROBLEMA_LABEL[input.problema] ?? input.problema}`,
@@ -68,6 +69,9 @@ function composeMensaje(input: {
     `Fotos: ${input.puedeEnviarFotos === "si" ? "puede enviar" : "no por ahora"}`,
     `Landing: ${input.landingPath}`,
   ];
+  if (input.servicio) {
+    lines.push(`Servicio: ${input.servicio}`);
+  }
   if (input.descripcion) {
     lines.push("", input.descripcion);
   }
@@ -113,6 +117,7 @@ export async function submitAdsLead(
     puedeEnviarFotos: formData.get("puedeEnviarFotos"),
     landingPath: formData.get("landingPath"),
     source: formData.get("source"),
+    servicio: formData.get("servicio") || undefined,
   };
 
   const parsed = adsLeadFormSchema.safeParse(raw);
@@ -169,6 +174,7 @@ export async function submitAdsLead(
     mensaje,
     source: parsed.data.source,
     landingPath: parsed.data.landingPath,
+    servicio: parsed.data.servicio,
     userAgent,
     referrer,
     ...tracking,
@@ -195,6 +201,7 @@ export async function submitAdsLead(
     gclid: tracking.gclid ?? null,
     gbraid: tracking.gbraid ?? null,
     wbraid: tracking.wbraid ?? null,
+    servicio: parsed.data.servicio ?? null,
     ...(parsed.data.descripcion ? { descripcion: parsed.data.descripcion } : {}),
   };
 

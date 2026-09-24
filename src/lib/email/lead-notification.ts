@@ -18,6 +18,7 @@ export type LeadNotificationPayload = TrackingFields & {
   mensaje: string;
   source: string;
   landingPath?: string;
+  servicio?: string;
   createdAt: Date;
 };
 
@@ -73,6 +74,7 @@ function buildRows(lead: LeadNotificationPayload): Array<[string, string]> {
     rows.push(["Puede enviar fotos", lead.puedeEnviarFotos]);
   }
   if (lead.landingPath) rows.push(["Landing", lead.landingPath]);
+  if (lead.servicio) rows.push(["Servicio", lead.servicio]);
   rows.push(["Origen", lead.source]);
   if (lead.utmSource) rows.push(["utm_source", lead.utmSource]);
   if (lead.utmMedium) rows.push(["utm_medium", lead.utmMedium]);
