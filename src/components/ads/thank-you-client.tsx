@@ -57,6 +57,7 @@ function ThankYouInner() {
       <TrackedLink
         event="whatsapp_click"
         landing={landing.slug}
+        source={landing.slug === "home" ? "web_home" : `ads_${landing.slug}`}
         location="thank_you"
         href={waHref}
         target="_blank"

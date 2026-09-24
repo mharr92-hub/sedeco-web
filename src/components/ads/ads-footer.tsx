@@ -45,6 +45,7 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
               <TrackedLink
                 event="whatsapp_click"
                 landing={landing.slug}
+                source={landing.source}
                 location="footer"
                 href={whatsappHref(landing.whatsappMessage)}
                 target="_blank"
@@ -58,6 +59,7 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
               <TrackedLink
                 event="phone_click"
                 landing={landing.slug}
+                source={landing.source}
                 location="footer"
                 href={telHref(PHONE_OFFICE_PRIMARY)}
                 className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
@@ -69,6 +71,7 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
               <TrackedLink
                 event="phone_click"
                 landing={landing.slug}
+                source={landing.source}
                 location="footer"
                 href={telHref(PHONE_OFFICE_SECONDARY)}
                 className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"

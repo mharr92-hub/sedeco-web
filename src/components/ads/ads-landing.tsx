@@ -16,6 +16,7 @@ import {
   ADS_SUCCESS_CASES,
   getAdsHeroPhoto,
 } from "@/lib/data/ads-visuals";
+import { AdsHeroCtas } from "@/components/ads/ads-hero-ctas";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { AdsPhotoFill, ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { GuaranteeLine } from "@/components/ads/guarantee-line";
@@ -27,6 +28,7 @@ import {
   CANONICAL_ORIGIN,
   localBusinessJsonLd,
   whatsappHref,
+  WHATSAPP_DISPLAY,
 } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -120,27 +122,8 @@ function Hero({ landing }: { landing: AdsLanding }) {
           <p className="mt-4 font-ads text-sm uppercase tracking-[0.14em] text-white/80">
             {ADS_HERO_SUB}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <OpenFormButton
-              event="cta_hero_click"
-              landing={landing.slug}
-              location="hero"
-              className="btn-gold-lg"
-            >
-              {landing.cta}
-            </OpenFormButton>
-            <TrackedLink
-              event="whatsapp_click"
-              landing={landing.slug}
-              location="hero"
-              href={whatsappHref(landing.whatsappMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-wa-outline"
-            >
-              <WhatsAppGlyph className="text-[#25D366]" />
-              WhatsApp +507 6550-8320
-            </TrackedLink>
+          <div className="mt-8">
+            <AdsHeroCtas landing={landing} />
           </div>
           <p className="mt-5 max-w-prose text-sm leading-relaxed text-white/80">
             {ADS_POSITIONING}{" "}
@@ -547,6 +530,7 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
           <TrackedLink
             event="whatsapp_click"
             landing={landing.slug}
+            source={landing.source}
             location="bottom"
             href={whatsappHref(landing.whatsappMessage)}
             target="_blank"
@@ -554,7 +538,7 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
             className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 px-5 text-sm font-semibold text-white"
           >
             <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp +507 6550-8320
+            WhatsApp {WHATSAPP_DISPLAY}
           </TrackedLink>
         </div>
         <p className="mt-8 font-ads text-sm tracking-[0.18em] text-white/60">
