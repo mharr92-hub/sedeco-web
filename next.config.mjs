@@ -75,22 +75,22 @@ const nextConfig = {
       },
       {
         source: "/impermeabilizacion-azoteas",
-        destination: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
         statusCode: 301,
       },
       {
         source: "/servicios/impermeabilizacion",
-        destination: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
         permanent: true,
       },
       {
         source: "/servicios/fachadas",
-        destination: "/impermeabilizacion-fachadas",
+        destination: "/fachadas",
         permanent: true,
       },
       {
         source: "/servicios/azoteas",
-        destination: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
         permanent: true,
       },
       {
@@ -110,7 +110,7 @@ const nextConfig = {
       },
       {
         source: "/servicios/tanques",
-        destination: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
         permanent: true,
       },
       {
@@ -120,7 +120,7 @@ const nextConfig = {
       },
       {
         source: "/servicios/piscinas",
-        destination: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
         permanent: true,
       },
       ...apexHostRedirects,

@@ -14,7 +14,6 @@ export const ANALYTICS_EVENTS = [
   "cta_bottom_click",
   "form_error",
   "thank_you_view",
-  "click_whatsapp",
 ] as const;
 
 export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number];

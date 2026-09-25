@@ -1,11 +1,16 @@
 import type { MetadataRoute } from "next";
-import { LEAD_PAGE_SLUGS } from "@/lib/data/service-pages";
+import {
+  LEAD_PAGE_SLUGS,
+  leadPageIndexable,
+} from "@/lib/data/service-pages";
 import { getIntegralServices } from "@/lib/data/integral-services";
 import { getAllCases } from "@/lib/data/cases";
 import { CANONICAL_ORIGIN } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const serviceEntries: MetadataRoute.Sitemap = LEAD_PAGE_SLUGS.map((slug) => ({
+  const serviceEntries: MetadataRoute.Sitemap = LEAD_PAGE_SLUGS.filter(
+    leadPageIndexable,
+  ).map((slug) => ({
     url: `${CANONICAL_ORIGIN}/${slug}`,
     changeFrequency: "weekly",
     priority: 0.9,

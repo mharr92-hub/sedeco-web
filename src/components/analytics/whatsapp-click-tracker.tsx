@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
-import { gtagEvent, track } from "@/lib/analytics";
+import { gtagEvent } from "@/lib/analytics";
 import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
 
 /**
- * Sends whatsapp_click to GA4 for every wa.me link on the site.
+ * Sends whatsapp_click to GA4 with gtag for every wa.me link on the site.
  *
- * Delegated on the document so it covers the float button, the footer and
- * legal pages, and any TrackedLink — all of which render a plain anchor.
- * Keeping it in one place means a click reports exactly once.
+ * Delegated on the document so it covers the float button, the footer,
+ * /servicios and any TrackedLink — all of which render a plain anchor.
+ * On the nine service pages the hit includes servicio = slug.
+ * The GTM container is empty, so this does not push click_whatsapp to dataLayer.
+ * TrackedLink still logs the click to /api/cta-clicks.
  */
 export function WhatsAppClickTracker() {
   useEffect(() => {
@@ -24,13 +26,6 @@ export function WhatsAppClickTracker() {
         page_path: window.location.pathname,
         ...(servicio ? { servicio } : {}),
       });
-      if (servicio) {
-        track({
-          event: "click_whatsapp",
-          servicio,
-          landing: servicio,
-        });
-      }
     }
 
     document.addEventListener("click", onClick, true);
