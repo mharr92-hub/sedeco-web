@@ -442,16 +442,41 @@ export function isLeadPageSlug(value: string | null): value is LeadPageSlug {
   return Boolean(value && (LEAD_PAGE_SLUGS as readonly string[]).includes(value));
 }
 
+/**
+ * Ads landings that repeat a ranking URL. They stay published for Ads.
+ * Canonical points at the page that should rank, not at the landing itself.
+ */
+export const NOINDEX_LEAD_CANONICAL = {
+  "impermeabilizacion-panama": "/impermeabilizacion",
+  "impermeabilizacion-fachadas": "/fachadas",
+  "pintura-edificios-panama": "/pintura",
+} as const satisfies Partial<
+  Record<Exclude<LeadPageSlug, "filtraciones">, string>
+>;
+
+export function leadPageIndexable(slug: string): boolean {
+  return !(slug in NOINDEX_LEAD_CANONICAL);
+}
+
+function leadCanonicalPath(page: ServicePage): string {
+  return (
+    NOINDEX_LEAD_CANONICAL[page.slug as keyof typeof NOINDEX_LEAD_CANONICAL] ??
+    page.path
+  );
+}
+
 export function servicePageMetadata(page: ServicePage): Metadata {
-  const url = `${CANONICAL_ORIGIN}${page.path}`;
+  const pageUrl = `${CANONICAL_ORIGIN}${page.path}`;
+  const canonicalUrl = `${CANONICAL_ORIGIN}${leadCanonicalPath(page)}`;
+  const indexable = canonicalUrl === pageUrl;
   return {
     title: { absolute: page.metaTitle },
     description: page.metaDescription,
-    alternates: { canonical: url },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url,
+      url: pageUrl,
       locale: "es_PA",
       type: "website",
       siteName: "SEDECO Panamá",
@@ -463,7 +488,7 @@ export function servicePageMetadata(page: ServicePage): Metadata {
       description: page.metaDescription,
       images: [OG_IMAGE_URL],
     },
-    robots: { index: true, follow: true },
+    robots: { index: indexable, follow: true },
   };
 }
 
@@ -474,7 +499,7 @@ export function serviceJsonLd(page: ServicePage) {
       "@type": "Service",
       name: page.serviceType,
       description: page.metaDescription,
-      url: `${CANONICAL_ORIGIN}${page.path}`,
+      url: `${CANONICAL_ORIGIN}${leadCanonicalPath(page)}`,
       areaServed: [
         { "@type": "City", name: "Ciudad de Panamá" },
         { "@type": "AdministrativeArea", name: "Área metro de Panamá" },
