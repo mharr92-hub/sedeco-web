@@ -142,12 +142,12 @@ export const SERVICE_NEED_CARDS = [
     when: "Cuando el agua aparece en un apartamento, PH o local y no está claro de dónde entra.",
   },
   {
-    href: "/impermeabilizacion-panama",
+    href: "/impermeabilizacion",
     title: "Azoteas y losas",
     when: "Cuando el último piso se moja, la losa está fisurada o el techo ya no contiene la lluvia.",
   },
   {
-    href: "/impermeabilizacion-fachadas",
+    href: "/fachadas",
     title: "Fachadas",
     when: "Cuando hay manchas verticales, humedad en muros o uniones de ventanas en altura.",
   },
@@ -157,7 +157,7 @@ export const SERVICE_NEED_CARDS = [
     when: "Cuando la superficie es concreto o acero expuesto y necesita un sellado, no una pintura.",
   },
   {
-    href: "/impermeabilizacion-panama",
+    href: "/impermeabilizacion",
     title: "Impermeabilización integral",
     when: "Cuando hay más de un frente: azotea, fachada, juntas o un edificio completo.",
   },

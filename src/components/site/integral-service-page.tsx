@@ -4,13 +4,27 @@ import { TrackedLink } from "@/components/ads/tracked-link";
 import { CaseCard } from "@/components/site/case-card";
 import { ServiceIcon } from "@/components/site/service-icons";
 import { SiteFooter } from "@/components/site/footer";
+import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { getAuthorizedShowcaseCases } from "@/lib/data/cases";
 import {
   integralServiceJsonLd,
   type IntegralService,
 } from "@/lib/data/integral-services";
-import { INSPECTION_SLA, whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
+import {
+  INSPECTION_SLA,
+  PHONE_OFFICE_PRIMARY,
+  telHref,
+  whatsappHref,
+  WHATSAPP_DISPLAY,
+} from "@/lib/site";
+
+/** Same office line and tracking as the retired Ads heroes. */
+const HERO_CALL_SLUGS = new Set<IntegralService["slug"]>([
+  "impermeabilizacion",
+  "fachadas",
+  "pintura",
+]);
 
 export function IntegralServicePage({ service }: { service: IntegralService }) {
   const cases = getAuthorizedShowcaseCases();
@@ -62,6 +76,19 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
                 <WhatsAppGlyph className="text-[#25D366]" />
                 WhatsApp {WHATSAPP_DISPLAY}
               </TrackedLink>
+              {HERO_CALL_SLUGS.has(service.slug) ? (
+                <TrackedLink
+                  event="phone_click"
+                  landing={service.slug}
+                  source={service.lead.source}
+                  location="hero"
+                  href={telHref(PHONE_OFFICE_PRIMARY)}
+                  className="btn-tel-outline"
+                >
+                  <PhoneGlyph />
+                  Llamar {PHONE_OFFICE_PRIMARY}
+                </TrackedLink>
+              ) : null}
             </div>
             <p className="mt-5 text-sm text-white/70">{INSPECTION_SLA}</p>
           </div>

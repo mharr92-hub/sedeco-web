@@ -5,14 +5,14 @@ import {
 } from "@/lib/data/ads-visuals";
 
 export const SERVICE_PUBLIC_PATH: Record<ServiceSlug, string> = {
-  fachadas: "/impermeabilizacion-fachadas",
-  azoteas: "/impermeabilizacion-panama",
-  tanques: "/impermeabilizacion-panama",
+  fachadas: "/fachadas",
+  azoteas: "/impermeabilizacion",
+  tanques: "/impermeabilizacion",
   grietas: "/reparacion-estructural-panama",
-  piscinas: "/impermeabilizacion-panama",
+  piscinas: "/impermeabilizacion",
   filtraciones: "/filtraciones",
   "sellado-concreto": "/pisos-industriales-panama",
-  impermeabilizacion: "/impermeabilizacion-panama",
+  impermeabilizacion: "/impermeabilizacion",
 };
 
 export type ServiceSlug =
