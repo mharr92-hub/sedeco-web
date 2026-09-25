@@ -16,7 +16,7 @@ import {
 /**
  * Marketing catalog of nine integral services.
  * Distinct from `services.ts` (azoteas, tanques, etc. under /servicios/[slug])
- * and from Ads landings (`/filtraciones`, `/impermeabilizacion-panama`, …).
+ * and from Ads landings (`/filtraciones`, …).
  * `slug` is the value stored in public.leads.servicio.
  */
 export const INTEGRAL_SERVICE_SLUGS = [

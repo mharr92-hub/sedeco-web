@@ -73,6 +73,23 @@ const nextConfig = {
         destination: "/pisos-industriales-panama",
         statusCode: 301,
       },
+      // Retired Ads landings. Next forwards the query string (gclid, gbraid,
+      // wbraid, utm_*) onto the destination. Do not point other redirects here.
+      {
+        source: "/impermeabilizacion-panama",
+        destination: "/impermeabilizacion",
+        statusCode: 301,
+      },
+      {
+        source: "/impermeabilizacion-fachadas",
+        destination: "/fachadas",
+        statusCode: 301,
+      },
+      {
+        source: "/pintura-edificios-panama",
+        destination: "/pintura",
+        statusCode: 301,
+      },
       {
         source: "/impermeabilizacion-azoteas",
         destination: "/impermeabilizacion",

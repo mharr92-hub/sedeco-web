@@ -140,7 +140,7 @@ export const HOME_SERVICES_FOOTNOTE =
 
 export const HOME_SERVICE_CARDS = [
   {
-    href: "/impermeabilizacion-panama",
+    href: "/impermeabilizacion",
     title: "Impermeabilización",
     line: "Azoteas, losas, fachadas, tanques y piscinas. Sistema según el sustrato, no un producto único.",
   },
@@ -150,7 +150,7 @@ export const HOME_SERVICE_CARDS = [
     line: "Encontramos el origen del agua antes de reparar y lo entregamos en un informe técnico.",
   },
   {
-    href: "/impermeabilizacion-fachadas",
+    href: "/fachadas",
     title: "Fachadas en altura",
     line: "Restauración, sellos y pintura con guindolas eléctricas propias certificadas. Llegamos donde otros no llegan.",
   },
@@ -173,12 +173,12 @@ export const HOME_SERVICE_CARDS = [
 
 /** IA / nav order: keep three core, then new pages with pisos first. */
 export const SERVICE_NAV = [
-  { href: "/impermeabilizacion-panama", label: "Impermeabilización" },
+  { href: "/impermeabilizacion", label: "Impermeabilización" },
   { href: "/filtraciones", label: "Diagnóstico" },
-  { href: "/impermeabilizacion-fachadas", label: "Fachadas en altura" },
+  { href: "/fachadas", label: "Fachadas en altura" },
   { href: "/pisos-industriales-panama", label: "Pisos industriales" },
   { href: "/reparacion-estructural-panama", label: "Reparación estructural" },
-  { href: "/pintura-edificios-panama", label: "Pintura de edificios" },
+  { href: "/pintura", label: "Pintura de edificios" },
   { href: "/mantenimiento-ph", label: "Mantenimiento PH" },
   { href: "/inspeccion-boroscopica", label: "Inspección boroscópica" },
 ] as const;
@@ -433,9 +433,11 @@ export function getServicePage(
 }
 
 export function getAllServicePages(): ServicePage[] {
-  return SERVICE_NAV.filter((item) => item.href !== "/filtraciones").map(
-    (item) => servicePages[item.href.slice(1) as Exclude<LeadPageSlug, "filtraciones">],
-  );
+  return SERVICE_NAV.flatMap((item) => {
+    const slug = item.href.slice(1);
+    if (!(slug in servicePages)) return [];
+    return [servicePages[slug as Exclude<LeadPageSlug, "filtraciones">]];
+  });
 }
 
 export function isLeadPageSlug(value: string | null): value is LeadPageSlug {
@@ -443,40 +445,29 @@ export function isLeadPageSlug(value: string | null): value is LeadPageSlug {
 }
 
 /**
- * Ads landings that repeat a ranking URL. They stay published for Ads.
- * Canonical points at the page that should rank, not at the landing itself.
+ * Ads URLs replaced by a ranking page. next.config 301s them and the sitemap
+ * omits them. The slugs stay valid lead origins for a form already open.
  */
-export const NOINDEX_LEAD_CANONICAL = {
-  "impermeabilizacion-panama": "/impermeabilizacion",
-  "impermeabilizacion-fachadas": "/fachadas",
-  "pintura-edificios-panama": "/pintura",
-} as const satisfies Partial<
-  Record<Exclude<LeadPageSlug, "filtraciones">, string>
->;
+export const RETIRED_LEAD_SLUGS = [
+  "impermeabilizacion-panama",
+  "impermeabilizacion-fachadas",
+  "pintura-edificios-panama",
+] as const satisfies readonly Exclude<LeadPageSlug, "filtraciones">[];
 
 export function leadPageIndexable(slug: string): boolean {
-  return !(slug in NOINDEX_LEAD_CANONICAL);
-}
-
-function leadCanonicalPath(page: ServicePage): string {
-  return (
-    NOINDEX_LEAD_CANONICAL[page.slug as keyof typeof NOINDEX_LEAD_CANONICAL] ??
-    page.path
-  );
+  return !(RETIRED_LEAD_SLUGS as readonly string[]).includes(slug);
 }
 
 export function servicePageMetadata(page: ServicePage): Metadata {
-  const pageUrl = `${CANONICAL_ORIGIN}${page.path}`;
-  const canonicalUrl = `${CANONICAL_ORIGIN}${leadCanonicalPath(page)}`;
-  const indexable = canonicalUrl === pageUrl;
+  const url = `${CANONICAL_ORIGIN}${page.path}`;
   return {
     title: { absolute: page.metaTitle },
     description: page.metaDescription,
-    alternates: { canonical: canonicalUrl },
+    alternates: { canonical: url },
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url: pageUrl,
+      url,
       locale: "es_PA",
       type: "website",
       siteName: "SEDECO Panamá",
@@ -488,7 +479,7 @@ export function servicePageMetadata(page: ServicePage): Metadata {
       description: page.metaDescription,
       images: [OG_IMAGE_URL],
     },
-    robots: { index: indexable, follow: true },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -499,7 +490,7 @@ export function serviceJsonLd(page: ServicePage) {
       "@type": "Service",
       name: page.serviceType,
       description: page.metaDescription,
-      url: `${CANONICAL_ORIGIN}${leadCanonicalPath(page)}`,
+      url: `${CANONICAL_ORIGIN}${page.path}`,
       areaServed: [
         { "@type": "City", name: "Ciudad de Panamá" },
         { "@type": "AdministrativeArea", name: "Área metro de Panamá" },

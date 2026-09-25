@@ -161,13 +161,13 @@ export const ADS_SERVICE_COLUMNS: Array<{
     photo: ADS_PHOTOS.aguaConcreto,
   },
   {
-    href: "/impermeabilizacion-panama",
+    href: "/impermeabilizacion",
     title: "Impermeabilización",
     line: "Azotea, losa, tanque o piscina: sistema según el sustrato.",
     photo: ADS_PHOTOS.servicioImpermeabilizacion,
   },
   {
-    href: "/impermeabilizacion-fachadas",
+    href: "/fachadas",
     title: "Fachadas en altura",
     line: "Juntas, sellos de ventanas y recubrimientos con equipo propio.",
     photo: ADS_PHOTOS.servicioFachadas,
