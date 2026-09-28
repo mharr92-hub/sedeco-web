@@ -4,7 +4,7 @@ import { adsLeadFormSchema } from "./lead";
 
 const filtracionesLead = {
   nombre: "Ana Pérez",
-  telefono: "65508320",
+  telefono: "60388649",
   problema: "filtracion",
   tipoPropiedad: "ph",
   ubicacion: "San Francisco",

@@ -404,7 +404,7 @@ export const servicePages: Record<
     bullets: [
       "Cámara por el ducto, sin adivinar el origen solo desde el interior.",
       "Informe de lo observado para decidir el siguiente paso.",
-      "Coordinamos la visita por WhatsApp al +507 6550-8320.",
+      "Coordinamos la visita por WhatsApp al +507 6038-8649.",
     ],
     serviceType: "Inspección boroscópica de desagües",
     adsCampaign: "later",

@@ -11,7 +11,7 @@ test("whatsapp click keeps gclid from the landing URL", () => {
   const row = buildCtaClickInsert({
     body: {
       ctaType: "whatsapp",
-      href: "https://wa.me/50765508320?text=Hola%2C%20filtraci%C3%B3n",
+      href: "https://wa.me/50760388649?text=Hola%2C%20filtraci%C3%B3n",
       landingPath: "/filtraciones",
       source: "ads_filtraciones",
       search: "?gclid=TEST&utm_source=google",
@@ -73,7 +73,7 @@ test("rejects anything that is not a wa.me or tel link", () => {
     buildCtaClickInsert({
       body: {
         ctaType: "whatsapp",
-        href: "https://evil.example/wa.me/50765508320",
+        href: "https://evil.example/wa.me/50760388649",
         landingPath: "/filtraciones",
       },
       cookieHeader: null,
