@@ -197,7 +197,7 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿En cuánto tiempo responden?",
-    a: `${INSPECTION_SLA} Si el caso es urgente, puede escribirnos por WhatsApp al +507 6550-8320.`,
+    a: `${INSPECTION_SLA} Si el caso es urgente, puede escribirnos por WhatsApp al +507 6038-8649.`,
   },
   {
     q: "¿LithiTek 9500 sirve para techos de zinc?",
@@ -205,7 +205,7 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿Puedo enviar fotos por WhatsApp?",
-    a: "Sí. Al enviar el formulario lo llevamos a una página de confirmación con un enlace de WhatsApp (+507 6550-8320) para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
+    a: "Sí. Al enviar el formulario lo llevamos a una página de confirmación con un enlace de WhatsApp (+507 6038-8649) para enviar fotos. Las fotos no sustituyen la inspección, pero ayudan a preparar la visita.",
   },
 ];
 
