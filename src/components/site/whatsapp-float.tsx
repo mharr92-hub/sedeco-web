@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50765508320";
+const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50760388649";
 const message = "Hola, quiero una inspección para un problema de filtración.";
 
 export function WhatsAppGlyph({ className }: { className?: string }) {

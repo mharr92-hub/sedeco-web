@@ -157,7 +157,7 @@ function Hero({ landing }: { landing: AdsLanding }) {
               className="btn-wa-outline"
             >
               <WhatsAppGlyph className="text-[#25D366]" />
-              WhatsApp +507 6550-8320
+              WhatsApp +507 6038-8649
             </TrackedLink>
           </div>
           <p className="mt-5 max-w-prose text-sm leading-relaxed text-white/80">
@@ -572,7 +572,7 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
             className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 px-5 text-sm font-semibold text-white"
           >
             <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp +507 6550-8320
+            WhatsApp +507 6038-8649
           </TrackedLink>
         </div>
         <p className="mt-8 font-ads text-sm tracking-[0.18em] text-white/60">

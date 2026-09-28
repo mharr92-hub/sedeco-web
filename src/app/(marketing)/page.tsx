@@ -50,7 +50,7 @@ const jsonLd = {
   legalName: "SEDECO, S.A.",
   url: siteUrl,
   email: SITE_EMAIL,
-  telephone: "+507 6550-8320",
+  telephone: "+507 6038-8649",
   foundingDate: "2020",
   founder: [
     { "@type": "Person", name: "Mark Harrick", jobTitle: "Gerente Comercial" },
