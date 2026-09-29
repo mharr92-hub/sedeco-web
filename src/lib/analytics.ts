@@ -55,6 +55,39 @@ export function getDirectGa4MeasurementId(): string | undefined {
   return id || DEFAULT_GA4_ID;
 }
 
+/** Cuenta de Google Ads 421-776-6039. Fallback si no hay variable de entorno. */
+const DEFAULT_GOOGLE_ADS_ID = "AW-18420800964";
+
+/** Google Ads conversion ID, for gtag config and remarketing. */
+export function getGoogleAdsId(): string | undefined {
+  const id = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
+  return id || DEFAULT_GOOGLE_ADS_ID;
+}
+
+/**
+ * Conversion label, issued per conversion action in Google Ads. Without it
+ * gtag can still config the account (remarketing, imported GA4 conversions)
+ * but cannot fire a native Ads conversion.
+ */
+export function getGoogleAdsConversionLabel(): string | undefined {
+  const label = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL?.trim();
+  return label || undefined;
+}
+
+/**
+ * Report a Google Ads conversion. No-ops without a label, so it stays inert
+ * until one is configured.
+ *
+ * Do NOT also add an Ads conversion tag inside the GTM container for the same
+ * events — Ads would count each one twice.
+ */
+export function adsConversion(params: Record<string, unknown> = {}): void {
+  const id = getGoogleAdsId();
+  const label = getGoogleAdsConversionLabel();
+  if (!id || !label) return;
+  gtagEvent("conversion", { send_to: `${id}/${label}`, ...params });
+}
+
 /**
  * Send an event straight to GA4. Falls back to queueing on dataLayer when
  * gtag.js has not finished loading — gtag drains that queue on init.

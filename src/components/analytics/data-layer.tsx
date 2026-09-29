@@ -1,12 +1,14 @@
 import Script from "next/script";
 import {
   getDirectGa4MeasurementId,
+  getGoogleAdsId,
   getGtmContainerId,
 } from "@/lib/analytics";
 
 export function DataLayerInit() {
   const gtmId = getGtmContainerId();
   const ga4Id = getDirectGa4MeasurementId();
+  const adsId = getGoogleAdsId();
 
   return (
     <>
@@ -25,7 +27,9 @@ export function DataLayerInit() {
             strategy="afterInteractive"
           />
           <Script id="sedeco-ga4" strategy="afterInteractive">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}',{send_page_view:true});`}
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}',{send_page_view:true});${
+              adsId ? `gtag('config','${adsId}');` : ""
+            }`}
           </Script>
         </>
       ) : null}
