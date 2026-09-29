@@ -5,21 +5,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/site/brand-logo";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { SERVICE_CTA } from "@/lib/data/service-pages";
+import { SERVICE_CTA_STICKY } from "@/lib/data/service-pages";
 import {
   getIntegralServiceByPathname,
   SERVICE_MENU,
 } from "@/lib/data/integral-services";
-import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
-
-const DEFAULT_WA = "Hola, quiero una inspección para un problema de filtración.";
+import {
+  PHONE_MAIN,
+  PHONE_MAIN_DISPLAY,
+  telHref,
+  whatsappHref,
+  WHATSAPP_DEFAULT_MESSAGE,
+  WHATSAPP_DISPLAY,
+} from "@/lib/site";
+import { PhoneGlyph } from "@/components/site/phone-glyph";
 
 export function SiteHeader() {
   const pathname = usePathname() ?? "/";
   const service = getIntegralServiceByPathname(pathname);
-  const waMessage = service?.lead.whatsappMessage ?? DEFAULT_WA;
+  const waMessage = service?.lead.whatsappMessage ?? WHATSAPP_DEFAULT_MESSAGE;
   const quoteHref = service ? `${service.path}#cotizar` : "/#contacto";
-  const quoteLabel = service ? "Cotizar" : SERVICE_CTA;
+  // Short label: the full CTA does not fit the header button.
+  const quoteLabel = SERVICE_CTA_STICKY;
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuId = useId();
@@ -110,10 +117,20 @@ export function SiteHeader() {
             href={whatsappHref(waMessage)}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="whatsapp_click"
             aria-label={`WhatsApp ${WHATSAPP_DISPLAY}`}
             className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-[#25D366] text-white transition-colors hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
           >
             <WhatsAppGlyph />
+          </a>
+          <a
+            href={telHref(PHONE_MAIN)}
+            data-track="phone_click"
+            aria-label={`Llamar al ${PHONE_MAIN}`}
+            className="inline-flex h-11 items-center gap-1.5 rounded-md border border-white/30 px-2.5 text-xs font-semibold text-white transition-colors hover:border-[#F5A623] hover:text-[#F5A623] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2 lg:px-3 lg:text-sm"
+          >
+            <PhoneGlyph className="h-4 w-4" />
+            <span className="hidden sm:inline">{PHONE_MAIN_DISPLAY}</span>
           </a>
           <Link href={quoteHref} className="btn-gold md:px-4">
             <span className="text-xs sm:text-sm">{quoteLabel}</span>

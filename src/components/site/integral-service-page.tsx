@@ -5,6 +5,7 @@ import { CaseCard } from "@/components/site/case-card";
 import { ServiceIcon } from "@/components/site/service-icons";
 import { SiteFooter } from "@/components/site/footer";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
+import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { getAuthorizedShowcaseCases } from "@/lib/data/cases";
 import {
   integralServiceJsonLd,
@@ -47,7 +48,7 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#cotizar" className="btn-gold-lg">
-                Cotizar
+                {SERVICE_CTA}
               </a>
               <TrackedLink
                 event="whatsapp_click"
@@ -154,7 +155,7 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
                 id="cotizar-titulo"
                 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white md:text-4xl"
               >
-                Cotizar {service.name.toLowerCase()}
+                {SERVICE_CTA}
               </h2>
               <p className="mt-5 text-base leading-relaxed text-white/80">
                 Cuéntenos el edificio o la obra. {INSPECTION_SLA}

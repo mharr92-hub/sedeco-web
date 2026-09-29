@@ -15,7 +15,6 @@ import {
 } from "@/lib/site";
 
 const siteUrl = CANONICAL_ORIGIN;
-const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 type ServicioParams = { slug: string };
 
@@ -102,7 +101,7 @@ export default async function ServicioDetailPage({
               {SERVICE_CTA}
             </Link>
             <a
-              href={whatsappHref(waMessage)}
+              href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"

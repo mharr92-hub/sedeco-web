@@ -6,6 +6,7 @@ import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
   HOW_IT_WORKS_STEPS,
+  SERVICE_CTA_STICKY,
   SERVICE_TRUST_BAR,
   serviceJsonLd,
   type ServicePage,
@@ -14,7 +15,7 @@ import { whatsappHref, WHATSAPP_DISPLAY, INSPECTION_SLA } from "@/lib/site";
 
 const SERVICE_NAV = [
   { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#formulario", label: "Solicitar inspección" },
+  { href: "#formulario", label: SERVICE_CTA_STICKY },
 ] as const;
 
 export function ServiceOfferPage({ page }: { page: ServicePage }) {
@@ -151,7 +152,7 @@ function Close({ page }: { page: ServicePage }) {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[minmax(0,1fr)_minmax(20rem,26rem)] md:items-start md:px-8 md:py-20">
         <div>
           <p className="font-ads text-[11px] font-semibold uppercase tracking-[0.22em] text-[#2B4BF2]">
-            Solicitar inspección
+            {SERVICE_CTA_STICKY}
           </p>
           <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-4xl">
             Cuéntenos el caso. {INSPECTION_SLA}

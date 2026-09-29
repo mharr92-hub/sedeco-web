@@ -2,10 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
+import { whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
-const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50760388649";
-const message = "Hola, quiero una inspección para un problema de filtración.";
 
 export function WhatsAppGlyph({ className }: { className?: string }) {
   return (
@@ -22,18 +20,33 @@ export function WhatsAppGlyph({ className }: { className?: string }) {
   );
 }
 
-export function WhatsAppFloat() {
+/**
+ * Floating WhatsApp button. Fixed 24px from the bottom-right corner at every
+ * breakpoint.
+ *
+ * `aboveStickyBar` lifts it clear of the sticky mobile bar on the Ads
+ * landings; on desktop that bar is gone, so it drops back to 24px.
+ */
+export function WhatsAppFloat({
+  aboveStickyBar = false,
+}: {
+  aboveStickyBar?: boolean;
+}) {
   const pathname = usePathname() ?? "/";
   const serviceMessage = getIntegralServiceByPathname(pathname)?.lead.whatsappMessage;
-  const href = `https://wa.me/${phone}?text=${encodeURIComponent(serviceMessage ?? message)}`;
 
   return (
     <a
-      href={href}
+      href={whatsappHref(serviceMessage)}
       target="_blank"
       rel="noopener noreferrer"
+      data-track="whatsapp_click"
+      data-location="fab"
       aria-label="Escribir a SEDECO por WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elevated ring-1 ring-black/5 transition-transform hover:scale-105 hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 md:bottom-6 md:right-6 md:h-16 md:w-16"
+      className={cn(
+        "fixed right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elevated ring-1 ring-black/5 transition-transform hover:scale-105 hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 md:h-16 md:w-16",
+        aboveStickyBar ? "bottom-24 md:bottom-6" : "bottom-6",
+      )}
     >
       <WhatsAppGlyph className="h-7 w-7 md:h-8 md:w-8" />
     </a>

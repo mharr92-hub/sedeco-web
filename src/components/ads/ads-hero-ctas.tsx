@@ -3,7 +3,8 @@ import { TrackedLink } from "@/components/ads/tracked-link";
 import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
-  PHONE_OFFICE_PRIMARY,
+  PHONE_MAIN,
+  PHONE_MAIN_DISPLAY,
   telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
@@ -46,11 +47,12 @@ export function AdsHeroCtas({ landing }: { landing: HeroCtaLanding }) {
         landing={landing.slug}
         source={landing.source}
         location="hero"
-        href={telHref(PHONE_OFFICE_PRIMARY)}
+        href={telHref(PHONE_MAIN)}
+        data-track="phone_click"
         className="btn-tel-outline"
       >
         <PhoneGlyph />
-        Llamar {PHONE_OFFICE_PRIMARY}
+        Llamar {PHONE_MAIN_DISPLAY}
       </TrackedLink>
     </div>
   );

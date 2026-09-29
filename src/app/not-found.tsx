@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 
-const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 export default function NotFound() {
   return (
@@ -24,7 +23,7 @@ export default function NotFound() {
             {SERVICE_CTA}
           </Link>
           <a
-            href={whatsappHref(waMessage)}
+            href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"

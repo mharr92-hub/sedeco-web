@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ServiceIcon } from "@/components/site/service-icons";
+import { SERVICE_CTA_STICKY } from "@/lib/data/service-pages";
 import { SectionHeading } from "@/components/site/section-heading";
 import {
   getIntegralServices,
@@ -24,7 +25,7 @@ export function IntegralServiceGrid({ headingLevel = "h3" }: { headingLevel?: "h
             {service.line}
           </p>
           <Link href={`${service.path}#cotizar`} className="btn-gold mt-5 w-fit">
-            Cotizar
+            {SERVICE_CTA_STICKY}
           </Link>
         </li>
       ))}
