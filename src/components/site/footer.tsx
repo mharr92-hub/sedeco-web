@@ -6,6 +6,8 @@ import {
   INSPECTION_SLA,
   NAP_STREET_ADDRESS,
   LEGAL_NAME,
+  PHONE_MAIN,
+  PHONE_MAIN_DISPLAY,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
   SITE_EMAIL,
@@ -14,7 +16,6 @@ import {
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 
-const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 export function SiteFooter() {
   return (
@@ -68,7 +69,7 @@ export function SiteFooter() {
           <ul className="space-y-1 text-sm">
             <li>
               <a
-                href={whatsappHref(waMessage)}
+                href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
@@ -78,7 +79,17 @@ export function SiteFooter() {
             </li>
             <li>
               <a
+                href={telHref(PHONE_MAIN)}
+                data-track="phone_click"
+                className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
+              >
+                Tel · {PHONE_MAIN_DISPLAY}
+              </a>
+            </li>
+            <li>
+              <a
                 href={telHref(PHONE_OFFICE_PRIMARY)}
+                data-track="phone_click"
                 className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
               >
                 Tel · {PHONE_OFFICE_PRIMARY}
@@ -87,6 +98,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={telHref(PHONE_OFFICE_SECONDARY)}
+                data-track="phone_click"
                 className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
               >
                 Tel · {PHONE_OFFICE_SECONDARY}

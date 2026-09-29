@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { ProblemaValue } from "@/lib/data/ads-landings";
 import {
   PROBLEMA_OPTION_CATALOG,
+  SERVICE_CTA,
+  SERVICE_CTA_STICKY,
   type LeadPageContext,
   type ProblemaOption,
 } from "@/lib/data/service-pages";
@@ -96,8 +98,8 @@ function leadFor(
     path: `/${slug}`,
     source: `web_${slug}`,
     servicio: slug,
-    cta: "Cotizar",
-    ctaSticky: "Cotizar",
+    cta: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema,
     problemaOptions: options(...problemas),
     whatsappMessage: `Hola, quiero cotizar ${label} en Panamá.`,

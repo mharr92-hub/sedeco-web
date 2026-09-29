@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SERVICE_CTA, SERVICE_CTA_STICKY } from "@/lib/data/service-pages";
 import {
   CANONICAL_ORIGIN,
   GUARANTEE_LINE,
@@ -218,8 +219,8 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     description:
       "Detección de filtraciones y fugas en techos, losas y fachadas en Panamá. Encontramos el origen del agua antes de reparar. Solicite inspección.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
-    cta: "Solicitar inspección",
-    ctaSticky: "Solicitar inspección",
+    cta: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "filtracion",
     problemaOptions: [
       { value: "filtracion", label: "Filtración" },

@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site/footer";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { SectionHeading } from "@/components/site/section-heading";
+import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
@@ -17,12 +18,14 @@ import {
   INSPECTION_SLA,
   localBusinessJsonLd,
   OG_IMAGE,
+  PHONE_MAIN,
+  PHONE_MAIN_DISPLAY,
   SITE_EMAIL,
+  telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 
-const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 const email = SITE_EMAIL;
 const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
 const HOME_DESCRIPTION =
@@ -90,13 +93,22 @@ export default function HomePage() {
                 {SERVICE_CTA}
               </a>
               <a
-                href={whatsappHref(waMessage)}
+                href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="whatsapp_click"
                 className="btn-wa-outline"
               >
                 <WhatsAppGlyph className="text-[#25D366]" />
                 WhatsApp {WHATSAPP_DISPLAY}
+              </a>
+              <a
+                href={telHref(PHONE_MAIN)}
+                data-track="phone_click"
+                className="btn-tel-outline"
+              >
+                <PhoneGlyph />
+                Llamar {PHONE_MAIN_DISPLAY}
               </a>
             </div>
             <div className="mt-12 max-w-5xl border-t border-white/15 pt-8">
@@ -232,7 +244,7 @@ export default function HomePage() {
             <div>
               <SectionHeading
                 kicker="Contacto"
-                title="Solicitar inspección"
+                title={SERVICE_CTA}
                 titleId="contacto-titulo"
                 className="mb-0"
                 tone="dark"
@@ -250,7 +262,7 @@ export default function HomePage() {
                 <p className="text-sm text-white/80">
                   WhatsApp ·{" "}
                   <a
-                    href={whatsappHref(waMessage)}
+                    href={whatsappHref()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-semibold text-white hover:text-[#F5A623]"

@@ -3,7 +3,6 @@ import { INSPECTION_SLA, whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { cn } from "@/lib/utils";
 
-const waMessage = "Hola, quiero una inspección para un problema de filtración.";
 
 type LeadCtaBandProps = {
   eyebrow?: string;
@@ -55,7 +54,7 @@ export function LeadCtaBand({
             {SERVICE_CTA}
           </a>
           <a
-            href={whatsappHref(waMessage)}
+            href={whatsappHref()}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

@@ -16,15 +16,31 @@ export const OG_IMAGE = {
   type: "image/png",
 } as const;
 
-export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50760388649";
+/**
+ * Every phone and WhatsApp number on the site. This is the only place a
+ * number may be written down — components read it from here, never inline.
+ */
+export const CONTACT = {
+  /** Destination of every WhatsApp link, button, FAB and sticky bar. */
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50760388649",
+  whatsappDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6038-8649",
+  /** Main line: header, hero, footer. */
+  telMain: "+507 6564-4080",
+  telMainDisplay: "6564-4080",
+  /** Landlines. Footer only. */
+  telSecondary: ["+507 383-5175", "+507 383-5176"],
+} as const;
 
-export const WHATSAPP_DISPLAY =
-  process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6038-8649";
+/** Prefilled WhatsApp text when a component has nothing more specific. */
+export const WHATSAPP_DEFAULT_MESSAGE =
+  "Hola SEDECO, vi su página y quiero cotizar" as const;
 
-export const PHONE_OFFICE_PRIMARY = "+507 383-5175";
-export const PHONE_OFFICE_SECONDARY =
-  process.env.NEXT_PUBLIC_PHONE_OFFICE ?? "+507 383-5176";
+export const WHATSAPP_NUMBER = CONTACT.whatsapp;
+export const WHATSAPP_DISPLAY = CONTACT.whatsappDisplay;
+export const PHONE_MAIN = CONTACT.telMain;
+export const PHONE_MAIN_DISPLAY = CONTACT.telMainDisplay;
+export const PHONE_OFFICE_PRIMARY = CONTACT.telSecondary[0];
+export const PHONE_OFFICE_SECONDARY = CONTACT.telSecondary[1];
 
 export const SITE_EMAIL =
   process.env.NEXT_PUBLIC_EMAIL ?? "mark@selladodeconcreto.com";
@@ -53,9 +69,9 @@ export const NAP_STREET_ADDRESS =
 export const NAP_LOCALITY = "Ciudad de Panamá";
 
 export const OFFICE_PHONES = [
-  PHONE_OFFICE_PRIMARY,
-  PHONE_OFFICE_SECONDARY,
-  WHATSAPP_DISPLAY,
+  CONTACT.telMain,
+  ...CONTACT.telSecondary,
+  CONTACT.whatsappDisplay,
 ] as const;
 
 /**
@@ -81,8 +97,15 @@ export const GUARANTEE_LINE =
 export const GUARANTEE_TOOLTIP =
   "Aplican términos y condiciones según sistema y alcance contratado." as const;
 
-export function whatsappHref(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+export function whatsappHref(
+  message: string = WHATSAPP_DEFAULT_MESSAGE,
+): string {
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+/** Prefilled text for a service card: base message plus the service name. */
+export function whatsappServiceMessage(service: string): string {
+  return `${WHATSAPP_DEFAULT_MESSAGE}: ${service}`;
 }
 
 export function telHref(phone: string): string {

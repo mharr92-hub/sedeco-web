@@ -16,6 +16,7 @@ import {
 } from "@/app/actions/submit-ads-lead";
 import {
   analyticsFormName,
+  SERVICE_CTA,
   type LeadPageContext,
 } from "@/lib/data/service-pages";
 import { tipoPropiedadValues } from "@/lib/data/ads-landings";
@@ -35,12 +36,9 @@ function reportFormError(form: string, fields: string[]): void {
   }
 }
 import { ADS_OPEN_FORM_EVENT } from "@/components/ads/ads-form-events";
-import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
   INSPECTION_SLA,
-  PHONE_OFFICE_PRIMARY,
-  telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
@@ -166,7 +164,7 @@ export function AdsLeadDock({
 
       <div className="h-20 md:hidden" aria-hidden="true" />
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D6E8FF] bg-white/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2">
+        <div className="grid grid-cols-2 items-center gap-2">
           <TrackedLink
             event="whatsapp_click"
             landing={landing.slug}
@@ -176,9 +174,10 @@ export function AdsLeadDock({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`WhatsApp ${WHATSAPP_DISPLAY}`}
-            className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-[#25D366] text-white"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[#25D366] px-3 text-sm font-semibold text-white"
           >
-            <WhatsAppGlyph />
+            <WhatsAppGlyph className="h-5 w-5" />
+            WhatsApp
           </TrackedLink>
           <button
             type="button"
@@ -196,18 +195,6 @@ export function AdsLeadDock({
           >
             {landing.ctaSticky}
           </button>
-          <TrackedLink
-            event="phone_click"
-            landing={landing.slug}
-            source={landing.source}
-            location="sticky"
-            href={telHref(PHONE_OFFICE_PRIMARY)}
-            aria-label={`Llamar al ${PHONE_OFFICE_PRIMARY}`}
-            className="inline-flex h-12 items-center justify-center gap-1 rounded-md border border-[#D6E8FF] px-2.5 text-xs font-semibold text-[#1A2E8A]"
-          >
-            <PhoneGlyph className="h-4 w-4" />
-            Llamar
-          </TrackedLink>
         </div>
       </div>
     </>
@@ -484,7 +471,7 @@ function AdsLeadForm({
             disabled={isPending}
             className="inline-flex min-h-12 flex-1 items-center justify-center rounded-md bg-[#2B4BF2] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#1A2E8A] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isPending ? "Enviando..." : "Solicitar inspección"}
+            {isPending ? "Enviando..." : SERVICE_CTA}
           </button>
         </div>
       </div>

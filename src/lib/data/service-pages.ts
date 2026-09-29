@@ -10,7 +10,11 @@ import {
   OG_IMAGE_URL,
 } from "@/lib/site";
 
-export const SERVICE_CTA = "Solicitar inspección" as const;
+export const SERVICE_CTA =
+  "Inspección gratuita con informe fotográfico" as const;
+
+/** Short form for the sticky mobile bar, where the full label will not fit. */
+export const SERVICE_CTA_STICKY = "Inspección gratuita" as const;
 
 export const LEAD_PAGE_SLUGS = [
   "impermeabilizacion-panama",
@@ -87,7 +91,7 @@ export const HOME_LEAD: LeadPageContext = {
   path: "/",
   source: "web_home",
   cta: SERVICE_CTA,
-  ctaSticky: SERVICE_CTA,
+  ctaSticky: SERVICE_CTA_STICKY,
   defaultProblema: "filtracion",
   problemaOptions: options(
     "filtracion",
@@ -214,7 +218,7 @@ export const servicePages: Record<
     path: "/impermeabilizacion-panama",
     source: "ads_impermeabilizacion-panama",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "azotea",
     problemaOptions: options(
       "azotea",
@@ -250,7 +254,7 @@ export const servicePages: Record<
     path: "/impermeabilizacion-fachadas",
     source: "ads_impermeabilizacion-fachadas",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "fachada",
     problemaOptions: options("fachada", "pintura", "otro"),
     whatsappMessage:
@@ -275,7 +279,7 @@ export const servicePages: Record<
     path: "/pisos-industriales-panama",
     source: "ads_pisos-industriales-panama",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "pisos",
     problemaOptions: options("pisos", "otro"),
     whatsappMessage:
@@ -314,7 +318,7 @@ export const servicePages: Record<
     path: "/reparacion-estructural-panama",
     source: "ads_reparacion-estructural-panama",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "reparacion-estructural",
     problemaOptions: options("reparacion-estructural", "grietas", "otro"),
     whatsappMessage:
@@ -339,7 +343,7 @@ export const servicePages: Record<
     path: "/pintura-edificios-panama",
     source: "ads_pintura-edificios-panama",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "pintura",
     problemaOptions: options("pintura", "fachada", "otro"),
     whatsappMessage:
@@ -364,7 +368,7 @@ export const servicePages: Record<
     path: "/mantenimiento-ph",
     source: "ads_mantenimiento-ph",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "mantenimiento",
     problemaOptions: options("mantenimiento", "azotea", "fachada", "otro"),
     whatsappMessage:
@@ -389,7 +393,7 @@ export const servicePages: Record<
     path: "/inspeccion-boroscopica",
     source: "ads_inspeccion-boroscopica",
     cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA,
+    ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema: "desague",
     problemaOptions: options("desague", "filtracion", "otro"),
     whatsappMessage:
