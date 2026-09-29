@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { gtagEvent } from "@/lib/analytics";
+import { adsConversion, gtagEvent } from "@/lib/analytics";
 import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
 
 /**
@@ -26,6 +26,7 @@ export function WhatsAppClickTracker() {
         page_path: window.location.pathname,
         ...(servicio ? { servicio } : {}),
       });
+      adsConversion({ event_label: "whatsapp" });
     }
 
     document.addEventListener("click", onClick, true);
