@@ -234,7 +234,7 @@ export const servicePages: Record<
     metaTitle: "Impermeabilización Panamá | SEDECO",
     metaDescription:
       "Impermeabilización de techos, azoteas, tanques y losas de concreto en Panamá. Diagnóstico en sitio y sistema según cada caso. Solicite inspección.",
-    h1: "Impermeabilización en Panamá: el sistema correcto para cada superficie.",
+    h1: "Impermeabilización de techos en Panamá con silicona líquida.",
     sub: "Azoteas, losas, fachadas, tanques y piscinas. Primero diagnosticamos el sustrato; después aplicamos el sistema y lo garantizamos por escrito.",
     bullets: [
       "Concreto: sellado penetrante GHOSTSHIELD LITHI-TEK 9500 (solo sobre concreto o acero expuesto).",
@@ -261,10 +261,10 @@ export const servicePages: Record<
       "Hola, quiero solicitar una inspección de fachada en altura en Panamá.",
     thankYouWhatsapp:
       "Hola, solicité una inspección de fachada en altura. Les envío fotos de las manchas o uniones.",
-    metaTitle: "Restauración e impermeabilización de fachadas",
+    metaTitle: "Reparación de fachadas en Panamá | SEDECO",
     metaDescription:
       "Restauración e impermeabilización de fachadas en altura en Panamá: sellado de grietas, juntas y ventanas. Solicite su inspección técnica.",
-    h1: "Restauración e impermeabilización de fachadas en altura.",
+    h1: "Reparación de fachadas en Panamá: sellado, protección y mantenimiento.",
     sub: "Reparación de grietas y repellos, sellos de ventanas y juntas, impermeabilización y pintura. Guindolas eléctricas ZLP 630 certificadas: no dependemos de terceros para llegar a su fachada.",
     bullets: [
       "+100,000 m² intervenidos en torres de Ciudad de Panamá.",

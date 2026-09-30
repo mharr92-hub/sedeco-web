@@ -74,13 +74,17 @@ export default function HomePage() {
               SEDECO
             </p>
             <h1 className="mt-5 max-w-xl font-display text-[1.65rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              Sellado de concreto de larga duración.
+              Impermeabilización de techos en Panamá con silicona líquida
             </h1>
             <p className="mt-5 max-w-3xl font-display text-xl font-semibold leading-snug text-white md:text-2xl">
-              Aplicadores autorizados de Ghostshield® en Panamá
+              Protección contra filtraciones y humedad. Inspección gratuita con
+              informe fotográfico.
+            </p>
+            <p className="mt-3 max-w-3xl font-display text-base font-medium leading-snug text-white/90 md:text-lg">
+              Encontramos el origen antes de reparar.
             </p>
             <p className="mt-4 font-display text-sm uppercase tracking-[0.14em] text-white/80">
-              Diagnóstico · Restauración · Impermeabilización · Ciudad de Panamá · 2026
+              Diagnóstico · Impermeabilización · Ciudad de Panamá · 2026
             </p>
             <p className="mt-5 max-w-prose text-sm leading-relaxed text-white/80 md:text-base">
               En SEDECO damos resultados concretos en todo lo que hacemos.

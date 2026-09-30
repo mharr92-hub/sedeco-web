@@ -65,27 +65,43 @@ export function getGoogleAdsId(): string | undefined {
 }
 
 /**
- * Conversion label, issued per conversion action in Google Ads. Without it
- * gtag can still config the account (remarketing, imported GA4 conversions)
- * but cannot fire a native Ads conversion.
+ * Conversion labels, one per conversion action in Google Ads. Each stays
+ * undefined until its variable is set, so one can go live without the other.
  */
-export function getGoogleAdsConversionLabel(): string | undefined {
-  const label = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL?.trim();
-  return label || undefined;
+export function getGoogleAdsLabelLead(): string | undefined {
+  return process.env.NEXT_PUBLIC_GOOGLE_ADS_LABEL_LEAD?.trim() || undefined;
+}
+
+export function getGoogleAdsLabelWhatsapp(): string | undefined {
+  return process.env.NEXT_PUBLIC_GOOGLE_ADS_LABEL_WHATSAPP?.trim() || undefined;
 }
 
 /**
- * Report a Google Ads conversion. No-ops without a label, so it stays inert
- * until one is configured.
+ * Report a Google Ads conversion. No-ops without a label, so each action stays
+ * inert until its own variable is configured.
  *
- * Do NOT also add an Ads conversion tag inside the GTM container for the same
+ * Do NOT also add an Ads conversion tag inside the GTM container for these
  * events — Ads would count each one twice.
  */
-export function adsConversion(params: Record<string, unknown> = {}): void {
+function adsConversion(
+  label: string | undefined,
+  params: Record<string, unknown> = {},
+): void {
   const id = getGoogleAdsId();
-  const label = getGoogleAdsConversionLabel();
   if (!id || !label) return;
   gtagEvent("conversion", { send_to: `${id}/${label}`, ...params });
+}
+
+/** Ads conversion for a submitted lead. Inert without LABEL_LEAD. */
+export function adsConversionLead(params: Record<string, unknown> = {}): void {
+  adsConversion(getGoogleAdsLabelLead(), params);
+}
+
+/** Ads conversion for a WhatsApp click. Inert without LABEL_WHATSAPP. */
+export function adsConversionWhatsapp(
+  params: Record<string, unknown> = {},
+): void {
+  adsConversion(getGoogleAdsLabelWhatsapp(), params);
 }
 
 /**

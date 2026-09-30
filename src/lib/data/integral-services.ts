@@ -9,6 +9,7 @@ import {
 } from "@/lib/data/service-pages";
 import type { ServiceIconName } from "@/components/site/service-icons";
 import {
+  whatsappServiceMessage,
   CANONICAL_ORIGIN,
   localBusinessJsonLd,
   OG_IMAGE,
@@ -21,24 +22,31 @@ import {
  * and from Ads landings (`/filtraciones`, `/impermeabilizacion-panama`, …).
  * `slug` is the value stored in public.leads.servicio.
  */
+/** Orden de las tarjetas en la home y en /servicios. */
 export const INTEGRAL_SERVICE_SLUGS = [
   "impermeabilizacion",
   "fachadas",
+  "inspecciones-filtraciones",
   "trabajos-en-altura",
   "guindolas",
-  "lavado-drones",
   "pintura",
-  "construccion",
   "obras-civiles",
   "electricidad",
+  "plomeria",
+  "ventanas-puertas",
+  "soldadura",
+  "albanileria",
+  "construccion",
+  "diseno-interiores",
+  "mantenimiento-general",
 ] as const;
 
 export type IntegralServiceSlug = (typeof INTEGRAL_SERVICE_SLUGS)[number];
 
-export const INTEGRAL_HOME_TITLE = "Soluciones integrales para tus proyectos";
+export const INTEGRAL_HOME_TITLE = "Servicios";
 
 export const INTEGRAL_HOME_SUBTITLE =
-  "Nueve frentes de trabajo para edificios, PH y obras en Panamá. La cotización sale de la inspección y la medición en sitio.";
+  "Quince frentes de trabajo para edificios, PH y obras en Panamá. La cotización sale de la inspección y la medición en sitio.";
 
 export const INTEGRAL_PILLARS = [
   {
@@ -102,7 +110,7 @@ function leadFor(
     ctaSticky: SERVICE_CTA_STICKY,
     defaultProblema,
     problemaOptions: options(...problemas),
-    whatsappMessage: `Hola, quiero cotizar ${label} en Panamá.`,
+    whatsappMessage: whatsappServiceMessage(label),
     thankYouWhatsapp: `Hola, solicité una cotización de ${label} en sedeco.lat. Les envío fotos del frente de trabajo.`,
   };
 }
@@ -111,8 +119,8 @@ const services: readonly IntegralService[] = [
   {
     slug: "impermeabilizacion",
     path: "/impermeabilizacion",
-    name: "Impermeabilización",
-    line: "Losas, fachadas, tanques y cubiertas con el sistema que corresponde al sustrato.",
+    name: "Impermeabilización de techos",
+    line: "Losas, fachadas y cubiertas con el sistema que corresponde al sustrato. Incluye piscinas y tanques.",
     icon: "rollo-gota",
     metaTitle: "Impermeabilización en Panamá | SEDECO",
     metaDescription:
@@ -129,11 +137,9 @@ const services: readonly IntegralService[] = [
       "Medimos el frente real — horizontal, vertical o ambos — para cotizar ese alcance.",
       "Entregamos el sistema recomendado, el alcance y las condiciones por escrito.",
     ),
-    lead: leadFor("impermeabilizacion", "impermeabilización", "azotea", [
+    lead: leadFor("impermeabilizacion", "impermeabilización de techos", "azotea", [
       "azotea",
       "fachada",
-      "tanque",
-      "piscina",
       "grietas",
       "otro",
     ]),
@@ -141,7 +147,7 @@ const services: readonly IntegralService[] = [
   {
     slug: "fachadas",
     path: "/fachadas",
-    name: "Reparación de fachadas",
+    name: "Reparación de fachadas (sellado, protección y mantenimiento)",
     line: "Grietas, repellos, sellos y pintura en la envolvente del edificio.",
     icon: "edificio",
     metaTitle: "Reparación de fachadas en Panamá | SEDECO",
@@ -197,7 +203,7 @@ const services: readonly IntegralService[] = [
   {
     slug: "guindolas",
     path: "/guindolas",
-    name: "Guindolas y equipos de elevación",
+    name: "Alquiler, transporte e instalación de guindolas y andamios",
     line: "Plataformas suspendidas para intervenir fachadas de torres y edificios.",
     icon: "guindola",
     metaTitle: "Guindolas y elevación en Panamá | SEDECO",
@@ -222,36 +228,9 @@ const services: readonly IntegralService[] = [
     ]),
   },
   {
-    slug: "lavado-drones",
-    path: "/lavado-drones",
-    name: "Drones de lavado de edificios",
-    line: "Lavado de fachadas con dron donde el acceso tradicional es limitado.",
-    icon: "dron",
-    metaTitle: "Lavado con drones en Panamá | SEDECO",
-    metaDescription:
-      "Lavado de edificios con drones en Panamá, para fachadas de acceso limitado. La visita define si aplica el dron, la cuerda o la guindola. Cotice.",
-    h1: "Lavado de edificios con drones en Panamá.",
-    sub: "El dron lava paños de fachada de difícil acceso. En la visita confirmamos si el frente se trabaja con dron, con cuerdas o con guindola.",
-    benefits: [
-      "Llegada a paños altos sin montar andamio en toda la fachada.",
-      "Apto para mantenimiento de vidrio, concreto y revestimientos expuestos.",
-      "La inspección decide el método: dron, cuerda o plataforma.",
-    ],
-    steps: steps(
-      "Revisamos el material de fachada, la suciedad y los obstáculos de vuelo y de caída de agua.",
-      "Medimos la superficie y las restricciones del predio para el equipo.",
-      "Proponemos el método de lavado, el alcance y la coordinación con el edificio.",
-    ),
-    lead: leadFor("lavado-drones", "lavado de edificios con drones", "fachada", [
-      "fachada",
-      "pintura",
-      "otro",
-    ]),
-  },
-  {
     slug: "pintura",
     path: "/pintura",
-    name: "Pintura",
+    name: "Pintura residencial, comercial e industrial",
     line: "Pintura de fachadas y áreas del edificio, con la superficie preparada antes.",
     icon: "rodillo",
     metaTitle: "Pintura de edificios en Panamá | SEDECO",
@@ -278,7 +257,7 @@ const services: readonly IntegralService[] = [
   {
     slug: "construccion",
     path: "/construccion",
-    name: "Construcción",
+    name: "Renovación de viviendas y oficinas",
     line: "Ejecución de obras con alcance, secuencia y control definidos en la propuesta.",
     icon: "casco",
     metaTitle: "Construcción de obras en Panamá | SEDECO",
@@ -353,12 +332,207 @@ const services: readonly IntegralService[] = [
     ),
     lead: leadFor("electricidad", "reparaciones eléctricas", "otro", ["otro"]),
   },
+  {
+    slug: "inspecciones-filtraciones",
+    path: "/inspecciones-filtraciones",
+    name: "Inspecciones de filtraciones con termografía y boroscopía",
+    line: "Ubicamos por dónde entra el agua con cámara termográfica y boroscopio antes de picar.",
+    icon: "lupa",
+    metaTitle: "Inspección de filtraciones en Panamá | SEDECO",
+    metaDescription:
+      "Inspección de filtraciones en Panamá con cámara termográfica y boroscopio. Ubicamos el origen del agua y entregamos informe fotográfico antes de reparar.",
+    h1: "Inspección de filtraciones con termografía y boroscopía en Panamá.",
+    sub: "Buscamos el punto de entrada del agua antes de abrir nada. El informe dice qué se encontró y qué conviene intervenir.",
+    benefits: [
+      "Cámara termográfica para ver humedad detrás del acabado sin romperlo.",
+      "Boroscopio en ductos y cavidades para revisar lo que no queda a la vista.",
+      "Informe fotográfico de lo observado antes de proponer una reparación.",
+    ],
+    steps: steps(
+      "Recorremos el área afectada y las plantas superiores para acotar el origen.",
+      "Registramos los puntos con termografía y boroscopio donde hace falta.",
+      "Entregamos el informe con lo observado y el alcance recomendado.",
+    ),
+    lead: leadFor(
+      "inspecciones-filtraciones",
+      "inspección de filtraciones",
+      "filtracion",
+      ["filtracion", "azotea", "fachada", "desague", "otro"],
+    ),
+  },
+  {
+    slug: "plomeria",
+    path: "/plomeria",
+    name: "Plomería general",
+    line: "Reparación de fugas, desagües y redes sanitarias en edificios, PH y viviendas.",
+    icon: "tuberia",
+    metaTitle: "Plomería en Panamá para edificios y PH | SEDECO",
+    metaDescription:
+      "Plomería general en Panamá: fugas, desagües y redes sanitarias en edificios, PH y viviendas. Revisamos el punto real de la falla y cotizamos ese alcance.",
+    h1: "Plomería general en Panamá para edificios, PH y viviendas.",
+    sub: "Revisamos dónde está la fuga o la obstrucción real antes de intervenir, para no picar de más.",
+    benefits: [
+      "Revisión del punto de falla antes de abrir pared o piso.",
+      "Trabajo coordinado con la administración cuando afecta áreas comunes.",
+      "Alcance y materiales definidos por escrito antes de empezar.",
+    ],
+    steps: steps(
+      "Revisamos el recorrido de la red y ubicamos el punto de la falla.",
+      "Medimos el tramo a intervenir y los puntos de acceso necesarios.",
+      "Entregamos el alcance, los materiales y las condiciones por escrito.",
+    ),
+    lead: leadFor("plomeria", "plomería general", "desague", [
+      "desague",
+      "filtracion",
+      "otro",
+    ]),
+  },
+  {
+    slug: "ventanas-puertas",
+    path: "/ventanas-puertas",
+    name: "Ventanas y puertas",
+    line: "Sellado, ajuste y reemplazo de ventanas y puertas en edificios y viviendas.",
+    icon: "ventana",
+    metaTitle: "Ventanas y puertas en Panamá | SEDECO",
+    metaDescription:
+      "Instalación, sellado y ajuste de ventanas y puertas en Panamá. Revisamos juntas y perfiles donde entra agua o aire y cotizamos el frente medido en sitio.",
+    h1: "Ventanas y puertas en Panamá: sellado, ajuste y reemplazo.",
+    sub: "Muchas filtraciones de fachada entran por la junta de la ventana. Revisamos el perfil y el sello antes de decidir.",
+    benefits: [
+      "Revisión de juntas y perfiles donde entra agua o aire.",
+      "Sellado con el material que corresponde al perfil y al clima costero.",
+      "Reemplazo cuando el perfil ya no admite reparación.",
+    ],
+    steps: steps(
+      "Revisamos juntas, perfiles y drenajes de cada ventana o puerta afectada.",
+      "Contamos y medimos las unidades a intervenir para cotizar ese frente.",
+      "Entregamos la solución recomendada por unidad y las condiciones.",
+    ),
+    lead: leadFor("ventanas-puertas", "ventanas y puertas", "fachada", [
+      "fachada",
+      "filtracion",
+      "otro",
+    ]),
+  },
+  {
+    slug: "soldadura",
+    path: "/soldadura",
+    name: "Soldadura y estructuras metálicas",
+    line: "Barandas, escaleras, soportes y estructuras metálicas en obra y en altura.",
+    icon: "soldadura",
+    metaTitle: "Soldadura y estructuras metálicas en Panamá | SEDECO",
+    metaDescription:
+      "Soldadura y estructuras metálicas en Panamá: barandas, escaleras y soportes. Revisamos el estado del metal y cotizamos el alcance medido en sitio.",
+    h1: "Soldadura y estructuras metálicas en Panamá.",
+    sub: "Revisamos el estado real del metal, incluida la corrosión que no se ve desde abajo, antes de proponer.",
+    benefits: [
+      "Revisión de corrosión y anclajes antes de intervenir.",
+      "Trabajo en altura con el equipo de acceso que corresponda.",
+      "Protección del metal una vez terminada la intervención.",
+    ],
+    steps: steps(
+      "Revisamos la estructura, sus anclajes y el grado de corrosión.",
+      "Medimos los metros o las unidades a intervenir.",
+      "Entregamos el alcance, el acabado propuesto y las condiciones.",
+    ),
+    lead: leadFor(
+      "soldadura",
+      "soldadura y estructuras metálicas",
+      "reparacion-estructural",
+      ["reparacion-estructural", "otro"],
+    ),
+  },
+  {
+    slug: "albanileria",
+    path: "/albanileria",
+    name: "Albañilería",
+    line: "Repellos, resanes, mampostería y reparación de elementos de concreto.",
+    icon: "ladrillos",
+    metaTitle: "Albañilería en Panamá para edificios y PH | SEDECO",
+    metaDescription:
+      "Albañilería en Panamá: repellos, resanes, mampostería y reparación de concreto en edificios, PH y viviendas. Cotizamos sobre el frente medido en sitio.",
+    h1: "Albañilería en Panamá para edificios, PH y viviendas.",
+    sub: "El resane sostiene lo que viene después. Revisamos el sustrato antes de repellar o impermeabilizar encima.",
+    benefits: [
+      "Revisión del sustrato antes de resanar o repellar.",
+      "Reparación de elementos de concreto y mampostería.",
+      "Base preparada para el acabado o la impermeabilización posterior.",
+    ],
+    steps: steps(
+      "Revisamos el estado del repello, la mampostería y el concreto a la vista.",
+      "Medimos el área real a intervenir para cotizar ese alcance.",
+      "Entregamos el procedimiento, el alcance y las condiciones por escrito.",
+    ),
+    lead: leadFor("albanileria", "albañilería", "grietas", [
+      "grietas",
+      "reparacion-estructural",
+      "otro",
+    ]),
+  },
+  {
+    slug: "diseno-interiores",
+    path: "/diseno-interiores",
+    name: "Diseño de interiores",
+    line: "Distribución, acabados y detalle de interiores para vivienda y oficina.",
+    icon: "regla",
+    metaTitle: "Diseño de interiores en Panamá | SEDECO",
+    metaDescription:
+      "Diseño de interiores en Panamá para vivienda y oficina: distribución, acabados y detalle. Partimos del levantamiento del espacio real, no de un paquete.",
+    h1: "Diseño de interiores en Panamá para vivienda y oficina.",
+    sub: "Partimos del levantamiento del espacio real y de cómo se usa, no de un paquete cerrado.",
+    benefits: [
+      "Levantamiento del espacio antes de proponer distribución.",
+      "Selección de acabados coordinada con la obra que los instala.",
+      "Alcance y entregables definidos por escrito.",
+    ],
+    steps: steps(
+      "Visitamos el espacio y levantamos medidas, instalaciones y condicionantes.",
+      "Definimos el alcance del diseño y los entregables con el cliente.",
+      "Entregamos la propuesta de diseño, los acabados y las condiciones.",
+    ),
+    lead: leadFor("diseno-interiores", "diseño de interiores", "otro", ["otro"]),
+  },
+  {
+    slug: "mantenimiento-general",
+    path: "/mantenimiento-general",
+    name: "Mantenimiento general",
+    line: "Programas de mantenimiento para PH, oficinas y edificios, con frentes coordinados.",
+    icon: "llave",
+    metaTitle: "Mantenimiento general de edificios en Panamá | SEDECO",
+    metaDescription:
+      "Mantenimiento general para PH, oficinas y edificios en Panamá. Un solo interlocutor para los distintos frentes, con alcance y periodicidad por escrito.",
+    h1: "Mantenimiento general de edificios y PH en Panamá.",
+    sub: "Un solo interlocutor para los frentes que el edificio necesita, con el alcance y la periodicidad por escrito.",
+    benefits: [
+      "Un interlocutor para los distintos frentes del edificio.",
+      "Alcance y periodicidad acordados por escrito.",
+      "Coordinación con la administración y con los residentes.",
+    ],
+    steps: steps(
+      "Recorremos el edificio y levantamos los frentes que requieren atención.",
+      "Definimos alcance y periodicidad según lo observado.",
+      "Entregamos el programa de mantenimiento y las condiciones.",
+    ),
+    lead: leadFor("mantenimiento-general", "mantenimiento general", "mantenimiento", [
+      "mantenimiento",
+      "otro",
+    ]),
+  },
 ];
 
 const bySlug = new Map(services.map((service) => [service.slug, service]));
 
+/** Ordered by INTEGRAL_SERVICE_SLUGS, which is what the cards follow. */
+const orderedServices: readonly IntegralService[] = INTEGRAL_SERVICE_SLUGS.map(
+  (slug) => {
+    const service = services.find((item) => item.slug === slug);
+    if (!service) throw new Error(`Servicio sin definir: ${slug}`);
+    return service;
+  },
+);
+
 export function getIntegralServices(): readonly IntegralService[] {
-  return services;
+  return orderedServices;
 }
 
 export function getIntegralServiceBySlug(

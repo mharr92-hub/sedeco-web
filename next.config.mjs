@@ -67,6 +67,13 @@ const nextConfig = {
 
     return [
       { source: "/inicio", destination: "/", permanent: true },
+      // El catalogo pasa de nueve a quince servicios y "Drones de lavado"
+      // sale; la URL antigua no debe quedar en 404.
+      {
+        source: "/lavado-drones",
+        destination: "/servicios",
+        permanent: true,
+      },
       { source: "/home", destination: "/", permanent: true },
       {
         source: "/sellado-concreto",

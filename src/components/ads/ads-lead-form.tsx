@@ -25,7 +25,7 @@ import {
   TRACKING_PARAM_KEYS,
   type AttributionParams,
 } from "@/lib/tracking";
-import { adsConversion, gtagEvent, track } from "@/lib/analytics";
+import { adsConversionLead, gtagEvent, track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { panamaMobileMessage } from "@/lib/validations/lead";
 
@@ -236,7 +236,7 @@ function AdsLeadForm({
       form: analyticsFormName(landing),
       ...(landing.servicio ? { servicio: landing.servicio } : {}),
     });
-    adsConversion({ event_label: "lead" });
+    adsConversionLead({ event_label: "lead" });
     const params = new URLSearchParams(window.location.search);
     params.set("from", landing.slug);
     router.replace(`/gracias?${params.toString()}`);

@@ -10,6 +10,13 @@ export const SERVICE_ICON_NAMES = [
   "casco",
   "ladrillos",
   "rayo",
+  "lupa",
+  "tuberia",
+  "ventana",
+  "soldadura",
+  "casa",
+  "llave",
+  "regla",
 ] as const;
 
 export type ServiceIconName = (typeof SERVICE_ICON_NAMES)[number];
@@ -120,6 +127,62 @@ function IconBody({ name }: { name: ServiceIconName }) {
           fill="currentColor"
           stroke="none"
         />
+      );
+    case "lupa":
+      return (
+        <>
+          <circle cx="21" cy="21" r="12" {...stroke} />
+          <path d="M30 30l12 12" {...stroke} />
+          <path d="M15 21h12M21 15v12" {...stroke} />
+        </>
+      );
+    case "tuberia":
+      return (
+        <>
+          <path d="M6 14h14a6 6 0 0 1 6 6v8a6 6 0 0 0 6 6h10" {...stroke} />
+          <rect x="4" y="9" width="6" height="10" rx="1.5" {...stroke} />
+          <rect x="38" y="29" width="6" height="10" rx="1.5" {...stroke} />
+        </>
+      );
+    case "ventana":
+      return (
+        <>
+          <rect x="8" y="7" width="32" height="34" rx="2" {...stroke} />
+          <path d="M24 7v34M8 24h32" {...stroke} />
+        </>
+      );
+    case "soldadura":
+      return (
+        <>
+          <path d="M9 39l16-16" {...stroke} />
+          <path d="M23 17l8 8 6-6-8-8z" {...stroke} />
+          <path d="M34 34h8M38 30v8" {...stroke} />
+        </>
+      );
+    case "casa":
+      return (
+        <>
+          <path d="M6 22 24 7l18 15" {...stroke} />
+          <path d="M11 21v19h26V21" {...stroke} />
+          <rect x="20" y="28" width="8" height="12" {...stroke} />
+        </>
+      );
+    case "llave":
+      return (
+        <>
+          <path
+            d="M33 6a10 10 0 0 0-9 14.5L8 36.5 11.5 40l16-16A10 10 0 1 0 33 6z"
+            {...stroke}
+          />
+          <circle cx="33" cy="16" r="3.5" {...stroke} />
+        </>
+      );
+    case "regla":
+      return (
+        <>
+          <path d="M7 31 31 7l10 10-24 24z" {...stroke} />
+          <path d="M14 24l4 4M20 18l4 4M26 12l4 4" {...stroke} />
+        </>
       );
     default:
       return null;

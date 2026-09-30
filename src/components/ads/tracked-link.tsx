@@ -11,6 +11,14 @@ const CTA_TYPE_BY_EVENT: Partial<Record<AnalyticsEvent, CtaType>> = {
   phone_click: "tel",
 };
 
+/**
+ * whatsapp_click already reaches GA4 through the delegated gtag listener in
+ * WhatsAppClickTracker, which also carries `servicio`. Pushing it to dataLayer
+ * as well would only feed the empty GTM container, so it is skipped here and
+ * gtag stays the single path for this event.
+ */
+const GTAG_ONLY_EVENTS = new Set<AnalyticsEvent>(["whatsapp_click"]);
+
 type TrackedLinkProps = ComponentPropsWithoutRef<"a"> & {
   event: AnalyticsEvent;
   landing?: string;
@@ -57,7 +65,7 @@ export function TrackedLink({
       className={cn(className)}
       onPointerDown={handlePointerDown}
       onClick={(e) => {
-        track({ event, landing, location });
+        if (!GTAG_ONLY_EVENTS.has(event)) track({ event, landing, location });
         report();
         onClick?.(e);
       }}
