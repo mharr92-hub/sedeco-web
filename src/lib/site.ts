@@ -17,13 +17,46 @@ export const OG_IMAGE = {
 } as const;
 
 /**
+ * The two WhatsApp contacts. Wherever the site shows WhatsApp as text or as a
+ * link, both appear, each with its name.
+ *
+ * The single-button spots — header, sticky bar and floating button — have no
+ * room for two, so they keep the first entry. `key` is what the analytics
+ * event reports as the destination.
+ *
+ * Never write a name with "Ing." in front of it.
+ */
+export const WHATSAPP_CONTACTS = [
+  {
+    key: "christian",
+    name: "Christian Mendoza",
+    role: "Gerente",
+    number: "50760388649",
+    display: "+507 6038-8649",
+  },
+  {
+    key: "mark",
+    name: "Mark Harrick",
+    role: "Presidente",
+    number: "50765508320",
+    display: "+507 6550-8320",
+  },
+] as const;
+
+export type WhatsAppContact = (typeof WHATSAPP_CONTACTS)[number];
+
+/** Destination of the single-button spots: header, sticky bar, FAB. */
+export const PRIMARY_WHATSAPP = WHATSAPP_CONTACTS[0];
+
+/**
  * Every phone and WhatsApp number on the site. This is the only place a
  * number may be written down — components read it from here, never inline.
  */
 export const CONTACT = {
-  /** Destination of every WhatsApp link, button, FAB and sticky bar. */
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50760388649",
-  whatsappDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "+507 6038-8649",
+  /** Destination of the single-button spots. Both contacts: WHATSAPP_CONTACTS. */
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? PRIMARY_WHATSAPP.number,
+  whatsappDisplay:
+    process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? PRIMARY_WHATSAPP.display,
   /** Main line: header, hero, footer. */
   telMain: "+507 6564-4080",
   telMainDisplay: "6564-4080",
@@ -47,6 +80,20 @@ export const SITE_EMAIL =
 
 /** Public inspection SLA. Do not invent a paid vs free price. */
 export const INSPECTION_SLA = "Le contactamos en horario hábil." as const;
+
+/**
+ * What is free and what is charged. Free quote when the client already knows
+ * the job; diagnosis is billed by the hour and credited against the work.
+ *
+ * Only for the home hero, contact sections and next to the form — not in the
+ * footer or /gracias, where it would repeat site-wide. Never publish a rate.
+ */
+export const OFFER_NOTE =
+  "¿Ya tiene definido el trabajo? Visitamos, medimos y cotizamos sin costo. ¿No sabe de dónde viene el problema? La inspección y el diagnóstico con informe fotográfico se cobran por hora, según la ubicación. Le confirmamos la tarifa antes de la visita y se la descontamos si luego contrata el trabajo." as const;
+
+/** Boroscope inspection is quoted separately, not billed by the hour. */
+export const BOROSCOPE_NOTE =
+  "Tiene un precio aparte. Se lo cotizamos antes de coordinar la visita." as const;
 
 export const OFFICE_HOURS = {
   days: "Mo-Fr",
@@ -101,6 +148,19 @@ export function whatsappHref(
   message: string = WHATSAPP_DEFAULT_MESSAGE,
 ): string {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+/** Same prefilled message, addressed to one of the two contacts. */
+export function whatsappHrefFor(
+  contact: WhatsAppContact,
+  message: string = WHATSAPP_DEFAULT_MESSAGE,
+): string {
+  return `https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`;
+}
+
+/** Maps a wa.me href back to the contact key, for the analytics event. */
+export function whatsappContactKey(href: string): string | undefined {
+  return WHATSAPP_CONTACTS.find((c) => href.includes(c.number))?.key;
 }
 
 /** Prefilled text for a service card: base message plus the service name. */

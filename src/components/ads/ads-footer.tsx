@@ -12,8 +12,8 @@ import {
   PHONE_OFFICE_SECONDARY,
   SITE_EMAIL,
   telHref,
-  whatsappHref,
-  WHATSAPP_DISPLAY,
+  WHATSAPP_CONTACTS,
+  whatsappHrefFor,
 } from "@/lib/site";
 import type { LeadPageContext } from "@/lib/data/service-pages";
 
@@ -42,20 +42,23 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
             Contacto
           </p>
           <ul className="space-y-2 text-sm">
-            <li>
-              <TrackedLink
-                event="whatsapp_click"
-                landing={landing.slug}
-                source={landing.source}
-                location="footer"
-                href={whatsappHref(landing.whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
-              >
-                WhatsApp · {WHATSAPP_DISPLAY}
-              </TrackedLink>
-            </li>
+            {WHATSAPP_CONTACTS.map((contact) => (
+              <li key={contact.key}>
+                <TrackedLink
+                  event="whatsapp_click"
+                  landing={landing.slug}
+                  source={landing.source}
+                  location="footer"
+                  href={whatsappHrefFor(contact, landing.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-destino={contact.key}
+                  className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
+                >
+                  {contact.name} · {contact.display}
+                </TrackedLink>
+              </li>
+            ))}
             <li>
               <TrackedLink
                 event="phone_click"

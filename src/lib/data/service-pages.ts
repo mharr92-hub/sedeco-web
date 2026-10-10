@@ -10,11 +10,19 @@ import {
   OG_IMAGE_URL,
 } from "@/lib/site";
 
-export const SERVICE_CTA =
-  "Inspección gratuita con informe fotográfico" as const;
+export const SERVICE_CTA = "Solicite su cotización gratuita" as const;
 
 /** Short form for the sticky mobile bar, where the full label will not fit. */
-export const SERVICE_CTA_STICKY = "Inspección gratuita" as const;
+export const SERVICE_CTA_STICKY = "Cotización gratuita" as const;
+
+/**
+ * CTA for the diagnosis pages. Diagnosis is a paid service, so these pages
+ * never inherit SERVICE_CTA and the word "gratuita" must not appear on them.
+ */
+export const DIAGNOSIS_CTA = "Solicitar diagnóstico" as const;
+
+/** Secondary CTA. Heroes and contact sections only — never header or sticky bar. */
+export const SECONDARY_CTA = "Inspección y diagnóstico" as const;
 
 export const LEAD_PAGE_SLUGS = [
   "impermeabilizacion-panama",
@@ -83,6 +91,13 @@ export type LeadPageContext = {
   thankYouWhatsapp: string;
   /** Slug stored in public.leads.servicio. Absent on older landings. */
   servicio?: string;
+  /**
+   * Diagnosis page: the service is charged, so it carries DIAGNOSIS_CTA and
+   * drops "Sin compromiso", which belongs to the free quote.
+   */
+  diagnosis?: boolean;
+  /** Form heading. Defaults to `cta`. */
+  formTitle?: string;
 };
 
 /** Home inspection form. Same fields as Ads, stored as source web_home. */
@@ -392,8 +407,9 @@ export const servicePages: Record<
     slug: "inspeccion-boroscopica",
     path: "/inspeccion-boroscopica",
     source: "ads_inspeccion-boroscopica",
-    cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA_STICKY,
+    cta: DIAGNOSIS_CTA,
+    ctaSticky: DIAGNOSIS_CTA,
+    diagnosis: true,
     defaultProblema: "desague",
     problemaOptions: options("desague", "filtracion", "otro"),
     whatsappMessage:

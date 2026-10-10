@@ -1,5 +1,5 @@
-import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { INSPECTION_SLA, whatsappHref, WHATSAPP_DISPLAY } from "@/lib/site";
+import { WhatsAppContactButtons } from "@/components/site/whatsapp-contacts";
+import { INSPECTION_SLA } from "@/lib/site";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { cn } from "@/lib/utils";
 
@@ -53,20 +53,14 @@ export function LeadCtaBand({
           <a href={href} className="btn-gold-lg">
             {SERVICE_CTA}
           </a>
-          <a
-            href={whatsappHref()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppContactButtons
             className={cn(
               "inline-flex min-h-12 items-center gap-2 rounded-md px-5 text-sm font-semibold transition-colors",
               isDark
                 ? "border border-white/25 text-white hover:bg-white/15"
                 : "border border-[#1A2E8A] text-[#1A2E8A] hover:bg-[#EEF1FB]",
             )}
-          >
-            <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp {WHATSAPP_DISPLAY}
-          </a>
+          />
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { adsConversion, gtagEvent } from "@/lib/analytics";
 import { getIntegralServiceByPathname } from "@/lib/data/integral-services";
+import { whatsappContactKey } from "@/lib/site";
 
 /**
  * Sends whatsapp_click to GA4 with gtag for every wa.me link on the site.
@@ -22,9 +23,11 @@ export function WhatsAppClickTracker() {
       const servicio = getIntegralServiceByPathname(
         window.location.pathname,
       )?.slug;
+      const destino = whatsappContactKey(link.getAttribute("href") ?? "");
       gtagEvent("whatsapp_click", {
         page_path: window.location.pathname,
         ...(servicio ? { servicio } : {}),
+        ...(destino ? { destino } : {}),
       });
       adsConversion({ event_label: "whatsapp" });
     }

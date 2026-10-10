@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SERVICE_CTA, SERVICE_CTA_STICKY } from "@/lib/data/service-pages";
+import { DIAGNOSIS_CTA } from "@/lib/data/service-pages";
 import {
   CANONICAL_ORIGIN,
   GUARANTEE_LINE,
@@ -65,6 +65,10 @@ export type AdsLanding = {
   finalSupport: string;
   faqs: AdsFaq[];
   serviceType: string;
+  /** Diagnosis landing: charged service, so no "gratuita" wording. */
+  diagnosis?: boolean;
+  /** Form heading. Defaults to `cta`. */
+  formTitle?: string;
 };
 
 const SUBHEAD =
@@ -219,8 +223,10 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     description:
       "Detección de filtraciones y fugas en techos, losas y fachadas en Panamá. Encontramos el origen del agua antes de reparar. Solicite inspección.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
-    cta: SERVICE_CTA,
-    ctaSticky: SERVICE_CTA_STICKY,
+    cta: DIAGNOSIS_CTA,
+    ctaSticky: DIAGNOSIS_CTA,
+    diagnosis: true,
+    formTitle: "Solicite su diagnóstico o cotización",
     defaultProblema: "filtracion",
     problemaOptions: [
       { value: "filtracion", label: "Filtración" },

@@ -70,7 +70,7 @@ export default function CasosPage() {
 
         <LeadCtaBand
           variant="dark"
-          title="¿Tu edificio necesita una inspección como estas?"
+          title="¿Tu edificio necesita un trabajo como estos?"
         />
       </main>
       <SiteFooter />

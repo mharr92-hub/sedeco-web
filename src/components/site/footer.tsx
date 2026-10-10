@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WhatsAppContactLink } from "@/components/site/whatsapp-contacts";
 import { BrandLogo } from "@/components/site/brand-logo";
 import { SERVICE_MENU } from "@/lib/data/integral-services";
 import { LegalNav } from "@/components/site/legal-nav";
@@ -12,8 +13,7 @@ import {
   PHONE_OFFICE_SECONDARY,
   SITE_EMAIL,
   telHref,
-  whatsappHref,
-  WHATSAPP_DISPLAY,
+  WHATSAPP_CONTACTS,
 } from "@/lib/site";
 
 
@@ -67,16 +67,11 @@ export function SiteFooter() {
             Contacto
           </p>
           <ul className="space-y-1 text-sm">
-            <li>
-              <a
-                href={whatsappHref()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
-              >
-                WhatsApp · {WHATSAPP_DISPLAY}
-              </a>
-            </li>
+            {WHATSAPP_CONTACTS.map((contact) => (
+              <li key={contact.key}>
+                <WhatsAppContactLink contact={contact} />
+              </li>
+            ))}
             <li>
               <a
                 href={telHref(PHONE_MAIN)}

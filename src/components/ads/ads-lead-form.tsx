@@ -152,11 +152,12 @@ export function AdsLeadDock({
             </div>
           ) : (
             <p className="mb-1 font-display text-xl text-[#1A2E8A]">
-              {landing.cta}
+              {landing.formTitle ?? landing.cta}
             </p>
           )}
           <p className="mb-5 text-sm leading-relaxed text-[#5C6578]">
-            Sin compromiso. {INSPECTION_SLA}
+            {landing.diagnosis ? "" : "Sin compromiso. "}
+            {INSPECTION_SLA}
           </p>
           <AdsLeadForm landing={landing} onStart={markFormStart} />
         </div>
