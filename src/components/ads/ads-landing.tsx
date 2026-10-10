@@ -28,6 +28,7 @@ import {
   CANONICAL_ORIGIN,
   localBusinessJsonLd,
   whatsappHref,
+  DIAGNOSIS_OFFER_NOTE,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -121,6 +122,9 @@ function Hero({ landing }: { landing: AdsLanding }) {
           </h1>
           <p className="mt-4 font-ads text-sm uppercase tracking-[0.14em] text-white/80">
             {ADS_HERO_SUB}
+          </p>
+          <p className="mt-5 max-w-prose text-sm leading-relaxed text-white/75">
+            {DIAGNOSIS_OFFER_NOTE}
           </p>
           <div className="mt-8">
             <AdsHeroCtas landing={landing} />

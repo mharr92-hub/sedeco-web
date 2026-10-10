@@ -1,3 +1,4 @@
+import { WhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandLogo } from "@/components/site/brand-logo";
@@ -11,11 +12,16 @@ import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
 import { getFeaturedCases } from "@/lib/data/cases";
-import { HOME_LEAD, SERVICE_CTA } from "@/lib/data/service-pages";
+import {
+  HOME_LEAD,
+  SERVICE_CTA,
+  SERVICE_CTA_STICKY,
+} from "@/lib/data/service-pages";
 import { IntegralServicesHome } from "@/components/site/integral-services-section";
 import {
   CANONICAL_ORIGIN,
   INSPECTION_SLA,
+  OFFER_NOTE,
   localBusinessJsonLd,
   OG_IMAGE,
   PHONE_MAIN,
@@ -29,7 +35,7 @@ import {
 const email = SITE_EMAIL;
 const HOME_TITLE = "SEDECO Panamá | sellado de concreto";
 const HOME_DESCRIPTION =
-  "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su inspección.";
+  "Sellado de concreto e impermeabilización en Panamá para edificios, PH y comercios. Diagnóstico técnico en sitio. Solicite su cotización.";
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },
@@ -87,6 +93,9 @@ export default function HomePage() {
               Impermeabilización con nanotecnología molecular y garantía por
               escrito según sistema y alcance, diseñada para el clima costero y
               húmedo de Panamá.
+            </p>
+            <p className="mt-4 max-w-prose text-sm leading-relaxed text-white/70">
+              {OFFER_NOTE}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#contacto" className="btn-gold-lg">
@@ -244,13 +253,16 @@ export default function HomePage() {
             <div>
               <SectionHeading
                 kicker="Contacto"
-                title={SERVICE_CTA}
+                title={SERVICE_CTA_STICKY}
                 titleId="contacto-titulo"
                 className="mb-0"
                 tone="dark"
               />
               <p className="mt-5 text-base leading-relaxed text-white/80">
                 Cuéntenos qué está pasando con su estructura. {INSPECTION_SLA}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-white/70">
+                {OFFER_NOTE}
               </p>
               <div className="mt-8">
                 <BrandLogo size="inline" />
@@ -259,17 +271,7 @@ export default function HomePage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F5A623]">
                   Atención directa
                 </p>
-                <p className="text-sm text-white/80">
-                  WhatsApp ·{" "}
-                  <a
-                    href={whatsappHref()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-white hover:text-[#F5A623]"
-                  >
-                    {WHATSAPP_DISPLAY}
-                  </a>
-                </p>
+                <WhatsAppContacts className="text-sm" />
                 <p className="text-sm text-white/80">
                   Email ·{" "}
                   <a

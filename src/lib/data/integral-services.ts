@@ -55,7 +55,15 @@ export const INTEGRAL_PILLARS = [
   },
 ] as const;
 
-type Step = { title: "Inspección" | "Medición" | "Propuesta"; body: string };
+type Step = {
+  /**
+   * "Visita de cotización" by default: the free visit measures a job the
+   * client already defined. Diagnosis pages keep "Inspección", which is the
+   * charged service.
+   */
+  title: "Visita de cotización" | "Inspección" | "Medición" | "Propuesta";
+  body: string;
+};
 
 export type IntegralService = {
   slug: IntegralServiceSlug;
@@ -79,7 +87,24 @@ function options(...values: ProblemaValue[]): readonly ProblemaOption[] {
   }));
 }
 
-function steps(inspeccion: string, medicion: string, propuesta: string): readonly [Step, Step, Step] {
+function steps(
+  visita: string,
+  medicion: string,
+  propuesta: string,
+): readonly [Step, Step, Step] {
+  return [
+    { title: "Visita de cotización", body: visita },
+    { title: "Medición", body: medicion },
+    { title: "Propuesta", body: propuesta },
+  ];
+}
+
+/** Steps for a diagnosis page, where step one is the charged service. */
+function diagnosisSteps(
+  inspeccion: string,
+  medicion: string,
+  propuesta: string,
+): readonly [Step, Step, Step] {
   return [
     { title: "Inspección", body: inspeccion },
     { title: "Medición", body: medicion },
@@ -125,7 +150,7 @@ const services: readonly IntegralService[] = [
       "Ejecución coordinada con la administración del edificio o la obra.",
     ],
     steps: steps(
-      "Recorremos losas, fachadas, juntas y drenajes y registramos por dónde entra el agua.",
+      "Recorremos el frente que ya tiene definido —losas, fachadas, juntas o drenajes— y revisamos su estado.",
       "Medimos el frente real — horizontal, vertical o ambos — para cotizar ese alcance.",
       "Entregamos el sistema recomendado, el alcance y las condiciones por escrito.",
     ),

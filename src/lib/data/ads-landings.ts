@@ -93,7 +93,7 @@ export const ADS_PILLARS = [
 export const ADS_STEPS = [
   {
     title: "Inspeccionamos",
-    body: "Revisamos la estructura, los puntos húmedos y el sustrato. No empezamos por el químico.",
+    body: "Revisamos la estructura, los puntos húmedos y el sustrato. No empezamos por el químico. Esta inspección es el diagnóstico y se cobra por hora, según la ubicación.",
   },
   {
     title: "Origen",
@@ -194,7 +194,11 @@ export const PATCH_VS_METHOD = {
 const SHARED_FAQS: AdsFaq[] = [
   {
     q: "¿Ustedes cotizan sin ver el sitio?",
-    a: "No. Una filtración o una azotea no se cotiza de oído. Primero inspeccionamos, identificamos el origen y le proponemos el sistema correcto.",
+    a: "Si ya tiene definido el trabajo, visitamos para medir y cotizar sin costo.",
+  },
+  {
+    q: "¿La inspección tiene costo?",
+    a: "Sí. La inspección y el diagnóstico se cobran por hora, según la ubicación, e incluyen informe fotográfico. La tarifa se confirma antes de la visita y se descuenta si luego contrata el trabajo. La cotización es gratuita.",
   },
   {
     q: "¿Qué garantía ofrecen?",
@@ -202,7 +206,7 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿En cuánto tiempo responden?",
-    a: `${INSPECTION_SLA} Si el caso es urgente, puede escribirnos por WhatsApp al +507 6038-8649.`,
+    a: "En horario hábil. No manejamos servicio de urgencia; coordinamos la visita lo antes posible dentro de la agenda.",
   },
   {
     q: "¿LithiTek 9500 sirve para techos de zinc?",
@@ -221,7 +225,7 @@ export const adsLandings: Record<AdsLandingSlug, AdsLanding> = {
     source: "ads_filtraciones",
     title: "Filtraciones y fugas Panamá | SEDECO",
     description:
-      "Detección de filtraciones y fugas en techos, losas y fachadas en Panamá. Encontramos el origen del agua antes de reparar. Solicite inspección.",
+      "Detección de filtraciones y fugas en techos, losas y fachadas en Panamá. Encontramos el origen del agua antes de reparar. Solicite su diagnóstico o cotización.",
     h1: "¿Tienes una filtración en Panamá? Encontramos el origen antes de reparar.",
     cta: DIAGNOSIS_CTA,
     ctaSticky: DIAGNOSIS_CTA,

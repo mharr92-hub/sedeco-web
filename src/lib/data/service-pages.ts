@@ -117,9 +117,9 @@ export const HOME_LEAD: LeadPageContext = {
     "otro",
   ),
   whatsappMessage:
-    "Hola, quiero una inspección para un problema de filtración.",
+    "Hola SEDECO, vi su página y quiero cotizar un trabajo de impermeabilización.",
   thankYouWhatsapp:
-    "Hola, solicité una inspección desde sedeco.lat. Les envío fotos del problema.",
+    "Hola, solicité una cotización desde sedeco.lat. Les envío fotos del frente de trabajo.",
 };
 
 export function analyticsFormName(landing: { source: string; slug: string }): string {
@@ -243,9 +243,9 @@ export const servicePages: Record<
       "otro",
     ),
     whatsappMessage:
-      "Hola, quiero solicitar una inspección de impermeabilización en Panamá.",
+      "Hola SEDECO, quiero cotizar impermeabilización en Panamá.",
     thankYouWhatsapp:
-      "Hola, solicité una inspección de impermeabilización. Les envío fotos del problema.",
+      "Hola, solicité una cotización de impermeabilización. Les envío fotos del frente de trabajo.",
     metaTitle: "Impermeabilización Panamá | SEDECO",
     metaDescription:
       "Impermeabilización de techos, azoteas, tanques y losas de concreto en Panamá. Diagnóstico en sitio y sistema según cada caso. Solicite inspección.",
@@ -273,12 +273,12 @@ export const servicePages: Record<
     defaultProblema: "fachada",
     problemaOptions: options("fachada", "pintura", "otro"),
     whatsappMessage:
-      "Hola, quiero solicitar una inspección de fachada en altura en Panamá.",
+      "Hola SEDECO, quiero cotizar reparación de fachada en altura en Panamá.",
     thankYouWhatsapp:
-      "Hola, solicité una inspección de fachada en altura. Les envío fotos de las manchas o uniones.",
+      "Hola, solicité una cotización de fachada en altura. Les envío fotos de las manchas o uniones.",
     metaTitle: "Restauración e impermeabilización de fachadas",
     metaDescription:
-      "Restauración e impermeabilización de fachadas en altura en Panamá: sellado de grietas, juntas y ventanas. Solicite su inspección técnica.",
+      "Restauración e impermeabilización de fachadas en altura en Panamá: sellado de grietas, juntas y ventanas. Solicite su cotización técnica.",
     h1: "Restauración e impermeabilización de fachadas en altura.",
     sub: "Reparación de grietas y repellos, sellos de ventanas y juntas, impermeabilización y pintura. Guindolas eléctricas ZLP 630 certificadas: no dependemos de terceros para llegar a su fachada.",
     bullets: [
@@ -298,12 +298,12 @@ export const servicePages: Record<
     defaultProblema: "pisos",
     problemaOptions: options("pisos", "otro"),
     whatsappMessage:
-      "Hola, quiero solicitar una inspección de pisos industriales en Panamá.",
+      "Hola SEDECO, quiero cotizar pisos industriales en Panamá.",
     thankYouWhatsapp:
-      "Hola, solicité una inspección de pisos industriales. Les envío fotos del sustrato.",
+      "Hola, solicité una cotización de pisos industriales. Les envío fotos del sustrato.",
     metaTitle: "Pisos industriales Panamá | SEDECO",
     metaDescription:
-      "Sellado y sistemas para pisos industriales de concreto en Panamá: bodegas, plantas y estacionamientos. Solicite su inspección técnica.",
+      "Sellado y sistemas para pisos industriales de concreto en Panamá: bodegas, plantas y estacionamientos. Solicite su cotización técnica.",
     h1: "Pisos que aguantan la operación: epóxicos, concreto pulido y sellado industrial.",
     sub: "Para bodegas, plantas, supermercados, estacionamientos y comercios. Preparación mecánica del sustrato, sistema según el uso y garantía por escrito.",
     bullets: [
@@ -337,9 +337,9 @@ export const servicePages: Record<
     defaultProblema: "reparacion-estructural",
     problemaOptions: options("reparacion-estructural", "grietas", "otro"),
     whatsappMessage:
-      "Hola, quiero solicitar una inspección de reparación estructural en Panamá.",
+      "Hola SEDECO, quiero cotizar reparación estructural en Panamá.",
     thankYouWhatsapp:
-      "Hola, solicité una inspección de reparación estructural. Les envío fotos de la losa o el acero expuesto.",
+      "Hola, solicité una cotización de reparación estructural. Les envío fotos de la losa o el acero expuesto.",
     metaTitle: "Reparación estructural Panamá | SEDECO",
     metaDescription:
       "Reparación estructural de concreto en Panamá: grietas, acero expuesto y elementos dañados. Diagnóstico técnico en sitio. Solicite inspección.",
@@ -362,12 +362,12 @@ export const servicePages: Record<
     defaultProblema: "pintura",
     problemaOptions: options("pintura", "fachada", "otro"),
     whatsappMessage:
-      "Hola, quiero solicitar una inspección de pintura de edificios en Panamá.",
+      "Hola SEDECO, quiero cotizar pintura de edificios en Panamá.",
     thankYouWhatsapp:
-      "Hola, solicité una inspección de pintura de edificios. Les envío fotos de la fachada.",
+      "Hola, solicité una cotización de pintura de edificios. Les envío fotos de la fachada.",
     metaTitle: "Pintura de edificios Panamá | SEDECO",
     metaDescription:
-      "Pintura de edificios y torres en Panamá con trabajo en altura. Reparamos grietas y sellos de la fachada antes de pintar. Solicite su inspección.",
+      "Pintura de edificios y torres en Panamá con trabajo en altura. Reparamos grietas y sellos de la fachada antes de pintar. Solicite su cotización.",
     h1: "Pintura de edificios en altura, con la fachada reparada primero.",
     sub: "No pintamos sobre grietas ni humedad: reparamos, sellamos y después pintamos. Por eso la pintura dura.",
     bullets: [

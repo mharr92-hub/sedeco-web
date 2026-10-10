@@ -91,6 +91,10 @@ export const INSPECTION_SLA = "Le contactamos en horario hábil." as const;
 export const OFFER_NOTE =
   "¿Ya tiene definido el trabajo? Visitamos, medimos y cotizamos sin costo. ¿No sabe de dónde viene el problema? La inspección y el diagnóstico con informe fotográfico se cobran por hora, según la ubicación. Le confirmamos la tarifa antes de la visita y se la descontamos si luego contrata el trabajo." as const;
 
+/** Offer note for the diagnosis landings, where diagnosis leads the page. */
+export const DIAGNOSIS_OFFER_NOTE =
+  "Diagnóstico con informe fotográfico: se cobra por hora, según la ubicación, y se descuenta si luego contrata el trabajo. ¿Ya sabe qué trabajo necesita? La cotización es gratuita." as const;
+
 /** Boroscope inspection is quoted separately, not billed by the hour. */
 export const BOROSCOPE_NOTE =
   "Tiene un precio aparte. Se lo cotizamos antes de coordinar la visita." as const;

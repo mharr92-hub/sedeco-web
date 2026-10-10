@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Términos",
   description:
-    "Términos del sitio SEDECO Panamá. Pedir una inspección no crea un contrato de obra. Si hay garantía, queda por escrito según el sistema y el alcance.",
+    "Términos del sitio SEDECO Panamá. Pedir una cotización no crea un contrato de obra. La cotización es gratuita; el diagnóstico se cobra. Si hay garantía, queda por escrito.",
   alternates: { canonical: "/terminos" },
 };
 
@@ -32,17 +32,23 @@ export default function TerminosPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Inspección y cotización no son un contrato">
+      <LegalSection title="Cotización y diagnóstico no son un contrato">
         <p>
-          Pedir una inspección, enviar un formulario o recibir una cotización no
+          Pedir una visita, enviar un formulario o recibir una cotización no
           crea un contrato de obra ni nos obliga a ejecutar un trabajo. El
           contrato, si lo hay, nace solo cuando ambas partes acuerdan por
           escrito el sistema, el alcance, el precio y las condiciones.
         </p>
         <p>
-          Una visita técnica sirve para ver el origen del problema. Las fotos
-          por WhatsApp ayudan a prepararla; no sustituyen la inspección ni
-          cierran un alcance.
+          Si usted ya tiene definido el trabajo, la visita para medir y cotizar
+          no tiene costo. Si hace falta establecer de dónde viene el problema,
+          eso es inspección y diagnóstico: se cobra por hora, según la
+          ubicación, incluye informe fotográfico y la tarifa se confirma antes
+          de la visita. Lo pagado por el diagnóstico se descuenta si luego
+          contrata el trabajo. La inspección con cámara boroscópica tiene un
+          precio aparte: se lo cotizamos antes de coordinar la visita. Las
+          fotos por WhatsApp ayudan a preparar la visita; no sustituyen el
+          diagnóstico ni cierran un alcance.
         </p>
       </LegalSection>
 
@@ -74,7 +80,7 @@ export default function TerminosPage() {
         <p>
           No utilice los formularios para spam, datos falsos o contenido ilícito.
           Podemos ignorar o borrar envíos que no correspondan a una solicitud
-          real de inspección o información.
+          real de cotización, diagnóstico o información.
         </p>
       </LegalSection>
 
