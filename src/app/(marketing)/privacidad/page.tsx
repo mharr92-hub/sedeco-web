@@ -1,3 +1,4 @@
+import { WhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import type { Metadata } from "next";
 import { LegalArticle, LegalSection } from "@/components/site/legal-article";
 import {
@@ -122,13 +123,12 @@ export default function PrivacidadPage() {
           <br />
           Tel. {PHONE_OFFICE_PRIMARY} / {PHONE_OFFICE_SECONDARY}
           <br />
-          WhatsApp:{" "}
-          <a
-            href={whatsappHref("Hola, consulta sobre privacidad SEDECO")}
-            className="text-navy-700 underline underline-offset-2 hover:text-accent-600"
-          >
-            {WHATSAPP_DISPLAY}
-          </a>
+          WhatsApp:
+          <WhatsAppContacts
+            variant="dark"
+            message="Hola, consulta sobre privacidad SEDECO"
+            className="mt-1"
+          />
           <br />
           Correo:{" "}
           <a

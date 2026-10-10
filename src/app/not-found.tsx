@@ -1,3 +1,4 @@
+import { WhatsAppContactButtons } from "@/components/site/whatsapp-contacts";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -22,14 +23,7 @@ export default function NotFound() {
           <Link href="/#contacto" className="btn-gold-lg">
             {SERVICE_CTA}
           </Link>
-          <a
-            href={whatsappHref()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"
-          >
-            WhatsApp {WHATSAPP_DISPLAY}
-          </a>
+          <WhatsAppContactButtons className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]" />
         </div>
       </main>
       <SiteFooter />

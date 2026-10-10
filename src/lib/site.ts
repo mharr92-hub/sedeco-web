@@ -122,7 +122,7 @@ export const NAP_LOCALITY = "Ciudad de Panamá";
 export const OFFICE_PHONES = [
   CONTACT.telMain,
   ...CONTACT.telSecondary,
-  CONTACT.whatsappDisplay,
+  ...WHATSAPP_CONTACTS.map((contact) => contact.display),
 ] as const;
 
 /**
@@ -192,6 +192,13 @@ export function localBusinessJsonLd() {
     url: CANONICAL_ORIGIN,
     email: SITE_EMAIL,
     telephone: [...OFFICE_PHONES],
+    contactPoint: WHATSAPP_CONTACTS.map((contact) => ({
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      name: contact.name,
+      telephone: contact.display,
+      availableLanguage: ["es"],
+    })),
     address: {
       "@type": "PostalAddress",
       streetAddress: NAP_STREET_ADDRESS,

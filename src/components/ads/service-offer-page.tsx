@@ -1,3 +1,4 @@
+import { TrackedWhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import { AdsHeroCtas } from "@/components/ads/ads-hero-ctas";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { AdsFooter } from "@/components/ads/ads-footer";
@@ -157,19 +158,15 @@ function Close({ page }: { page: ServicePage }) {
           <h2 className="mt-3 font-ads text-3xl font-semibold tracking-tight md:text-4xl">
             Cuéntenos el caso. {INSPECTION_SLA}
           </h2>
-          <TrackedLink
-            event="whatsapp_click"
-            landing={page.slug}
-            source={page.source}
-            location="bottom"
-            href={whatsappHref(page.whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-md bg-[#25D366] px-5 text-sm font-semibold text-white hover:bg-[#1ebe5d]"
-          >
-            <WhatsAppGlyph />
-            WhatsApp {WHATSAPP_DISPLAY}
-          </TrackedLink>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <TrackedWhatsAppContacts
+              landing={page.slug}
+              source={page.source}
+              location="bottom"
+              message={page.whatsappMessage}
+              className="inline-flex min-h-12 items-center gap-2 rounded-md bg-[#25D366] px-5 text-sm font-semibold text-white hover:bg-[#1ebe5d]"
+            />
+          </div>
 
           <div id="como-funciona" className="mt-12 scroll-mt-24">
             <h3 className="font-ads text-2xl font-semibold">Cómo funciona</h3>

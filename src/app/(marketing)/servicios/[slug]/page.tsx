@@ -1,3 +1,4 @@
+import { WhatsAppContactButtons } from "@/components/site/whatsapp-contacts";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -100,15 +101,7 @@ export default async function ServicioDetailPage({
             <Link href="/#contacto" className="btn-gold-lg">
               {SERVICE_CTA}
             </Link>
-            <a
-              href={whatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]"
-            >
-              <WhatsAppGlyph className="text-[#25D366]" />
-              WhatsApp {WHATSAPP_DISPLAY}
-            </a>
+            <WhatsAppContactButtons className="inline-flex min-h-12 items-center gap-2 rounded-md border border-[#1A2E8A] px-5 text-sm font-semibold text-[#1A2E8A] hover:bg-[#EEF1FB]" />
           </div>
         </section>
 

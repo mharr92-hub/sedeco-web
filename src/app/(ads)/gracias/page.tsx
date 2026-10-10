@@ -1,3 +1,4 @@
+import { WhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import type { Metadata } from "next";
 import { ThankYouClient } from "@/components/ads/thank-you-client";
 import { BrandLogo } from "@/components/site/brand-logo";
@@ -12,13 +13,13 @@ import {
 
 export const metadata: Metadata = {
   title: { absolute: "Solicitud recibida · SEDECO Panamá" },
-  description: `Recibimos su solicitud de inspección. ${INSPECTION_SLA} Envíe fotos por WhatsApp ${WHATSAPP_DISPLAY}.`,
+  description: `Recibimos su solicitud. ${INSPECTION_SLA} Envíe fotos por WhatsApp.`,
   robots: { index: false, follow: false },
   alternates: { canonical: `${CANONICAL_ORIGIN}/gracias` },
   openGraph: {
     url: `${CANONICAL_ORIGIN}/gracias`,
     title: "Solicitud recibida · SEDECO Panamá",
-    description: `Recibimos su solicitud de inspección. ${INSPECTION_SLA}`,
+    description: `Recibimos su solicitud. ${INSPECTION_SLA}`,
     images: [OG_IMAGE],
   },
 };
@@ -39,10 +40,10 @@ export default function GraciasPage() {
           Recibimos su caso.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-[#5C6578]">
-          {INSPECTION_SLA} Si puede, envíe fotos ahora por WhatsApp (
-          {WHATSAPP_DISPLAY}) — ayudan a preparar la inspección. Las fotos no
-          sustituyen la visita.
+          {INSPECTION_SLA} Si puede, envíe fotos ahora por WhatsApp — ayudan a
+          preparar la visita. Las fotos no sustituyen la visita.
         </p>
+        <WhatsAppContacts variant="dark" className="mt-4 text-sm" />
         <ThankYouClient />
         <p className="mt-4 text-sm text-[#5C6578]">
           También puede escribir a{" "}

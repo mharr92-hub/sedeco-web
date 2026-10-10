@@ -1,3 +1,4 @@
+import { TrackedWhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import { OpenFormButton } from "@/components/ads/open-form-button";
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { PhoneGlyph } from "@/components/site/phone-glyph";
@@ -29,19 +30,13 @@ export function AdsHeroCtas({ landing }: { landing: HeroCtaLanding }) {
       >
         {landing.cta}
       </OpenFormButton>
-      <TrackedLink
-        event="whatsapp_click"
+      <TrackedWhatsAppContacts
         landing={landing.slug}
         source={landing.source}
         location="hero"
-        href={whatsappHref(landing.whatsappMessage)}
-        target="_blank"
-        rel="noopener noreferrer"
+        message={landing.whatsappMessage}
         className="btn-wa-outline"
-      >
-        <WhatsAppGlyph className="text-[#25D366]" />
-        WhatsApp {WHATSAPP_DISPLAY}
-      </TrackedLink>
+      />
       <TrackedLink
         event="phone_click"
         landing={landing.slug}

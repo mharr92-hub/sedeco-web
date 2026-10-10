@@ -1,5 +1,6 @@
 "use client";
 
+import { WhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import { useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { TrackedLink } from "@/components/ads/tracked-link";
@@ -89,9 +90,7 @@ function ThankYouInner() {
         <WhatsAppGlyph />
         Enviar fotos por WhatsApp
       </TrackedLink>
-      <p className="text-sm text-[#5C6578]">
-        WhatsApp · {WHATSAPP_DISPLAY}
-      </p>
+      <WhatsAppContacts variant="dark" className="text-sm" />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import {
   whatsappHrefFor,
   type WhatsAppContact,
 } from "@/lib/site";
+import { TrackedLink } from "@/components/ads/tracked-link";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { cn } from "@/lib/utils";
 
@@ -99,6 +100,48 @@ export function WhatsAppContactButtons({
           <WhatsAppGlyph className="text-[#25D366]" />
           {contact.name.split(" ")[0]} · {contact.display}
         </a>
+      ))}
+    </>
+  );
+}
+
+/**
+ * The two contacts as tracked buttons. Uses TrackedLink, so the click also
+ * reaches /api/cta-clicks with its gclid attribution, exactly like the Ads
+ * footer. Prefer this over WhatsAppContactButtons anywhere a landing context
+ * is available.
+ */
+export function TrackedWhatsAppContacts({
+  landing,
+  source,
+  location,
+  message,
+  className,
+}: {
+  landing?: string;
+  source?: string;
+  location?: string;
+  message?: string;
+  className?: string;
+}) {
+  return (
+    <>
+      {WHATSAPP_CONTACTS.map((contact) => (
+        <TrackedLink
+          key={contact.key}
+          event="whatsapp_click"
+          landing={landing}
+          source={source}
+          location={location}
+          href={whatsappHrefFor(contact, message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-destino={contact.key}
+          className={className}
+        >
+          <WhatsAppGlyph className="text-[#25D366]" />
+          {contact.name.split(" ")[0]} · {contact.display}
+        </TrackedLink>
       ))}
     </>
   );

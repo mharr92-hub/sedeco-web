@@ -1,3 +1,4 @@
+import { TrackedWhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import type { AdsLanding } from "@/lib/data/ads-landings";
 import { ADS_POSITIONING } from "@/lib/data/ads-landings";
 import {
@@ -531,19 +532,13 @@ function FinalCta({ landing }: { landing: AdsLanding }) {
           >
             {landing.cta}
           </OpenFormButton>
-          <TrackedLink
-            event="whatsapp_click"
+          <TrackedWhatsAppContacts
             landing={landing.slug}
             source={landing.source}
             location="bottom"
-            href={whatsappHref(landing.whatsappMessage)}
-            target="_blank"
-            rel="noopener noreferrer"
+            message={landing.whatsappMessage}
             className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/25 px-5 text-sm font-semibold text-white"
-          >
-            <WhatsAppGlyph className="text-[#25D366]" />
-            WhatsApp {WHATSAPP_DISPLAY}
-          </TrackedLink>
+          />
         </div>
         <p className="mt-8 font-ads text-sm tracking-[0.18em] text-white/60">
           SEDECO.LAT

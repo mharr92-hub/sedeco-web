@@ -1,3 +1,4 @@
+import { TrackedWhatsAppContacts } from "@/components/site/whatsapp-contacts";
 import Link from "next/link";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { TrackedLink } from "@/components/ads/tracked-link";
@@ -50,19 +51,13 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
               <a href="#cotizar" className="btn-gold-lg">
                 {SERVICE_CTA}
               </a>
-              <TrackedLink
-                event="whatsapp_click"
+              <TrackedWhatsAppContacts
                 landing={service.slug}
                 source={service.lead.source}
                 location="hero"
-                href={whatsappHref(service.lead.whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
+                message={service.lead.whatsappMessage}
                 className="btn-wa-outline"
-              >
-                <WhatsAppGlyph className="text-[#25D366]" />
-                WhatsApp {WHATSAPP_DISPLAY}
-              </TrackedLink>
+              />
             </div>
             <p className="mt-5 text-sm text-white/70">{INSPECTION_SLA}</p>
           </div>
@@ -160,19 +155,15 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
               <p className="mt-5 text-base leading-relaxed text-white/80">
                 Cuéntenos el edificio o la obra. {INSPECTION_SLA}
               </p>
-              <TrackedLink
-                event="whatsapp_click"
-                landing={service.slug}
-                source={service.lead.source}
-                location="form"
-                href={whatsappHref(service.lead.whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-wa-outline mt-8"
-              >
-                <WhatsAppGlyph className="text-[#25D366]" />
-                WhatsApp {WHATSAPP_DISPLAY}
-              </TrackedLink>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <TrackedWhatsAppContacts
+                  landing={service.slug}
+                  source={service.lead.source}
+                  location="form"
+                  message={service.lead.whatsappMessage}
+                  className="btn-wa-outline"
+                />
+              </div>
             </div>
             <div className="brand-card bg-white p-6 text-[#1A2E8A] md:p-8">
               <AdsLeadDock landing={service.lead} embed />
