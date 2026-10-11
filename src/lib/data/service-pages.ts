@@ -420,7 +420,7 @@ export const servicePages: Record<
     metaDescription:
       "Inspección boroscópica con cámara en tuberías de desagüe en Panamá. Ubicamos obstrucciones y fallas y entregamos informe. Solicite su diagnóstico.",
     h1: "Inspección con cámara boroscópica en desagües",
-    sub: "Recorremos el desagüe con cámara para ver dónde entra o se detiene el agua. El resultado es un diagnóstico con informe, antes de abrir o reparar.",
+    sub: "Recorremos el desagüe con cámara para ver dónde entra o se detiene el agua. El resultado es un diagnóstico con informe, antes de abrir o reparar. Es un servicio aparte: cuesta más que la inspección termográfica y visual, y se lo cotizamos antes de coordinar la visita.",
     bullets: [
       "Cámara por el ducto, sin adivinar el origen solo desde el interior.",
       "Informe de lo observado para decidir el siguiente paso.",

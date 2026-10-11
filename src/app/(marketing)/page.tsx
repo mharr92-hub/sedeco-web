@@ -1,4 +1,8 @@
-import { WhatsAppContacts } from "@/components/site/whatsapp-contacts";
+import {
+  WhatsAppContactButtons,
+  WhatsAppContacts,
+} from "@/components/site/whatsapp-contacts";
+import { OfferChoice } from "@/components/site/offer-choice";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandLogo } from "@/components/site/brand-logo";
@@ -13,6 +17,7 @@ import { ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
 import { getFeaturedCases } from "@/lib/data/cases";
 import {
+  DIAGNOSIS_CTA,
   HOME_LEAD,
   SERVICE_CTA,
   SERVICE_CTA_STICKY,
@@ -94,23 +99,24 @@ export default function HomePage() {
               escrito según sistema y alcance, diseñada para el clima costero y
               húmedo de Panamá.
             </p>
-            <p className="mt-4 max-w-prose text-sm leading-relaxed text-white/70">
-              {OFFER_NOTE}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#contacto" className="btn-gold-lg">
-                {SERVICE_CTA}
-              </a>
-              <a
-                href={whatsappHref()}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-track="whatsapp_click"
-                className="btn-wa-outline"
-              >
-                <WhatsAppGlyph className="text-[#25D366]" />
-                WhatsApp {WHATSAPP_DISPLAY}
-              </a>
+            <OfferChoice
+              className="mt-8 max-w-3xl"
+              quoteAction={
+                <a href="#contacto" className="btn-gold-lg">
+                  {SERVICE_CTA}
+                </a>
+              }
+              diagnosisAction={
+                <a
+                  href="#contacto"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/40 px-5 text-sm font-semibold text-white transition-colors hover:border-[#F5A623] hover:text-[#F5A623]"
+                >
+                  {DIAGNOSIS_CTA}
+                </a>
+              }
+            />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <WhatsAppContactButtons className="btn-wa-outline" />
               <a
                 href={telHref(PHONE_MAIN)}
                 data-track="phone_click"

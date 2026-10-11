@@ -6,7 +6,8 @@ import { CaseCard } from "@/components/site/case-card";
 import { ServiceIcon } from "@/components/site/service-icons";
 import { SiteFooter } from "@/components/site/footer";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
-import { SERVICE_CTA } from "@/lib/data/service-pages";
+import { DIAGNOSIS_CTA, SERVICE_CTA } from "@/lib/data/service-pages";
+import { OfferChoice } from "@/components/site/offer-choice";
 import { getAuthorizedShowcaseCases } from "@/lib/data/cases";
 import {
   integralServiceJsonLd,
@@ -47,10 +48,23 @@ export function IntegralServicePage({ service }: { service: IntegralService }) {
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
               {service.sub}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#cotizar" className="btn-gold-lg">
-                {SERVICE_CTA}
-              </a>
+            <OfferChoice
+              className="mt-8 max-w-3xl"
+              quoteAction={
+                <a href="#cotizar" className="btn-gold-lg">
+                  {SERVICE_CTA}
+                </a>
+              }
+              diagnosisAction={
+                <a
+                  href="#cotizar"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-md border border-white/40 px-5 text-sm font-semibold text-white transition-colors hover:border-[#F5A623] hover:text-[#F5A623]"
+                >
+                  {DIAGNOSIS_CTA}
+                </a>
+              }
+            />
+            <div className="mt-6 flex flex-wrap gap-3">
               <TrackedWhatsAppContacts
                 landing={service.slug}
                 source={service.lead.source}

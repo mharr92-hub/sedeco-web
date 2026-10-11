@@ -89,15 +89,19 @@ export const INSPECTION_SLA = "Le contactamos en horario hábil." as const;
  * footer or /gracias, where it would repeat site-wide. Never publish a rate.
  */
 export const OFFER_NOTE =
-  "¿Ya tiene definido el trabajo? Visitamos, medimos y cotizamos sin costo. ¿No sabe de dónde viene el problema? La inspección y el diagnóstico con informe fotográfico se cobran por hora, según la ubicación. Le confirmamos la tarifa antes de la visita y se la descontamos si luego contrata el trabajo." as const;
+  "¿Ya tiene definido el trabajo? Visitamos, medimos y cotizamos sin costo. ¿No sabe de dónde viene el problema? La inspección termográfica y visual, con informe fotográfico, se cobra por hora según la ubicación. Le confirmamos la tarifa antes de la visita y se la descontamos si luego contrata el trabajo. La cámara boroscópica es un servicio aparte que se cotiza por separado. El alcance se ajusta a lo que usted pida." as const;
 
 /** Offer note for the diagnosis landings, where diagnosis leads the page. */
 export const DIAGNOSIS_OFFER_NOTE =
-  "Diagnóstico con informe fotográfico: se cobra por hora, según la ubicación, y se descuenta si luego contrata el trabajo. ¿Ya sabe qué trabajo necesita? La cotización es gratuita." as const;
+  "Diagnóstico termográfico y visual con informe fotográfico: se cobra por hora, según la ubicación, y se descuenta si luego contrata el trabajo. La cámara boroscópica se cotiza aparte. ¿Ya sabe qué trabajo necesita? La cotización es gratuita." as const;
 
-/** Boroscope inspection is quoted separately, not billed by the hour. */
+/**
+ * Boroscope is not the standard diagnosis. The usual one is thermographic
+ * and visual, billed by the hour; the boroscope costs noticeably more and is
+ * quoted on its own. Never publish either amount.
+ */
 export const BOROSCOPE_NOTE =
-  "Tiene un precio aparte. Se lo cotizamos antes de coordinar la visita." as const;
+  "La cámara boroscópica es un servicio aparte y cuesta más que la inspección termográfica y visual. Se lo cotizamos antes de coordinar la visita." as const;
 
 export const OFFICE_HOURS = {
   days: "Mo-Fr",

@@ -198,7 +198,7 @@ const SHARED_FAQS: AdsFaq[] = [
   },
   {
     q: "¿La inspección tiene costo?",
-    a: "Sí. La inspección y el diagnóstico se cobran por hora, según la ubicación, e incluyen informe fotográfico. La tarifa se confirma antes de la visita y se descuenta si luego contrata el trabajo. La cotización es gratuita.",
+    a: "Sí. La inspección termográfica y visual se cobra por hora, según la ubicación, e incluye informe fotográfico. La tarifa se confirma antes de la visita y se descuenta si luego contrata el trabajo. La cámara boroscópica es un servicio aparte, cuesta más y se cotiza por separado. El alcance se ajusta a lo que usted pida. La cotización del trabajo es gratuita.",
   },
   {
     q: "¿Qué garantía ofrecen?",
