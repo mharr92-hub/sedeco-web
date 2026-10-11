@@ -248,7 +248,7 @@ export const servicePages: Record<
       "Hola, solicité una cotización de impermeabilización. Les envío fotos del frente de trabajo.",
     metaTitle: "Impermeabilización Panamá | SEDECO",
     metaDescription:
-      "Impermeabilización de techos, azoteas, tanques y losas de concreto en Panamá. Diagnóstico en sitio y sistema según cada caso. Solicite inspección.",
+      "Impermeabilización de techos, azoteas, tanques y losas de concreto en Panamá. Diagnóstico en sitio y sistema según cada caso. Solicite su cotización.",
     h1: "Impermeabilización en Panamá: el sistema correcto para cada superficie.",
     sub: "Azoteas, losas, fachadas, tanques y piscinas. Primero diagnosticamos el sustrato; después aplicamos el sistema y lo garantizamos por escrito.",
     bullets: [
@@ -342,7 +342,7 @@ export const servicePages: Record<
       "Hola, solicité una cotización de reparación estructural. Les envío fotos de la losa o el acero expuesto.",
     metaTitle: "Reparación estructural Panamá | SEDECO",
     metaDescription:
-      "Reparación estructural de concreto en Panamá: grietas, acero expuesto y elementos dañados. Diagnóstico técnico en sitio. Solicite inspección.",
+      "Reparación estructural de concreto en Panamá: grietas, acero expuesto y elementos dañados. Diagnóstico técnico en sitio. Solicite su cotización.",
     h1: "Reparación estructural: recuperamos la losa antes de protegerla.",
     sub: "Losas, grietas, repellos desprendidos y acero expuesto. Evaluación documentada, reparación con morteros estructurales y protección final del concreto.",
     bullets: [
@@ -392,7 +392,7 @@ export const servicePages: Record<
       "Hola, solicité información del plan de mantenimiento anual para PH. Les cuento el tamaño del edificio.",
     metaTitle: "Mantenimiento de PH Panamá | SEDECO",
     metaDescription:
-      "Mantenimiento de PH y edificios en Panamá: filtraciones, fachadas, azoteas y concreto. Plan preventivo para administradores. Solicite inspección.",
+      "Mantenimiento de PH y edificios en Panamá: filtraciones, fachadas, azoteas y concreto. Plan preventivo para administradores. Solicite su cotización.",
     h1: "Mantenimiento anual para su PH: prevenir cuesta menos que la emergencia.",
     sub: "Inspección programada de azotea, fachada, juntas, sellos y drenajes, con informe anual para la Junta Directiva y prioridad de atención.",
     bullets: [
@@ -418,7 +418,7 @@ export const servicePages: Record<
       "Hola, solicité una inspección con cámara boroscópica. Les cuento en qué desagüe está el problema.",
     metaTitle: "Inspección boroscópica desagües | SEDECO",
     metaDescription:
-      "Inspección boroscópica con cámara en tuberías de desagüe en Panamá. Ubicamos obstrucciones y fallas y entregamos informe. Solicite inspección.",
+      "Inspección boroscópica con cámara en tuberías de desagüe en Panamá. Ubicamos obstrucciones y fallas y entregamos informe. Solicite su diagnóstico.",
     h1: "Inspección con cámara boroscópica en desagües",
     sub: "Recorremos el desagüe con cámara para ver dónde entra o se detiene el agua. El resultado es un diagnóstico con informe, antes de abrir o reparar.",
     bullets: [
