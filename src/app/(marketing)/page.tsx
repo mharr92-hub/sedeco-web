@@ -11,7 +11,6 @@ import { SiteFooter } from "@/components/site/footer";
 import { AdsLeadDock } from "@/components/ads/ads-lead-form";
 import { CaseCard } from "@/components/site/case-card";
 import { SectionHeading } from "@/components/site/section-heading";
-import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { ResponsiveHeroPhotos } from "@/components/ads/ads-photo";
 import { ADS_PHOTOS } from "@/lib/data/ads-visuals";
@@ -29,10 +28,7 @@ import {
   OFFER_NOTE,
   localBusinessJsonLd,
   OG_IMAGE,
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
   SITE_EMAIL,
-  telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
@@ -117,14 +113,6 @@ export default function HomePage() {
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <WhatsAppContactButtons className="btn-wa-outline" />
-              <a
-                href={telHref(PHONE_MAIN)}
-                data-track="phone_click"
-                className="btn-tel-outline"
-              >
-                <PhoneGlyph />
-                Llamar {PHONE_MAIN_DISPLAY}
-              </a>
             </div>
             <div className="mt-12 max-w-5xl border-t border-white/15 pt-8">
               <TrustBar />

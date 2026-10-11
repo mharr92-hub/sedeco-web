@@ -57,9 +57,6 @@ export const CONTACT = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? PRIMARY_WHATSAPP.number,
   whatsappDisplay:
     process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? PRIMARY_WHATSAPP.display,
-  /** Main line: header, hero, footer. */
-  telMain: "+507 6564-4080",
-  telMainDisplay: "6564-4080",
   /** Landlines. Footer only. */
   telSecondary: ["+507 383-5175", "+507 383-5176"],
 } as const;
@@ -70,8 +67,6 @@ export const WHATSAPP_DEFAULT_MESSAGE =
 
 export const WHATSAPP_NUMBER = CONTACT.whatsapp;
 export const WHATSAPP_DISPLAY = CONTACT.whatsappDisplay;
-export const PHONE_MAIN = CONTACT.telMain;
-export const PHONE_MAIN_DISPLAY = CONTACT.telMainDisplay;
 export const PHONE_OFFICE_PRIMARY = CONTACT.telSecondary[0];
 export const PHONE_OFFICE_SECONDARY = CONTACT.telSecondary[1];
 
@@ -124,7 +119,6 @@ export const NAP_STREET_ADDRESS =
 export const NAP_LOCALITY = "Ciudad de Panamá";
 
 export const OFFICE_PHONES = [
-  CONTACT.telMain,
   ...CONTACT.telSecondary,
   ...WHATSAPP_CONTACTS.map((contact) => contact.display),
 ] as const;

@@ -2,12 +2,8 @@
 
 import { TrackedLink } from "@/components/ads/tracked-link";
 import { BrandLogo } from "@/components/site/brand-logo";
-import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
-  telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
@@ -56,20 +52,6 @@ export function AdsHeader({
             className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-[#25D366] text-white transition-colors hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A2E8A]"
           >
             <WhatsAppGlyph />
-          </TrackedLink>
-          <TrackedLink
-            event="phone_click"
-            landing={landing.slug}
-            source={landing.source}
-            location="header"
-            href={telHref(PHONE_MAIN)}
-            data-track="phone_click"
-            aria-label={`Llamar al ${PHONE_MAIN}`}
-            className="inline-flex h-11 items-center gap-1.5 rounded-md border border-white/40 px-2.5 text-xs font-semibold text-white transition-colors hover:border-[#F5A623] hover:text-[#F5A623] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A2E8A] lg:px-3 lg:text-sm"
-          >
-            <PhoneGlyph className="h-4 w-4" />
-            <span className="hidden sm:inline">{PHONE_MAIN_DISPLAY}</span>
-            <span className="sr-only sm:hidden">Llamar</span>
           </TrackedLink>
           <button
             type="button"

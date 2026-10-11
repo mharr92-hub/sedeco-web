@@ -11,14 +11,10 @@ import {
   SERVICE_MENU,
 } from "@/lib/data/integral-services";
 import {
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
-  telHref,
   whatsappHref,
   WHATSAPP_DEFAULT_MESSAGE,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
-import { PhoneGlyph } from "@/components/site/phone-glyph";
 
 export function SiteHeader() {
   const pathname = usePathname() ?? "/";
@@ -122,15 +118,6 @@ export function SiteHeader() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-[#25D366] text-white transition-colors hover:bg-[#1ebe5d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
           >
             <WhatsAppGlyph />
-          </a>
-          <a
-            href={telHref(PHONE_MAIN)}
-            data-track="phone_click"
-            aria-label={`Llamar al ${PHONE_MAIN}`}
-            className="inline-flex h-11 items-center gap-1.5 rounded-md border border-white/30 px-2.5 text-xs font-semibold text-white transition-colors hover:border-[#F5A623] hover:text-[#F5A623] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2 lg:px-3 lg:text-sm"
-          >
-            <PhoneGlyph className="h-4 w-4" />
-            <span className="hidden sm:inline">{PHONE_MAIN_DISPLAY}</span>
           </a>
           <Link href={quoteHref} className="btn-gold md:px-4">
             <span className="text-xs sm:text-sm">{quoteLabel}</span>

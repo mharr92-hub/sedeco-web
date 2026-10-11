@@ -7,8 +7,6 @@ import {
   INSPECTION_SLA,
   NAP_STREET_ADDRESS,
   LEGAL_NAME,
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
   SITE_EMAIL,
@@ -72,15 +70,6 @@ export function SiteFooter() {
                 <WhatsAppContactLink contact={contact} />
               </li>
             ))}
-            <li>
-              <a
-                href={telHref(PHONE_MAIN)}
-                data-track="phone_click"
-                className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
-              >
-                Tel · {PHONE_MAIN_DISPLAY}
-              </a>
-            </li>
             <li>
               <a
                 href={telHref(PHONE_OFFICE_PRIMARY)}

@@ -36,7 +36,8 @@ export function OfferChoice({
       isDark={isDark}
       highlight={primary === "quote"}
       question="¿Ya tiene definido el trabajo?"
-      body="Visitamos, medimos y cotizamos sin costo."
+      body="Sabe qué necesita, o tiene medidas, planos o pliego. Visitamos, medimos y cotizamos sin costo."
+      note="Sin compromiso."
       action={quoteAction}
     />
   );
@@ -46,13 +47,14 @@ export function OfferChoice({
       isDark={isDark}
       highlight={primary === "diagnosis"}
       question="¿No sabe de dónde viene el problema?"
-      body="Inspección termográfica y visual con informe fotográfico. Se cobra por hora, según la ubicación, y se le descuenta si luego contrata el trabajo. La cámara boroscópica se cotiza aparte."
+      body="Inspección termográfica y visual con informe fotográfico. Se cobra por hora, según la ubicación, y se le descuenta si luego contrata el trabajo."
+      note="La cámara boroscópica se cotiza aparte."
       action={diagnosisAction}
     />
   );
 
   return (
-    <div className={cn("grid gap-4 sm:grid-cols-2", className)}>
+    <div className={cn("grid items-stretch gap-4 sm:grid-cols-2", className)}>
       {primary === "diagnosis" ? [diagnosis, quote] : [quote, diagnosis]}
     </div>
   );
@@ -63,12 +65,15 @@ function OfferCard({
   highlight = false,
   question,
   body,
+  note,
   action,
 }: {
   isDark: boolean;
   highlight?: boolean;
   question: string;
   body: string;
+  /** Secondary detail, smaller, above the button. */
+  note?: string;
   action: ReactNode;
 }) {
   return (
@@ -100,7 +105,18 @@ function OfferCard({
       >
         {body}
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">{action}</div>
+      {note ? (
+        <p
+          className={cn(
+            "mt-3 text-xs leading-relaxed",
+            isDark ? "text-white/55" : "text-[#8A93A6]",
+          )}
+        >
+          {note}
+        </p>
+      ) : null}
+      {/* mt-auto keeps both buttons on the same line, however long the copy. */}
+      <div className="mt-auto flex flex-wrap gap-2 pt-5">{action}</div>
     </div>
   );
 }

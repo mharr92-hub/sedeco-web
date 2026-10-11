@@ -6,8 +6,6 @@ import {
   INSPECTION_SLA,
   NAP_STREET_ADDRESS,
   LEGAL_NAME,
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
   PHONE_OFFICE_PRIMARY,
   PHONE_OFFICE_SECONDARY,
   SITE_EMAIL,
@@ -59,18 +57,6 @@ export function AdsFooter({ landing }: { landing: LeadPageContext }) {
                 </TrackedLink>
               </li>
             ))}
-            <li>
-              <TrackedLink
-                event="phone_click"
-                landing={landing.slug}
-                source={landing.source}
-                location="footer"
-                href={telHref(PHONE_MAIN)}
-                className="inline-flex min-h-6 items-center text-white hover:text-[#F5A623]"
-              >
-                Tel · {PHONE_MAIN_DISPLAY}
-              </TrackedLink>
-            </li>
             <li>
               <TrackedLink
                 event="phone_click"

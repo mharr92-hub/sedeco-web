@@ -3,12 +3,8 @@ import { OfferChoice } from "@/components/site/offer-choice";
 import { SERVICE_CTA } from "@/lib/data/service-pages";
 import { OpenFormButton } from "@/components/ads/open-form-button";
 import { TrackedLink } from "@/components/ads/tracked-link";
-import { PhoneGlyph } from "@/components/site/phone-glyph";
 import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import {
-  PHONE_MAIN,
-  PHONE_MAIN_DISPLAY,
-  telHref,
   whatsappHref,
   WHATSAPP_DISPLAY,
 } from "@/lib/site";
@@ -70,18 +66,6 @@ export function AdsHeroCtas({ landing }: { landing: HeroCtaLanding }) {
         message={landing.whatsappMessage}
         className="btn-wa-outline"
       />
-      <TrackedLink
-        event="phone_click"
-        landing={landing.slug}
-        source={landing.source}
-        location="hero"
-        href={telHref(PHONE_MAIN)}
-        data-track="phone_click"
-        className="btn-tel-outline"
-      >
-          <PhoneGlyph />
-          Llamar {PHONE_MAIN_DISPLAY}
-        </TrackedLink>
       </div>
     </div>
   );
