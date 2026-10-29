@@ -8,14 +8,15 @@ import { WhatsAppGlyph } from "@/components/site/whatsapp-float";
 import { cn } from "@/lib/utils";
 
 /**
- * The two WhatsApp contacts, each with its name.
+ * The public WhatsApp contacts (today only the commercial line), each with
+ * its name.
  *
  * Use wherever the site shows WhatsApp as text or link. The single-button
  * spots — header, sticky bar and floating button — keep one contact and do
  * not use this.
  *
- * Both links are plain anchors, so the delegated listener reports
- * whatsapp_click for either one, with `destino` telling them apart.
+ * The links are plain anchors, so the delegated listener reports
+ * whatsapp_click for each one, with `destino` telling them apart.
  */
 export function WhatsAppContacts({
   message,
@@ -75,7 +76,7 @@ export function WhatsAppContactLink({
 }
 
 /**
- * The two contacts as buttons, for heroes and closing sections where the
+ * The contacts as buttons, for heroes and closing sections where the
  * single WhatsApp button used to be. Keeps the caller's button class.
  */
 export function WhatsAppContactButtons({
@@ -106,7 +107,7 @@ export function WhatsAppContactButtons({
 }
 
 /**
- * The two contacts as tracked buttons. Uses TrackedLink, so the click also
+ * The contacts as tracked buttons. Uses TrackedLink, so the click also
  * reaches /api/cta-clicks with its gclid attribution, exactly like the Ads
  * footer. Prefer this over WhatsAppContactButtons anywhere a landing context
  * is available.

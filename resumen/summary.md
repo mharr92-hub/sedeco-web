@@ -55,7 +55,7 @@ Administradores de PH, desarrolladores inmobiliarios, contratistas generales, se
 ## Contacto
 - **Oficina:** Paitilla, Edificio RBS, Planta Baja, Oficina 103A.
 - **Teléfonos:** +507 383-5176 / +507 383-5175
-- **WhatsApp:** +507 6550-8320 (Mark Harrick)
+- **WhatsApp:** +507 6038-8649 (Christian Mendoza, línea comercial)
 - **Email:** mark@selladodeconcreto.com
 - **Web:** sedeco.lat
 - **Instagram:** @sedecopanama

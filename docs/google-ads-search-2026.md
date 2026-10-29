@@ -28,7 +28,7 @@ Cuando Mark pegue el GTM ID en `NEXT_PUBLIC_GTM_ID` (formato `GTM-XXXXXXX`):
 
 CTA único en sitio y anuncios: **Solicitar inspección**.  
 Garantía: **garantía por escrito según sistema y alcance contratado**. Nunca años ni «de por vida».  
-WhatsApp: +507 6550-8320. Geo: Ciudad de Panamá + área metro; Colón opcional como ubicación, no como keyword de país.
+WhatsApp: +507 6038-8649 (Christian Mendoza, línea comercial; el número de Mark es personal y no se publica). Geo: Ciudad de Panamá + área metro; Colón opcional como ubicación, no como keyword de país.
 
 ---
 

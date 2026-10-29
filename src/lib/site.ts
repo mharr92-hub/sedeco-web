@@ -17,12 +17,13 @@ export const OG_IMAGE = {
 } as const;
 
 /**
- * The two WhatsApp contacts. Wherever the site shows WhatsApp as text or as a
- * link, both appear, each with its name.
+ * The public WhatsApp contacts: only the commercial line. Mark's number is
+ * personal and must not appear anywhere on the site (Mark, 2026-10-29).
+ * Wherever the site shows WhatsApp as text or as a link, every entry appears
+ * with its name.
  *
- * The single-button spots — header, sticky bar and floating button — have no
- * room for two, so they keep the first entry. `key` is what the analytics
- * event reports as the destination.
+ * The single-button spots — header, sticky bar and floating button — keep the
+ * first entry. `key` is what the analytics event reports as the destination.
  *
  * Never write a name with "Ing." in front of it.
  */
@@ -33,13 +34,6 @@ export const WHATSAPP_CONTACTS = [
     role: "Gerente",
     number: "50760388649",
     display: "+507 6038-8649",
-  },
-  {
-    key: "mark",
-    name: "Mark Harrick",
-    role: "Presidente",
-    number: "50765508320",
-    display: "+507 6550-8320",
   },
 ] as const;
 
@@ -53,7 +47,7 @@ export const PRIMARY_WHATSAPP = WHATSAPP_CONTACTS[0];
  * number may be written down — components read it from here, never inline.
  */
 export const CONTACT = {
-  /** Destination of the single-button spots. Both contacts: WHATSAPP_CONTACTS. */
+  /** Destination of the single-button spots. Full list: WHATSAPP_CONTACTS. */
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? PRIMARY_WHATSAPP.number,
   whatsappDisplay:
     process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? PRIMARY_WHATSAPP.display,
@@ -152,7 +146,7 @@ export function whatsappHref(
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-/** Same prefilled message, addressed to one of the two contacts. */
+/** Same prefilled message, addressed to one WhatsApp contact. */
 export function whatsappHrefFor(
   contact: WhatsAppContact,
   message: string = WHATSAPP_DEFAULT_MESSAGE,
